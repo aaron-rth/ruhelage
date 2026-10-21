@@ -161,6 +161,7 @@ export function Einstellungen() {
           <div><dt><kbd className="taste">Leertaste</kbd></dt><dd>Karte umdrehen</dd></div>
           <div><dt><kbd className="taste">1</kbd> <kbd className="taste">2</kbd> <kbd className="taste">3</kbd></dt><dd>wusste ich / so halb / nicht</dd></div>
           <div><dt><kbd className="taste">Enter</kbd></dt><dd>prüfen, weiter, Runde starten</dd></div>
+          <div><dt><kbd className="taste">Esc</kbd></dt><dd>Eingabefeld verlassen (danach gehen H, L, N)</dd></div>
           <div><dt><kbd className="taste">H</kbd></dt><dd>nächste Hilfestufe</dd></div>
           <div><dt><kbd className="taste">L</kbd></dt><dd>Lösungsweg (nach allen Hilfen)</dd></div>
           <div><dt><kbd className="taste">N</kbd></dt><dd>neue Aufgabe</dd></div>

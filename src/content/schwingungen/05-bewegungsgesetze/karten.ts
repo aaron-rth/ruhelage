@@ -1,3 +1,32 @@
 import type { Karte } from '../../types';
 
-export const karten: Karte[] = [];
+const B157 = 'Buch S. 157';
+export const karten: Karte[] = [
+  { id: 'bg-s-cos', typ: 'formel', vorne: 'Bewegungsgesetz beim Start im **oberen Umkehrpunkt**?', hinten: '$s(t) = \\hat s\\cos(\\omega t)$', quelle: B157 },
+  { id: 'bg-s-sin', typ: 'formel', vorne: 'Bewegungsgesetz beim Start in der **Ruhelage**, Bewegung nach oben?', hinten: '$s(t) = \\hat s\\sin(\\omega t)$', quelle: B157 },
+  { id: 'bg-s-minuscos', typ: 'formel', vorne: 'Bewegungsgesetz beim Start im **unteren** Umkehrpunkt?', hinten: '$s(t) = -\\hat s\\cos(\\omega t)$, denn $s(0) = -\\hat s$.', quelle: B157 },
+  { id: 'bg-s-minussin', typ: 'formel', vorne: 'Bewegungsgesetz beim Start in der Ruhelage, Bewegung **nach unten**?', hinten: '$s(t) = -\\hat s\\sin(\\omega t)$', quelle: B157 },
+  { id: 'bg-sin-cos-merk', typ: 'warum', vorne: 'Woran erkennst du, ob sin oder cos passt?', hinten: 'Am **Startpunkt**: $\\cos(0) = 1$ → Start im Umkehrpunkt. $\\sin(0) = 0$ → Start in der Ruhelage. Das Vorzeichen sagt, oben/unten bzw. in welche Richtung.', quelle: 'Notizen Lehrer 28.9.; Buch S. 157' },
+  { id: 'bg-v', typ: 'formel', vorne: '$s(t) = \\hat s\\cos(\\omega t)$. Wie lautet $v(t)$?', hinten: '$v(t) = -\\hat s\\,\\omega\\sin(\\omega t)$ (Kettenregel: innere Ableitung $\\omega$).', quelle: B157 },
+  { id: 'bg-a', typ: 'formel', vorne: '$s(t) = \\hat s\\cos(\\omega t)$. Wie lautet $a(t)$?', hinten: '$a(t) = -\\hat s\\,\\omega^2\\cos(\\omega t)$', quelle: B157 },
+  { id: 'bg-v-sin', typ: 'formel', vorne: '$s(t) = \\hat s\\sin(\\omega t)$. Wie lauten $v(t)$ und $a(t)$?', hinten: '$v(t) = \\hat s\\,\\omega\\cos(\\omega t)$, $a(t) = -\\hat s\\,\\omega^2\\sin(\\omega t)$', quelle: 'Notizen Lehrer 5.10.' },
+  { id: 'bg-vmax', typ: 'formel', vorne: 'Maximale Geschwindigkeit $\\hat v$?', hinten: '$\\hat v = \\hat s\\cdot\\omega$', quelle: B157 },
+  { id: 'bg-amax', typ: 'formel', vorne: 'Maximale Beschleunigung $\\hat a$?', hinten: '$\\hat a = \\hat s\\cdot\\omega^2$', quelle: B157 },
+  { id: 'bg-warum-max', typ: 'warum', vorne: 'Warum ist $\\hat v = \\hat s\\omega$ der **Maximalwert** von $v(t) = -\\hat s\\omega\\sin(\\omega t)$?', hinten: 'Weil $\\sin$ und $\\cos$ nur Werte zwischen $-1$ und $1$ annehmen. Der Betrag ist also höchstens $\\hat s\\omega$.', quelle: 'Notizen Lehrer 5.10.' },
+  { id: 'bg-kettenregel', typ: 'herleitung', vorne: 'Ableitung von $\\sin(k\\cdot t)$ nach $t$?', hinten: '$k\\cdot\\cos(k\\cdot t)$ – äußere Ableitung mal innere Ableitung $k$.', quelle: 'Notizen Lehrer 23.9.' },
+  { id: 'bg-zweimal', typ: 'herleitung', vorne: 'Was ergibt **zweimaliges** Ableiten von $\\sin(\\omega t)$?', hinten: '$-\\omega^2\\sin(\\omega t)$ – wieder dieselbe Funktion, mal $-\\omega^2$. Genau diese Eigenschaft braucht man für die DGL.', quelle: 'Notizen Lehrer 23.9.' },
+  { id: 'bg-a-s', typ: 'formel', vorne: 'Wie hängen $a(t)$ und $s(t)$ bei einer harmonischen Schwingung zusammen?', hinten: '$a(t) = -\\omega^2\\cdot s(t)$ – proportional und entgegengesetzt.', quelle: B157 },
+  { id: 'bg-umkehr', typ: 'begriff', vorne: 'Was gilt im **Umkehrpunkt** für $s$, $v$ und $a$?', hinten: '$|s| = \\hat s$ maximal, $v = 0$, $|a| = \\hat a$ maximal (zeigt zur Ruhelage).', quelle: B157 },
+  { id: 'bg-ruhelage', typ: 'begriff', vorne: 'Was gilt in der **Gleichgewichtslage** für $s$, $v$ und $a$?', hinten: '$s = 0$, $|v| = \\hat v$ maximal, $a = 0$ (keine Rückstellkraft).', quelle: B157 },
+  { id: 'bg-rad', typ: 'fehler', vorne: 'Du rechnest $\\hat s\\cos(\\omega t)$ und bekommst Unsinn. Was ist der häufigste Grund?', hinten: 'Taschenrechner steht auf **Grad (DEG)**. $\\omega t$ ist ein Winkel im **Bogenmaß** → auf **RAD** umstellen.', quelle: 'Buch S. 157 (Randspalte)' },
+  { id: 'bg-v-aus-s', typ: 'warum', vorne: 'Wie bekommt man aus dem s-t-Diagramm das v-t-Diagramm?', hinten: '$v$ ist die **Steigung** von $s$. Hoch-/Tiefpunkte von $s$ → $v = 0$. Nulldurchgänge von $s$ (steilste Stellen) → $|v|$ maximal.', quelle: 'Buch S. 151, 157' },
+  { id: 'bg-a-spiegel', typ: 'wasPassiert', vorne: 'Wie sieht das a-t-Diagramm im Vergleich zum s-t-Diagramm aus?', hinten: 'Wie das **Spiegelbild** an der t-Achse, gestreckt um $\\omega^2$: $a = -\\omega^2 s$.', quelle: B157 },
+  { id: 'bg-flaeche', typ: 'warum', vorne: 'Was bedeutet die Fläche unter dem v-t-Graphen?', hinten: 'Die **zurückgelegte Strecke**. Von der Ruhelage bis zum Umkehrpunkt (eine Viertelperiode) ist sie genau $\\hat s$.', quelle: 'Buch S. 151' },
+  { id: 'bg-s-aus-v', typ: 'herleitung', vorne: 'Gegeben ist nur ein v-t-Diagramm. Wie kommst du an $\\hat s$?', hinten: '$T$ und $\\hat v$ ablesen → $\\omega = \\frac{2\\pi}{T}$ → $\\hat s = \\frac{\\hat v}{\\omega}$.', quelle: 'Notizen Lehrer 5.10.; Buch S. 157' },
+  { id: 'bg-v-max-wo', typ: 'wasPassiert', vorne: 'Im v-t-Diagramm ist $v$ bei $t = 0$ maximal negativ. Wo ist der Körper und wohin bewegt er sich?', hinten: 'In der **Ruhelage** (dort ist $|v|$ maximal), Bewegung in **negative** Richtung. Also $s(t) = -\\hat s\\sin(\\omega t)$.', quelle: 'Buch S. 157' },
+  { id: 'bg-amp-doppelt', typ: 'wasPassiert', vorne: 'Was passiert mit $\\hat v$ und $\\hat a$, wenn man die Amplitude verdoppelt (gleiches Pendel)?', hinten: 'Beide **verdoppeln** sich, denn $\\omega$ bleibt gleich. Das Pendel muss in derselben Zeit den doppelten Weg schaffen.', quelle: B157 },
+  { id: 'bg-omega-doppelt', typ: 'wasPassiert', vorne: 'Was passiert mit $\\hat v$ und $\\hat a$, wenn $\\omega$ doppelt so groß ist (gleiche Amplitude)?', hinten: '$\\hat v$ verdoppelt sich, $\\hat a$ **vervierfacht** sich ($\\omega^2$).', quelle: B157 },
+  { id: 'bg-viertel', typ: 'wasPassiert', vorne: 'Start im oberen Umkehrpunkt. Wo ist der Körper nach $\\frac{T}{4}$, $\\frac{T}{2}$, $\\frac{3T}{4}$?', hinten: '$\\frac T4$: Ruhelage (nach unten unterwegs), $\\frac T2$: unterer Umkehrpunkt, $\\frac{3T}{4}$: Ruhelage (nach oben unterwegs).', quelle: B157 },
+  { id: 'bg-funktion-zeit', typ: 'begriff', vorne: 'Was bedeutet die Schreibweise $s(t)$, $v(t)$, $a(t)$?', hinten: 'Die Größen sind **Funktionen der Zeit**: Für jeden Zeitpunkt $t$ gibt es einen Wert. $\\dot s$ = Ableitung nach der Zeit.', quelle: 'Notizen Lehrer 23.9.' },
+  { id: 'bg-punkt', typ: 'begriff', vorne: 'Was bedeuten der Punkt und der Doppelpunkt in $\\dot s$ und $\\ddot s$?', hinten: 'Ableitung nach der Zeit: $\\dot s = v$ (einmal), $\\ddot s = a$ (zweimal).', quelle: 'Notizen Lehrer 23.9.' },
+];

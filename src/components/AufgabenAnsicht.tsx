@@ -19,7 +19,7 @@ type TeilZustand = {
   meldung: { art: 'richtig' | 'falsch' | 'info'; text: string } | null;
 };
 
-const HILFE_TITEL = ['Gegeben, gesucht, passende Formel', 'Ansatz', 'Zwischenergebnis'];
+const HILFE_TITEL = ['Worum geht’s?', 'Ansatz', 'Zwischenschritt'];
 
 export interface AufgabenErgebnis {
   richtig: boolean;
@@ -153,7 +153,7 @@ export function AufgabenAnsicht({
       </div>
 
       <Md text={aufgabe.kontext} className="prosa aufgabe-kontext" />
-      {aufgabe.plot && <Plot spec={aufgabe.plot} />}
+      {aufgabe.plot && !(teil?.antwort.art === 'klick' && !teil.plot) && <Plot spec={aufgabe.plot} />}
 
       {/* erledigte Teile */}
       {aufgabe.teile.slice(0, aktiv).map((t, i) => (

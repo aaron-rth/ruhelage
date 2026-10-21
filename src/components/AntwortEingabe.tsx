@@ -59,6 +59,8 @@ export function AntwortEingabe({ antwort, wert, onChange, onEnter, status, gespe
               e.preventDefault();
               onEnter?.();
             }
+            // Esc verlässt das Feld, danach funktionieren H (Hilfe) und L (Lösung)
+            if (e.key === 'Escape') (e.target as HTMLInputElement).blur();
           }}
         />
         {zeigeMenue && (

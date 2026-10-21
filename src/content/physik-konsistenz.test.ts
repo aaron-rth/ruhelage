@@ -66,3 +66,64 @@ describe('Thema 3 – Federpendel', () => {
       nah(f(0), 0);
     }));
 });
+
+describe('Thema 5 – Bewegungsgesetze', () => {
+  it('bg-vmax-amax: v̂ = ŝω, â = ŝω²', () =>
+    lauf('bg-vmax-amax', (a, w) => {
+      nah(wert(a, 1), w.amp * wert(a, 0));
+      nah(wert(a, 2), wert(a, 1) * wert(a, 0));
+    }));
+  it('bg-amp-aus-v: ŝ·ω = v̂ und T aus ω', () =>
+    lauf('bg-amp-aus-v', (a, w) => {
+      nah(wert(a, 0) * (2 * Math.PI / w.T), w.vmax);
+      nah(wert(a, 1), w.vmax * w.w);
+    }));
+  it('bg-s-zeitpunkt: s(t₁) und v(t₁) passen zur Startbedingung', () =>
+    lauf('bg-s-zeitpunkt', (a, w) => {
+      const s0 = w.amp * Math.sin(w.phi0);
+      const v0 = w.amp * w.w * Math.cos(w.phi0);
+      // Energieerhaltung: s² + (v/ω)² = ŝ²
+      nah(wert(a, 0) ** 2 + (wert(a, 1) / w.w) ** 2, w.amp ** 2, 1e-9);
+      nah(s0 ** 2 + (v0 / w.w) ** 2, w.amp ** 2, 1e-9);
+      expect(Math.abs(wert(a, 0))).toBeGreaterThan(0.1 * w.amp);
+      const r = a.teile[2].antwort;
+      if (r.art === 'auswahl') expect(r.richtig).toBe(wert(a, 1) > 0 ? 0 : 1);
+    }));
+  it('bg-erste-zeit: s(t) erreicht den Wert erstmals genau dort', () =>
+    lauf('bg-erste-zeit', (a, w) => {
+      const t = wert(a, 0);
+      const f = (x: number) => (w.ausUmkehr ? Math.cos(w.w * x) : Math.sin(w.w * x));
+      nah(f(t), w.anteil, 1e-9);
+      for (let x = t / 40; x < t * 0.98; x += t / 40) expect(Math.abs(f(x) - w.anteil)).toBeGreaterThan(1e-6);
+    }));
+  it('bg-st-ablesen: Plot passt zu T und ŝ', () =>
+    lauf('bg-st-ablesen', (a, w) => {
+      const f = a.plot!.kurven[0].f;
+      nah(f(0.3) , f(0.3 + w.T), 1e-9);
+      expect(Math.max(...Array.from({ length: 400 }, (_, i) => f((i / 400) * w.T)))).toBeCloseTo(w.amp, 2);
+    }));
+  it('bg-vt-auswerten: ŝ = v̂/ω, Startoption passt zu v(0)', () =>
+    lauf('bg-vt-auswerten', (a, w) => {
+      nah(wert(a, 1) * w.w, w.vmax);
+      const v0 = a.plot!.kurven[0].f(0);
+      const opt = a.teile[2].antwort;
+      if (opt.art !== 'auswahl') throw new Error();
+      const text = opt.optionen[opt.richtig];
+      if (Math.abs(v0) > 1e-9) expect(text).toMatch(v0 > 0 ? /Ruhelage, Bewegung nach oben/ : /Ruhelage, Bewegung nach unten/);
+      else expect(text).toMatch(/Umkehrpunkt/);
+    }));
+  it('bg-klick: Ziel ist wirklich Umkehrpunkt bzw. Nulldurchgang', () =>
+    lauf('bg-klick', (a, w) => {
+      const f = a.plot!.kurven[0].f;
+      const amp = Math.max(...Array.from({ length: 200 }, (_, i) => Math.abs(f((i / 200) * w.T))));
+      const y = Math.abs(f(w.ziel));
+      expect(y < 1e-6 * amp || Math.abs(y - amp) < 1e-3 * amp).toBe(true);
+    }));
+  it('bg-ort-richtung: Auswahl passt zu Vorzeichen von s und Steigung', () =>
+    lauf('bg-ort-richtung', (a, w) => {
+      const f = a.plot!.kurven[0].f;
+      const s = f(w.t1);
+      const st = f(w.t1 + 1e-5) - f(w.t1 - 1e-5);
+      expect(w.richtig).toBe((s > 0 ? 0 : 2) + (st > 0 ? 0 : 1));
+    }));
+});
