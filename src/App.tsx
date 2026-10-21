@@ -4,6 +4,7 @@ import { Lader, Logo } from './components/Basis';
 import { Einfuehrung, EINFUEHRUNG } from './components/Einfuehrung';
 import { Icon } from './components/Icon';
 import { Statistik } from './components/Statistik';
+import { kontoStarten, syncPlanen, syncSofort } from './lib/cloud';
 import { heute, tageZwischen } from './lib/datum';
 import { Aktuell, useOffeneEintraege } from './pages/Aktuell';
 import { Einstellungen } from './pages/Einstellungen';
@@ -214,8 +215,23 @@ function istHintergrund(el: HTMLElement | null): boolean {
   return !!el && (el.classList.contains('haupt') || el.classList.contains('inhalt') || el.classList.contains('seiten-wechsel') || el.classList.contains('kopf'));
 }
 
+/** Optionales Konto: beim Start anmelden, nach Änderungen und beim Verlassen synchronisieren. */
+function useCloud() {
+  useEffect(() => {
+    void kontoStarten();
+    const ab = useStore.subscribe(() => syncPlanen());
+    const sichtbar = () => syncSofort();
+    document.addEventListener('visibilitychange', sichtbar);
+    return () => {
+      ab();
+      document.removeEventListener('visibilitychange', sichtbar);
+    };
+  }, []);
+}
+
 function Rahmen() {
   useLernzeit();
+  useCloud();
   useTheme();
   const nochmal = useStore((s) => s.nochmal.length);
   const offen = useOffeneEintraege().filter((e) => e.art !== 'lesen').length;

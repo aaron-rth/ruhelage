@@ -94,6 +94,10 @@ Antworten werden in SI gespeichert; die Eingabe akzeptiert Komma und Punkt, Zehn
 
 Schulbuchseiten, Mitschriften und die Übungsklausur liegen **nicht** in diesem öffentlichen Repository. `.gitignore` schließt `material/` und `*.pdf` aus, und `npm run check:material` bricht ab, sobald PDFs, Scans oder Bilder auftauchen (läuft auch in der CI). Alle Inhalte sind in eigenen Worten formuliert.
 
+## Konto & Synchronisierung (optional)
+
+Anmeldung per E-Mail-Code über Supabase (`src/lib/cloud.ts`). Ohne Konto bleibt alles lokal. Mit Konto wird der Fortschritt beim Start, nach Änderungen (höchstens alle 30 s) und beim Verlassen der App mit der Cloud zusammengeführt (`src/lib/zusammenfuehren.ts`, nichts geht verloren). Die Tabelle und die Zugriffsregeln stehen in `supabase/schema.sql`.
+
 ## Deployment (GitHub Pages)
 
 Der Workflow `.github/workflows/deploy.yml` baut und veröffentlicht bei jedem Push auf `main`. Einmalig in GitHub: **Settings → Pages → Source: GitHub Actions**.

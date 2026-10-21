@@ -3648,3 +3648,23 @@ html {
     padding-top: calc(var(--s3) + env(safe-area-inset-top));
   }
 }
+
+/* ---------- Konto ---------- */
+.konto {
+  margin-bottom: var(--s4);
+}
+.konto h3 {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.konto-zeile {
+  display: flex;
+  gap: var(--s2);
+  flex-wrap: wrap;
+  margin: var(--s3) 0;
+}
+.konto-zeile .eingabe {
+  flex: 1 1 220px;
+  min-width: 0;
+}
