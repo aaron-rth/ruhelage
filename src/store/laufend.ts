@@ -4,7 +4,7 @@ import { useCallback } from 'react';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
-export type AktuellArt = 'heute' | 'karten' | 'nochmal' | 'uebungen' | 'rechnen' | 'lesen';
+export type AktuellArt = 'heute' | 'karten' | 'nochmal' | 'uebungen' | 'rechnen' | 'lesen' | 'mischung';
 
 export interface AktuellEintrag {
   key: string;

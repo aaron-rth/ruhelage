@@ -88,3 +88,26 @@ export function baueHeute(kurs: Kurs, d: Daten, h: string, seed: number, fokus: 
     minuten,
   };
 }
+
+/** Karteikarten aus allen Themen: fällige zuerst, dann neue aus den schwächsten Themen. */
+export function mischKarten(kurs: Kurs, d: Daten, h: string, anzahl: number): SitzungsItem[] {
+  const sortiert = schwacheThemen(kurs, d, h);
+  const faellig = sortiert.flatMap((t) => t.karten.filter((k) => istFaellig(d.karten[k.id], h)));
+  const neu = sortiert.flatMap((t) => t.karten.filter((k) => !d.karten[k.id]));
+  return [...faellig, ...neu].slice(0, anzahl).map((k) => ({ art: 'karte' as const, id: k.id }));
+}
+
+/** Übungen bzw. Rechenaufgaben gemischt aus den schwächsten Themen, wenig geübte zuerst. */
+export function mischAufgaben(kurs: Kurs, d: Daten, h: string, seed: number, art: 'uebungen' | 'rechnen', anzahl: number): SitzungsItem[] {
+  const rng = erzeugeRng(seed);
+  const themen = schwacheThemen(kurs, d, h).slice(0, 4);
+  const kandidaten: { item: SitzungsItem; w: number }[] = themen.flatMap((t, ti) =>
+    art === 'rechnen'
+      ? t.generatoren.filter((g) => g.art === 'rechnen').map((g) => ({ item: { art: 'aufgabe' as const, id: g.id, seed: rng.int(1, 2 ** 30) }, w: (quote(d, genKey(g.id)) ?? 0.3) + ti * 0.12 + rng.next() * 0.3 }))
+      : [
+          ...t.uebungen.map((u) => ({ item: { art: 'uebung' as const, id: u.id }, w: (quote(d, uebKey(u.id)) ?? 0.3) + ti * 0.12 + rng.next() * 0.3 })),
+          ...t.generatoren.filter((g) => g.art === 'diagramm').map((g) => ({ item: { art: 'aufgabe' as const, id: g.id, seed: rng.int(1, 2 ** 30) }, w: (quote(d, genKey(g.id)) ?? 0.3) + ti * 0.12 + rng.next() * 0.3 })),
+        ],
+  );
+  return kandidaten.sort((a, b) => a.w - b.w).slice(0, anzahl).map((k) => k.item);
+}

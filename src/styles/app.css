@@ -1963,11 +1963,8 @@ body[data-tour] .mobil-nav {
   z-index: 90;
 }
 body[data-tour='/'] [data-tour='/'],
-body[data-tour='/aktuell'] [data-tour='/aktuell'],
-body[data-tour='/pfad'] [data-tour='/pfad'],
-body[data-tour='/nochmal'] [data-tour='/nochmal'],
-body[data-tour='/einstellungen'] .seitenleiste [data-tour='/einstellungen'],
-body[data-tour='/einstellungen'] .mobil-nav [data-tour='mehr'] {
+body[data-tour='/faecher'] [data-tour='/faecher'],
+body[data-tour='/profil'] [data-tour='/profil'] {
   position: relative;
   z-index: 91;
   background: var(--flaeche);
@@ -2565,13 +2562,35 @@ button.seitenleiste-fuss:hover {
 .seitenleiste-kopf .symbol-knopf:hover {
   color: var(--text);
 }
+/* Seitenleiste gleitet weich hinaus bzw. herein */
+.app {
+  grid-template-columns: var(--sidebar) minmax(0, 1fr);
+  transition: grid-template-columns 380ms var(--kurve);
+}
+.seitenleiste {
+  overflow: hidden;
+  min-width: 0;
+  transition: opacity 260ms var(--kurve), transform 380ms var(--kurve), padding 380ms var(--kurve), border-color 380ms;
+}
 .app.fokus {
-  grid-template-columns: minmax(0, 1fr);
+  grid-template-columns: 0px minmax(0, 1fr);
 }
 .app.fokus .seitenleiste {
-  display: none;
+  opacity: 0;
+  transform: translateX(-32px);
+  padding-left: 0;
+  padding-right: 0;
+  border-right-color: transparent;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .app,
+  .seitenleiste {
+    transition: none;
+  }
 }
 .fokus-leiste {
+  animation: einblenden 300ms var(--kurve) 200ms both;
   position: fixed;
   top: 14px;
   left: 14px;
@@ -3141,4 +3160,395 @@ button.seitenleiste-fuss:hover {
   overflow-x: clip;
   overflow-y: visible;
   padding-bottom: 4px;
+}
+
+/* ---------- Navigation: drei Bereiche ---------- */
+.seitenleiste {
+  gap: var(--s4);
+  overflow-y: auto;
+}
+.fach-wahl {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  padding: var(--s3);
+  border: 1px solid var(--linie);
+  border-radius: var(--r);
+  background: var(--flaeche);
+  color: var(--akzent);
+  white-space: nowrap;
+}
+.fach-wahl > span {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  color: var(--text);
+}
+.fach-wahl .klein {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.nav {
+  gap: var(--s3);
+}
+.nav-gruppe {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.nav .nav-bereich {
+  padding: 4px var(--s3);
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+.nav .nav-bereich:hover {
+  background: none;
+  color: var(--text);
+}
+.nav-gruppe.aktiv .nav-bereich {
+  color: var(--akzent);
+}
+.nav a {
+  white-space: nowrap;
+}
+.nav a svg {
+  flex: none;
+}
+a.seitenleiste-fuss {
+  color: var(--text-2);
+  text-decoration: none;
+  transition: border-color var(--dauer), background var(--dauer);
+}
+a.seitenleiste-fuss:hover {
+  border-color: var(--akzent-linie);
+  background: var(--flaeche);
+}
+
+/* Handy: drei Tabs, „Lernen“ in der Mitte hervorgehoben */
+@media (max-width: 860px) {
+  .mobil-nav {
+    justify-content: space-around;
+    align-items: flex-end;
+    padding: 6px 12px calc(8px + env(safe-area-inset-bottom));
+  }
+  .mobil-nav a {
+    flex: 1;
+    max-width: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    padding: 4px 0;
+    font-size: 0.75rem;
+    font-weight: 550;
+    color: var(--text-3);
+    text-decoration: none;
+  }
+  .mobil-nav a.aktiv {
+    color: var(--akzent);
+  }
+  .mobil-nav a.aktiv::before {
+    display: none;
+  }
+  .mobil-nav .tab-icon {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 32px;
+    border-radius: 16px;
+    transition: background var(--dauer) var(--kurve);
+  }
+  .mobil-nav a.aktiv .tab-icon {
+    background: var(--akzent-weich);
+  }
+  .mobil-nav a.mitte .tab-icon {
+    width: 58px;
+    height: 58px;
+    margin-top: -26px;
+    border-radius: 50%;
+    background: var(--akzent);
+    color: var(--auf-akzent);
+    box-shadow: 0 6px 18px color-mix(in srgb, var(--akzent) 35%, transparent), 0 0 0 5px var(--bg);
+  }
+  .mobil-nav a.mitte.aktiv .tab-icon {
+    background: var(--akzent-hell);
+  }
+  .mobil-nav .tab-icon .badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+  }
+  .mobil-fach {
+    margin-left: var(--s3);
+    margin-right: auto;
+    padding: 3px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--linie);
+    color: var(--text-2);
+    font-size: 0.8rem;
+  }
+}
+.mobil-fach {
+  display: none;
+}
+@media (max-width: 860px) {
+  .mobil-fach {
+    display: inline-block;
+  }
+}
+
+/* ---------- Lernen ---------- */
+.weiter-karte {
+  display: flex;
+  align-items: center;
+  gap: var(--s4);
+  width: 100%;
+  margin-bottom: var(--s4);
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  border-color: var(--akzent-linie);
+  transition: border-color var(--dauer), transform 160ms var(--kurve);
+}
+.weiter-karte:hover {
+  border-color: var(--akzent);
+}
+.weiter-karte:active {
+  transform: scale(0.99);
+}
+.weiter-karte strong {
+  font-size: 1.1rem;
+}
+.weitere-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin: calc(-1 * var(--s2)) 0 var(--s4) var(--s2);
+}
+.abschnitt-titel {
+  margin: var(--s5) 0 var(--s3);
+  font-size: 1.15rem;
+}
+.modus-kacheln {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--s3);
+}
+.modus-kachel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: var(--s4);
+  border: 1px solid var(--linie);
+  border-radius: var(--r-l);
+  background: var(--flaeche);
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color var(--dauer), background var(--dauer), transform 160ms var(--kurve);
+}
+.modus-kachel:hover {
+  border-color: var(--akzent-linie);
+  background: var(--flaeche-2);
+  text-decoration: none;
+}
+.modus-kachel:active {
+  transform: scale(0.98);
+}
+.modus-kachel strong {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+}
+.modus-icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  flex: none;
+  border-radius: 12px;
+  background: var(--akzent-weich);
+  color: var(--akzent);
+}
+@media (max-width: 700px) {
+  .modus-kacheln {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .modus-kachel {
+    padding: var(--s3);
+  }
+}
+.modus-gemischt {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  width: 100%;
+  padding: var(--s3) var(--s4);
+  border: 1px solid var(--akzent-linie);
+  border-radius: var(--r);
+  background: var(--akzent-weich);
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.modus-gemischt > span:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.modus-themen {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.modus-themen button {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  width: 100%;
+  padding: 10px var(--s2);
+  border: 0;
+  border-bottom: 1px solid var(--linie);
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  border-radius: var(--r-s);
+}
+.modus-themen button:hover {
+  background: var(--flaeche-2);
+}
+.modus-thema-titel {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ---------- Fächer / Profil ---------- */
+.kurs-karte {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s4);
+  margin-bottom: var(--s4);
+}
+.kurs-kopf {
+  display: flex;
+  align-items: center;
+  gap: var(--s4);
+}
+.kurs-kopf h2 {
+  margin: 2px 0 4px;
+}
+.kurs-kopf .sehr-leise svg {
+  vertical-align: -2px;
+}
+.kurs-wege,
+.profil-links {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--s3);
+}
+.profil-links {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-bottom: var(--s4);
+}
+.kurs-weg {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: var(--s4);
+  border: 1px solid var(--linie);
+  border-radius: var(--r);
+  background: var(--flaeche-2);
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color var(--dauer), transform 160ms var(--kurve);
+}
+.kurs-weg svg {
+  color: var(--akzent);
+  margin-bottom: 4px;
+}
+.kurs-weg:hover {
+  border-color: var(--akzent-linie);
+  text-decoration: none;
+}
+.kurs-weg:active {
+  transform: scale(0.98);
+}
+@media (max-width: 700px) {
+  .kurs-wege {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ---------- Icons in Knöpfen: größer und sauber zentriert ---------- */
+.btn svg {
+  flex: none;
+}
+.symbol-knopf {
+  width: 40px;
+  height: 40px;
+  min-height: 40px;
+  padding: 0;
+  justify-content: center;
+}
+.dialog-zu {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  justify-content: center;
+}
+.dialog-zu svg {
+  width: 22px;
+  height: 22px;
+}
+.vb-kopf .symbol-knopf svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* ---------- Formelsammlung: lange Überschriften bleiben in der Karte ---------- */
+.formel-seite-kopf {
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+.formel-seite-kopf h2 {
+  flex: 1 1 200px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  align-items: flex-start;
+}
+.formel-seite-kopf h2 .knoten-nr {
+  flex: none;
+}
+@media (max-width: 860px) {
+  .app,
+  .app.fokus {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+.laut-plan {
+  display: block;
+}
+.laut-plan svg {
+  vertical-align: -2px;
+  margin-right: 4px;
+}
+/* Handy: Tagesziel-Kasten steht im Profil – auf „Lernen“ nur die Runde */
+@media (max-width: 860px) {
+  .heute-raster .heute-ziel {
+    display: none;
+  }
 }

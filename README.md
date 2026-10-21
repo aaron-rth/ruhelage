@@ -7,6 +7,12 @@ Aufgaben werden im Heft gerechnet, die App prüft das Ergebnis, gibt gestufte Hi
 
 ## Was drin ist
 
+Drei Bereiche – am Handy als Tabs unten (Lernen in der Mitte), am Laptop als Seitenleiste mit Unterpunkten (klappt per Klick auf den freien Hintergrund oder Taste F weich ein):
+
+- **Lernen**: Weitermachen, Tagesrunde, gezielt üben (Karteikarten, Übungen, Rechentrainer – gemischt oder pro Thema), Probeklausur, Nochmal, Spielwiese
+- **Fächer**: Kursüberblick, was noch zu tun ist, Lernpfad, Lernplan, Formelsammlung
+- **Profil**: Statistik, Einstellungen, Einführung
+
 | Bereich | Inhalt |
 |---|---|
 | **Heute** | Tägliche Mischsession: fällige Karteikarten, neue Karten und Aufgaben aus den schwächsten Themen, Nochmal-Stapel. Tagesziel, Streak, XP, Countdown bis zur Klausur. |

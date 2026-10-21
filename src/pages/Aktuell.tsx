@@ -15,9 +15,10 @@ const ART: Record<AktuellArt, { icon: string; label: string }> = {
   uebungen: { icon: 'stift', label: 'Übungen' },
   rechnen: { icon: 'rechner', label: 'Rechentrainer' },
   lesen: { icon: 'buch', label: 'Zuletzt gelesen' },
+  mischung: { icon: 'zufall', label: 'Gemischt üben' },
 };
 
-const SITZUNG: AktuellArt[] = ['heute', 'karten', 'nochmal'];
+const SITZUNG: AktuellArt[] = ['heute', 'karten', 'nochmal', 'mischung'];
 
 /** Einträge, die noch wirklich offen sind (beendete Sitzungen und alte Tagesrunden fallen weg). */
 export function useOffeneEintraege(): AktuellEintrag[] {
@@ -34,6 +35,14 @@ export function useOffeneEintraege(): AktuellEintrag[] {
     .sort((a, b) => b.zeit - a.zeit);
 }
 
+/** Angefangenes fortsetzen: pausierte Sitzung wieder aufnehmen und hinspringen. */
+export function weiterMachen(e: AktuellEintrag, navigate: (pfad: string) => void) {
+  if (SITZUNG.includes(e.art)) setzePausiert(e.key, false);
+  navigate(e.pfad);
+}
+
+export const AKTUELL_ART = ART;
+
 export function Aktuell() {
   const eintraege = useOffeneEintraege();
   const alle = useLaufend((s) => s.aktuell);
@@ -47,10 +56,7 @@ export function Aktuell() {
     Object.keys(alle).forEach((k) => !offen.has(k) && entferne(k));
   }, [eintraege, alle, entferne]);
 
-  function weiter(e: AktuellEintrag) {
-    if (SITZUNG.includes(e.art)) setzePausiert(e.key, false);
-    navigate(e.pfad);
-  }
+  const weiter = (e: AktuellEintrag) => weiterMachen(e, navigate);
 
   function verwerfen(e: AktuellEintrag) {
     entferne(e.key);
@@ -102,7 +108,7 @@ export function Aktuell() {
           </button>
 
           <button type="button" className="btn geist klein" style={{ alignSelf: 'flex-end' }} onClick={() => verwerfen(erstes)} aria-label={`${erstes.titel} verwerfen`}>
-            <Icon name="x" size={14} /> Obersten Eintrag verwerfen
+            <Icon name="x" size={18} /> Obersten Eintrag verwerfen
           </button>
 
           {rest.length > 0 && (
@@ -121,7 +127,7 @@ export function Aktuell() {
                     <Icon name="rechts" size={16} className="sehr-leise" />
                   </button>
                   <button type="button" className="btn geist klein" onClick={() => verwerfen(e)} aria-label={`${e.titel} entfernen`} title="Aus der Liste nehmen">
-                    <Icon name="x" size={14} />
+                    <Icon name="x" size={18} />
                   </button>
                 </li>
               ))}

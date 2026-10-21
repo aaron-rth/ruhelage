@@ -258,9 +258,18 @@ function vergleich(jetzt: number, vorher: number, einheit: string, bis?: string)
 }
 
 export function Statistik() {
+  const zu = useUi((s) => s.zeigeStatistik);
+  return (
+    <Dialog titel="Deine Statistik" ueber="Insights" art="seite" onSchliessen={() => zu(false)}>
+      <StatistikInhalt />
+    </Dialog>
+  );
+}
+
+/** Wochenverlauf, Kalender, Fächer, Themen – im Profil und im Dialog. */
+export function StatistikInhalt() {
   const tage = useStore((s) => s.tage);
   const ziel = useStore((s) => s.einstellungen.zielMinuten);
-  const zu = useUi((s) => s.zeigeStatistik);
   const h = heute();
   const dieseWoche = montagVon(h);
   const [montag, setMontag] = useState(dieseWoche);
@@ -279,7 +288,7 @@ export function Statistik() {
   const quote = letzte7.aufgaben > 0 ? Math.round((letzte7.richtig / letzte7.aufgaben) * 100) : null;
 
   return (
-    <Dialog titel="Deine Statistik" ueber="Insights" art="seite" onSchliessen={() => zu(false)}>
+    <>
       <div className="stat-kacheln">
         <div className="stat-kachel">
           <span className="stat-zahl">{serie}</span>
@@ -365,6 +374,6 @@ export function Statistik() {
           <strong>So zählt die Serie:</strong> Ein Tag zählt, sobald du mindestens <strong>3 Karteikarten</strong> bewertet oder <strong>eine Übung bzw. Aufgabe</strong> bearbeitet hast. Die App nur zu öffnen reicht nicht. Die Lernzeit läuft nur, solange du die App wirklich benutzt (Tab sichtbar, in den letzten 90 Sekunden aktiv).
         </div>
       </div>
-    </Dialog>
+    </>
   );
 }
