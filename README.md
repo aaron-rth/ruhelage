@@ -11,16 +11,18 @@ Aufgaben werden im Heft gerechnet, die App prüft das Ergebnis, gibt gestufte Hi
 |---|---|
 | **Heute** | Tägliche Mischsession: fällige Karteikarten, neue Karten und Aufgaben aus den schwächsten Themen, Nochmal-Stapel. Tagesziel, Streak, XP, Countdown bis zur Klausur. |
 | **Aktuell** | Alles Angefangene (Karteikarten, Übungen, Rechenaufgaben, Tagesrunde) – mit einem Klick dort weitermachen, wo man war. Der Stand bleibt auch beim Tab- oder Seitenwechsel erhalten. |
-| **Lernpfad** | Themen 0–10 + Querschnitt mit Abhängigkeiten. Selbsteinschätzung ✓ ~ ✗ (startet bei „noch nicht eingeschätzt“) plus berechneter Fortschritt. |
+| **Lernpfad** | Themen 0–10 + Querschnitt mit Abhängigkeiten. Selbsteinschätzung ✓ ~ ✗ (startet bei „noch nicht eingeschätzt“) plus berechneter Fortschritt. Ansicht **Lernplan**: verteilt die offenen Themen auf die Tage bis zur Klausur (Grundlagen zuerst, am Ende Wiederholung) und passt sich täglich an; „Heute“ nimmt die Aufgaben aus den Themen des Tages. |
 | **Thema** | Kurz erklärt · Karteikarten (Leitner, 5 Fächer, mit ← → blättern) · Übungen (MC mit Begründungen, DGL-Puzzle, Lücken, Fehler finden, Zuordnen, Klassifizieren, interaktive Diagramme) · Rechentrainer (Zufallsaufgaben mit gestufter Hilfe). Überall „Genauer erklärt“ (Taste E). |
-| **Statistik** | Klick auf die Serie (unten links bzw. oben rechts auf dem Handy): Wochenverlauf, Lernkalender, Karteikarten-Fächer, Themenfortschritt. Ein Tag zählt für die Serie ab 3 Karteikarten oder 1 Übung/Aufgabe. |
+| **Statistik** | Klick auf die Serie (unten links bzw. oben rechts auf dem Handy): Wochenverlauf, Lernkalender, Karteikarten-Fächer, Themenfortschritt. Ein Tag zählt für die Serie ab 3 Karteikarten oder 1 Übung/Aufgabe. Lernzeit läuft nur, während Karten, Übungen, Aufgaben oder eine Klausur offen sind. |
+| **Handy** | Lernsitzungen im Vollbild. Karteikarten: Tippen dreht um, danach wischen (rechts = wusste ich, oben = so halb, links = nicht), vorher wischen zum Blättern – abschaltbar in den Einstellungen. Kopfleiste klappt beim Scrollen ein. |
+| **Laptop** | Fokusmodus (Taste F) blendet die Seitenleiste aus, auf Wunsch echtes Vollbild. |
 | **Spielwiese** | Feder-/Fadenpendel, Einheitskreis und s(t)-Graph synchron, Schieberegler, Mini-Aufgaben |
 | **Nochmal** | Fehlerheft: Falsches landet automatisch hier (Aufgaben mit denselben Zahlen) |
 | **Klausurmodus** | Gemischte Aufgaben, optionaler Timer, keine Hilfen, Auswertung nach Themen |
-| **Formelsammlung** | Ein Thema pro Seite zum Durchwischen (← →), Themenleiste, Suche über alles |
-| **Einstellungen** | Tagesziel, Countdown, Einführung/Hinweise, hell/dunkel, Export/Import als JSON |
+| **Formelsammlung** | Kartenstapel: aktuelles Thema vorne, Nachbarthemen dahinter; wischen, antippen oder ← →; Suche über alles |
+| **Einstellungen** | Tagesziel, Wiederholungsabstand der Karteikarten (sehr kurz / kurz / Standard / lang), Wischgesten, Fokusmodus, Countdown, Einführung/Hinweise, hell/dunkel, Export/Import als JSON |
 
-Tastatur: Leertaste (Karte umdrehen), 1/2/3 (Bewertung), ← → (Karten blättern), E (Genauer erklärt), Enter (prüfen/weiter), Esc dann H (Hilfe), L (Lösungsweg), N (neue Aufgabe).
+Tastatur: Leertaste (Karte umdrehen), 1/2/3 (Bewertung), ← → (Karten blättern), E (Genauer erklärt), F (Fokusmodus), Enter (prüfen/weiter), Esc dann H (Hilfe), L (Lösungsweg), N (neue Aufgabe). Auf Touch-Geräten werden die Tastenhinweise ausgeblendet.
 
 Beim ersten Öffnen zeigt eine kurze Einführung, wo was ist; im Lernpfad erklärt ein Hinweis die Selbsteinschätzung. Beides lässt sich in den Einstellungen wieder einschalten.
 
@@ -80,7 +82,7 @@ const beispiel: Generator = {
 };
 ```
 
-Antworten werden in SI gespeichert; die Eingabe akzeptiert Komma und Punkt, Zehnerpotenzen und Einheiten mit Vorsilben (Toleranz standardmäßig 2 %). `typischeFehler` liefern gezielte Hinweise (z. B. „Grad statt Bogenmaß“).
+Antworten werden in SI gespeichert; die Eingabe akzeptiert Komma und Punkt, Zehnerpotenzen, Rechenausdrücke (`3/4`, `2^3`, `10^-3`, `√2`, `sqrt(…)`, `2π/5`, Klammern, sin/cos/ln …) und Einheiten mit Vorsilben (Toleranz standardmäßig 2 %). Der Ausdruck wird vorne gelesen, was danach kommt, ist die Einheit (`3/4 m/s`). Ein ?-Knopf neben dem Feld erklärt die Schreibweisen, auf dem Handy gibt es eine Zeichenleiste. `typischeFehler` liefern gezielte Hinweise (z. B. „Grad statt Bogenmaß“).
 
 ## Lernmaterial und Urheberrecht
 

@@ -3,6 +3,7 @@ import { Meldung } from '../components/Basis';
 import { EINFUEHRUNG } from '../components/Einfuehrung';
 import { Icon } from '../components/Icon';
 import { heute } from '../lib/datum';
+import { intervallText, TAKTE, type Takt } from '../lib/leitner';
 import { exportiere, liesImport, useStore } from '../store/store';
 
 function Zahl({ label, wert, min, max, schritt = 1, einheit, onChange }: { label: string; wert: number; min: number; max: number; schritt?: number; einheit: string; onChange: (n: number) => void }) {
@@ -82,6 +83,31 @@ export function Einstellungen() {
       </section>
 
       <section className="panel">
+        <h3 className="mb">Karteikarten</h3>
+        <div className="einst-zeile einst-spalte">
+          <div>
+            <label>Wiederholungsabstand</label>
+            <p className="sehr-leise klein" style={{ margin: 0 }}>
+              Nach wie vielen Tagen eine Karte in Fach 1 bis 5 wiederkommt: <span className="mono">{intervallText(TAKTE[e.takt].intervalle)}</span> – {TAKTE[e.takt].text}. Gilt sofort auch für schon gelernte Karten.
+            </p>
+          </div>
+          <div className="segment">
+            {(Object.keys(TAKTE) as Takt[]).map((t) => (
+              <button key={t} className={e.takt === t ? 'an' : ''} aria-pressed={e.takt === t} onClick={() => s.setzeTakt(t)}>
+                {TAKTE[t].label}
+              </button>
+            ))}
+          </div>
+        </div>
+        <Schalter
+          label="Wischgesten (Handy)"
+          an={e.wischen}
+          onChange={(b) => s.setzeEinstellung('wischen', b)}
+          text="Tippen dreht die Karte um. Danach: nach rechts = wusste ich, nach oben = so halb, nach links = nicht. Vor dem Umdrehen blätterst du mit Wischen. Ausgeschaltet gibt es nur Knöpfe."
+        />
+      </section>
+
+      <section className="panel">
         <h3 className="mb">Anzeige</h3>
         <Schalter label="Countdown bis zur Klausur" an={e.countdown} onChange={(b) => s.setzeEinstellung('countdown', b)} text="Ein dezenter Hinweis, wie viele Tage noch bleiben." />
         <div className="einst-zeile">
@@ -109,6 +135,12 @@ export function Einstellungen() {
             <Icon name="play" size={14} /> Jetzt ansehen
           </button>
         </div>
+        <Schalter
+          label="Fokusmodus (Laptop)"
+          an={e.fokus}
+          onChange={(b) => s.setzeEinstellung('fokus', b)}
+          text="Blendet die Seitenleiste aus. Umschalten auch mit der Taste F."
+        />
         <div className="einst-zeile">
           <label>Farbschema</label>
           <div className="segment">
@@ -185,6 +217,7 @@ export function Einstellungen() {
           <div><dt><kbd className="taste">←</kbd> <kbd className="taste">→</kbd></dt><dd>vorherige / nächste Karte, Formelsammlung blättern</dd></div>
           <div><dt><kbd className="taste">E</kbd></dt><dd>Genauer erklärt (nach dem Umdrehen bzw. Prüfen)</dd></div>
           <div><dt><kbd className="taste">Enter</kbd></dt><dd>prüfen, weiter, Runde starten</dd></div>
+          <div><dt><kbd className="taste">F</kbd></dt><dd>Fokusmodus an/aus (Seitenleiste ausblenden)</dd></div>
           <div><dt><kbd className="taste">Esc</kbd></dt><dd>Eingabefeld verlassen (danach gehen H, L, N)</dd></div>
           <div><dt><kbd className="taste">H</kbd></dt><dd>nächste Hilfestufe</dd></div>
           <div><dt><kbd className="taste">L</kbd></dt><dd>Lösungsweg (nach allen Hilfen)</dd></div>

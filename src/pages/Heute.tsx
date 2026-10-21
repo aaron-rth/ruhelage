@@ -7,6 +7,7 @@ import { AKTIVER_KURS } from '../content/kurse';
 import { datumLang, heute, tageZwischen } from '../lib/datum';
 import { statusVon, themaFortschritt } from '../lib/fortschritt';
 import { baueHeute, schwacheThemen } from '../lib/heute';
+import { baueLernplan, heuteDran } from '../lib/plan';
 import { neuerSeed } from '../lib/rng';
 import { streak, useStore } from '../store/store';
 import { useUi } from '../store/ui';
@@ -27,7 +28,8 @@ export function Heute() {
   const [bilanz, setBilanz] = useState<SitzungsBilanz | null>(null);
   // Plan nur beim Öffnen bzw. nach einer Sitzung neu bauen, nicht bei jeder Bewertung
   const [planVersion, setPlanVersion] = useState(0);
-  const plan = useMemo(() => baueHeute(AKTIVER_KURS, daten, h, seed), [planVersion, seed, h]);
+  const dran = useMemo(() => heuteDran(baueLernplan(AKTIVER_KURS, daten, h, daten.einstellungen.klausurDatum), h), [planVersion, h, daten.einstellungen.klausurDatum]);
+  const plan = useMemo(() => baueHeute(AKTIVER_KURS, daten, h, seed, dran), [planVersion, seed, h, dran]);
   const tag = daten.tage[h] ?? { xp: 0, sekunden: 0, karten: 0, aufgaben: 0 };
   const e = daten.einstellungen;
   const minuten = Math.floor(tag.sekunden / 60);
@@ -112,7 +114,12 @@ export function Heute() {
             <p className="leise">Heute ist alles erledigt. Wenn du magst, schau in den Lernpfad oder auf die Spielwiese.</p>
           ) : (
             <>
-              <ul className="plan-liste">
+              {dran.length > 0 && (
+                <p className="leise klein laut-plan">
+                  <Icon name="kalender" size={14} /> Laut <Link to="/pfad?ansicht=plan">Lernplan</Link> heute dran: {dran.map((t) => t.titel).join(', ')}
+                </p>
+              )}
+              <ul className="runde-liste">
                 {plan.faellig > 0 && (
                   <li>
                     <Icon name="karten" size={16} /> <strong>{plan.faellig}</strong> fällige Karteikarten

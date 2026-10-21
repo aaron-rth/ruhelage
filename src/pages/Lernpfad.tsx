@@ -1,8 +1,9 @@
 import { useLayoutEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { Ring, StatusWahl } from '../components/Basis';
 import { Dialog } from '../components/Dialog';
 import { EINFUEHRUNG } from '../components/Einfuehrung';
+import { Lernplan } from '../components/Lernplan';
 import { Icon } from '../components/Icon';
 import { AKTIVER_KURS, findeThema } from '../content/kurse';
 import type { Thema } from '../content/types';
@@ -103,7 +104,9 @@ export function Lernpfad() {
   const kurs = AKTIVER_KURS;
   const daten = useStore();
   const offen = kurs.themen.filter((t) => statusVon(t, daten) === 'offen').length;
-  const zeigeHinweis = daten.einstellungen.hinweise && daten.gesehen.includes(EINFUEHRUNG) && !daten.gesehen.includes(HINWEIS) && offen > 0;
+  const [params, setParams] = useSearchParams();
+  const ansicht = params.get('ansicht') === 'plan' ? 'plan' : 'themen';
+  const zeigeHinweis = ansicht === 'themen' && daten.einstellungen.hinweise && daten.gesehen.includes(EINFUEHRUNG) && !daten.gesehen.includes(HINWEIS) && offen > 0;
   const box = useRef<HTMLDivElement>(null);
   const [linien, setLinien] = useState<Linie[]>([]);
   const [groesse, setGroesse] = useState({ b: 0, h: 0 });
@@ -140,7 +143,7 @@ export function Lernpfad() {
     const ro = new ResizeObserver(messen);
     ro.observe(el);
     return () => ro.disconnect();
-  }, [kurs]);
+  }, [kurs, ansicht]);
 
   return (
     <div className="inhalt">
@@ -148,7 +151,19 @@ export function Lernpfad() {
         <div>
           <span className="ueber">Lernpfad</span>
           <h1>{kurs.titel}</h1>
-          <p>Von oben nach unten bauen die Themen aufeinander auf. Deine Einschätzung ✓ ~ ✗ kannst du jederzeit ändern; der Ring zeigt, was deine Ergebnisse sagen.</p>
+          <p>
+            {ansicht === 'themen'
+              ? 'Von oben nach unten bauen die Themen aufeinander auf. Deine Einschätzung ✓ ~ ✗ kannst du jederzeit ändern; der Ring zeigt, was deine Ergebnisse sagen.'
+              : 'Die offenen Themen, verteilt auf die Tage bis zur Klausur – Grundlagen zuerst, am Ende Wiederholung.'}
+          </p>
+          <div className="segment" role="tablist" aria-label="Ansicht" style={{ marginTop: 12 }}>
+            <button role="tab" aria-selected={ansicht === 'themen'} className={ansicht === 'themen' ? 'an' : ''} onClick={() => setParams({}, { replace: true })}>
+              <Icon name="pfad" size={14} /> Themen
+            </button>
+            <button role="tab" aria-selected={ansicht === 'plan'} className={ansicht === 'plan' ? 'an' : ''} onClick={() => setParams({ ansicht: 'plan' }, { replace: true })}>
+              <Icon name="kalender" size={14} /> Lernplan
+            </button>
+          </div>
         </div>
         {einst.countdown && rest >= 0 && kurs.klausur && (
           <span className="chip">
@@ -157,7 +172,8 @@ export function Lernpfad() {
         )}
       </div>
 
-      {offen > 0 && (
+      {ansicht === 'plan' && <Lernplan />}
+      {ansicht === 'themen' && offen > 0 && (
         <div className="hinweis-band einblenden">
           <Icon name="info" size={16} />
           <span>
@@ -166,6 +182,8 @@ export function Lernpfad() {
         </div>
       )}
 
+      {ansicht === 'themen' && (
+      <>
       <div className="pfad" ref={box}>
         <svg className="pfad-linien" width={groesse.b} height={groesse.h} aria-hidden>
           {linien.map((l) => {
@@ -198,6 +216,8 @@ export function Lernpfad() {
         </span>
         <span>Ring = Fortschritt aus Karten und Aufgaben</span>
       </div>
+      </>
+      )}
       {zeigeHinweis && <EinschaetzHinweis onZu={() => daten.hinweisGesehen(HINWEIS)} />}
     </div>
   );

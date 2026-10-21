@@ -30,7 +30,8 @@ const NAV = [
   { to: '/einstellungen', label: 'Einstellungen', icon: 'einstellungen' },
 ];
 
-/** Zählt aktive Lernzeit (Tab sichtbar und in den letzten 90 s benutzt). */
+/** Zählt Lernzeit nur, während Karten, Übungen, Aufgaben oder eine Klausur offen sind
+ *  (Tab sichtbar und in den letzten 90 s benutzt). */
 function useLernzeit() {
   const addSekunden = useStore((s) => s.addSekunden);
   const letzte = useRef(Date.now());
@@ -39,7 +40,7 @@ function useLernzeit() {
     const ev = ['keydown', 'pointerdown', 'wheel', 'touchstart'] as const;
     ev.forEach((e) => window.addEventListener(e, aktiv, { passive: true }));
     const id = window.setInterval(() => {
-      if (document.visibilityState === 'visible' && Date.now() - letzte.current < 90_000) addSekunden(15);
+      if (useUi.getState().lernen > 0 && document.visibilityState === 'visible' && Date.now() - letzte.current < 90_000) addSekunden(15);
     }, 15_000);
     return () => {
       ev.forEach((e) => window.removeEventListener(e, aktiv));
@@ -54,6 +55,67 @@ function useTheme() {
     document.documentElement.dataset.theme = theme;
     document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'light' ? '#f4f6f8' : '#0E131A');
   }, [theme]);
+}
+
+/** Handy: Kopfleiste beim Runterscrollen einklappen, beim Hochscrollen wieder zeigen. */
+function useKopfEinklappen(): boolean {
+  const [weg, setWeg] = useState(false);
+  useEffect(() => {
+    let letzteY = window.scrollY;
+    function onScroll() {
+      const y = window.scrollY;
+      if (Math.abs(y - letzteY) < 6) return;
+      setWeg(y > 64 && y > letzteY);
+      letzteY = y;
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+  return weg;
+}
+
+/** Laptop: Fokusmodus (Seitenleiste aus) mit Taste F, dazu echtes Vollbild auf Wunsch. */
+function useFokus(): [boolean, (b: boolean) => void] {
+  const fokus = useStore((s) => s.einstellungen.fokus);
+  const setze = useStore((s) => s.setzeEinstellung);
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      const tag = (e.target as HTMLElement)?.tagName;
+      if ((e.key === 'f' || e.key === 'F') && !e.ctrlKey && !e.metaKey && !e.altKey && tag !== 'INPUT' && tag !== 'TEXTAREA' && tag !== 'SELECT') {
+        setze('fokus', !useStore.getState().einstellungen.fokus);
+      }
+    }
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [setze]);
+  return [fokus, (b) => setze('fokus', b)];
+}
+
+function FokusLeiste({ onAus }: { onAus: () => void }) {
+  const [voll, setVoll] = useState(!!document.fullscreenElement);
+  useEffect(() => {
+    const f = () => setVoll(!!document.fullscreenElement);
+    document.addEventListener('fullscreenchange', f);
+    return () => document.removeEventListener('fullscreenchange', f);
+  }, []);
+  return (
+    <div className="fokus-leiste">
+      <button type="button" className="btn geist klein" onClick={onAus} title="Seitenleiste zeigen (F)">
+        <Icon name="seitenleiste" size={16} /> Menü
+      </button>
+      {document.fullscreenEnabled && (
+        <button
+          type="button"
+          className="btn geist klein"
+          onClick={() => (voll ? document.exitFullscreen() : document.documentElement.requestFullscreen()).catch(() => undefined)}
+          title={voll ? 'Vollbild beenden' : 'Vollbild'}
+          aria-label={voll ? 'Vollbild beenden' : 'Vollbild'}
+        >
+          <Icon name={voll ? 'vollbildAus' : 'vollbild'} size={16} />
+        </button>
+      )}
+    </div>
+  );
 }
 
 function NachOben() {
@@ -112,13 +174,20 @@ function Rahmen() {
   const [mehr, setMehr] = useState(false);
   const { pathname } = useLocation();
   useEffect(() => setMehr(false), [pathname]);
+  const kopfWeg = useKopfEinklappen();
+  const [fokus, setFokus] = useFokus();
 
   return (
-    <div className="app">
+    <div className={`app${fokus ? ' fokus' : ''}`}>
       <aside className="seitenleiste">
-        <NavLink to="/" className="logo-link" aria-label="Ruhelage – Startseite">
-          <Logo />
-        </NavLink>
+        <div className="seitenleiste-kopf">
+          <NavLink to="/" className="logo-link" aria-label="Ruhelage – Startseite">
+            <Logo />
+          </NavLink>
+          <button type="button" className="btn geist klein symbol-knopf" onClick={() => setFokus(true)} title="Seitenleiste ausblenden (F)" aria-label="Seitenleiste ausblenden">
+            <Icon name="seitenleiste" size={16} />
+          </button>
+        </div>
         <nav className="nav" aria-label="Hauptnavigation">
           {NAV.map((n) => (
             <NavLink key={n.to} to={n.to} end={n.ende} data-tour={n.to} className={({ isActive }) => (isActive ? 'aktiv' : undefined)}>
@@ -132,7 +201,9 @@ function Rahmen() {
         <SeitenleisteFuss />
       </aside>
 
-      <header className="mobil-kopf">
+      {fokus && <FokusLeiste onAus={() => setFokus(false)} />}
+
+      <header className={`mobil-kopf${kopfWeg && !mehr ? ' weg' : ''}`}>
         <NavLink to="/" aria-label="Startseite" style={{ color: 'var(--text)' }}>
           <Logo klein />
         </NavLink>

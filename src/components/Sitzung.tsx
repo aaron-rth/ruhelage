@@ -1,8 +1,10 @@
 // Lernsitzung: arbeitet eine Liste aus Karten, Übungen und Aufgaben nacheinander ab.
 // Der Stand liegt im „laufend“-Speicher – so bleibt man beim Tab- oder Seitenwechsel an derselben Stelle.
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, type ReactNode } from 'react';
+import { createPortal } from 'react-dom';
 import { findeGenerator, findeKarte, findeUebung } from '../content/kurse';
 import { heute } from '../lib/datum';
+import { useIstHandy } from '../lib/geraet';
 import { genKey, uebKey } from '../lib/fortschritt';
 import type { Bewertung } from '../lib/leitner';
 import {
@@ -19,6 +21,7 @@ import {
 } from '../lib/sitzung';
 import { useLaufend, type AktuellArt } from '../store/laufend';
 import { useStore } from '../store/store';
+import { useLernaktivitaet } from '../store/ui';
 import { AufgabenAnsicht } from './AufgabenAnsicht';
 import { Balken, Leer, Taste } from './Basis';
 import { Icon } from './Icon';
@@ -81,10 +84,13 @@ export function Sitzung({
   onEnde: (b: SitzungsBilanz) => void;
 }) {
   const stand = useSitzungsStand(slot);
+  useLernaktivitaet();
   const merke = useLaufend((s) => s.merke);
   const setzeAktuell = useLaufend((s) => s.setzeAktuell);
   const entferneNochmal = useStore((s) => s.entferneNochmal);
   const bewerteKarte = useStore((s) => s.bewerteKarte);
+  const wischen = useStore((s) => s.einstellungen.wischen);
+  const handy = useIstHandy();
 
   const item = stand?.items[stand.pos];
   const inhalt = useMemo(() => {
@@ -122,6 +128,16 @@ export function Sitzung({
     }
   }
 
+  // Handy-Vollbild: Seite dahinter nicht mitscrollen
+  useEffect(() => {
+    if (!handy) return;
+    const alt = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = alt;
+    };
+  }, [handy]);
+
   // ← / → blättern (nicht beim Tippen)
   useEffect(() => {
     if (!stand) return;
@@ -150,31 +166,28 @@ export function Sitzung({
   const frueher = stand.bewertet[stand.pos]?.b;
   const istLetztes = stand.pos + 1 >= gesamt;
 
-  return (
-    <div className="sitzung">
-      <div className="sitzung-kopf">
-        <button type="button" className="btn geist klein" onClick={() => setzePausiert(slot, true)} title="Später an derselben Stelle weitermachen">
-          <Icon name="pause" size={16} /> Pause
-        </button>
-        <div className="sitzung-fortschritt">
-          <span className="sehr-leise klein">{stand.info.titel}</span>
-          <Balken wert={stand.pos / gesamt} duenn label="Fortschritt der Sitzung" />
-        </div>
-        <span className="mono sehr-leise klein">
-          {Math.min(stand.pos + 1, gesamt)} / {gesamt}
-        </span>
-      </div>
-      <div className="sitzung-thema sehr-leise klein">
-        <Icon name={item.art === 'karte' ? 'karten' : item.art === 'uebung' ? 'stift' : 'rechner'} size={14} />
-        {'thema' in inhalt ? `Thema ${inhalt.thema.nr} · ${inhalt.thema.titel}` : ''}
-      </div>
+  const themaText = 'thema' in inhalt ? `Thema ${inhalt.thema.nr} · ${inhalt.thema.titel}` : '';
+  const pause = () => setzePausiert(slot, true);
+  const zurueckGehen = () => setze(zurueck(stand));
+  const weiterGehen = () => setze(weiter(stand));
 
+  const koerper: ReactNode = (
+    <>
       {item.art === 'karte' && 'karte' in inhalt && (
-        <KartenAnsicht key={`${stand.pos}-${item.id}`} karte={inhalt.karte} themaId={inhalt.thema.id} onBewertet={karteBewertet} frueher={frueher} />
+        <KartenAnsicht
+          key={`${stand.pos}-${item.id}`}
+          karte={inhalt.karte}
+          themaId={inhalt.thema.id}
+          onBewertet={karteBewertet}
+          frueher={frueher}
+          vollbild={handy}
+          wischen={wischen}
+          onBlaettern={(r) => (r === 'vor' ? weiterGehen() : kannZurueck(stand) && zurueckGehen())}
+        />
       )}
       {item.art === 'uebung' && 'uebung' in inhalt && (
         <div className="panel">
-          <UebungAnsicht key={`${stand.pos}-${item.id}`} uebung={inhalt.uebung} themaId={inhalt.thema.id} onFertig={ergebnis} onWeiter={() => setze(weiter(stand))} />
+          <UebungAnsicht key={`${stand.pos}-${item.id}`} uebung={inhalt.uebung} themaId={inhalt.thema.id} onFertig={ergebnis} onWeiter={weiterGehen} />
         </div>
       )}
       {item.art === 'aufgabe' && 'generator' in inhalt && (
@@ -189,22 +202,70 @@ export function Sitzung({
           />
           {erledigt && (
             <div className="aktionen">
-              <button type="button" className="btn primaer" onClick={() => setze(weiter(stand))} autoFocus>
+              <button type="button" className="btn primaer" onClick={weiterGehen} autoFocus>
                 Weiter <Taste>Enter</Taste>
               </button>
             </div>
           )}
         </div>
       )}
+    </>
+  );
 
-      <div className="sitzung-nav">
-        <button type="button" className="btn geist klein" onClick={() => setze(zurueck(stand))} disabled={!kannZurueck(stand)} aria-label="Vorherige Karte">
-          <Icon name="links" size={16} /> Vorherige <Taste>←</Taste>
+  const nav = (
+    <div className="sitzung-nav">
+      <button type="button" className="btn geist klein" onClick={zurueckGehen} disabled={!kannZurueck(stand)} aria-label="Vorherige Karte">
+        <Icon name="links" size={16} /> Vorherige <Taste>←</Taste>
+      </button>
+      <button type="button" className="btn geist klein" onClick={weiterGehen} aria-label={istLetztes ? 'Sitzung beenden' : 'Nächste'}>
+        {istLetztes ? 'Beenden' : frueher || erledigt ? 'Nächste' : 'Überspringen'} <Taste>→</Taste> <Icon name="rechts" size={16} />
+      </button>
+    </div>
+  );
+
+  // Handy: eigenes Vollbild ohne Kopf- und Navigationsleiste
+  if (handy) {
+    return createPortal(
+      <div className="vollbild-sitzung" role="dialog" aria-modal="true" aria-label={stand.info.titel}>
+        <div className="vb-kopf">
+          <button type="button" className="btn geist klein symbol-knopf" onClick={pause} aria-label="Pause – später weitermachen">
+            <Icon name="x" size={18} />
+          </button>
+          <div className="sitzung-fortschritt">
+            <span className="sehr-leise klein vb-titel">{themaText || stand.info.titel}</span>
+            <Balken wert={stand.pos / gesamt} duenn label="Fortschritt der Sitzung" />
+          </div>
+          <span className="mono sehr-leise klein">
+            {Math.min(stand.pos + 1, gesamt)}/{gesamt}
+          </span>
+        </div>
+        <div className={`vb-inhalt${item.art === 'karte' ? ' ist-karte' : ''}`}>{koerper}</div>
+        <div className="vb-fuss">{nav}</div>
+      </div>,
+      document.body,
+    );
+  }
+
+  return (
+    <div className="sitzung">
+      <div className="sitzung-kopf">
+        <button type="button" className="btn geist klein" onClick={pause} title="Später an derselben Stelle weitermachen">
+          <Icon name="pause" size={16} /> Pause
         </button>
-        <button type="button" className="btn geist klein" onClick={() => setze(weiter(stand))} aria-label={istLetztes ? 'Sitzung beenden' : 'Nächste'}>
-          {istLetztes ? 'Beenden' : frueher || erledigt ? 'Nächste' : 'Überspringen'} <Taste>→</Taste> <Icon name="rechts" size={16} />
-        </button>
+        <div className="sitzung-fortschritt">
+          <span className="sehr-leise klein">{stand.info.titel}</span>
+          <Balken wert={stand.pos / gesamt} duenn label="Fortschritt der Sitzung" />
+        </div>
+        <span className="mono sehr-leise klein">
+          {Math.min(stand.pos + 1, gesamt)} / {gesamt}
+        </span>
       </div>
+      <div className="sitzung-thema sehr-leise klein">
+        <Icon name={item.art === 'karte' ? 'karten' : item.art === 'uebung' ? 'stift' : 'rechner'} size={14} />
+        {themaText}
+      </div>
+      {koerper}
+      {nav}
     </div>
   );
 }

@@ -236,7 +236,7 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
-.plan-liste {
+.runde-liste {
   list-style: none;
   padding: 0;
   margin: 0 0 var(--s4);
@@ -244,17 +244,17 @@
   flex-direction: column;
   gap: 10px;
 }
-.plan-liste li {
+.runde-liste li {
   display: flex;
   align-items: center;
   gap: var(--s3);
   color: var(--text-2);
 }
-.plan-liste li svg {
+.runde-liste li svg {
   color: var(--text-3);
   flex: none;
 }
-.plan-liste strong {
+.runde-liste strong {
   color: var(--text);
   font-family: var(--mono);
   font-weight: 600;
@@ -2052,23 +2052,75 @@ body[data-tour='/einstellungen'] .mobil-nav [data-tour='mehr'] {
   margin-bottom: var(--s3);
   scrollbar-width: thin;
 }
-.formel-karussell {
+.formel-stapel {
   position: relative;
-  display: flex;
-  align-items: flex-start;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-  overscroll-behavior-x: contain;
-}
-.formel-karussell::-webkit-scrollbar {
-  display: none;
+  overflow-x: clip;
+  padding: 6px 0 var(--s4);
+  touch-action: pan-y;
 }
 .formel-seite {
-  flex: 0 0 100%;
-  min-width: 0;
-  scroll-snap-align: start;
-  padding: 0 1px;
+  position: relative;
+  width: 80%;
+  margin: 0 auto;
+  padding: var(--s5);
+  border: 1px solid var(--linie-stark);
+  border-radius: var(--r-l);
+  background: var(--flaeche);
+  box-shadow: var(--schatten-hoch);
+  transition: transform 380ms var(--kurve), opacity 300ms var(--kurve);
+}
+.formel-seite.hinten {
+  position: absolute;
+  top: 6px;
+  bottom: var(--s4);
+  left: 10%;
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--flaeche-2);
+}
+.formel-seite.hinten > * {
+  pointer-events: none;
+}
+.formel-stapel.zieht .formel-seite {
+  transition: none;
+}
+.formel-seite .formel-karte {
+  background: var(--flaeche-2);
+}
+.formel-seite.hinten .formel-karte {
+  background: var(--flaeche-3);
+}
+@media (prefers-reduced-motion: reduce) {
+  .formel-seite {
+    transition: none;
+  }
+}
+@media (max-width: 600px) {
+  .formel-seite {
+    width: 86%;
+    padding: var(--s4);
+  }
+  .formel-seite.hinten {
+    left: 7%;
+  }
+}
+.formel-punkte {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.formel-punkte span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--linie-stark);
+  transition: width var(--dauer) var(--kurve), background var(--dauer);
+}
+.formel-punkte span.an {
+  width: 18px;
+  border-radius: 3px;
+  background: var(--akzent);
 }
 .formel-seite-kopf {
   display: flex;
@@ -2119,22 +2171,11 @@ body[data-tour='/einstellungen'] .mobil-nav [data-tour='mehr'] {
   align-items: center;
   justify-content: space-between;
   gap: var(--s3);
-  margin-top: var(--s4);
-}
-.formel-nav .btn {
-  max-width: 42%;
-}
-.formel-nav .btn:not(:has(svg:only-child)) {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  margin-bottom: var(--s3);
 }
 @media (max-width: 600px) {
   .formel-gitter {
     grid-template-columns: minmax(0, 1fr);
-  }
-  .formel-nav .btn {
-    font-size: 0.82rem;
   }
 }
 
@@ -2477,4 +2518,501 @@ button.seitenleiste-fuss:hover {
   flex: none;
   color: var(--akzent);
   margin-top: 2px;
+}
+
+/* ---------- Tastenhinweise nur, wo es eine Tastatur gibt ---------- */
+@media (hover: none) and (pointer: coarse) {
+  .taste,
+  .nur-tastatur {
+    display: none;
+  }
+}
+
+/* ---------- Seitenleiste: Kopf mit Ausblenden-Knopf, Fokusmodus ---------- */
+.seitenleiste-kopf {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s2);
+}
+.symbol-knopf {
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  justify-content: center;
+}
+.seitenleiste-kopf .symbol-knopf {
+  color: var(--text-3);
+  opacity: 0;
+  transition: opacity var(--dauer);
+}
+.seitenleiste:hover .seitenleiste-kopf .symbol-knopf,
+.seitenleiste-kopf .symbol-knopf:focus-visible {
+  opacity: 1;
+}
+.app.fokus {
+  grid-template-columns: minmax(0, 1fr);
+}
+.app.fokus .seitenleiste {
+  display: none;
+}
+.fokus-leiste {
+  position: fixed;
+  top: 14px;
+  left: 14px;
+  z-index: 25;
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--linie);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(8px);
+  opacity: 0.55;
+  transition: opacity var(--dauer);
+}
+.fokus-leiste:hover,
+.fokus-leiste:focus-within {
+  opacity: 1;
+}
+@media (max-width: 860px) {
+  .fokus-leiste {
+    display: none;
+  }
+}
+
+/* ---------- Handy: Kopfleiste klappt beim Runterscrollen ein, aktive Navigation ---------- */
+@media (max-width: 860px) {
+  .mobil-kopf {
+    transition: transform 240ms var(--kurve);
+  }
+  .mobil-kopf.weg {
+    transform: translateY(-100%);
+  }
+  .mobil-nav a.aktiv::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 50%;
+    width: 44px;
+    height: 30px;
+    transform: translateX(-50%);
+    border-radius: 15px;
+    background: var(--akzent-weich);
+    z-index: -1;
+  }
+  .mobil-nav a,
+  .mobil-nav button {
+    isolation: isolate;
+  }
+}
+
+/* ---------- Handy-Vollbild für Lernsitzungen ---------- */
+.vollbild-sitzung {
+  position: fixed;
+  inset: 0;
+  z-index: 75;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
+  overscroll-behavior: contain;
+  animation: einblenden 220ms var(--kurve) both;
+}
+.vb-kopf {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  padding: var(--s2) var(--s3);
+}
+.vb-titel {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.vb-inhalt {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: var(--s2) var(--s4) var(--s3);
+  overscroll-behavior: contain;
+}
+.vb-inhalt.ist-karte {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.vb-fuss {
+  padding: 0 var(--s3) var(--s2);
+}
+.vb-fuss .sitzung-nav {
+  margin-top: 0;
+  padding-top: var(--s2);
+}
+.karteikarte-wrap.vollbild {
+  flex: 1;
+  min-height: 0;
+  gap: var(--s3);
+}
+.karten-buehne {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+}
+.karten-wisch {
+  position: relative;
+  flex: 1;
+  display: flex;
+  transition: transform 260ms var(--kurve), opacity 200ms;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+.karten-wisch.zieht {
+  transition: none;
+}
+/* Wischgesten: der Browser darf nicht selbst scrollen (gilt auch für Kindelemente, die scrollen könnten) */
+.karten-wisch.gesten,
+.karten-wisch.gesten * {
+  touch-action: none;
+}
+.karten-wisch.gesten .karten-seite {
+  overflow: hidden;
+}
+.karten-wisch.raus {
+  opacity: 0;
+  transition: transform 200ms ease-in, opacity 200ms ease-in;
+}
+.karteikarte-wrap.vollbild .karteikarte {
+  flex: 1;
+  height: 100%;
+}
+.karteikarte-wrap.vollbild .karten-seite {
+  min-height: 0;
+  height: 100%;
+  overflow-y: auto;
+  padding: var(--s5);
+}
+.karteikarte-wrap.vollbild .karten-text {
+  font-size: 1.15rem;
+}
+.wisch-marke {
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 1.15rem;
+  pointer-events: none;
+  transform: translate(-50%, -50%) rotate(-6deg);
+  box-shadow: var(--schatten-hoch);
+  transition: opacity 80ms;
+}
+.wisch-marke.rechts {
+  left: 34%;
+  color: var(--akzent);
+  background: var(--flaeche);
+  border: 2px solid var(--akzent);
+}
+.wisch-marke.links {
+  left: 66%;
+  color: var(--koralle);
+  background: var(--flaeche);
+  border: 2px solid var(--koralle);
+  transform: translate(-50%, -50%) rotate(6deg);
+}
+.wisch-marke.oben {
+  color: var(--sand);
+  background: var(--flaeche);
+  border: 2px solid var(--sand);
+  transform: translate(-50%, -50%);
+}
+.wisch-hilfe {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s2);
+  margin: 0;
+  padding: 0 var(--s2);
+}
+.wisch-hilfe span:only-child {
+  margin: 0 auto;
+}
+.bewertung.kompakt .btn.bew {
+  min-height: 38px;
+  font-size: 0.85rem;
+  padding: 0 8px;
+}
+.karteikarte-wrap.vollbild .karten-extra {
+  margin-top: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .karten-wisch,
+  .karten-wisch.raus,
+  .vollbild-sitzung {
+    transition: none;
+    animation: none;
+  }
+}
+
+/* ---------- Einstellungen: Zeile mit Erklärung über der Auswahl ---------- */
+.einst-spalte {
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--s2);
+}
+.einst-spalte .segment {
+  align-self: flex-start;
+}
+
+/* ---------- Lernplan ---------- */
+.laut-plan {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin: 0 0 var(--s3);
+}
+.laut-plan svg {
+  color: var(--akzent);
+}
+.plan-kopf {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s3);
+}
+.plan-zahlen {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--s3);
+}
+.plan-zahlen > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.text-knopf {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--akzent);
+  font: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.plan-liste {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+.plan-liste::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 14px;
+  bottom: 14px;
+  width: 2px;
+  background: var(--linie);
+}
+.plan-tag {
+  position: relative;
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: var(--s3);
+  padding: var(--s3) 0 var(--s3) 28px;
+}
+.plan-tag::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: calc(var(--s3) + 5px);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--linie-stark);
+}
+.plan-tag.heute::before {
+  border-color: var(--akzent);
+  background: var(--akzent);
+  box-shadow: 0 0 0 4px var(--akzent-weich);
+}
+.plan-tag.wdh::before {
+  border-color: var(--sand);
+}
+.plan-tag.klausur::before {
+  border-color: var(--koralle);
+  background: var(--koralle);
+}
+.plan-tag + .plan-tag {
+  border-top: 1px solid var(--linie);
+}
+.plan-tag.heute .plan-datum strong {
+  color: var(--akzent);
+}
+.plan-datum {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.plan-inhalt {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+  min-width: 0;
+}
+.plan-themen {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.plan-themen a.chip-knopf:hover {
+  text-decoration: none;
+}
+.plan-art {
+  display: block;
+  color: var(--text-2);
+  font-size: 0.9rem;
+}
+.plan-art svg {
+  vertical-align: -2px;
+  margin-right: 4px;
+}
+@media (max-width: 600px) {
+  .plan-zahlen {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .plan-tag {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--s2);
+  }
+  .plan-themen .chip-knopf {
+    white-space: normal;
+  }
+}
+
+/* „Deine Runde“: Knöpfe unten, wenn der Kasten durch das Raster höher wird */
+.heute-start {
+  display: flex;
+  flex-direction: column;
+}
+.heute-start > .aktionen {
+  margin-top: auto;
+}
+
+/* ---------- Antwortfeld: Rechenausdrücke, Hilfe, Zeichenleiste ---------- */
+.antwort-block {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.hilfe-knopf {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text-3);
+  border: 1px solid var(--linie);
+}
+.hilfe-knopf.an,
+.hilfe-knopf:hover {
+  color: var(--akzent);
+  border-color: var(--akzent-linie);
+}
+.ausdruck-vorschau {
+  color: var(--text-2);
+  padding-left: 4px;
+}
+.ausdruck-vorschau.warnung {
+  color: var(--sand);
+}
+.eingabe-hilfe {
+  padding: var(--s3) var(--s4);
+  border: 1px solid var(--linie);
+  border-radius: var(--r);
+  background: var(--flaeche-2);
+  font-size: 0.88rem;
+}
+.eingabe-hilfe dl {
+  margin: var(--s2) 0;
+  display: grid;
+  gap: 4px;
+}
+.eingabe-hilfe dl > div {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: var(--s2);
+}
+.eingabe-hilfe dt {
+  color: var(--text-3);
+}
+.eingabe-hilfe dd {
+  margin: 0;
+  color: var(--text-2);
+}
+.eingabe-hilfe code {
+  padding: 1px 5px;
+  border-radius: 5px;
+  background: var(--flaeche-3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 0.85em;
+  white-space: nowrap;
+}
+@media (max-width: 520px) {
+  .eingabe-hilfe dl > div {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+}
+/* Zeichenleiste nur auf Touch-Geräten (am Laptop gibt es die Tastatur) */
+.zeichen-leiste {
+  display: none;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.zeichen {
+  flex: none;
+  min-width: 40px;
+  height: 36px;
+  padding: 0 10px;
+  border: 1px solid var(--linie);
+  border-radius: 10px;
+  background: var(--flaeche-2);
+  color: var(--text);
+  font: inherit;
+  font-family: var(--mono);
+  font-size: 0.95rem;
+}
+.zeichen:active {
+  background: var(--akzent-weich);
+  border-color: var(--akzent-linie);
+}
+@media (hover: none) and (pointer: coarse), (max-width: 600px) {
+  .zeichen-leiste {
+    display: flex;
+  }
+}
+@media (max-width: 600px) {
+  .antwort-zeile {
+    flex-wrap: nowrap;
+  }
+  .antwort-zeile .eingabe.zahl {
+    min-width: 0;
+  }
+  .antwort-zeile .einheit-wahl {
+    min-width: 0;
+    width: 92px;
+    flex: none;
+  }
+  .antwort-zeile .hilfe-knopf {
+    flex: none;
+    height: auto;
+    align-self: stretch;
+  }
 }
