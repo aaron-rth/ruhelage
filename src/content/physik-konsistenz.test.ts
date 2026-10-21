@@ -310,3 +310,35 @@ describe('Themen 0, 1, 4, 8', () => {
       for (const t of [0.1, 0.37, 1.3]) nah(p.f(t) + k.f(t), w.E);
     }));
 });
+
+describe('Thema 10 und Querschnitt', () => {
+  it('rs-fahrzeug: v = x·f₀, f₀ aus D und m', () =>
+    lauf('rs-fahrzeug', (a, w) => {
+      nah(wert(a, 0) * w.dx, w.dm * G);
+      nah(wert(a, 1), Math.sqrt(wert(a, 0) / w.mGes) / (2 * Math.PI));
+      nah(wert(a, 2), w.x * wert(a, 1));
+      expect(wert(a, 2) * 3.6).toBeGreaterThan(5);
+      expect(wert(a, 2) * 3.6).toBeLessThan(200);
+    }));
+  it('rs-tilger: Pendel hat dieselbe Periodendauer', () =>
+    lauf('rs-tilger', (a, w) => nah(2 * Math.PI * Math.sqrt(wert(a, 1) / G), w.T)));
+  it('q-unsicherheit: Δg/g = Δℓ/ℓ + 2Δt/t', () =>
+    lauf('q-unsicherheit', (a, w) => {
+      nah(wert(a, 2), wert(a, 1) * wert(a, 0));
+      expect(wert(a, 1)).toBeGreaterThan(0);
+      expect(wert(a, 1)).toBeLessThan(0.08);
+      expect(Math.abs(w.g - 9.81)).toBeLessThan(0.15);
+    }));
+  it('q-aufzug: T kleiner bei g+a, größer bei g−a', () =>
+    lauf('q-aufzug', (a, w) => {
+      if (w.gEff > G) expect(wert(a, 1)).toBeLessThan(w.T0);
+      else expect(wert(a, 1)).toBeGreaterThan(w.T0);
+    }));
+  it('q-pendeluhr: Näherung stimmt mit exakter Rechnung überein', () =>
+    lauf('q-pendeluhr', (a, w) => {
+      const exakt = 86400 * Math.abs(1 - 1 / Math.sqrt(1 + w.relL));
+      expect(Math.abs(wert(a, 1) - exakt) / exakt).toBeLessThan(0.01);
+      const r = a.teile[2].antwort;
+      if (r.art === 'auswahl') expect(r.richtig).toBe(w.laenger ? 1 : 0);
+    }));
+});
