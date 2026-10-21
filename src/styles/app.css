@@ -3625,3 +3625,13 @@ a.seitenleiste-fuss:hover {
     animation: none;
   }
 }
+
+/* Wischmarken: Farbe nach Bedeutung, nicht nach Seite (Wischrichtung ist einstellbar) */
+.wisch-marke.gut {
+  color: var(--akzent);
+  border-color: var(--akzent);
+}
+.wisch-marke.schlecht {
+  color: var(--koralle);
+  border-color: var(--koralle);
+}
