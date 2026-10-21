@@ -203,3 +203,30 @@ describe('Thema 7 – Differenzialgleichungen', () => {
       nah(wert(a, 1), (2 * Math.PI) / Math.sqrt(wert(a, 0)));
     }));
 });
+
+describe('Thema 2 – Fadenpendel', () => {
+  it('fa-periode: T = 2π√(ℓ/g), n = 60/T', () =>
+    lauf('fa-periode', (a, w) => {
+      nah(wert(a, 0), 2 * Math.PI * Math.sqrt(w.l / G));
+      nah(wert(a, 2) * wert(a, 0), 60);
+    }));
+  it('fa-laenge: Rückrechnung ergibt T', () =>
+    lauf('fa-laenge', (a, w) => nah(2 * Math.PI * Math.sqrt(wert(a, 0) / G), w.T)));
+  it('fa-g-messung: g plausibel (9,6 … 10)', () =>
+    lauf('fa-g-messung', (a) => {
+      expect(wert(a, 1)).toBeGreaterThan(9.6);
+      expect(wert(a, 1)).toBeLessThan(10);
+    }));
+  it('fa-richtgroesse: D = mg/ℓ', () => lauf('fa-richtgroesse', (a, w) => nah(wert(a, 0), (w.m * G) / w.l)));
+  it('fa-kleinwinkel: α > sin α, Abweichung wächst mit dem Winkel', () =>
+    lauf('fa-kleinwinkel', (a, w) => {
+      expect(w.rad).toBeGreaterThan(w.sin);
+      expect(wert(a, 2)).toBeGreaterThan(0);
+      if (w.grad <= 10) expect(wert(a, 2)).toBeLessThan(0.006);
+    }));
+  it('fa-tabelle: g liegt nahe 9,81', () =>
+    lauf('fa-tabelle', (a) => {
+      expect(Math.abs(wert(a, 1) - 9.81)).toBeLessThan(0.15);
+    }));
+  it('fa-t2-diagramm: Steigung = 4π²/g', () => lauf('fa-t2-diagramm', (a, w) => nah(wert(a, 0) * w.g, 4 * Math.PI ** 2)));
+});

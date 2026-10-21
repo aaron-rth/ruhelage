@@ -88,6 +88,7 @@ export const EINHEITEN: Einheit[] = [
   { key: '', anzeige: '(ohne)', faktor: 1, dim: EINS, aliase: ['-', 'ohne', '1'] },
   { key: '%', anzeige: '%', faktor: 0.01, dim: EINS, aliase: ['prozent'] },
 
+  { key: 's^2/m', anzeige: 's²/m', faktor: 1, dim: [-1, 0, 2] },
   { key: 's/√m', anzeige: 's/√m', faktor: 1, dim: PROP, aliase: ['s/sqrt(m)', 's/wurzel(m)', 's/sqrtm', 's/wurzelm', 'sm^-0.5', 'sm^-1/2'] },
 
   { key: 'kg/s', anzeige: 'kg/s', faktor: 1, dim: DAEMPF, aliase: ['ns/m'] },
