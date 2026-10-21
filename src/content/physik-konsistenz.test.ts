@@ -230,3 +230,48 @@ describe('Thema 2 – Fadenpendel', () => {
     }));
   it('fa-t2-diagramm: Steigung = 4π²/g', () => lauf('fa-t2-diagramm', (a, w) => nah(wert(a, 0) * w.g, 4 * Math.PI ** 2)));
 });
+
+describe('Thema 9 – Dämpfung', () => {
+  it('dae-gleit: Energiebilanz stimmt, Abnahme linear', () =>
+    lauf('dae-gleit', (a, w) => {
+      const D = w.D;
+      const s1 = w.amp0;
+      const s2 = s1 - wert(a, 1);
+      nah((D / 2) * (s1 ** 2 - s2 ** 2), wert(a, 0) * (s1 + s2), 1e-9);
+      nah(wert(a, 3), wert(a, 0) * (s1 + s2), 1e-9);
+      expect(wert(a, 2)).toBeGreaterThan(0);
+    }));
+  it('dae-exp: t½ = ln2/δ, Energieanteil = (Amplitudenanteil)²', () =>
+    lauf('dae-exp', (a, w) => {
+      nah(Math.exp(-wert(a, 0) * wert(a, 1)), 0.5);
+      nah(wert(a, 3), (wert(a, 2) / (w.amp0 / 100)) ** 2, 1e-9);
+    }));
+  it('dae-halbwert: Verlust pro Periode und Zielzeit konsistent', () =>
+    lauf('dae-halbwert', (a, w) => {
+      nah(1 - wert(a, 1), Math.exp(-2 * wert(a, 0) * w.T));
+      nah(Math.exp(-2 * wert(a, 0) * wert(a, 2)), w.ziel, 1e-9);
+      expect(wert(a, 1)).toBeGreaterThan(0);
+      expect(wert(a, 1)).toBeLessThan(1);
+    }));
+  it('dae-verhaeltnis: ŝ₁/ŝ₂ = e^{δT}', () =>
+    lauf('dae-verhaeltnis', (a, w) => {
+      nah(Math.exp(wert(a, 0) * w.T), w.a1 / w.a2);
+      nah(wert(a, 1), 2 * w.m * wert(a, 0));
+    }));
+  it('dae-diagramm: Hüllkurve geht durch die Hochpunkte', () =>
+    lauf('dae-diagramm', (a, w) => {
+      const f = a.plot!.kurven[0].f;
+      nah(f(w.n * w.T), w.aN, 1e-9);
+    }));
+  it('dae-modell: richtiges Diagramm ist linear', () =>
+    lauf('dae-modell', (a) => {
+      const ant = a.teile[0].antwort;
+      if (ant.art !== 'auswahl' || !ant.plots) throw new Error();
+      const p = ant.plots[ant.richtig].punkte!;
+      // Steigungen zwischen Nachbarpunkten fast gleich (Rauschen ±1 %)
+      const st = p.slice(1).map((q, i) => (q.y - p[i].y) / (q.x - p[i].x));
+      const mittel = st.reduce((x, y) => x + y, 0) / st.length;
+      const streu = Math.max(...st.map((x) => Math.abs(x - mittel)));
+      expect(streu).toBeLessThan(Math.abs(mittel) * 0.6 + 0.05);
+    }));
+});

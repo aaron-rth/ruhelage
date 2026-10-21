@@ -1,3 +1,33 @@
 import type { Karte } from '../../types';
 
-export const karten: Karte[] = [];
+const B170 = 'Buch S. 170';
+const B171 = 'Buch S. 171';
+const L1210 = 'Notizen Lehrer 12.10.';
+const V1610 = 'Versuch „Gedämpfte Schwingung“ 16.10.';
+export const karten: Karte[] = [
+  { id: 'dae-was', typ: 'begriff', vorne: 'Was passiert bei einer **gedämpften** Schwingung mit der Energie?', hinten: 'Reibung wandelt Schwingungsenergie **unumkehrbar** in thermische Energie um. Die Gesamtenergie und damit die Amplitude nehmen ab.', quelle: `${B170}; ${L1210}` },
+  { id: 'dae-irrev', typ: 'begriff', vorne: 'Was bedeutet **irreversibel**?', hinten: 'Der Vorgang lässt sich nicht von selbst umkehren – die Wärme wird nicht wieder zu Schwingungsenergie (nur durch Eingriff von außen).', quelle: 'Buch S. 170 (Randspalte)' },
+  { id: 'dae-gl', typ: 'formel', vorne: 'Gleitreibungskraft?', hinten: '$F_{gl} = f_{gl}\\cdot F_N$ – unabhängig von der Geschwindigkeit.', quelle: B170 },
+  { id: 'dae-gl-abnahme', typ: 'formel', vorne: 'Gleitreibung: Um wie viel nimmt die Amplitude pro **halber Periode** ab?', hinten: '$$\\hat s_1 - \\hat s_2 = \\frac{2F_{gl}}{D}$$ – immer um denselben Betrag.', quelle: 'Buch S. 170; Notizen Lehrer 12.10.' },
+  { id: 'dae-gl-linear', typ: 'wasPassiert', vorne: 'Wie sieht die Einhüllende bei Dämpfung durch **Gleitreibung** aus?', hinten: 'Zwei **Geraden** – die Amplitude nimmt **linear** ab.', quelle: B170 },
+  { id: 'dae-gl-herleitung', typ: 'herleitung', vorne: 'Gleitreibung: Welche Energiebilanz gilt zwischen zwei Umkehrpunkten?', hinten: '$\\frac D2(\\hat s_1^2 - \\hat s_2^2) = F_{gl}(\\hat s_1 + \\hat s_2)$. Mit der 3. binomischen Formel kürzt sich $(\\hat s_1 + \\hat s_2)$.', quelle: 'Buch S. 170; Notizen Lehrer 12.10.' },
+  { id: 'dae-weg', typ: 'warum', vorne: 'Warum ist der Weg zwischen zwei Umkehrpunkten $\\hat s_1 + \\hat s_2$?', hinten: 'Vom einen Umkehrpunkt bis zur Ruhelage sind es $\\hat s_1$, von dort bis zum anderen Umkehrpunkt $\\hat s_2$.', quelle: B170 },
+  { id: 'dae-bv', typ: 'formel', vorne: 'Wie lautet die DGL mit Reibungskraft $F = -b\\cdot v$?', hinten: '$\\ddot s = -\\frac{b}{m}\\,\\dot s - \\frac{D}{m}\\,s$', quelle: 'Buch S. 171; Notizen Lehrer 12.10.' },
+  { id: 'dae-loesung', typ: 'formel', vorne: 'Lösung der gedämpften Schwingung ($F = -bv$)?', hinten: '$$s(t) = \\hat s\\,e^{-\\frac{b}{2m}t}\\sin(\\omega\' t),\\quad \\omega\' = \\sqrt{\\omega^2 - \\tfrac{b^2}{4m^2}}$$', quelle: B171 },
+  { id: 'dae-huelle', typ: 'formel', vorne: 'Einhüllende bei geschwindigkeitsabhängiger Dämpfung?', hinten: '$s_\\text{ampl}(t) = \\hat s\\,e^{-\\frac{b}{2m}t} = \\hat s\\,e^{-\\delta t}$ – **exponentielle** Abnahme.', quelle: 'Buch S. 171; Notizen Lehrer 12.10.' },
+  { id: 'dae-delta', typ: 'begriff', vorne: 'Was ist die **Abklingkonstante** $\\delta$?', hinten: '$\\delta = \\frac{b}{2m}$ (Einheit 1/s). Je größer, desto schneller klingt die Schwingung ab.', quelle: B171 },
+  { id: 'dae-omega-strich', typ: 'warum', vorne: 'Ändert die Dämpfung die Frequenz?', hinten: 'Ein wenig: $\\omega\' = \\sqrt{\\omega^2 - \\delta^2}$ ist kleiner als $\\omega$. Bei schwacher Dämpfung ist der Unterschied vernachlässigbar – und die Frequenz hängt weiterhin **nicht** von der Amplitude ab.', quelle: 'Buch S. 171, 173 (Material D)' },
+  { id: 'dae-verhaeltnis', typ: 'warum', vorne: 'Was gilt für aufeinanderfolgende Amplituden bei exponentieller Dämpfung?', hinten: 'Ihr **Verhältnis** ist konstant: $\\frac{\\hat s_1}{\\hat s_2} = \\frac{\\hat s_2}{\\hat s_3} = e^{\\delta T}$. (Bei Gleitreibung ist dagegen die **Differenz** konstant.)', quelle: 'Buch S. 173 (Material D)' },
+  { id: 'dae-halbwert', typ: 'formel', vorne: 'Halbwertszeit der Amplitude?', hinten: '$t_{1/2} = \\frac{\\ln 2}{\\delta}$ (aus $e^{-\\delta t} = \\frac12$).', quelle: 'Buch S. 171' },
+  { id: 'dae-energie', typ: 'wasPassiert', vorne: 'Die Amplitude halbiert sich. Welcher Anteil der Energie ist noch da?', hinten: 'Ein **Viertel**, weil $E \\sim \\hat s^2$.', quelle: 'Buch S. 169–171' },
+  { id: 'dae-energie-periode', typ: 'formel', vorne: 'Welcher Anteil der Energie geht pro Periode verloren (exponentielle Dämpfung)?', hinten: '$1 - e^{-2\\delta T}$, denn $E \\sim \\hat s^2 \\sim e^{-2\\delta t}$.', quelle: 'Buch S. 171' },
+  { id: 'dae-stark', typ: 'wasPassiert', vorne: 'Was passiert bei sehr starker Dämpfung?', hinten: 'Es gibt keine Schwingung mehr – der Körper kriecht langsam in die Ruhelage zurück (wenn $\\delta \\ge \\omega$, wird $\\omega\'$ nicht mehr reell).', quelle: 'Buch S. 171 Aufg. 2' },
+  { id: 'dae-modell-stokes', typ: 'begriff', vorne: 'Stokes-Reibung ($F\\sim v$): Welches Diagramm wird eine Gerade?', hinten: '$\\ln A$ gegen $t$ (weil $\\ln A = \\ln A_0 - \\delta t$). $\\Delta A \\sim A$.', quelle: V1610 },
+  { id: 'dae-modell-newton', typ: 'begriff', vorne: 'Newton-Reibung ($F\\sim v^2$): Welches Diagramm wird eine Gerade?', hinten: '$\\frac1A$ gegen $t$ (hyperbolische Abnahme). $\\Delta A \\sim A^2$.', quelle: V1610 },
+  { id: 'dae-modell-gleit', typ: 'begriff', vorne: 'Gleitreibung ($F$ konstant): Welches Diagramm wird eine Gerade?', hinten: '$A$ gegen $t$ (lineare Abnahme). $\\Delta A$ konstant.', quelle: V1610 },
+  { id: 'dae-pappe', typ: 'wasPassiert', vorne: 'Wirkt die große Pappscheibe ($F_R \\sim v^2$) eher bei großen oder bei kleinen Ausschlägen stark dämpfend?', hinten: 'Bei **großen** – dort ist das Pendel schnell, und $v^2$ wächst stark. Bei kleinen Ausschlägen dämpft sie kaum noch.', quelle: V1610 },
+  { id: 'dae-ln', typ: 'warum', vorne: 'Warum trägt man $\\ln A$ gegen $t$ auf?', hinten: 'Aus $A = A_0 e^{-\\delta t}$ wird $\\ln A = \\ln A_0 - \\delta t$ – eine Gerade mit Steigung $-\\delta$. So erkennt man exponentielles Abklingen und liest $\\delta$ ab.', quelle: V1610 },
+  { id: 'dae-stoss', typ: 'warum', vorne: 'Warum verwendet man heute keine Stoßdämpfer mit Gleitreibung mehr?', hinten: 'Gleitreibung dämpft auch kleine Stöße mit voller Kraft (hart), Haftreibung kann den Aufbau außerhalb der Ruhelage festhalten, und sie nutzt sich ab/ändert sich mit Temperatur. Öldämpfer ($F\\sim v$) arbeiten weich und gleichmäßig.', quelle: 'Buch S. 171 Aufg. 1' },
+  { id: 'dae-irrtum', typ: 'fehler', vorne: 'Stimmt das? „Bei einer gedämpften Schwingung wird die Periodendauer immer kürzer, weil die Wege kürzer werden.“', hinten: '**Nein.** Kürzere Wege, aber auch kleinere Kräfte – die Periodendauer bleibt (fast) gleich. Nur die Amplitude nimmt ab.', quelle: 'Buch S. 171' },
+  { id: 'dae-b-einheit', typ: 'begriff', vorne: 'Welche Einheit hat die Dämpfungskonstante $b$ in $F = -b\\cdot v$?', hinten: '$\\frac{\\mathrm N}{\\mathrm{m/s}} = \\frac{\\mathrm{kg}}{\\mathrm s}$', quelle: B171 },
+];
