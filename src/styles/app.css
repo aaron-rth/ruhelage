@@ -3322,22 +3322,18 @@ a.seitenleiste-fuss:hover {
   .mobil-nav a.aktiv .tab-icon {
     background: var(--akzent-weich);
   }
-  .mobil-nav a.mitte .tab-icon {
-    width: 58px;
-    height: 58px;
-    margin-top: -26px;
+  .mobil-nav .tab-punkt {
+    position: absolute;
+    top: 3px;
+    right: 13px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
     background: var(--akzent);
-    color: var(--auf-akzent);
-    box-shadow: 0 6px 18px color-mix(in srgb, var(--akzent) 35%, transparent), 0 0 0 5px var(--bg);
+    box-shadow: 0 0 0 2px var(--bg);
   }
-  .mobil-nav a.mitte.aktiv .tab-icon {
-    background: var(--akzent-hell);
-  }
-  .mobil-nav .tab-icon .badge {
-    position: absolute;
-    top: -4px;
-    right: -4px;
+  .mobil-nav a.aktiv .tab-punkt {
+    box-shadow: 0 0 0 2px var(--akzent-weich);
   }
   .mobil-fach {
     margin-left: var(--s3);
@@ -3607,5 +3603,25 @@ a.seitenleiste-fuss:hover {
 @media (max-width: 860px) {
   .heute-raster .heute-ziel {
     display: none;
+  }
+}
+
+/* Tab-Leiste im Thema: nur seitlich verschiebbar */
+.tabs {
+  overflow-y: hidden;
+  overscroll-behavior: contain;
+  touch-action: pan-x;
+}
+/* Handy-Vollbild: jede neue Aufgabe als Karte, die hereingleitet */
+.vb-karte {
+  animation: karte-rechts 300ms var(--kurve) both;
+}
+.vb-karte > .panel {
+  box-shadow: var(--schatten-hoch);
+  border-color: var(--linie-stark);
+}
+@media (prefers-reduced-motion: reduce) {
+  .vb-karte {
+    animation: none;
   }
 }
