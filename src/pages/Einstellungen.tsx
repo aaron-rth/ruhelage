@@ -3,6 +3,7 @@ import { Meldung } from '../components/Basis';
 import { EINFUEHRUNG } from '../components/Einfuehrung';
 import { Icon } from '../components/Icon';
 import { heute } from '../lib/datum';
+import { useIstHandy } from '../lib/geraet';
 import { intervallText, TAKTE, type Takt } from '../lib/leitner';
 import { exportiere, liesImport, useStore } from '../store/store';
 
@@ -39,6 +40,7 @@ function Schalter({ label, an, onChange, text }: { label: string; an: boolean; o
 
 export function Einstellungen() {
   const s = useStore();
+  const handy = useIstHandy();
   const e = s.einstellungen;
   const datei = useRef<HTMLInputElement>(null);
   const [meldung, setMeldung] = useState<{ art: 'richtig' | 'falsch'; text: string } | null>(null);
@@ -99,12 +101,14 @@ export function Einstellungen() {
             ))}
           </div>
         </div>
+        {handy && (
         <Schalter
-          label="Wischgesten (Handy)"
+          label="Wischgesten"
           an={e.wischen}
           onChange={(b) => s.setzeEinstellung('wischen', b)}
           text="Tippen dreht die Karte um. Danach: nach rechts = wusste ich, nach oben = so halb, nach links = nicht. Vor dem Umdrehen blätterst du mit Wischen. Ausgeschaltet gibt es nur Knöpfe."
         />
+        )}
       </section>
 
       <section className="panel">
@@ -135,12 +139,6 @@ export function Einstellungen() {
             <Icon name="play" size={14} /> Jetzt ansehen
           </button>
         </div>
-        <Schalter
-          label="Fokusmodus (Laptop)"
-          an={e.fokus}
-          onChange={(b) => s.setzeEinstellung('fokus', b)}
-          text="Blendet die Seitenleiste aus. Umschalten auch mit der Taste F."
-        />
         <div className="einst-zeile">
           <label>Farbschema</label>
           <div className="segment">
@@ -209,6 +207,7 @@ export function Einstellungen() {
         )}
       </section>
 
+      {!handy && (
       <section className="panel">
         <h3 className="mb">Tastatur</h3>
         <dl className="tasten-liste">
@@ -225,6 +224,7 @@ export function Einstellungen() {
           <div><dt><kbd className="taste">1</kbd>–<kbd className="taste">4</kbd></dt><dd>Antwort bei Multiple Choice wählen</dd></div>
         </dl>
       </section>
+      )}
     </div>
   );
 }

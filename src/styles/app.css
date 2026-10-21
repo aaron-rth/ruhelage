@@ -1301,6 +1301,12 @@
   gap: var(--s3);
   align-items: center;
 }
+@media (max-width: 600px) {
+  .tasten-liste > div {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2px;
+  }
+}
 .tasten-liste dd {
   margin: 0;
   color: var(--text-2);
@@ -2044,68 +2050,78 @@ body[data-tour='/einstellungen'] .mobil-nav [data-tour='mehr'] {
 }
 
 /* ---------- Formelsammlung ---------- */
-.formel-chips {
+.formel-leiste {
   display: flex;
-  gap: 6px;
+  align-items: flex-start;
+  gap: var(--s4);
   overflow-x: auto;
-  padding: 2px 2px var(--s3);
-  margin-bottom: var(--s3);
-  scrollbar-width: thin;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  /* Platz links und rechts, damit die Nachbarkarten hervorschauen */
+  padding: 6px 10% var(--s4);
+  margin: 0 calc(-1 * var(--s2));
 }
-.formel-stapel {
-  position: relative;
-  overflow-x: clip;
-  padding: 6px 0 var(--s4);
-  touch-action: pan-y;
+.formel-leiste::-webkit-scrollbar {
+  display: none;
 }
 .formel-seite {
   position: relative;
-  width: 80%;
-  margin: 0 auto;
+  flex: 0 0 80%;
+  min-width: 0;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
   padding: var(--s5);
   border: 1px solid var(--linie-stark);
   border-radius: var(--r-l);
   background: var(--flaeche);
   box-shadow: var(--schatten-hoch);
-  transition: transform 380ms var(--kurve), opacity 300ms var(--kurve);
-}
-.formel-seite.hinten {
-  position: absolute;
-  top: 6px;
-  bottom: var(--s4);
-  left: 10%;
-  overflow: hidden;
+  opacity: 0.45;
+  transform: scale(0.95);
+  transform-origin: center top;
+  transition: opacity 320ms var(--kurve), transform 320ms var(--kurve);
   cursor: pointer;
-  background: var(--flaeche-2);
 }
-.formel-seite.hinten > * {
-  pointer-events: none;
-}
-.formel-stapel.zieht .formel-seite {
-  transition: none;
+.formel-seite.vorne {
+  opacity: 1;
+  transform: none;
+  cursor: auto;
 }
 .formel-seite .formel-karte {
   background: var(--flaeche-2);
 }
-.formel-seite.hinten .formel-karte {
-  background: var(--flaeche-3);
-}
 @media (prefers-reduced-motion: reduce) {
+  .formel-leiste {
+    scroll-behavior: auto;
+  }
   .formel-seite {
     transition: none;
   }
 }
 @media (max-width: 600px) {
+  .formel-leiste {
+    padding: 4px 7% var(--s3);
+    gap: var(--s3);
+    margin: 0 calc(-1 * var(--s4));
+  }
   .formel-seite {
-    width: 86%;
+    flex-basis: 86%;
     padding: var(--s4);
   }
-  .formel-seite.hinten {
-    left: 7%;
-  }
+}
+.formel-position {
+  text-align: center;
+  color: var(--text-2);
+}
+.formel-punkte {
+  margin-top: var(--s2);
 }
 .formel-punkte {
   display: flex;
+  margin-top: var(--s2);
   gap: 5px;
   flex-wrap: wrap;
   justify-content: center;
@@ -2542,13 +2558,12 @@ button.seitenleiste-fuss:hover {
   justify-content: center;
 }
 .seitenleiste-kopf .symbol-knopf {
+  width: 38px;
+  height: 38px;
   color: var(--text-3);
-  opacity: 0;
-  transition: opacity var(--dauer);
 }
-.seitenleiste:hover .seitenleiste-kopf .symbol-knopf,
-.seitenleiste-kopf .symbol-knopf:focus-visible {
-  opacity: 1;
+.seitenleiste-kopf .symbol-knopf:hover {
+  color: var(--text);
 }
 .app.fokus {
   grid-template-columns: minmax(0, 1fr);
@@ -2682,17 +2697,93 @@ button.seitenleiste-fuss:hover {
 }
 .karten-wisch.raus {
   opacity: 0;
-  transition: transform 200ms ease-in, opacity 200ms ease-in;
+  transition: transform 220ms cubic-bezier(0.4, 0, 1, 1), opacity 220ms ease-in;
 }
-.karteikarte-wrap.vollbild .karteikarte {
+.karteikarte-wrap .karteikarte {
   flex: 1;
   height: 100%;
 }
-.karteikarte-wrap.vollbild .karten-seite {
+.karteikarte-wrap .karten-seite {
   min-height: 0;
   height: 100%;
   overflow-y: auto;
+  padding: var(--s5) var(--s6);
+}
+.karteikarte-wrap.vollbild .karten-seite {
   padding: var(--s5);
+}
+/* Laptop: feste Kartenhöhe, damit nichts springt */
+.karteikarte-wrap.inline .karten-buehne {
+  height: clamp(300px, 50vh, 460px);
+  flex: none;
+}
+.karteikarte-wrap.inline .karten-text {
+  font-size: 1.15rem;
+}
+/* Stapel-Look: zwei Karten liegen dahinter */
+.karten-buehne::before,
+.karten-buehne::after {
+  content: '';
+  position: absolute;
+  border-radius: var(--r-l);
+  border: 1px solid var(--linie);
+  background: var(--flaeche);
+  pointer-events: none;
+}
+.karten-buehne::before {
+  inset: 10px 16px -9px;
+  opacity: 0.7;
+}
+.karten-buehne::after {
+  inset: 20px 32px -18px;
+  opacity: 0.4;
+  z-index: -1;
+}
+.karten-buehne {
+  isolation: isolate;
+  margin-bottom: 18px;
+}
+.karten-wisch {
+  z-index: 1;
+}
+/* Hereingleiten der nächsten Karte */
+.karten-wisch.rein-rechts {
+  animation: karte-rechts 300ms var(--kurve) both;
+}
+.karten-wisch.rein-links {
+  animation: karte-links 300ms var(--kurve) both;
+}
+.karten-wisch.rein-stapel {
+  animation: karte-stapel 280ms var(--kurve) both;
+}
+@keyframes karte-rechts {
+  from {
+    transform: translateX(40%) rotate(4deg);
+    opacity: 0;
+  }
+}
+@keyframes karte-links {
+  from {
+    transform: translateX(-40%) rotate(-4deg);
+    opacity: 0;
+  }
+}
+@keyframes karte-stapel {
+  from {
+    transform: translateY(14px) scale(0.95);
+    opacity: 0.4;
+  }
+}
+.bew .pfeil {
+  font-weight: 700;
+  opacity: 0.8;
+}
+@media (prefers-reduced-motion: reduce) {
+  .karten-wisch.rein-rechts,
+  .karten-wisch.rein-links,
+  .karten-wisch.rein-stapel {
+    animation: none;
+  }
 }
 .karteikarte-wrap.vollbild .karten-text {
   font-size: 1.15rem;
@@ -3015,4 +3106,39 @@ button.seitenleiste-fuss:hover {
     height: auto;
     align-self: stretch;
   }
+}
+
+/* ---------- Weichere Übergänge ---------- */
+.seiten-wechsel {
+  animation: seite-rein 260ms var(--kurve) both;
+}
+@keyframes seite-rein {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+.btn {
+  transition: background var(--dauer), color var(--dauer), border-color var(--dauer), transform 120ms var(--kurve), box-shadow var(--dauer);
+}
+.btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+@media (prefers-reduced-motion: reduce) {
+  .seiten-wechsel {
+    animation: none;
+  }
+  .btn:active:not(:disabled) {
+    transform: none;
+  }
+}
+.formel-seite-kopf a {
+  white-space: nowrap;
+  flex: none;
+}
+/* Wegfliegende Karte erzeugt keinen seitlichen Scrollbalken */
+.sitzung {
+  overflow-x: clip;
+  overflow-y: visible;
+  padding-bottom: 4px;
 }

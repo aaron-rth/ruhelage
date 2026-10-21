@@ -1,6 +1,6 @@
 // Lernsitzung: arbeitet eine Liste aus Karten, Übungen und Aufgaben nacheinander ab.
 // Der Stand liegt im „laufend“-Speicher – so bleibt man beim Tab- oder Seitenwechsel an derselben Stelle.
-import { useEffect, useMemo, type ReactNode } from 'react';
+import { useEffect, useMemo, useRef, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { findeGenerator, findeKarte, findeUebung } from '../content/kurse';
 import { heute } from '../lib/datum';
@@ -91,6 +91,8 @@ export function Sitzung({
   const bewerteKarte = useStore((s) => s.bewerteKarte);
   const wischen = useStore((s) => s.einstellungen.wischen);
   const handy = useIstHandy();
+  /** Richtung der letzten Bewegung – die nächste Karte gleitet von dort herein */
+  const richtung = useRef<'rechts' | 'links' | 'stapel' | null>(null);
 
   const item = stand?.items[stand.pos];
   const inhalt = useMemo(() => {
@@ -115,6 +117,7 @@ export function Sitzung({
     if (!stand || !item || item.art !== 'karte' || !inhalt || !('karte' in inhalt)) return;
     const alt = stand.bewertet[stand.pos];
     const vorher = useStore.getState().karten[item.id] ?? null;
+    richtung.current = 'stapel';
     bewerteKarte(item.id, inhalt.thema.id, b, alt ? { vorher: alt.vorher } : undefined);
     setze(karteBewerten(stand, b, vorher));
   }
@@ -146,10 +149,12 @@ export function Sitzung({
       if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || e.altKey || e.metaKey || e.ctrlKey) return;
       if (e.key === 'ArrowLeft' && stand && kannZurueck(stand)) {
         e.preventDefault();
+        richtung.current = 'links';
         setze(zurueck(stand));
       }
       if (e.key === 'ArrowRight' && stand) {
         e.preventDefault();
+        richtung.current = 'rechts';
         setze(weiter(stand));
       }
     }
@@ -168,8 +173,14 @@ export function Sitzung({
 
   const themaText = 'thema' in inhalt ? `Thema ${inhalt.thema.nr} · ${inhalt.thema.titel}` : '';
   const pause = () => setzePausiert(slot, true);
-  const zurueckGehen = () => setze(zurueck(stand));
-  const weiterGehen = () => setze(weiter(stand));
+  const zurueckGehen = () => {
+    richtung.current = 'links';
+    setze(zurueck(stand));
+  };
+  const weiterGehen = () => {
+    richtung.current = 'rechts';
+    setze(weiter(stand));
+  };
 
   const koerper: ReactNode = (
     <>
@@ -183,6 +194,7 @@ export function Sitzung({
           vollbild={handy}
           wischen={wischen}
           onBlaettern={(r) => (r === 'vor' ? weiterGehen() : kannZurueck(stand) && zurueckGehen())}
+          einflug={richtung.current}
         />
       )}
       {item.art === 'uebung' && 'uebung' in inhalt && (
