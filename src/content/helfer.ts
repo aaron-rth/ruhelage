@@ -2,7 +2,10 @@
 import type { Antwort, PlotSpec, Teil, TypFehler } from './types';
 
 export function zahl(wert: number, einheit: string, typischeFehler?: TypFehler[], toleranz?: number): Antwort {
-  return { art: 'zahl', wert, einheit, typischeFehler, toleranz };
+  // Fehlerwerte, die zufällig (fast) mit der Lösung zusammenfallen, wären irreführend
+  const tol = (toleranz ?? 0.02) * 2;
+  const fehler = typischeFehler?.filter((f) => Math.abs(f.wert - wert) > Math.abs(wert) * tol);
+  return { art: 'zahl', wert, einheit, typischeFehler: fehler, toleranz };
 }
 
 export function winkel(wert: number, typischeFehler?: TypFehler[], einheit: 'rad' | '°' = 'rad'): Antwort {

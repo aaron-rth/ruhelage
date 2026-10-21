@@ -43,7 +43,9 @@ export function Plot({ spec, hoehe = 270, klickbar, onKlick, markiertX, markieru
   const id = useId().replace(/:/g, '');
   const svgRef = useRef<SVGSVGElement>(null);
   const [hoverX, setHoverX] = useState<number | null>(null);
-  const H = hoehe;
+  const H = spec.quadratisch
+    ? Math.round(((B - RAND.l - RAND.r) * (spec.y[1] - spec.y[0])) / (spec.x[1] - spec.x[0])) + RAND.o + RAND.u
+    : hoehe;
   const [x0, x1] = spec.x;
   const [y0, y1] = spec.y;
   const sx = (x: number) => RAND.l + ((x - x0) / (x1 - x0)) * (B - RAND.l - RAND.r);
@@ -98,7 +100,7 @@ export function Plot({ spec, hoehe = 270, klickbar, onKlick, markiertX, markieru
   return (
     <svg
       ref={svgRef}
-      className={klickbar ? 'plot klickbar' : 'plot'}
+      className={`plot${klickbar ? ' klickbar' : ''}${spec.quadratisch ? ' quadratisch' : ''}`}
       viewBox={`0 0 ${B} ${H}`}
       role="img"
       aria-label={label ?? `Diagramm: ${spec.yLabel} gegen ${spec.xLabel}`}

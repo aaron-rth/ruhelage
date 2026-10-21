@@ -1,3 +1,149 @@
 import type { Uebung } from '../../types';
 
-export const uebungen: Uebung[] = [];
+const L910 = 'Notizen Lehrer 9.10.';
+const B165 = 'Buch S. 165';
+export const uebungen: Uebung[] = [
+  {
+    id: 'ph-u-quadrant',
+    typ: 'mc',
+    frage: 'Bei $t = 0$ ist $s_0 > 0$ und $v_0 < 0$. In welchem Bereich liegt die Nullphase $\\varphi_0$ von $s(t) = \\hat s\\sin(\\omega t + \\varphi_0)$?',
+    quelle: B165,
+    optionen: [
+      { text: '$\\frac\\pi2 < \\varphi_0 < \\pi$', richtig: true, warum: '$\\sin\\varphi_0 > 0$ und $\\cos\\varphi_0 < 0$: zweiter Quadrant. Der Körper ist oben und bewegt sich schon wieder nach unten.' },
+      { text: '$0 < \\varphi_0 < \\frac\\pi2$', warum: 'Dort ist $\\cos\\varphi_0 > 0$, also $v_0 > 0$.' },
+      { text: '$\\pi < \\varphi_0 < \\frac{3\\pi}2$', warum: 'Dort ist $\\sin\\varphi_0 < 0$, also $s_0 < 0$.' },
+      { text: '$\\frac{3\\pi}2 < \\varphi_0 < 2\\pi$', warum: 'Dort ist $s_0 < 0$ und $v_0 > 0$.' },
+    ],
+  },
+  {
+    id: 'ph-u-arcsin',
+    typ: 'mc',
+    frage: 'Für eine Schwingung gilt $\\frac{s_0}{\\hat s} = 0{,}8$ und $v_0 < 0$. Ein Mitschüler tippt $\\arcsin(0{,}8) = 0{,}93$ und schreibt $\\varphi_0 = 0{,}93$. Was sagst du?',
+    quelle: 'Übungsklausur (Aufgabentyp); Buch S. 165',
+    optionen: [
+      { text: 'Falsch – richtig ist $\\varphi_0 = \\pi - 0{,}93 \\approx 2{,}21$.', richtig: true, warum: 'Wegen $v_0 < 0$ muss $\\cos\\varphi_0 < 0$ sein – zweiter Quadrant. Der Taschenrechner liefert nur den Winkel im ersten.' },
+      { text: 'Richtig, der Taschenrechner rechnet das schon passend.', warum: '$\\arcsin$ liefert immer nur Werte zwischen $-\\frac\\pi2$ und $\\frac\\pi2$ – das Vorzeichen von $v_0$ kennt er nicht.' },
+      { text: 'Falsch – richtig ist $\\varphi_0 = -0{,}93$.', warum: 'Dann wäre $\\sin\\varphi_0 < 0$, also $s_0 < 0$.' },
+      { text: 'Falsch – richtig ist $\\varphi_0 = 53$.', warum: '$53^\\circ$ ist ungefähr dasselbe wie $0{,}93$ rad – nur in Grad, und genauso im falschen Quadranten.' },
+    ],
+  },
+  {
+    id: 'ph-u-omega-f',
+    typ: 'mc',
+    frage: 'Ein Pendel schwingt mit $f = 2\\,\\mathrm{Hz}$. Wie groß ist $\\omega$?',
+    quelle: L910,
+    optionen: [
+      { text: '$\\omega \\approx 12{,}6\\,\\frac1{\\mathrm s}$', richtig: true, warum: '$\\omega = 2\\pi f = 4\\pi\\,\\frac1{\\mathrm s}$.' },
+      { text: '$\\omega = 2\\,\\frac1{\\mathrm s}$', warum: 'Das wäre $f$. $\\omega$ ist um $2\\pi$ größer.' },
+      { text: '$\\omega = 0{,}5\\,\\frac1{\\mathrm s}$', warum: 'Das ist $T = \\frac1f = 0{,}5\\,\\mathrm s$, keine Kreisfrequenz.' },
+      { text: '$\\omega \\approx 3{,}14\\,\\frac1{\\mathrm s}$', warum: 'Das wäre $\\pi f$ – es fehlt ein Faktor 2.' },
+    ],
+  },
+  {
+    id: 'ph-u-phase-t',
+    typ: 'mc',
+    frage: 'Welcher Phasenwinkel $\\varphi = \\omega t$ gehört zum Zeitpunkt $t = \\frac{3}{4}T$?',
+    quelle: L910,
+    optionen: [
+      { text: '$\\frac{3\\pi}{2}$', richtig: true, warum: '$\\omega t = \\frac{2\\pi}{T}\\cdot\\frac34 T = \\frac{3\\pi}2$.' },
+      { text: '$\\frac{3\\pi}{4}$', warum: 'Eine ganze Periode entspricht $2\\pi$, nicht $\\pi$.' },
+      { text: '$\\frac{3}{4}$', warum: 'Das ist der Bruchteil der Periode, nicht der Winkel.' },
+      { text: '$270$', warum: '$270^\\circ$ wäre richtig – aber ohne Gradzeichen und im Bogenmaß gerechnet ist das falsch.' },
+    ],
+  },
+  {
+    id: 'ph-u-cos',
+    typ: 'mc',
+    frage: 'Welche Nullphase macht aus $s(t) = \\hat s\\sin(\\omega t + \\varphi_0)$ die Gleichung $s(t) = \\hat s\\cos(\\omega t)$?',
+    quelle: B165,
+    optionen: [
+      { text: '$\\varphi_0 = \\frac\\pi2$', richtig: true, warum: '$\\sin(x + \\frac\\pi2) = \\cos x$: Der Kosinus ist ein um eine Viertelperiode nach links verschobener Sinus.' },
+      { text: '$\\varphi_0 = \\pi$', warum: '$\\sin(x+\\pi) = -\\sin x$.' },
+      { text: '$\\varphi_0 = 0$', warum: 'Dann bleibt es beim Sinus.' },
+      { text: '$\\varphi_0 = -\\frac\\pi2$', warum: '$\\sin(x - \\frac\\pi2) = -\\cos x$ – Start unten.' },
+    ],
+  },
+  {
+    id: 'ph-u-verschiebung',
+    typ: 'mc',
+    frage: 'Wie verändert sich der Graph von $s(t) = \\hat s\\sin(\\omega t + \\varphi_0)$, wenn man $\\varphi_0$ von $0$ auf $\\frac\\pi3$ erhöht?',
+    quelle: 'Buch S. 165 (Abb. 2)',
+    optionen: [
+      { text: 'Er wird um $\\frac{\\pi/3}{\\omega} = \\frac{T}{6}$ nach links verschoben.', richtig: true, warum: 'Alles passiert um $\\frac{\\varphi_0}{\\omega}$ früher.' },
+      { text: 'Er wird um $\\frac\\pi3$ Sekunden nach rechts verschoben.', warum: 'Verschoben wird nach links, und zwar um $\\frac{\\varphi_0}{\\omega}$, nicht um $\\varphi_0$.' },
+      { text: 'Die Amplitude wird größer.', warum: '$\\varphi_0$ ändert nur den Start, nicht $\\hat s$.' },
+      { text: 'Die Periodendauer wird kürzer.', warum: '$T$ hängt nur von $\\omega$ ab.' },
+    ],
+  },
+  {
+    id: 'ph-u-luecke',
+    typ: 'luecke',
+    frage: 'Vervollständige.',
+    quelle: L910,
+    text: 'Die Kreisfrequenz ist $\\omega = $ [[0]] und hat die Einheit [[1]]. Der Phasenwinkel $\\varphi(t) = \\omega t$ gibt an, in welcher [[2]] sich die Schwingung befindet. Nach einer halben Periode ist $\\varphi = $ [[3]].',
+    luecken: [
+      { optionen: ['2π/T', 'T/2π', '2π·T', '1/T'], richtig: 0 },
+      { optionen: ['1/s', 'Hz·s', 'rad·s', 'm/s'], richtig: 0 },
+      { optionen: ['Phase', 'Amplitude', 'Lage im Raum', 'Energie'], richtig: 0 },
+      { optionen: ['π', 'π/2', '2π', '1/2'], richtig: 0 },
+    ],
+  },
+  {
+    id: 'ph-u-reihenfolge',
+    typ: 'reihenfolge',
+    frage: 'Bestimme $\\hat s$ und $\\varphi_0$ aus $s_0$ und $v_0$. Bringe die Schritte in die richtige Reihenfolge.',
+    quelle: 'Buch S. 165; Übungsklausur (Aufgabentyp)',
+    schritte: [
+      '$\\omega$ aus dem System berechnen, z. B. $\\omega = \\sqrt{D/m}$.',
+      'Ansatz $s(t) = \\hat s\\sin(\\omega t + \\varphi_0)$ und ableiten: $v(t) = \\hat s\\omega\\cos(\\omega t + \\varphi_0)$.',
+      '$t = 0$ einsetzen: $s_0 = \\hat s\\sin\\varphi_0$ und $v_0 = \\hat s\\omega\\cos\\varphi_0$.',
+      'Quadrieren und addieren: $\\hat s = \\sqrt{s_0^2 + (v_0/\\omega)^2}$.',
+      'Mit dem Taschenrechner $\\arcsin(s_0/\\hat s)$ berechnen.',
+      'Mit den Vorzeichen von $s_0$ und $v_0$ den Quadranten bestimmen und $\\varphi_0$ anpassen.',
+    ],
+  },
+  {
+    id: 'ph-u-fehler',
+    typ: 'fehler',
+    frage: 'Gegeben: $s_0 = -3\\,\\mathrm{cm}$, $v_0 = -0{,}2\\,\\frac{\\mathrm m}{\\mathrm s}$, $\\omega = 5\\,\\frac1{\\mathrm s}$. Wo ist der Fehler?',
+    quelle: B165,
+    schritte: [
+      '$\\frac{v_0}{\\omega} = -4\\,\\mathrm{cm}$',
+      '$\\hat s = \\sqrt{(3\\,\\mathrm{cm})^2 + (4\\,\\mathrm{cm})^2} = 5\\,\\mathrm{cm}$',
+      '$\\sin\\varphi_0 = \\frac{-3}{5} = -0{,}6$, $\\arcsin(-0{,}6) \\approx -0{,}64$',
+      '$s_0 < 0$ und $v_0 < 0$ → dritter Quadrant',
+      '$\\varphi_0 = 2\\pi - 0{,}64 \\approx 5{,}64$',
+    ],
+    fehler: 4,
+    erklaerung: 'Im dritten Quadranten gilt $\\varphi_0 = \\pi - \\arcsin(\\ldots) = \\pi + 0{,}64 \\approx 3{,}79$. Probe: $\\cos(3{,}79) < 0$ ✓, $\\cos(5{,}64) > 0$ ✗ – das würde $v_0 > 0$ bedeuten.',
+  },
+  {
+    id: 'ph-u-zuordnen',
+    typ: 'zuordnen',
+    frage: 'Ordne jeder Nullphase den Start zu ($s(t) = \\hat s\\sin(\\omega t + \\varphi_0)$, nach oben positiv).',
+    quelle: B165,
+    paare: [
+      { links: '$\\varphi_0 = 0$', rechts: 'Ruhelage, Bewegung nach oben' },
+      { links: '$\\varphi_0 = \\frac\\pi2$', rechts: 'oberer Umkehrpunkt' },
+      { links: '$\\varphi_0 = \\pi$', rechts: 'Ruhelage, Bewegung nach unten' },
+      { links: '$\\varphi_0 = \\frac{3\\pi}2$', rechts: 'unterer Umkehrpunkt' },
+      { links: '$\\varphi_0 = \\frac\\pi4$', rechts: 'oberhalb der Ruhelage, nach oben' },
+      { links: '$\\varphi_0 = \\frac{3\\pi}4$', rechts: 'oberhalb der Ruhelage, nach unten' },
+    ],
+  },
+  {
+    id: 'ph-u-klass',
+    typ: 'klassifizieren',
+    frage: 'In welchem Quadranten liegt $\\varphi_0$?',
+    quelle: B165,
+    kategorien: ['I', 'II', 'III', 'IV'],
+    items: [
+      { text: '$s_0 = +2\\,\\mathrm{cm}$, $v_0 = +0{,}3\\,\\frac{\\mathrm m}{\\mathrm s}$', kategorie: 0 },
+      { text: '$s_0 = +2\\,\\mathrm{cm}$, $v_0 = -0{,}3\\,\\frac{\\mathrm m}{\\mathrm s}$', kategorie: 1 },
+      { text: '$s_0 = -2\\,\\mathrm{cm}$, $v_0 = -0{,}3\\,\\frac{\\mathrm m}{\\mathrm s}$', kategorie: 2 },
+      { text: '$s_0 = -2\\,\\mathrm{cm}$, $v_0 = +0{,}3\\,\\frac{\\mathrm m}{\\mathrm s}$', kategorie: 3 },
+      { text: 'Körper unterhalb der Ruhelage, auf dem Weg nach unten', kategorie: 2 },
+      { text: 'Körper oberhalb der Ruhelage, auf dem Weg nach oben', kategorie: 0 },
+    ],
+  },
+];

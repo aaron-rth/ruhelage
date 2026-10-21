@@ -98,6 +98,8 @@ export interface PlotSpec {
   kurven: PlotKurve[];
   punkte?: { x: number; y: number }[];
   markierungen?: { x: number; y: number; label?: string }[];
+  /** gleiche Einheitenlänge auf beiden Achsen (z. B. für den Einheitskreis) */
+  quadratisch?: boolean;
   /** Achsenbeschriftungen als Dezimalzahl mit so vielen Nachkommastellen */
   xNachkomma?: number;
   yNachkomma?: number;

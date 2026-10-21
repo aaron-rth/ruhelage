@@ -127,3 +127,47 @@ describe('Thema 5 – Bewegungsgesetze', () => {
       expect(w.richtig).toBe((s > 0 ? 0 : 2) + (st > 0 ? 0 : 1));
     }));
 });
+
+describe('Thema 6 – Kreisfrequenz und Phase', () => {
+  it('ph-omega: T·f = 1 und ω·T = 2π', () =>
+    lauf('ph-omega', (_a, w) => {
+      nah(w.T * w.f, 1);
+      nah(w.w * w.T, 2 * Math.PI);
+    }));
+  it('ph-phase-zeit: φ = ωt und Zeit zum Gradwert', () =>
+    lauf('ph-phase-zeit', (a, w) => {
+      nah(wert(a, 0), w.w * w.t1);
+      nah(wert(a, 1) * w.w, (w.gradZiel * Math.PI) / 180);
+    }));
+  it('ph-anfang: s₀ und v₀ werden aus ŝ, φ₀ exakt zurückgewonnen; φ₀ ∈ [0, 2π)', () =>
+    lauf('ph-anfang', (a, w) => {
+      const amp = wert(a, 1);
+      const phi0 = wert(a, 2);
+      expect(phi0).toBeGreaterThanOrEqual(0);
+      expect(phi0).toBeLessThan(2 * Math.PI);
+      nah(amp * Math.sin(phi0), w.s0, 1e-9);
+      nah(amp * wert(a, 0) * Math.cos(phi0), w.v0, 1e-9);
+      const t0 = wert(a, 3);
+      expect(t0).toBeGreaterThan(0);
+      expect(Math.abs(Math.sin(w.w * t0 + phi0))).toBeLessThan(1e-9);
+      expect(t0).toBeLessThan(Math.PI / w.w + 1e-12);
+      // die arcsin-Falle wird erkannt, außer im ersten Quadranten
+      const ant = a.teile[2].antwort;
+      if (ant.art === 'winkel' && phi0 > Math.PI / 2 + 0.05) expect(ant.typischeFehler!.length).toBeGreaterThan(0);
+    }));
+  it('ph-gleichung: Nulldurchgang und Startort', () =>
+    lauf('ph-gleichung', (a, w) => {
+      nah(wert(a, 0) * w.w, 2 * Math.PI);
+      expect(Math.abs(Math.sin(w.w * wert(a, 3) + w.phi0))).toBeLessThan(1e-9);
+    }));
+  it('ph-phi0-ablesen: Kurve startet bei ŝ·sin φ₀', () =>
+    lauf('ph-phi0-ablesen', (a, w) => {
+      nah(a.plot!.kurven[0].f(0) + 10, w.amp * Math.sin(w.phi0) + 10, 1e-9);
+    }));
+  it('ph-kreis: Markierung liegt auf dem Einheitskreis', () =>
+    lauf('ph-kreis', (a, w) => {
+      const m = a.plot!.markierungen![0];
+      nah(m.x ** 2 + m.y ** 2, 1);
+      nah(Math.atan2(m.y, m.x) < 0 ? Math.atan2(m.y, m.x) + 2 * Math.PI : Math.atan2(m.y, m.x), w.phi);
+    }));
+});
