@@ -3169,24 +3169,81 @@ button.seitenleiste-fuss:hover {
 }
 .fach-wahl {
   display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.fach-zeile {
+  display: flex;
   align-items: center;
   gap: var(--s3);
-  padding: var(--s3);
-  border: 1px solid var(--linie);
+  padding: 10px var(--s3);
   border-radius: var(--r);
-  background: var(--flaeche);
-  color: var(--akzent);
   white-space: nowrap;
+  color: var(--text);
+  text-decoration: none;
 }
-.fach-wahl > span {
+.fach-zeile svg {
+  flex: none;
+}
+.fach-zeile > span {
   display: flex;
   flex-direction: column;
   min-width: 0;
-  color: var(--text);
 }
-.fach-wahl .klein {
+.fach-zeile .klein {
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.fach-zeile.an {
+  border: 1px solid var(--akzent-linie);
+  background: var(--akzent-weich);
+}
+.fach-zeile.an svg {
+  color: var(--akzent);
+}
+a.fach-zeile:hover {
+  text-decoration: none;
+  border-color: var(--akzent);
+}
+.fach-zeile.bald {
+  border: 1px dashed var(--linie-stark);
+  color: var(--text-3);
+  cursor: default;
+}
+.fach-liste {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--s3);
+  margin-bottom: var(--s4);
+}
+.fach-kachel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: var(--s4);
+  border-radius: var(--r-l);
+}
+.fach-kachel strong {
+  margin-top: 6px;
+}
+.fach-kachel.an {
+  border: 1px solid var(--akzent-linie);
+  background: var(--flaeche);
+  box-shadow: 0 0 0 1px var(--akzent-linie) inset;
+}
+.fach-kachel.bald {
+  border: 1.5px dashed var(--linie-stark);
+  color: var(--text-3);
+}
+.fach-kachel.bald .modus-icon {
+  background: var(--flaeche-2);
+  color: var(--text-3);
+}
+@media (max-width: 600px) {
+  .fach-liste {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 .nav {
   gap: var(--s3);

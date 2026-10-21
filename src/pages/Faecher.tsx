@@ -26,8 +26,24 @@ export function Faecher() {
       <div className="kopf">
         <div>
           <span className="ueber">Fächer</span>
-          <h1>Physik</h1>
-          <p>Weitere Fächer kommen später dazu – dann wählst du sie hier aus.</p>
+          <h1>Deine Fächer</h1>
+        </div>
+      </div>
+
+      <div className="fach-liste" role="list">
+        <div className="fach-kachel an" role="listitem" aria-current="true">
+          <span className="modus-icon">
+            <Icon name="welle" size={22} />
+          </span>
+          <strong>Physik</strong>
+          <span className="sehr-leise klein">{kurs.titel}</span>
+        </div>
+        <div className="fach-kachel bald" role="listitem" aria-disabled="true">
+          <span className="modus-icon">
+            <Icon name="plus" size={22} />
+          </span>
+          <strong>Weitere Fächer</strong>
+          <span className="sehr-leise klein">Kommt bald</span>
         </div>
       </div>
 

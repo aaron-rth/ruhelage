@@ -233,12 +233,21 @@ function Rahmen() {
             <Icon name="seitenleiste" size={22} />
           </button>
         </div>
-        <div className="fach-wahl" title="Weitere Fächer folgen">
-          <Icon name="buch" size={18} />
-          <span>
-            <strong>Physik</strong>
-            <span className="sehr-leise klein">{AKTIVER_KURS.titel}</span>
-          </span>
+        <div className="fach-wahl">
+          <Link to="/faecher" className="fach-zeile an" tabIndex={fokus ? -1 : 0}>
+            <Icon name="welle" size={18} />
+            <span>
+              <strong>Physik</strong>
+              <span className="sehr-leise klein">{AKTIVER_KURS.titel}</span>
+            </span>
+          </Link>
+          <div className="fach-zeile bald" aria-disabled="true">
+            <Icon name="plus" size={18} />
+            <span>
+              <span className="klein">Weitere Fächer</span>
+              <span className="klein sehr-leise">Kommt bald</span>
+            </span>
+          </div>
         </div>
         <nav className="nav" aria-label="Hauptnavigation">
           {BEREICHE.map((b) => (
