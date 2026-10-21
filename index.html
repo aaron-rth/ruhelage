@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="de" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0E131A" />
+    <meta name="description" content="Ruhelage – ruhig und gründlich Physik lernen: Mechanische Schwingungen." />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <title>Ruhelage</title>
+    <style>
+      /* Ladeanimation: die gedämpfte Welle kommt zur Ruhe (wird von React ersetzt) */
+      html { background: #0e131a; }
+      .start-lader { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+      .start-lader path { stroke-dasharray: 100; animation: zeichnen 2.2s cubic-bezier(.2,.7,.2,1) infinite; }
+      @keyframes zeichnen { 0% { stroke-dashoffset: 100; } 60%, 100% { stroke-dashoffset: 0; } }
+      @media (prefers-reduced-motion: reduce) { .start-lader path { animation: none; } }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <div class="start-lader" aria-label="Ruhelage lädt">
+        <svg width="72" height="48" viewBox="0 0 48 32" fill="none" aria-hidden="true">
+          <path d="M2 16 C 5 2, 8 2, 11 16 S 17 26, 20 16 S 25 10, 27.5 16 S 32 19.5, 34 16 S 37 14.6, 39 16 L 46 16" stroke="#2DD4BF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" pathLength="100" />
+        </svg>
+      </div>
+    </div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

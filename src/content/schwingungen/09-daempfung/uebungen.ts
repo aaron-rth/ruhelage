@@ -1,0 +1,142 @@
+import type { Uebung } from '../../types';
+
+const V1610 = 'Versuch „Gedämpfte Schwingung“ 16.10.';
+export const uebungen: Uebung[] = [
+  {
+    id: 'dae-u-gleit',
+    typ: 'mc',
+    frage: 'Bei einer Schwingung nehmen die Amplituden so ab: $6{,}0$ / $5{,}2$ / $4{,}4$ / $3{,}6\\,\\mathrm{cm}$. Welche Reibung liegt vermutlich vor?',
+    quelle: 'Buch S. 170; Notizen Lehrer 12.10.',
+    optionen: [
+      { text: 'Gleitreibung', richtig: true, warum: 'Die Amplitude nimmt immer um denselben Betrag ($0{,}8\\,\\mathrm{cm}$) ab – lineare Abnahme.' },
+      { text: 'Reibung proportional zu $v$', warum: 'Dann wäre das **Verhältnis** konstant, nicht die Differenz ($5{,}2/6{,}0 \\ne 3{,}6/4{,}4$).' },
+      { text: 'Reibung proportional zu $v^2$', warum: 'Dann wäre die Abnahme bei großen Amplituden deutlich größer als bei kleinen.' },
+      { text: 'Gar keine Reibung', warum: 'Ohne Reibung bliebe die Amplitude konstant.' },
+    ],
+  },
+  {
+    id: 'dae-u-exp',
+    typ: 'mc',
+    frage: 'Aufeinanderfolgende Amplituden: $8{,}0$ / $6{,}0$ / $4{,}5$ / $3{,}4\\,\\mathrm{cm}$. Welches Modell passt?',
+    quelle: 'Buch S. 173 (Material D)',
+    optionen: [
+      { text: 'Exponentielle Abnahme ($F\\sim v$)', richtig: true, warum: 'Das Verhältnis ist jedes Mal etwa $0{,}75$ – konstant.' },
+      { text: 'Lineare Abnahme (Gleitreibung)', warum: 'Die Differenzen ($2{,}0$; $1{,}5$; $1{,}1$) werden kleiner, sind also nicht konstant.' },
+      { text: 'Gar keine Dämpfung', warum: 'Die Amplitude sinkt deutlich.' },
+      { text: 'Das kann man ohne die Zeiten nicht sagen.', warum: 'Wenn die Werte aufeinanderfolgende Umkehrpunkte sind, reicht das Verhältnis.' },
+    ],
+  },
+  {
+    id: 'dae-u-energie',
+    typ: 'mc',
+    frage: 'Die Amplitude einer gedämpften Schwingung ist auf die Hälfte gesunken. Wie viel der ursprünglichen Schwingungsenergie ist noch vorhanden?',
+    quelle: 'Buch S. 169–171',
+    optionen: [
+      { text: '25 %', richtig: true, warum: '$E = \\frac12 D\\hat s^2$: halbe Amplitude → $\\left(\\frac12\\right)^2 = \\frac14$ der Energie.' },
+      { text: '50 %', warum: 'Die Energie hängt quadratisch von der Amplitude ab.' },
+      { text: '71 %', warum: 'Das wäre $\\frac{1}{\\sqrt2}$ – so wäre es, wenn die Energie halbiert wäre und man nach der Amplitude fragt.' },
+      { text: '12,5 %', warum: 'Das wäre $\\left(\\frac12\\right)^3$.' },
+    ],
+  },
+  {
+    id: 'dae-u-frequenz',
+    typ: 'mc',
+    frage: 'Wie verhält sich die Periodendauer eines schwach gedämpften Federpendels, während die Amplitude abnimmt?',
+    quelle: 'Buch S. 171',
+    optionen: [
+      { text: 'Sie bleibt (fast) gleich.', richtig: true, warum: 'Die Kreisfrequenz $\\omega\' = \\sqrt{\\omega^2 - \\delta^2}$ hängt nicht von der Amplitude ab und ist bei schwacher Dämpfung fast $\\omega$.' },
+      { text: 'Sie wird kürzer, weil die Wege kürzer werden.', warum: 'Kleinere Wege, aber auch kleinere Rückstellkräfte – das gleicht sich aus.' },
+      { text: 'Sie wird länger, weil Energie verloren geht.', warum: 'Der Energieverlust verringert die Amplitude, nicht die Frequenz.' },
+      { text: 'Sie wird null, sobald die Schwingung aufhört.', warum: 'Solange sie schwingt, hat sie eine feste Periodendauer.' },
+    ],
+  },
+  {
+    id: 'dae-u-stoss',
+    typ: 'mc',
+    frage: 'Welcher Grund spricht **gegen** Stoßdämpfer mit Gleitreibung?',
+    quelle: 'Buch S. 171 Aufg. 1',
+    optionen: [
+      { text: 'Haftreibung kann die Federung außerhalb der Ruhelage festhalten, und kleine Stöße werden hart weitergegeben.', richtig: true, warum: 'Gleitreibung hat immer denselben Betrag – sie reagiert nicht weich auf kleine, langsame Bewegungen.' },
+      { text: 'Gleitreibung dämpft überhaupt nicht.', warum: 'Sie dämpft durchaus – nur ungünstig (linear, ruckartig).' },
+      { text: 'Gleitreibung erhöht die Federkonstante.', warum: '$D$ wird durch die Reibung nicht verändert.' },
+      { text: 'Gleitreibung erzeugt eine exponentielle Abnahme.', warum: 'Gleitreibung führt zu einer linearen Abnahme.' },
+    ],
+  },
+  {
+    id: 'dae-u-modelle',
+    typ: 'zuordnen',
+    frage: 'Ordne jedem Reibungsmodell das Diagramm zu, in dem die Messpunkte auf einer Geraden liegen.',
+    quelle: V1610,
+    paare: [
+      { links: 'Gleitreibung (F konstant)', rechts: 'A gegen t' },
+      { links: 'Stokes-Reibung ($F\\sim v$)', rechts: 'ln A gegen t' },
+      { links: 'Newton-Reibung ($F\\sim v^2$)', rechts: '1/A gegen t' },
+    ],
+  },
+  {
+    id: 'dae-u-delta-a',
+    typ: 'zuordnen',
+    frage: 'Wie hängt die Abnahme $\\Delta A$ pro Periode von der Amplitude ab?',
+    quelle: V1610,
+    paare: [
+      { links: 'Gleitreibung', rechts: 'ΔA konstant' },
+      { links: 'Stokes-Reibung ($F\\sim v$)', rechts: 'ΔA proportional zu A' },
+      { links: 'Newton-Reibung ($F\\sim v^2$)', rechts: 'ΔA proportional zu A²' },
+    ],
+  },
+  {
+    id: 'dae-u-puzzle-gleit',
+    typ: 'reihenfolge',
+    frage: 'Leite die Amplitudenabnahme bei Gleitreibung her. Reihenfolge?',
+    quelle: 'Buch S. 170; Notizen Lehrer 12.10.',
+    schritte: [
+      'Zwischen zwei Umkehrpunkten sinkt die Energie von $\\frac12 D\\hat s_1^2$ auf $\\frac12 D\\hat s_2^2$.',
+      'Der zurückgelegte Weg ist $\\hat s_1 + \\hat s_2$.',
+      'Die Reibungsarbeit ist $F_{gl}\\cdot(\\hat s_1 + \\hat s_2)$.',
+      'Energiebilanz: $\\frac D2(\\hat s_1 - \\hat s_2)(\\hat s_1 + \\hat s_2) = F_{gl}(\\hat s_1 + \\hat s_2)$.',
+      'Kürzen: $\\hat s_1 - \\hat s_2 = \\frac{2F_{gl}}{D}$ – konstant, also lineare Abnahme.',
+    ],
+  },
+  {
+    id: 'dae-u-luecke',
+    typ: 'luecke',
+    frage: 'Vervollständige.',
+    quelle: 'Buch S. 171; Notizen Lehrer 12.10.',
+    text: 'Ist die Reibungskraft proportional zur [[0]], nimmt die Amplitude [[1]] ab. Die Einhüllende ist $\\hat s\\, e^{-\\delta t}$ mit $\\delta = $ [[2]]. Trägt man [[3]] gegen $t$ auf, ergibt sich eine Gerade mit der Steigung [[4]].',
+    luecken: [
+      { optionen: ['Geschwindigkeit', 'Auslenkung', 'Masse'], richtig: 0 },
+      { optionen: ['exponentiell', 'linear', 'gar nicht'], richtig: 0 },
+      { optionen: ['b/(2m)', 'b/m', '2m/b', 'D/m'], richtig: 0 },
+      { optionen: ['ln A', 'A', '1/A', 'A²'], richtig: 0 },
+      { optionen: ['−δ', 'δ', 'ln δ', '1/δ'], richtig: 0 },
+    ],
+  },
+  {
+    id: 'dae-u-fehler',
+    typ: 'fehler',
+    frage: 'Eine Amplitude sinkt exponentiell von $10\\,\\mathrm{cm}$ in $8\\,\\mathrm s$ auf $5\\,\\mathrm{cm}$. Wo ist der Fehler?',
+    quelle: 'Buch S. 171',
+    schritte: [
+      '$t_{1/2} = 8\\,\\mathrm s$',
+      '$\\delta = \\frac{\\ln 2}{t_{1/2}} \\approx 0{,}087\\,\\frac1{\\mathrm s}$',
+      'Nach weiteren $8\\,\\mathrm s$ ist die Amplitude $2{,}5\\,\\mathrm{cm}$.',
+      'Nach insgesamt $16\\,\\mathrm s$ ist noch die Hälfte der Energie übrig.',
+    ],
+    fehler: 3,
+    erklaerung: 'Nach $16\\,\\mathrm s$ ist die Amplitude auf ein Viertel gesunken – die Energie ($\\sim\\hat s^2$) also auf ein **Sechzehntel**.',
+  },
+  {
+    id: 'dae-u-klass',
+    typ: 'klassifizieren',
+    frage: 'Gedämpft oder ungedämpft (idealisiert)?',
+    quelle: 'Buch S. 153, 170',
+    kategorien: ['gedämpft', 'ungedämpft (Modell)'],
+    items: [
+      { text: 'Schaukel, die ohne Anschubsen langsam ausschwingt', kategorie: 0 },
+      { text: 'Federpendel ohne Reibung in der Rechnung', kategorie: 1 },
+      { text: 'Federpendel mit Pappscheibe in Luft', kategorie: 0 },
+      { text: 'Stimmgabel, deren Ton langsam leiser wird', kategorie: 0 },
+      { text: 'Projektion einer gleichförmigen Kreisbewegung', kategorie: 1 },
+    ],
+  },
+];

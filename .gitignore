@@ -1,0 +1,18 @@
+# Abhängigkeiten und Build
+node_modules/
+dist/
+*.tsbuildinfo
+.vite/
+coverage/
+
+# Lernmaterial darf NIE in dieses öffentliche Repo
+material/
+ruhelage-material/
+*.pdf
+*.PDF
+
+# Editor / System
+.DS_Store
+.idea/
+.vscode/
+*.log

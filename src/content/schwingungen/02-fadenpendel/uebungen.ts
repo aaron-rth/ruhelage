@@ -1,0 +1,132 @@
+import type { Uebung } from '../../types';
+
+const B154 = 'Buch S. 154';
+export const uebungen: Uebung[] = [
+  {
+    id: 'fa-u-masse',
+    typ: 'mc',
+    frage: 'An einem Faden hängt erst eine Holzkugel, dann eine gleich große Eisenkugel (bei gleicher Pendellänge). Wie unterscheiden sich die Periodendauern?',
+    quelle: B154,
+    optionen: [
+      { text: 'Gar nicht.', richtig: true, warum: 'Beim Fadenpendel kürzt sich $m$ heraus: $T = 2\\pi\\sqrt{\\ell/g}$.' },
+      { text: 'Die Eisenkugel schwingt langsamer, weil sie träger ist.', warum: 'Sie ist träger, wird aber auch stärker zurückgezogen – das gleicht sich genau aus.' },
+      { text: 'Die Eisenkugel schwingt schneller, weil sie schwerer ist.', warum: 'Die größere Gewichtskraft muss auch eine größere Masse beschleunigen.' },
+      { text: 'Das hängt von der Amplitude ab.', warum: 'Für kleine Winkel spielt die Amplitude keine Rolle.' },
+    ],
+  },
+  {
+    id: 'fa-u-laenge',
+    typ: 'mc',
+    frage: 'Ein Pendel soll doppelt so lange für eine Periode brauchen. Wie muss man die Pendellänge ändern?',
+    quelle: B154,
+    optionen: [
+      { text: 'Vervierfachen.', richtig: true, warum: '$T \\sim \\sqrt\\ell$: Für doppeltes $T$ braucht man $2^2 = 4$-fache Länge.' },
+      { text: 'Verdoppeln.', warum: 'Dann wird $T$ nur $\\sqrt2 \\approx 1{,}41$-mal so groß.' },
+      { text: 'Halbieren.', warum: 'Ein kürzeres Pendel schwingt schneller.' },
+      { text: 'Die Masse verdoppeln.', warum: 'Die Masse hat keinen Einfluss auf $T$.' },
+    ],
+  },
+  {
+    id: 'fa-u-gross',
+    typ: 'mc',
+    frage: 'Warum ist die tatsächliche Periodendauer bei $50^\\circ$ Auslenkung **größer** als $2\\pi\\sqrt{\\ell/g}$?',
+    quelle: 'Buch S. 178; Übungsklausur (Aufgabentyp)',
+    optionen: [
+      { text: 'Weil die tatsächliche Kraft zur Ruhelage hin kleiner ist, als das lineare Gesetz $-\\frac{mg}{\\ell}s$ angibt.', richtig: true, warum: 'Bei $50^\\circ$ ist $\\sin\\alpha \\approx 0{,}77$, aber $\\alpha \\approx 0{,}87$. Mit weniger Kraft kommt das Pendel langsamer zurück.' },
+      { text: 'Weil der Luftwiderstand bei großen Winkeln größer ist.', warum: 'Die Formel enthält gar keine Reibung; der Effekt tritt auch ohne Luft auf.' },
+      { text: 'Weil der Faden sich bei großen Winkeln dehnt.', warum: 'Der Faden wird als undehnbar angenommen.' },
+      { text: 'Weil die Masse bei großen Winkeln eine Rolle spielt.', warum: 'Auch bei großen Winkeln kürzt sich $m$ heraus.' },
+    ],
+  },
+  {
+    id: 'fa-u-zeiten',
+    typ: 'mc',
+    frage: 'Warum stoppt man für die Messung von $T$ besser die Zeit für 10 Perioden und teilt durch 10?',
+    quelle: 'Buch S. 154 (Randspalte und Aufg. 1)',
+    optionen: [
+      { text: 'Der Reaktionsfehler beim Stoppen verteilt sich auf 10 Perioden und wird pro Periode zehnmal kleiner.', richtig: true, warum: 'Der absolute Fehler der Zeitmessung bleibt etwa gleich, die gemessene Zeit wird zehnmal länger.' },
+      { text: 'Damit das Pendel sich erst einschwingen kann.', warum: 'Ein Fadenpendel schwingt sofort mit seiner Periodendauer.' },
+      { text: 'Weil die Periodendauer mit der Zeit abnimmt.', warum: '$T$ hängt nicht von der (abnehmenden) Amplitude ab.' },
+      { text: 'Weil eine einzelne Periode zu ungenau definiert ist.', warum: 'Sie ist eindeutig definiert – nur schwer genau zu stoppen.' },
+    ],
+  },
+  {
+    id: 'fa-u-mond',
+    typ: 'mc',
+    frage: 'Ein Sekundenpendel ($T = 2\\,\\mathrm s$ auf der Erde) wird auf den Mond gebracht ($g_\\text{Mond} \\approx \\frac16 g$). Wie groß ist dort seine Periodendauer?',
+    quelle: 'Buch S. 154 Aufg. 4',
+    optionen: [
+      { text: 'etwa $4{,}9\\,\\mathrm s$', richtig: true, warum: '$T \\sim \\frac{1}{\\sqrt g}$: $2\\,\\mathrm s\\cdot\\sqrt6 \\approx 4{,}9\\,\\mathrm s$.' },
+      { text: '$12\\,\\mathrm s$', warum: 'Das wäre $T\\sim\\frac1g$. $g$ steht unter der Wurzel.' },
+      { text: 'etwa $0{,}8\\,\\mathrm s$', warum: 'Kleineres $g$ bedeutet schwächere Rückstellkraft – das Pendel wird langsamer, nicht schneller.' },
+      { text: '$2\\,\\mathrm s$', warum: '$T$ hängt von $g$ ab.' },
+    ],
+  },
+  {
+    id: 'fa-u-kraftzerlegung',
+    typ: 'luecke',
+    frage: 'Vervollständige die Kräftebetrachtung.',
+    quelle: 'Buch S. 159; Notizen Lehrer 28.9.',
+    text: 'Die Gewichtskraft wird in zwei Komponenten zerlegt: eine entlang des [[0]] und eine [[1]] zur Bahn. Die zweite ist die Rückstellkraft $F_R = -mg\\cdot$ [[2]]. Für kleine Winkel ist $\\sin\\alpha\\approx$ [[3]], wenn $\\alpha$ im [[4]] angegeben ist.',
+    luecken: [
+      { optionen: ['Fadens', 'Bodens', 'Bogens'], richtig: 0 },
+      { optionen: ['tangential', 'senkrecht', 'parallel'], richtig: 0 },
+      { optionen: ['sin α', 'cos α', 'tan α'], richtig: 0 },
+      { optionen: ['α', '1', '0', 'α²'], richtig: 0 },
+      { optionen: ['Bogenmaß', 'Gradmaß'], richtig: 0 },
+    ],
+  },
+  {
+    id: 'fa-u-puzzle',
+    typ: 'reihenfolge',
+    frage: 'Leite das lineare Kraftgesetz des Fadenpendels her. Bringe die Schritte in die richtige Reihenfolge.',
+    quelle: 'Buch S. 159; Notizen Lehrer 28.9.',
+    schritte: [
+      'Die tangentiale Komponente der Gewichtskraft ist die Rückstellkraft: $F_R = -m g\\sin\\alpha$.',
+      'Im Dreieck gilt $\\sin\\alpha = \\frac{s_h}{\\ell}$.',
+      'Also $F_R = -m g\\,\\frac{s_h}{\\ell}$.',
+      'Für $\\alpha \\le 10^\\circ$ ist $s_h \\approx s$.',
+      'Damit $F_R = -\\frac{mg}{\\ell}\\cdot s$ – ein lineares Kraftgesetz mit $D = \\frac{mg}{\\ell}$.',
+    ],
+  },
+  {
+    id: 'fa-u-fehler',
+    typ: 'fehler',
+    frage: 'Ein Mitschüler bestimmt die Länge eines Sekundenpendels. Wo ist der Fehler?',
+    quelle: 'Buch S. 164 Aufg. 3',
+    schritte: [
+      'Ein Sekundenpendel hat $T = 2\\,\\mathrm s$.',
+      '$T = 2\\pi\\sqrt{\\frac\\ell g}$ nach $\\ell$ umstellen: $\\ell = g\\cdot\\frac{T}{2\\pi}$.',
+      'Einsetzen: $\\ell = 9{,}81\\,\\frac{\\mathrm m}{\\mathrm{s^2}}\\cdot\\frac{2\\,\\mathrm s}{2\\pi} \\approx 3{,}1$',
+    ],
+    fehler: 1,
+    erklaerung: 'Beim Umstellen muss man quadrieren: $\\ell = g\\left(\\frac{T}{2\\pi}\\right)^2 \\approx 0{,}994\\,\\mathrm m$. Die Einheit in Schritt 3 ($\\mathrm{m/s}$) hätte den Fehler verraten.',
+  },
+  {
+    id: 'fa-u-klass',
+    typ: 'klassifizieren',
+    frage: 'Wovon hängt die Periodendauer eines Fadenpendels (kleine Winkel) ab?',
+    quelle: B154,
+    kategorien: ['hängt ab', 'hängt nicht ab'],
+    items: [
+      { text: 'Pendellänge $\\ell$', kategorie: 0 },
+      { text: 'Masse $m$', kategorie: 1 },
+      { text: 'Ortsfaktor $g$', kategorie: 0 },
+      { text: 'Amplitude (bis ca. $10^\\circ$)', kategorie: 1 },
+      { text: 'Material des Pendelkörpers', kategorie: 1 },
+      { text: 'ob das Pendel im Aufzug beschleunigt wird', kategorie: 0, warum: 'Im beschleunigten Aufzug wirkt ein effektives $g$.' },
+    ],
+  },
+  {
+    id: 'fa-u-zuordnen',
+    typ: 'zuordnen',
+    frage: 'Ordne zu.',
+    quelle: 'Buch S. 154, 159, 164',
+    paare: [
+      { links: 'Richtgröße des Fadenpendels', rechts: 'D = mg/ℓ' },
+      { links: 'Periodendauer', rechts: 'T = 2π·√(ℓ/g)' },
+      { links: 'Rückstellkraft exakt', rechts: 'F = −mg·sin α' },
+      { links: 'Ortsfaktor aus Messung', rechts: 'g = 4π²ℓ/T²' },
+    ],
+  },
+];
