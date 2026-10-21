@@ -82,7 +82,7 @@ const beispiel: Generator = {
 };
 ```
 
-Antworten werden in SI gespeichert; die Eingabe akzeptiert Komma und Punkt, Zehnerpotenzen und Einheiten mit Vorsilben (Toleranz standardmäßig 2 %). `typischeFehler` liefern gezielte Hinweise (z. B. „Grad statt Bogenmaß“).
+Antworten werden in SI gespeichert; die Eingabe akzeptiert Komma und Punkt, Zehnerpotenzen, Rechenausdrücke (`3/4`, `2^3`, `10^-3`, `√2`, `sqrt(…)`, `2π/5`, Klammern, sin/cos/ln …) und Einheiten mit Vorsilben (Toleranz standardmäßig 2 %). Der Ausdruck wird vorne gelesen, was danach kommt, ist die Einheit (`3/4 m/s`). Ein ?-Knopf neben dem Feld erklärt die Schreibweisen, auf dem Handy gibt es eine Zeichenleiste. `typischeFehler` liefern gezielte Hinweise (z. B. „Grad statt Bogenmaß“).
 
 ## Lernmaterial und Urheberrecht
 

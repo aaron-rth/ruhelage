@@ -2905,3 +2905,114 @@ button.seitenleiste-fuss:hover {
 .heute-start > .aktionen {
   margin-top: auto;
 }
+
+/* ---------- Antwortfeld: Rechenausdrücke, Hilfe, Zeichenleiste ---------- */
+.antwort-block {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.hilfe-knopf {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text-3);
+  border: 1px solid var(--linie);
+}
+.hilfe-knopf.an,
+.hilfe-knopf:hover {
+  color: var(--akzent);
+  border-color: var(--akzent-linie);
+}
+.ausdruck-vorschau {
+  color: var(--text-2);
+  padding-left: 4px;
+}
+.ausdruck-vorschau.warnung {
+  color: var(--sand);
+}
+.eingabe-hilfe {
+  padding: var(--s3) var(--s4);
+  border: 1px solid var(--linie);
+  border-radius: var(--r);
+  background: var(--flaeche-2);
+  font-size: 0.88rem;
+}
+.eingabe-hilfe dl {
+  margin: var(--s2) 0;
+  display: grid;
+  gap: 4px;
+}
+.eingabe-hilfe dl > div {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: var(--s2);
+}
+.eingabe-hilfe dt {
+  color: var(--text-3);
+}
+.eingabe-hilfe dd {
+  margin: 0;
+  color: var(--text-2);
+}
+.eingabe-hilfe code {
+  padding: 1px 5px;
+  border-radius: 5px;
+  background: var(--flaeche-3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 0.85em;
+  white-space: nowrap;
+}
+@media (max-width: 520px) {
+  .eingabe-hilfe dl > div {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+}
+/* Zeichenleiste nur auf Touch-Geräten (am Laptop gibt es die Tastatur) */
+.zeichen-leiste {
+  display: none;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.zeichen {
+  flex: none;
+  min-width: 40px;
+  height: 36px;
+  padding: 0 10px;
+  border: 1px solid var(--linie);
+  border-radius: 10px;
+  background: var(--flaeche-2);
+  color: var(--text);
+  font: inherit;
+  font-family: var(--mono);
+  font-size: 0.95rem;
+}
+.zeichen:active {
+  background: var(--akzent-weich);
+  border-color: var(--akzent-linie);
+}
+@media (hover: none) and (pointer: coarse), (max-width: 600px) {
+  .zeichen-leiste {
+    display: flex;
+  }
+}
+@media (max-width: 600px) {
+  .antwort-zeile {
+    flex-wrap: nowrap;
+  }
+  .antwort-zeile .eingabe.zahl {
+    min-width: 0;
+  }
+  .antwort-zeile .einheit-wahl {
+    min-width: 0;
+    width: 92px;
+    flex: none;
+  }
+  .antwort-zeile .hilfe-knopf {
+    flex: none;
+    height: auto;
+    align-self: stretch;
+  }
+}

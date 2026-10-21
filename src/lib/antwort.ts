@@ -1,5 +1,6 @@
 // Antwortprüfung: Zahl + Einheit tolerant einlesen und mit dem Sollwert vergleichen.
 import type { Antwort, TypFehler } from '../content/types';
+import { leseAusdruck } from './ausdruck';
 import { einheit, findeEinheit, gleicheDim, WINKEL_EINHEITEN } from './einheiten';
 import { zahl as zahlText } from './format';
 
@@ -13,17 +14,20 @@ export interface Pruefung {
 const ZAHL_RE =
   /^\s*([+\-−–]?\s*(?:\d+(?:[.,]\d*)?|[.,]\d+))(?:\s*(?:e|E)\s*([+\-−]?\d+)|\s*(?:[·*x×]|\\cdot)\s*10\s*\^\s*\(?\s*([+\-−]?\d+)\s*\)?)?/;
 
-/** Zerlegt "4,2·10^-3 m/s" in Zahl und Einheitentext. */
-export function zerlege(eingabe: string): { zahl: number | null; rest: string; sig: number } {
-  const s = eingabe.replace(/ /g, ' ').trim();
-  const m = ZAHL_RE.exec(s);
-  if (!m) return { zahl: null, rest: s, sig: 0 };
-  const mantisse = m[1].replace(/\s/g, '').replace(/[−–]/g, '-').replace(',', '.');
-  const basis = Number(mantisse);
-  const expText = m[2] ?? m[3];
-  const exp = expText ? Number(expText.replace('−', '-')) : 0;
-  const zahl = basis * 10 ** exp;
-  return { zahl: Number.isFinite(zahl) ? zahl : null, rest: s.slice(m[0].length).trim(), sig: gueltigeZiffern(mantisse) };
+/**
+ * Zerlegt "4,2·10^-3 m/s" oder "3/4 s" in Zahl und Einheitentext.
+ * Vorne darf ein Rechenausdruck stehen (Brüche, Potenzen, Wurzeln, π …).
+ * `rechnung` ist true, wenn es mehr als eine einzelne Zahl war.
+ */
+export function zerlege(eingabe: string): { zahl: number | null; rest: string; sig: number; rechnung: boolean } {
+  const s = eingabe.replace(/\u00a0/g, ' ').trim();
+  const g = leseAusdruck(s);
+  if (!g) return { zahl: null, rest: s, sig: 0, rechnung: false };
+  const teil = s.slice(0, g.laenge).trim();
+  const m = ZAHL_RE.exec(teil);
+  const einfach = !!m && m[0].trim().length === teil.length;
+  const sig = einfach ? gueltigeZiffern(m[1].replace(/\s/g, '').replace(/[−–]/g, '-').replace(',', '.')) : 0;
+  return { zahl: g.wert, rest: s.slice(g.laenge).trim(), sig, rechnung: !einfach };
 }
 
 /** Anzahl gültiger Ziffern einer Dezimalzahl als Text, z. B. "0.0420" → 3 */
@@ -73,7 +77,7 @@ function allgemeinerHinweis(x: number, w: number, tol: number): string | undefin
 /** Prüft eine Zahl-Antwort. `gewaehlt` ist die im Menü gewählte Einheit; eine eingetippte Einheit hat Vorrang. */
 export function pruefeZahl(eingabe: string, gewaehlt: string, a: Extract<Antwort, { art: 'zahl' }>): Pruefung {
   const { zahl, rest, sig } = zerlege(eingabe);
-  if (zahl === null) return { status: 'ungueltig', hinweis: 'Bitte eine Zahl eingeben, z. B. 0,42 oder 4,2e-3.' };
+  if (zahl === null) return { status: 'ungueltig', hinweis: 'Das kann ich nicht lesen. Beispiele: 0,42 · 3/4 · 4,2·10^-3 · 2π/5 · √2 (Hilfe über das ?).' };
   let eh = einheit(gewaehlt);
   if (rest) {
     const gefunden = findeEinheit(rest);

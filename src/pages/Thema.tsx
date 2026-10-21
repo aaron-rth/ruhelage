@@ -333,7 +333,11 @@ function RechenTab({ t }: { t: Thema }) {
             <Icon name="links" size={16} /> Alle Aufgabentypen
           </button>
           <span className="sehr-leise klein">
-            Rechne im Heft, tippe nur das Ergebnis ein. <Taste>H</Taste> Hilfe
+            Rechne im Heft, tippe nur das Ergebnis ein – Brüche wie 3/4 gehen auch.
+            <span className="nur-tastatur">
+              {' '}
+              <Taste>H</Taste> Hilfe
+            </span>
           </span>
         </div>
         <div className="panel">
