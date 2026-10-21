@@ -1958,8 +1958,7 @@
   background: var(--akzent);
 }
 /* Navigationspunkt hervorheben, um den es in der Einführung gerade geht */
-body[data-tour] .seitenleiste,
-body[data-tour] .mobil-nav {
+body[data-tour] .seitenleiste {
   z-index: 90;
 }
 body[data-tour='/'] [data-tour='/'],
@@ -3634,4 +3633,18 @@ a.seitenleiste-fuss:hover {
 .wisch-marke.schlecht {
   color: var(--koralle);
   border-color: var(--koralle);
+}
+
+/* Einführung & Dialoge liegen über der unteren Leiste */
+.dialog-huelle {
+  z-index: 95;
+}
+/* Web-App auf dem Homescreen: Statusleiste zeigt den App-Hintergrund (kein weißer Streifen) */
+html {
+  background: var(--bg);
+}
+@media (max-width: 860px) {
+  .mobil-kopf {
+    padding-top: calc(var(--s3) + env(safe-area-inset-top));
+  }
 }

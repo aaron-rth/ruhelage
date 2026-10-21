@@ -96,8 +96,15 @@ function useLernzeit() {
 function useTheme() {
   const theme = useStore((s) => s.einstellungen.theme);
   useEffect(() => {
+    const farbe = theme === 'light' ? '#f4f6f8' : '#0E131A';
     document.documentElement.dataset.theme = theme;
-    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'light' ? '#f4f6f8' : '#0E131A');
+    document.documentElement.style.backgroundColor = farbe;
+    // Meta-Tag ersetzen statt ändern – manche Browser übernehmen sonst die neue Farbe nicht zuverlässig
+    document.querySelectorAll('meta[name="theme-color"]').forEach((m) => m.remove());
+    const meta = document.createElement('meta');
+    meta.name = 'theme-color';
+    meta.content = farbe;
+    document.head.appendChild(meta);
   }, [theme]);
 }
 
