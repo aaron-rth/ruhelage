@@ -134,6 +134,15 @@ const P: Record<string, ReactElement> = {
     </>
   ),
   muell: <path d="M4.5 7h15M9.5 7V4.5h5V7M6.5 7l1 13h9l1-13" />,
+  seitenleiste: (
+    <>
+      <rect x="3.5" y="4.5" width="17" height="15" rx="2.5" />
+      <path d="M9.5 4.5v15" />
+    </>
+  ),
+  vollbild: <path d="M4 9V5.5A1.5 1.5 0 0 1 5.5 4H9M15 4h3.5A1.5 1.5 0 0 1 20 5.5V9M20 15v3.5a1.5 1.5 0 0 1-1.5 1.5H15M9 20H5.5A1.5 1.5 0 0 1 4 18.5V15" />,
+  vollbildAus: <path d="M9 4v3.5A1.5 1.5 0 0 1 7.5 9H4M20 9h-3.5A1.5 1.5 0 0 1 15 7.5V4M15 20v-3.5a1.5 1.5 0 0 1 1.5-1.5H20M4 15h3.5A1.5 1.5 0 0 1 9 16.5V20" />,
+  wischen: <path d="M7 12h10M13.5 8.5 17 12l-3.5 3.5M10.5 8.5 7 12l3.5 3.5" />,
 };
 
 export type IconName = keyof typeof P;

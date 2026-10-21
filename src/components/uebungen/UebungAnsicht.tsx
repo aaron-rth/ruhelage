@@ -12,6 +12,7 @@ import type {
 import { uebKey } from '../../lib/fortschritt';
 import { erzeugeRng } from '../../lib/rng';
 import { useStore } from '../../store/store';
+import { useLernaktivitaet } from '../../store/ui';
 import { Md, Meldung, Taste } from '../Basis';
 import { ErklaerPanel } from '../ErklaerPanel';
 import { Icon } from '../Icon';
@@ -47,6 +48,7 @@ function mischIndizes(n: number, seed: number): number[] {
 export function UebungAnsicht({ uebung, themaId, onFertig, onWeiter, weiterText = 'Weiter' }: Props) {
   const [geprueft, setGeprueft] = useState<null | boolean>(null);
   const [erklaer, setErklaer] = useState(false);
+  useLernaktivitaet();
   const speichere = useStore((s) => s.speichereErgebnis);
   const seed = useMemo(() => Math.floor(Math.random() * 1e9), [uebung.id]);
 

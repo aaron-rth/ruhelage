@@ -3,7 +3,7 @@ import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 import type { Status } from '../content/types';
 import { heute, plusTage } from '../lib/datum';
-import { bewerte, type Bewertung, type KartenStand } from '../lib/leitner';
+import { bewerte, neuTakten, TAKTE, type Bewertung, type KartenStand, type Takt } from '../lib/leitner';
 
 export const SCHEMA_VERSION = 1;
 
@@ -43,6 +43,12 @@ export interface Einstellungen {
   klausurDatum: string;
   /** Einführung und kurze Hinweise anzeigen */
   hinweise: boolean;
+  /** Wiederholungsabstände der Karteikarten */
+  takt: Takt;
+  /** Handy: Karteikarten mit Wischgesten bewerten */
+  wischen: boolean;
+  /** Desktop: Seitenleiste ausblenden */
+  fokus: boolean;
 }
 
 export interface Daten {
@@ -67,6 +73,9 @@ export const STANDARD_EINSTELLUNGEN: Einstellungen = {
   theme: 'dark',
   klausurDatum: '2026-11-06',
   hinweise: true,
+  takt: 'standard',
+  wischen: true,
+  fokus: false,
 };
 
 export function leereDaten(): Daten {
@@ -93,6 +102,8 @@ interface Aktionen {
   addSekunden(s: number): void;
   addXp(xp: number): void;
   setzeEinstellung<K extends keyof Einstellungen>(k: K, v: Einstellungen[K]): void;
+  /** Takt wechseln und Fälligkeiten der gelernten Karten anpassen */
+  setzeTakt(t: Takt): void;
   spielwieseGeloest(id: string): void;
   hinweisGesehen(id: string): void;
   hinweiseZuruecksetzen(): void;
@@ -157,8 +168,9 @@ export const useStore = create<Store>()(
             nochmal = nochmal.filter((n) => n.key !== key);
           }
           const basis = korrektur ? (korrektur.vorher ?? undefined) : s.karten[kartenId];
+          const intervalle = TAKTE[s.einstellungen.takt]?.intervalle ?? TAKTE.standard.intervalle;
           return {
-            karten: { ...s.karten, [kartenId]: bewerte(basis, b, h) },
+            karten: { ...s.karten, [kartenId]: bewerte(basis, b, h, intervalle) },
             nochmal,
             xp: s.xp + xp,
             tage: { ...s.tage, [h]: { ...t, xp: t.xp + xp, karten: t.karten + (korrektur ? 0 : 1) } },
@@ -207,6 +219,8 @@ export const useStore = create<Store>()(
         }),
 
       setzeEinstellung: (k, v) => set((s) => ({ einstellungen: { ...s.einstellungen, [k]: v } })),
+
+      setzeTakt: (t) => set((s) => ({ einstellungen: { ...s.einstellungen, takt: t }, karten: neuTakten(s.karten, TAKTE[t].intervalle) })),
 
       spielwieseGeloest: (id) =>
         set((s) => (s.spielwiese.includes(id) ? s : { spielwiese: [...s.spielwiese, id] })),

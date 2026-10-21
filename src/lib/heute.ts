@@ -20,7 +20,8 @@ export function schwacheThemen(kurs: Kurs, d: Daten, h: string): Thema[] {
   return [...kurs.themen].sort((a, b) => schwaeche(b, d, h) - schwaeche(a, d, h));
 }
 
-export function baueHeute(kurs: Kurs, d: Daten, h: string, seed: number): HeutePlan {
+/** `fokus`: Themen, die laut Lernplan heute dran sind – ihre Aufgaben kommen zuerst. */
+export function baueHeute(kurs: Kurs, d: Daten, h: string, seed: number, fokus: Thema[] = []): HeutePlan {
   const rng = erzeugeRng(seed);
   const e = d.einstellungen;
   const sortiert = schwacheThemen(kurs, d, h);
@@ -44,7 +45,10 @@ export function baueHeute(kurs: Kurs, d: Daten, h: string, seed: number): HeuteP
   }
 
   // 3) Aufgaben aus den drei schwächsten Themen (mit Aufgaben), wenig geübte zuerst
-  const mitAufgaben = sortiert.filter((t) => t.generatoren.length + t.uebungen.length > 0).slice(0, 3);
+  const fokusIds = new Set(fokus.map((t) => t.id));
+  const mitAufgaben = [...sortiert.filter((t) => fokusIds.has(t.id)), ...sortiert.filter((t) => !fokusIds.has(t.id))]
+    .filter((t) => t.generatoren.length + t.uebungen.length > 0)
+    .slice(0, 3);
   const kandidaten = mitAufgaben.flatMap((t, ti) => [
     ...t.generatoren.map((g) => ({ item: { art: 'aufgabe' as const, id: g.id, seed: rng.int(1, 2 ** 30) }, q: quote(d, genKey(g.id)), ti })),
     ...t.uebungen.map((u) => ({ item: { art: 'uebung' as const, id: u.id }, q: quote(d, uebKey(u.id)), ti })),

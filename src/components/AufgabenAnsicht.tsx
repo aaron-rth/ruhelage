@@ -6,6 +6,7 @@ import { genKey } from '../lib/fortschritt';
 import { erzeugeRng } from '../lib/rng';
 import { liesGemerkt, useLaufend } from '../store/laufend';
 import { useStore } from '../store/store';
+import { useLernaktivitaet } from '../store/ui';
 import { AntwortEingabe } from './AntwortEingabe';
 import { Md, Meldung, Taste } from './Basis';
 import { ErklaerPanel } from './ErklaerPanel';
@@ -68,6 +69,7 @@ export function AufgabenAnsicht({
   const st = speicherKey ? (passt(gemerkt) ? gemerkt : start()) : passt(lokal) ? lokal : start();
   const { zustaende, aktiv, fertig } = st;
   const [erklaer, setErklaer] = useState(false);
+  useLernaktivitaet();
   const speichere = useStore((s) => s.speichereErgebnis);
 
   function aendere(f: (alt: AufgabenStand) => AufgabenStand) {

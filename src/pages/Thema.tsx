@@ -9,7 +9,7 @@ import { findeThema } from '../content/kurse';
 import type { Generator, Thema } from '../content/types';
 import { heute } from '../lib/datum';
 import { genKey, quote, statusVon, themaFortschritt, uebKey, vorschlag } from '../lib/fortschritt';
-import { istFaellig } from '../lib/leitner';
+import { intervallText, istFaellig, TAKTE } from '../lib/leitner';
 import { neuerSeed } from '../lib/rng';
 import { useGemerkt, useLaufend } from '../store/laufend';
 import { useStore } from '../store/store';
@@ -149,7 +149,7 @@ function KartenTab({ t }: { t: Thema }) {
           <div>
             <h3>Leitner-Fächer</h3>
             <p className="sehr-leise klein" style={{ margin: 0 }}>
-              Gewusst → ein Fach weiter. Nicht gewusst → zurück in Fach 1. Wiederholung nach 0 / 1 / 2 / 4 / 7 Tagen.
+              Gewusst → ein Fach weiter. Nicht gewusst → zurück in Fach 1. Wiederholung nach {intervallText(TAKTE[daten.einstellungen.takt].intervalle)} Tagen ({TAKTE[daten.einstellungen.takt].label.toLowerCase()}, <Link to="/einstellungen">ändern</Link>).
             </p>
           </div>
           <div className="zeile">

@@ -10,6 +10,7 @@ import { eingabeText, istLeer, leereEingabe, pruefe, sollText, type Eingabe } fr
 import { genKey } from '../lib/fortschritt';
 import { erzeugeRng, neuerSeed } from '../lib/rng';
 import { useStore } from '../store/store';
+import { useLernaktivitaet } from '../store/ui';
 
 interface KlausurAufgabe {
   generator: Generator;
@@ -61,6 +62,7 @@ export function Klausur() {
   const [rest, setRest] = useState(0);
   const [zeitSichtbar, setZeitSichtbar] = useState(true);
   const [sicher, setSicher] = useState(false);
+  useLernaktivitaet(phase === 'laeuft');
   const speichere = useStore((s) => s.speichereErgebnis);
 
   const moeglich = AKTIVER_KURS.themen.filter((t) => t.generatoren.some((g) => g.klausur));

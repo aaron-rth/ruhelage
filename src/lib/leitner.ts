@@ -12,19 +12,41 @@ export interface KartenStand {
   zuletzt: string;
 }
 
-/** Tage bis zur nächsten Wiederholung, je Fach (Index = Fach). */
-export const INTERVALLE: Record<Fach, number> = { 1: 0, 2: 1, 3: 2, 4: 4, 5: 7 };
+export type Intervalle = Record<Fach, number>;
+export type Takt = 'sehrKurz' | 'kurz' | 'standard' | 'lang';
 
-export function bewerte(stand: KartenStand | undefined, b: Bewertung, heute: string): KartenStand {
+/** Wählbare Wiederholungsabstände (Tage bis zur nächsten Wiederholung je Fach). */
+export const TAKTE: Record<Takt, { label: string; text: string; intervalle: Intervalle }> = {
+  sehrKurz: { label: 'Sehr kurz', text: 'kurz vor der Klausur: fast alles kommt nach 0–2 Tagen wieder', intervalle: { 1: 0, 2: 0, 3: 1, 4: 1, 5: 2 } },
+  kurz: { label: 'Kurz', text: 'häufiger wiederholen', intervalle: { 1: 0, 2: 1, 3: 1, 4: 2, 5: 4 } },
+  standard: { label: 'Standard', text: 'ausgewogen bis zur Klausur', intervalle: { 1: 0, 2: 1, 3: 2, 4: 4, 5: 7 } },
+  lang: { label: 'Lang', text: 'für langfristiges Behalten, z. B. nach der Klausur', intervalle: { 1: 0, 2: 2, 3: 5, 4: 10, 5: 21 } },
+};
+
+/** Tage bis zur nächsten Wiederholung, je Fach (Index = Fach) – Standard. */
+export const INTERVALLE: Intervalle = TAKTE.standard.intervalle;
+
+export function intervallText(i: Intervalle): string {
+  return [1, 2, 3, 4, 5].map((f) => i[f as Fach]).join(' / ');
+}
+
+/** Nach einem Wechsel des Takts: Fälligkeiten der schon gelernten Karten neu berechnen. */
+export function neuTakten(karten: Record<string, KartenStand>, i: Intervalle): Record<string, KartenStand> {
+  return Object.fromEntries(
+    Object.entries(karten).map(([id, k]) => [id, k.fach >= 2 ? { ...k, faellig: plusTage(k.zuletzt, i[k.fach]) } : k]),
+  );
+}
+
+export function bewerte(stand: KartenStand | undefined, b: Bewertung, heute: string, intervalle: Intervalle = INTERVALLE): KartenStand {
   const alt: Fach = stand?.fach ?? 1;
   const wiederholungen = (stand?.wiederholungen ?? 0) + 1;
   if (b === 'gewusst') {
     const fach = Math.min(5, alt + 1) as Fach;
-    return { fach, faellig: plusTage(heute, INTERVALLE[fach]), wiederholungen, zuletzt: heute };
+    return { fach, faellig: plusTage(heute, intervalle[fach]), wiederholungen, zuletzt: heute };
   }
   if (b === 'halb') {
-    // bleibt im Fach, kommt morgen wieder
-    return { fach: alt, faellig: plusTage(heute, 1), wiederholungen, zuletzt: heute };
+    // bleibt im Fach, kommt bald wieder (morgen bzw. beim kürzesten Takt noch heute)
+    return { fach: alt, faellig: plusTage(heute, Math.min(1, intervalle[2])), wiederholungen, zuletzt: heute };
   }
   return { fach: 1, faellig: heute, wiederholungen, zuletzt: heute };
 }
