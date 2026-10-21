@@ -1,0 +1,175 @@
+import { useEffect, useRef, useState } from 'react';
+import { HashRouter, NavLink, Route, Routes, useLocation } from 'react-router-dom';
+import { Logo } from './components/Basis';
+import { Icon } from './components/Icon';
+import { AKTIVER_KURS } from './content/kurse';
+import { heute, tageZwischen } from './lib/datum';
+import { Einstellungen } from './pages/Einstellungen';
+import { Formeln } from './pages/Formeln';
+import { Heute } from './pages/Heute';
+import { Klausur } from './pages/Klausur';
+import { Lernpfad } from './pages/Lernpfad';
+import { Nochmal } from './pages/Nochmal';
+import { Spielwiese } from './pages/Spielwiese';
+import { ThemaSeite } from './pages/Thema';
+import { streak, useStore } from './store/store';
+
+const NAV = [
+  { to: '/', label: 'Heute', icon: 'heute', ende: true },
+  { to: '/pfad', label: 'Lernpfad', icon: 'pfad' },
+  { to: '/spielwiese', label: 'Spielwiese', icon: 'welle' },
+  { to: '/nochmal', label: 'Nochmal', icon: 'nochmal' },
+  { to: '/klausur', label: 'Klausurmodus', icon: 'klausur' },
+  { to: '/formeln', label: 'Formelsammlung', icon: 'formel' },
+  { to: '/einstellungen', label: 'Einstellungen', icon: 'einstellungen' },
+];
+
+/** Zählt aktive Lernzeit (Tab sichtbar und in den letzten 90 s benutzt). */
+function useLernzeit() {
+  const addSekunden = useStore((s) => s.addSekunden);
+  const letzte = useRef(Date.now());
+  useEffect(() => {
+    const aktiv = () => (letzte.current = Date.now());
+    const ev = ['keydown', 'pointerdown', 'wheel', 'touchstart'] as const;
+    ev.forEach((e) => window.addEventListener(e, aktiv, { passive: true }));
+    const id = window.setInterval(() => {
+      if (document.visibilityState === 'visible' && Date.now() - letzte.current < 90_000) addSekunden(15);
+    }, 15_000);
+    return () => {
+      ev.forEach((e) => window.removeEventListener(e, aktiv));
+      window.clearInterval(id);
+    };
+  }, [addSekunden]);
+}
+
+function useTheme() {
+  const theme = useStore((s) => s.einstellungen.theme);
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'light' ? '#f4f6f8' : '#0E131A');
+  }, [theme]);
+}
+
+function NachOben() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+}
+
+function SeitenleisteFuss() {
+  const tage = useStore((s) => s.tage);
+  const e = useStore((s) => s.einstellungen);
+  const h = heute();
+  const s = streak(tage, h);
+  const rest = tageZwischen(h, e.klausurDatum);
+  return (
+    <div className="seitenleiste-fuss">
+      {e.countdown && rest >= 0 && (
+        <div className="zeile" style={{ gap: 8 }}>
+          <Icon name="kalender" size={15} />
+          <span>
+            {rest === 0 ? (
+              <strong>Heute ist Klausur</strong>
+            ) : (
+              <>
+                noch <strong>{rest}</strong> {rest === 1 ? 'Tag' : 'Tage'} bis zur Klausur
+              </>
+            )}
+          </span>
+        </div>
+      )}
+      <div className="zeile" style={{ gap: 8 }}>
+        <Icon name="welle" size={15} />
+        <span>
+          <strong>{s}</strong> {s === 1 ? 'Tag' : 'Tage'} in Folge
+        </span>
+      </div>
+    </div>
+  );
+}
+
+function Rahmen() {
+  useLernzeit();
+  useTheme();
+  const nochmal = useStore((s) => s.nochmal.length);
+  const [mehr, setMehr] = useState(false);
+  const { pathname } = useLocation();
+  useEffect(() => setMehr(false), [pathname]);
+
+  return (
+    <div className="app">
+      <aside className="seitenleiste">
+        <NavLink to="/" className="logo-link" aria-label="Ruhelage – Startseite">
+          <Logo />
+        </NavLink>
+        <nav className="nav" aria-label="Hauptnavigation">
+          {NAV.map((n) => (
+            <NavLink key={n.to} to={n.to} end={n.ende} className={({ isActive }) => (isActive ? 'aktiv' : undefined)}>
+              <Icon name={n.icon} />
+              {n.label}
+              {n.to === '/nochmal' && nochmal > 0 && <span className="badge">{nochmal}</span>}
+            </NavLink>
+          ))}
+        </nav>
+        <SeitenleisteFuss />
+      </aside>
+
+      <header className="mobil-kopf">
+        <NavLink to="/" aria-label="Startseite" style={{ color: 'var(--text)' }}>
+          <Logo klein />
+        </NavLink>
+        <span className="sehr-leise klein">{AKTIVER_KURS.titel}</span>
+      </header>
+
+      <main className="haupt" id="inhalt">
+        <Routes>
+          <Route path="/" element={<Heute />} />
+          <Route path="/pfad" element={<Lernpfad />} />
+          <Route path="/thema/:id" element={<ThemaSeite />} />
+          <Route path="/thema/:id/:tab" element={<ThemaSeite />} />
+          <Route path="/spielwiese" element={<Spielwiese />} />
+          <Route path="/nochmal" element={<Nochmal />} />
+          <Route path="/klausur" element={<Klausur />} />
+          <Route path="/formeln" element={<Formeln />} />
+          <Route path="/einstellungen" element={<Einstellungen />} />
+          <Route path="*" element={<Heute />} />
+        </Routes>
+      </main>
+
+      <nav className="mobil-nav" aria-label="Navigation">
+        {NAV.slice(0, 4).map((n) => (
+          <NavLink key={n.to} to={n.to} end={n.ende} className={({ isActive }) => (isActive ? 'aktiv' : undefined)}>
+            <Icon name={n.icon} size={20} />
+            {n.label}
+            {n.to === '/nochmal' && nochmal > 0 && <span className="badge akzent">{nochmal}</span>}
+          </NavLink>
+        ))}
+        <button type="button" onClick={() => setMehr((m) => !m)} aria-expanded={mehr}>
+          <Icon name="mehr" size={20} />
+          Mehr
+        </button>
+      </nav>
+      {mehr && (
+        <div className="mehr-menue einblenden">
+          {NAV.slice(4).map((n) => (
+            <NavLink key={n.to} to={n.to}>
+              <Icon name={n.icon} />
+              {n.label}
+            </NavLink>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+export function App() {
+  return (
+    <HashRouter>
+      <NachOben />
+      <Rahmen />
+    </HashRouter>
+  );
+}

@@ -1,0 +1,106 @@
+/* Design-Tokens. Dunkel ist Standard; Hell als Option über data-theme="light". */
+
+:root,
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #0e131a;
+  --bg-tief: #0a0e13;
+  --flaeche: #131a23;
+  --flaeche-2: #18202b;
+  --flaeche-3: #1f2834;
+  --linie: #222c3a;
+  --linie-stark: #2e3a4c;
+  --text: #e6ebf2;
+  --text-2: #aab4c3;
+  --text-3: #7c879a;
+
+  --akzent: #2dd4bf;
+  --akzent-hell: #5eead4;
+  --akzent-tief: #14b8a6;
+  --akzent-weich: rgba(45, 212, 191, 0.1);
+  --akzent-linie: rgba(45, 212, 191, 0.38);
+  --auf-akzent: #04201c;
+
+  --koralle: #e8907f;
+  --koralle-weich: rgba(232, 144, 127, 0.1);
+  --koralle-linie: rgba(232, 144, 127, 0.38);
+
+  /* nur für den Status „so halb“ und als zweite Kurvenfarbe */
+  --sand: #d9b77a;
+  --sand-weich: rgba(217, 183, 122, 0.1);
+  --sand-linie: rgba(217, 183, 122, 0.38);
+  --blau: #8aa8e8;
+
+  --raster: rgba(170, 180, 195, 0.07);
+  --raster-stark: rgba(170, 180, 195, 0.14);
+
+  --schatten: 0 1px 0 rgba(255, 255, 255, 0.025) inset, 0 10px 30px -12px rgba(0, 0, 0, 0.5);
+  --schatten-hoch: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 18px 50px -16px rgba(0, 0, 0, 0.65);
+  --fokus: 0 0 0 2px var(--bg), 0 0 0 4px var(--akzent-linie);
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  --bg: #f4f6f8;
+  --bg-tief: #e9edf1;
+  --flaeche: #ffffff;
+  --flaeche-2: #f7f9fb;
+  --flaeche-3: #eef2f5;
+  --linie: #e1e6ec;
+  --linie-stark: #cdd5de;
+  --text: #17202b;
+  --text-2: #4a5566;
+  --text-3: #6f7a8b;
+
+  --akzent: #0f9e8e;
+  --akzent-hell: #0d8b7d;
+  --akzent-tief: #0b7a6e;
+  --akzent-weich: rgba(15, 158, 142, 0.09);
+  --akzent-linie: rgba(15, 158, 142, 0.4);
+  --auf-akzent: #ffffff;
+
+  --koralle: #c4614e;
+  --koralle-weich: rgba(196, 97, 78, 0.08);
+  --koralle-linie: rgba(196, 97, 78, 0.4);
+
+  --sand: #a77c2c;
+  --sand-weich: rgba(167, 124, 44, 0.09);
+  --sand-linie: rgba(167, 124, 44, 0.4);
+  --blau: #4d6fc0;
+
+  --raster: rgba(23, 32, 43, 0.06);
+  --raster-stark: rgba(23, 32, 43, 0.12);
+
+  --schatten: 0 1px 2px rgba(23, 32, 43, 0.04), 0 8px 24px -14px rgba(23, 32, 43, 0.18);
+  --schatten-hoch: 0 2px 4px rgba(23, 32, 43, 0.05), 0 18px 40px -18px rgba(23, 32, 43, 0.28);
+}
+
+:root {
+  --font: 'Inter Variable', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  --r-s: 8px;
+  --r: 12px;
+  --r-l: 18px;
+
+  --s1: 4px;
+  --s2: 8px;
+  --s3: 12px;
+  --s4: 16px;
+  --s5: 24px;
+  --s6: 32px;
+  --s7: 48px;
+  --s8: 64px;
+
+  --dauer: 180ms;
+  --kurve: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  --sidebar: 236px;
+  --inhalt-max: 980px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dauer: 0ms;
+  }
+}
