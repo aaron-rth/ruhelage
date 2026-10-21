@@ -118,15 +118,6 @@ export function Einstellungen() {
           <label htmlFor="klausurdatum">Klausurtermin</label>
           <input id="klausurdatum" type="date" className="eingabe" value={e.klausurDatum} onChange={(ev) => ev.target.value && s.setzeEinstellung('klausurDatum', ev.target.value)} />
         </div>
-        <Schalter
-          label="Einführung und Hinweise"
-          an={e.hinweise}
-          onChange={(b) => {
-            s.setzeEinstellung('hinweise', b);
-            if (b) s.hinweiseZuruecksetzen();
-          }}
-          text="Kurze Erklärungen beim ersten Öffnen, z. B. wo was ist und wie die Selbsteinschätzung funktioniert. Beim Einschalten werden alle Hinweise wieder gezeigt."
-        />
         <div className="einst-zeile">
           <label>Einführung</label>
           <button

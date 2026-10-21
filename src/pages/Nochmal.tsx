@@ -92,7 +92,7 @@ export function Nochmal() {
                     </span>
                     <span className="sehr-leise klein">{ART[n.art].label}</span>
                     <button className="btn geist klein" onClick={() => entferne(n.key)} title="Aus dem Stapel nehmen" aria-label="Aus dem Stapel nehmen">
-                      <Icon name="x" size={14} />
+                      <Icon name="x" size={18} />
                     </button>
                   </li>
                 ))}

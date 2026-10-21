@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect, useRef, useState } from 'react';
-import { HashRouter, NavLink, Route, Routes, useLocation } from 'react-router-dom';
+import { HashRouter, Link, NavLink, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { Lader, Logo } from './components/Basis';
 import { Einfuehrung, EINFUEHRUNG } from './components/Einfuehrung';
 import { Icon } from './components/Icon';
@@ -7,11 +7,14 @@ import { Statistik } from './components/Statistik';
 import { heute, tageZwischen } from './lib/datum';
 import { Aktuell, useOffeneEintraege } from './pages/Aktuell';
 import { Einstellungen } from './pages/Einstellungen';
+import { Faecher } from './pages/Faecher';
+import { Profil } from './pages/Profil';
 import { Formeln } from './pages/Formeln';
 import { Heute } from './pages/Heute';
 import { Lernpfad } from './pages/Lernpfad';
 import { Nochmal } from './pages/Nochmal';
 import { ThemaSeite } from './pages/Thema';
+import { AKTIVER_KURS } from './content/kurse';
 import { streak, useStore } from './store/store';
 import { useUi } from './store/ui';
 
@@ -19,16 +22,57 @@ import { useUi } from './store/ui';
 const Spielwiese = lazy(() => import('./pages/Spielwiese').then((m) => ({ default: m.Spielwiese })));
 const Klausur = lazy(() => import('./pages/Klausur').then((m) => ({ default: m.Klausur })));
 
-const NAV = [
-  { to: '/', label: 'Heute', icon: 'heute', ende: true },
-  { to: '/aktuell', label: 'Aktuell', icon: 'play' },
-  { to: '/pfad', label: 'Lernpfad', icon: 'pfad' },
-  { to: '/nochmal', label: 'Nochmal', icon: 'nochmal' },
-  { to: '/spielwiese', label: 'Spielwiese', icon: 'welle' },
-  { to: '/klausur', label: 'Klausurmodus', icon: 'klausur' },
-  { to: '/formeln', label: 'Formelsammlung', icon: 'formel' },
-  { to: '/einstellungen', label: 'Einstellungen', icon: 'einstellungen' },
+/** Drei Bereiche – am Handy unten als Tabs, am Laptop in der Seitenleiste mit Unterpunkten. */
+type Bereich = 'faecher' | 'lernen' | 'profil';
+interface Unterpunkt {
+  to: string;
+  label: string;
+  icon: string;
+  /** aktiv, wenn der Pfad (inkl. Suche) so beginnt */
+  passt: (pfad: string, suche: string) => boolean;
+}
+const BEREICHE: { id: Bereich; to: string; label: string; icon: string; unter: Unterpunkt[] }[] = [
+  {
+    id: 'lernen',
+    to: '/',
+    label: 'Lernen',
+    icon: 'play',
+    unter: [
+      { to: '/', label: 'Heute', icon: 'heute', passt: (p) => p === '/' },
+      { to: '/aktuell', label: 'Angefangen', icon: 'pause', passt: (p) => p === '/aktuell' },
+      { to: '/nochmal', label: 'Nochmal', icon: 'nochmal', passt: (p) => p === '/nochmal' },
+      { to: '/klausur', label: 'Probeklausur', icon: 'klausur', passt: (p) => p === '/klausur' },
+      { to: '/spielwiese', label: 'Spielwiese', icon: 'welle', passt: (p) => p === '/spielwiese' },
+    ],
+  },
+  {
+    id: 'faecher',
+    to: '/faecher',
+    label: 'Fächer',
+    icon: 'buch',
+    unter: [
+      { to: '/faecher', label: 'Übersicht', icon: 'buch', passt: (p) => p === '/faecher' },
+      { to: '/pfad', label: 'Lernpfad', icon: 'pfad', passt: (p, q) => (p === '/pfad' && !q.includes('plan')) || p.startsWith('/thema') },
+      { to: '/pfad?ansicht=plan', label: 'Lernplan', icon: 'kalender', passt: (p, q) => p === '/pfad' && q.includes('plan') },
+      { to: '/formeln', label: 'Formelsammlung', icon: 'formel', passt: (p) => p === '/formeln' },
+    ],
+  },
+  {
+    id: 'profil',
+    to: '/profil',
+    label: 'Profil',
+    icon: 'ziel',
+    unter: [
+      { to: '/profil', label: 'Statistik', icon: 'ziel', passt: (p) => p === '/profil' },
+      { to: '/einstellungen', label: 'Einstellungen', icon: 'einstellungen', passt: (p) => p === '/einstellungen' },
+    ],
+  },
 ];
+
+function bereichVon(pfad: string, suche: string): Bereich {
+  for (const b of BEREICHE) if (b.unter.some((u) => u.passt(pfad, suche))) return b.id;
+  return 'lernen';
+}
 
 /** Zählt Lernzeit nur, während Karten, Übungen, Aufgaben oder eine Klausur offen sind
  *  (Tab sichtbar und in den letzten 90 s benutzt). */
@@ -132,12 +176,11 @@ function SeitenleisteFuss() {
   const h = heute();
   const s = streak(tage, h);
   const rest = tageZwischen(h, e.klausurDatum);
-  const zeige = useUi((u) => u.zeigeStatistik);
   return (
-    <button type="button" className="seitenleiste-fuss" onClick={() => zeige(true)} title="Statistik öffnen">
+    <Link to="/profil" className="seitenleiste-fuss" title="Statistik öffnen">
       {e.countdown && rest >= 0 && (
         <div className="zeile" style={{ gap: 8 }}>
-          <Icon name="kalender" size={15} />
+          <Icon name="kalender" size={16} />
           <span>
             {rest === 0 ? (
               <strong>Heute ist Klausur</strong>
@@ -150,16 +193,18 @@ function SeitenleisteFuss() {
         </div>
       )}
       <div className="zeile" style={{ gap: 8 }}>
-        <Icon name="welle" size={15} />
+        <Icon name="welle" size={16} />
         <span>
           <strong>{s}</strong> {s === 1 ? 'Tag' : 'Tage'} in Folge
         </span>
       </div>
-      <span className="fuss-link">
-        <Icon name="ziel" size={14} /> Statistik ansehen
-      </span>
-    </button>
+    </Link>
   );
+}
+
+/** Klick auf freie Fläche neben dem Inhalt (keine Knöpfe, Karten, Texte) */
+function istHintergrund(el: HTMLElement | null): boolean {
+  return !!el && (el.classList.contains('haupt') || el.classList.contains('inhalt') || el.classList.contains('seiten-wechsel') || el.classList.contains('kopf'));
 }
 
 function Rahmen() {
@@ -169,33 +214,59 @@ function Rahmen() {
   const offen = useOffeneEintraege().filter((e) => e.art !== 'lesen').length;
   const einfuehrung = useStore((s) => s.einstellungen.hinweise && !s.gesehen.includes(EINFUEHRUNG));
   const statistik = useUi((u) => u.statistik);
-  const zeigeStatistik = useUi((u) => u.zeigeStatistik);
   const serie = useStore((s) => streak(s.tage, heute()));
-  const [mehr, setMehr] = useState(false);
-  const { pathname } = useLocation();
-  useEffect(() => setMehr(false), [pathname]);
+  const { pathname, search } = useLocation();
+  const navigate = useNavigate();
   const kopfWeg = useKopfEinklappen();
   const [fokus, setFokus] = useFokus();
+  const bereich = bereichVon(pathname, search);
+  const zahl = (to: string) => (to === '/nochmal' ? nochmal : to === '/aktuell' ? offen : 0);
 
   return (
     <div className={`app${fokus ? ' fokus' : ''}`}>
-      <aside className="seitenleiste">
+      <aside className="seitenleiste" aria-hidden={fokus}>
         <div className="seitenleiste-kopf">
-          <NavLink to="/" className="logo-link" aria-label="Ruhelage – Startseite">
+          <NavLink to="/" className="logo-link" aria-label="Ruhelage – Startseite" tabIndex={fokus ? -1 : 0}>
             <Logo />
           </NavLink>
-          <button type="button" className="btn geist klein symbol-knopf" onClick={() => setFokus(true)} title="Seitenleiste ausblenden (F)" aria-label="Seitenleiste ausblenden">
-            <Icon name="seitenleiste" size={21} />
+          <button type="button" className="btn geist symbol-knopf" onClick={() => setFokus(true)} title="Seitenleiste ausblenden (F)" aria-label="Seitenleiste ausblenden" tabIndex={fokus ? -1 : 0}>
+            <Icon name="seitenleiste" size={22} />
           </button>
         </div>
+        <div className="fach-wahl">
+          <Link to="/faecher" className="fach-zeile an" tabIndex={fokus ? -1 : 0}>
+            <Icon name="welle" size={18} />
+            <span>
+              <strong>Physik</strong>
+              <span className="sehr-leise klein">{AKTIVER_KURS.titel}</span>
+            </span>
+          </Link>
+          <div className="fach-zeile bald" aria-disabled="true">
+            <Icon name="plus" size={18} />
+            <span>
+              <span className="klein">Weitere Fächer</span>
+              <span className="klein sehr-leise">Kommt bald</span>
+            </span>
+          </div>
+        </div>
         <nav className="nav" aria-label="Hauptnavigation">
-          {NAV.map((n) => (
-            <NavLink key={n.to} to={n.to} end={n.ende} data-tour={n.to} className={({ isActive }) => (isActive ? 'aktiv' : undefined)}>
-              <Icon name={n.icon} />
-              {n.label}
-              {n.to === '/nochmal' && nochmal > 0 && <span className="badge">{nochmal}</span>}
-              {n.to === '/aktuell' && offen > 0 && <span className="badge akzent">{offen}</span>}
-            </NavLink>
+          {BEREICHE.map((b) => (
+            <div key={b.id} className={`nav-gruppe${bereich === b.id ? ' aktiv' : ''}`}>
+              <Link to={b.to} className="nav-bereich" data-tour={b.to} tabIndex={fokus ? -1 : 0}>
+                {b.label}
+              </Link>
+              {b.unter.map((u) => {
+                const aktiv = u.passt(pathname, search);
+                const n = zahl(u.to);
+                return (
+                  <Link key={u.to} to={u.to} className={aktiv ? 'aktiv' : undefined} aria-current={aktiv ? 'page' : undefined} tabIndex={fokus ? -1 : 0}>
+                    <Icon name={u.icon} size={19} />
+                    {u.label}
+                    {n > 0 && <span className={`badge${u.to === '/aktuell' ? ' akzent' : ''}`}>{n}</span>}
+                  </Link>
+                );
+              })}
+            </div>
           ))}
         </nav>
         <SeitenleisteFuss />
@@ -203,59 +274,56 @@ function Rahmen() {
 
       {fokus && <FokusLeiste onAus={() => setFokus(false)} />}
 
-      <header className={`mobil-kopf${kopfWeg && !mehr ? ' weg' : ''}`}>
+      <header className={`mobil-kopf${kopfWeg ? ' weg' : ''}`}>
         <NavLink to="/" aria-label="Startseite" style={{ color: 'var(--text)' }}>
           <Logo klein />
         </NavLink>
-        <button type="button" className="mobil-serie" onClick={() => zeigeStatistik(true)} aria-label={`${serie} Tage in Folge – Statistik öffnen`}>
-          <Icon name="welle" size={15} /> <strong className="mono">{serie}</strong>
+        <span className="mobil-fach">Physik</span>
+        <button type="button" className="mobil-serie" onClick={() => navigate('/profil')} aria-label={`${serie} Tage in Folge – Statistik öffnen`}>
+          <Icon name="welle" size={16} /> <strong className="mono">{serie}</strong>
         </button>
       </header>
 
-      <main className="haupt" id="inhalt">
+      <main
+        className="haupt"
+        id="inhalt"
+        onClick={(e) => {
+          // Laptop: Klick auf freien Hintergrund blendet die Seitenleiste aus
+          if (!fokus && window.innerWidth > 860 && istHintergrund(e.target as HTMLElement)) setFokus(true);
+        }}
+      >
         <Suspense fallback={<Lader />}>
           <div className="seiten-wechsel" key={pathname}>
-          <Routes>
-            <Route path="/" element={<Heute />} />
-            <Route path="/aktuell" element={<Aktuell />} />
-            <Route path="/pfad" element={<Lernpfad />} />
-            <Route path="/thema/:id" element={<ThemaSeite />} />
-            <Route path="/thema/:id/:tab" element={<ThemaSeite />} />
-            <Route path="/spielwiese" element={<Spielwiese />} />
-            <Route path="/nochmal" element={<Nochmal />} />
-            <Route path="/klausur" element={<Klausur />} />
-            <Route path="/formeln" element={<Formeln />} />
-            <Route path="/einstellungen" element={<Einstellungen />} />
-            <Route path="*" element={<Heute />} />
-          </Routes>
+            <Routes>
+              <Route path="/" element={<Heute />} />
+              <Route path="/aktuell" element={<Aktuell />} />
+              <Route path="/faecher" element={<Faecher />} />
+              <Route path="/pfad" element={<Lernpfad />} />
+              <Route path="/thema/:id" element={<ThemaSeite />} />
+              <Route path="/thema/:id/:tab" element={<ThemaSeite />} />
+              <Route path="/spielwiese" element={<Spielwiese />} />
+              <Route path="/nochmal" element={<Nochmal />} />
+              <Route path="/klausur" element={<Klausur />} />
+              <Route path="/formeln" element={<Formeln />} />
+              <Route path="/profil" element={<Profil />} />
+              <Route path="/einstellungen" element={<Einstellungen />} />
+              <Route path="*" element={<Heute />} />
+            </Routes>
           </div>
         </Suspense>
       </main>
 
       <nav className="mobil-nav" aria-label="Navigation">
-        {NAV.slice(0, 4).map((n) => (
-          <NavLink key={n.to} to={n.to} end={n.ende} data-tour={n.to} className={({ isActive }) => (isActive ? 'aktiv' : undefined)}>
-            <Icon name={n.icon} size={20} />
-            {n.label}
-            {n.to === '/nochmal' && nochmal > 0 && <span className="badge akzent">{nochmal}</span>}
-            {n.to === '/aktuell' && offen > 0 && <span className="badge akzent">{offen}</span>}
-          </NavLink>
+        {[BEREICHE[1], BEREICHE[0], BEREICHE[2]].map((b) => (
+          <Link key={b.id} to={b.to} data-tour={b.to} className={`${bereich === b.id ? 'aktiv' : ''}${b.id === 'lernen' ? ' mitte' : ''}`} aria-current={bereich === b.id ? 'page' : undefined}>
+            <span className="tab-icon">
+              <Icon name={b.icon} size={b.id === 'lernen' ? 26 : 23} />
+              {b.id === 'lernen' && offen + nochmal > 0 && <span className="badge akzent">{offen + nochmal}</span>}
+            </span>
+            {b.label}
+          </Link>
         ))}
-        <button type="button" onClick={() => setMehr((m) => !m)} aria-expanded={mehr} data-tour="mehr">
-          <Icon name="mehr" size={20} />
-          Mehr
-        </button>
       </nav>
-      {mehr && (
-        <div className="mehr-menue einblenden">
-          {NAV.slice(4).map((n) => (
-            <NavLink key={n.to} to={n.to} data-tour={n.to}>
-              <Icon name={n.icon} />
-              {n.label}
-            </NavLink>
-          ))}
-        </div>
-      )}
       {einfuehrung && <Einfuehrung />}
       {statistik && <Statistik />}
     </div>
