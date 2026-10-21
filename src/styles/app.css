@@ -1316,3 +1316,280 @@
 .plot.quadratisch .plot-achse {
   font-size: 18px;
 }
+
+/* ---------- Klausurmodus ---------- */
+.themen-wahl {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2);
+}
+.themen-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s2);
+  padding: 6px 12px 6px 6px;
+  border: 1px solid var(--linie-stark);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-2);
+  font-size: 0.88rem;
+  cursor: pointer;
+}
+.themen-chip.an {
+  border-color: var(--akzent-linie);
+  background: var(--akzent-weich);
+  color: var(--text);
+}
+.klausur-leiste {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s3);
+  flex-wrap: wrap;
+  padding: var(--s3) 0;
+  background: var(--bg);
+}
+.klausur-tabs {
+  display: flex;
+  gap: 6px;
+}
+.klausur-tab {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  border: 1px solid var(--linie-stark);
+  background: var(--flaeche);
+  color: var(--text-2);
+  font-family: var(--mono);
+  cursor: pointer;
+}
+.klausur-tab.fertig {
+  border-color: var(--akzent-linie);
+  color: var(--akzent);
+}
+.klausur-tab.aktiv {
+  background: var(--flaeche-3);
+  color: var(--text);
+  border-color: var(--text-3);
+}
+.klausur-zeit {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--linie);
+  background: transparent;
+  color: var(--text-2);
+  cursor: pointer;
+}
+.klausur-zeit.knapp {
+  color: var(--koralle);
+  border-color: var(--koralle-linie);
+}
+.klausur-aufgabe {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s4);
+  margin-top: var(--s4);
+}
+.teil.auswertung summary {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  cursor: pointer;
+  list-style: none;
+}
+.teil.auswertung summary::-webkit-details-marker {
+  display: none;
+}
+.teil.auswertung summary > span:nth-child(2) {
+  flex: 1;
+}
+.teil.auswertung.ok summary svg {
+  color: var(--akzent);
+}
+.teil.auswertung.nok summary svg {
+  color: var(--koralle);
+}
+.teil.auswertung.nok {
+  border-color: var(--koralle-linie);
+}
+.auswertung-antworten {
+  display: flex;
+  gap: var(--s5);
+  flex-wrap: wrap;
+  margin: var(--s3) 0;
+  color: var(--text-2);
+}
+.auswertung-antworten strong {
+  color: var(--text);
+  font-family: var(--mono);
+  font-weight: 500;
+}
+.themen-auswertung {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+}
+.themen-auswertung li {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+}
+
+/* ---------- Spielwiese ---------- */
+.sw-buehne {
+  display: grid;
+  grid-template-columns: 200px 220px minmax(0, 1fr);
+  gap: var(--s4);
+  align-items: stretch;
+  padding: var(--s4);
+}
+.sw-teil {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+  min-width: 0;
+}
+.sw-titel {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+.sw-svg {
+  width: 100%;
+  height: 330px;
+  border-radius: var(--r);
+  background: var(--bg);
+  border: 1px solid var(--linie);
+}
+.sw-graph .sw-svg {
+  height: 330px;
+}
+.sw-text {
+  font-family: var(--mono);
+  font-size: 11px;
+  fill: var(--text-3);
+}
+.sw-achse {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--text-3);
+}
+.sw-raster {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  gap: var(--s4);
+  margin-top: var(--s4);
+  align-items: start;
+}
+.regler-liste {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s3);
+}
+.regler {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.regler-kopf {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s2);
+  font-size: 0.9rem;
+}
+.regler-kopf .mono {
+  color: var(--text-2);
+  font-size: 0.85rem;
+}
+.sw-werte {
+  grid-template-columns: 1fr 1fr;
+}
+.sw-werte dd {
+  font-size: 0.95rem;
+}
+.sw-energie {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+  margin-top: var(--s4);
+}
+.sw-energie > div {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  align-items: center;
+  gap: var(--s2);
+}
+.sw-energie .balken {
+  height: 10px;
+}
+.sw-aufgaben ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s3);
+}
+.sw-aufgaben li {
+  display: flex;
+  gap: var(--s3);
+  font-size: 0.92rem;
+}
+.sw-aufgaben li.ok {
+  color: var(--text-2);
+}
+.sw-haken {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  border-radius: 50%;
+  border: 1.5px solid var(--linie-stark);
+  color: var(--auf-akzent);
+}
+.sw-aufgaben li.ok .sw-haken {
+  background: var(--akzent);
+  border-color: var(--akzent);
+}
+.sw-aufgaben summary {
+  cursor: pointer;
+  margin-top: 2px;
+}
+@media (max-width: 1100px) {
+  .sw-raster {
+    grid-template-columns: 1fr 1fr;
+  }
+  .sw-aufgaben {
+    grid-column: 1 / -1;
+  }
+}
+@media (max-width: 760px) {
+  .sw-buehne {
+    grid-template-columns: 1fr 1fr;
+  }
+  .sw-graph {
+    grid-column: 1 / -1;
+  }
+  .sw-svg,
+  .sw-graph .sw-svg {
+    height: 240px;
+  }
+  .sw-raster {
+    grid-template-columns: 1fr;
+  }
+}

@@ -16,8 +16,6 @@ export interface HeutePlan {
   minuten: number;
 }
 
-const MAX_NEU = 10;
-
 export function schwacheThemen(kurs: Kurs, d: Daten, h: string): Thema[] {
   return [...kurs.themen].sort((a, b) => schwaeche(b, d, h) - schwaeche(a, d, h));
 }
@@ -36,7 +34,7 @@ export function baueHeute(kurs: Kurs, d: Daten, h: string, seed: number): HeuteP
 
   // 2) neue Karten aus den schwächsten Themen auffüllen
   const neueKarten: { id: string }[] = [];
-  const platz = Math.min(MAX_NEU, Math.max(0, e.zielKarten - faellige.length));
+  const platz = Math.max(0, e.zielKarten - faellige.length);
   for (const t of sortiert) {
     if (neueKarten.length >= platz) break;
     for (const k of t.karten) {

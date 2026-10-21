@@ -1,6 +1,7 @@
 // Antwortprüfung: Zahl + Einheit tolerant einlesen und mit dem Sollwert vergleichen.
 import type { Antwort, TypFehler } from '../content/types';
 import { einheit, findeEinheit, gleicheDim, WINKEL_EINHEITEN } from './einheiten';
+import { zahl as zahlText } from './format';
 
 export type PruefStatus = 'richtig' | 'falsch' | 'ungueltig';
 
@@ -180,4 +181,29 @@ export function pruefe(a: Antwort, e: Eingabe): Pruefung {
     return { status: ok ? 'richtig' : 'falsch' };
   }
   return { status: 'ungueltig' };
+}
+
+/** Sollantwort als kurzer Text (Markdown/TeX) für Auswertungen. */
+export function sollText(a: Antwort): string {
+  if (a.art === 'zahl') {
+    const e = einheit(a.einheit);
+    const s = zahlText(a.wert / e.faktor, 3);
+    return e.key === '' ? s : `${s} ${e.anzeige}`;
+  }
+  if (a.art === 'winkel') {
+    return `${zahlText(a.wert, 3)} rad (${Math.round((a.wert * 180) / Math.PI)}°)`;
+  }
+  if (a.art === 'auswahl') return `${String.fromCharCode(65 + a.richtig)}: ${a.optionen[a.richtig]}`;
+  return `t ≈ ${a.ziele.map((z) => Number(z.toPrecision(3)).toString().replace('.', ',')).join(' oder ')} s`;
+}
+
+/** Eingabe als kurzer Text für Auswertungen. */
+export function eingabeText(e: Eingabe, a: Antwort): string {
+  if (e.art === 'zahl' || e.art === 'winkel') {
+    if (!e.text.trim()) return '–';
+    const eh = e.art === 'zahl' ? einheit(e.einheit).anzeige : e.einheit;
+    return /[a-zA-Zµ°%²³/]/.test(e.text.replace(/e[+-]?\d/i, '')) ? e.text : `${e.text} ${eh === '(ohne)' ? '' : eh}`.trim();
+  }
+  if (e.art === 'auswahl') return e.wahl === null ? '–' : a.art === 'auswahl' ? `${String.fromCharCode(65 + e.wahl)}: ${a.optionen[e.wahl]}` : '–';
+  return e.x === null ? '–' : `t ≈ ${e.x.toFixed(2).replace('.', ',')} s`;
 }
