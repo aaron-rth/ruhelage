@@ -29,6 +29,7 @@ export function KartenAnsicht({
   frueher,
   vollbild,
   wischen,
+  umgekehrt,
   onBlaettern,
   einflug,
 }: {
@@ -40,6 +41,8 @@ export function KartenAnsicht({
   frueher?: Bewertung;
   /** Handy-Vollbild: Karte füllt den Platz, Steuerung per Tippen/Wischen */
   vollbild?: boolean;
+  /** „wusste ich“ nach links statt nach rechts (Einstellung) */
+  umgekehrt?: boolean;
   /** Wischgesten erlaubt (Einstellung) */
   wischen?: boolean;
   /** vor dem Umdrehen: zur nächsten bzw. vorherigen Karte wischen */
@@ -55,6 +58,9 @@ export function KartenAnsicht({
   const bewegt = useRef(false);
   const stand = useStore((s) => s.karten[karte.id]);
   const gesten = !!vollbild && !!wischen;
+  // Seite, zu der „wusste ich“ bzw. „nicht“ geworfen wird
+  const seiteGewusst: 'rechts' | 'links' = umgekehrt ? 'links' : 'rechts';
+  const seiteNicht: 'rechts' | 'links' = umgekehrt ? 'rechts' : 'links';
 
   useEffect(() => {
     setUmgedreht(false);
@@ -67,7 +73,7 @@ export function KartenAnsicht({
     if (raus) return;
     if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return onBewertet(b);
     // Karte hinausfliegen lassen (wie beim Wischen), dann bewerten
-    setRaus(b === 'gewusst' ? 'rechts' : b === 'nicht' ? 'links' : 'oben');
+    setRaus(b === 'gewusst' ? seiteGewusst : b === 'nicht' ? seiteNicht : 'oben');
     window.setTimeout(() => onBewertet(b), 220);
   }
 
@@ -112,8 +118,8 @@ export function KartenAnsicht({
     setZug({ dx: 0, dy: 0 });
     if (!bewegt.current) return; // Tippen → onClick dreht um
     if (umgedreht) {
-      if (r === 'rechts') bewerten('gewusst');
-      else if (r === 'links') bewerten('nicht');
+      if (r === seiteGewusst) bewerten('gewusst');
+      else if (r === seiteNicht) bewerten('nicht');
       else if (r === 'oben') bewerten('halb');
     } else if (r === 'links') onBlaettern?.('vor');
     else if (r === 'rechts') onBlaettern?.('zurueck');
@@ -177,8 +183,20 @@ export function KartenAnsicht({
     { b: 'nicht', icon: 'x', text: 'nicht', taste: '3' },
   ];
   // beim Wischen entspricht die Reihenfolge den Richtungen: links – oben – rechts
-  const reihe = gesten ? [knoepfe[2], knoepfe[1], knoepfe[0]] : knoepfe;
-  const pfeil: Record<Bewertung, string> = { nicht: '←', halb: '↑', gewusst: '→' };
+  // beim Wischen steht links, was nach links geht
+  const reihe = gesten ? (umgekehrt ? knoepfe : [knoepfe[2], knoepfe[1], knoepfe[0]]) : knoepfe;
+  const pfeil: Record<Bewertung, string> = umgekehrt ? { gewusst: '←', halb: '↑', nicht: '→' } : { nicht: '←', halb: '↑', gewusst: '→' };
+  const linksPfeil = (b: Bewertung) => pfeil[b] === '←' || pfeil[b] === '↑';
+  const marke = (seite: 'rechts' | 'links') =>
+    seite === seiteGewusst ? (
+      <>
+        <Icon name="check" size={16} /> wusste ich
+      </>
+    ) : (
+      <>
+        <Icon name="x" size={16} /> nicht
+      </>
+    );
 
   return (
     <div className={`karteikarte-wrap ${vollbild ? 'vollbild' : 'inline'}`}>
@@ -194,11 +212,11 @@ export function KartenAnsicht({
           {kartenKnopf}
           {umgedreht && (
             <>
-              <span className="wisch-marke rechts" style={{ opacity: raus === 'rechts' ? 1 : deutung === 'rechts' ? staerke : 0 }}>
-                <Icon name="check" size={16} /> wusste ich
+              <span className={`wisch-marke rechts ${seiteGewusst === 'rechts' ? 'gut' : 'schlecht'}`} style={{ opacity: raus === 'rechts' ? 1 : deutung === 'rechts' ? staerke : 0 }}>
+                {marke('rechts')}
               </span>
-              <span className="wisch-marke links" style={{ opacity: raus === 'links' ? 1 : deutung === 'links' ? staerke : 0 }}>
-                <Icon name="x" size={16} /> nicht
+              <span className={`wisch-marke links ${seiteGewusst === 'links' ? 'gut' : 'schlecht'}`} style={{ opacity: raus === 'links' ? 1 : deutung === 'links' ? staerke : 0 }}>
+                {marke('links')}
               </span>
               <span className="wisch-marke oben" style={{ opacity: raus === 'oben' ? 1 : deutung === 'oben' ? staerke : 0 }}>
                 <Icon name="tilde" size={16} /> so halb
@@ -211,10 +229,9 @@ export function KartenAnsicht({
       <div className={`bewertung${umgedreht ? ' sichtbar' : ''}${gesten ? ' kompakt' : ''}`} aria-hidden={!umgedreht}>
         {reihe.map((k) => (
           <button key={k.b} type="button" className={`btn bew ${k.b}`} onClick={() => bewerten(k.b)} disabled={!umgedreht}>
-            {gesten && k.b === 'nicht' && <span className="pfeil">{pfeil[k.b]}</span>}
-            {gesten && k.b === 'halb' && <span className="pfeil">{pfeil[k.b]}</span>}
+            {gesten && linksPfeil(k.b) && <span className="pfeil">{pfeil[k.b]}</span>}
             {!gesten && <Icon name={k.icon} size={16} />} {k.text} <Taste>{k.taste}</Taste>
-            {gesten && k.b === 'gewusst' && <span className="pfeil">{pfeil[k.b]}</span>}
+            {gesten && !linksPfeil(k.b) && <span className="pfeil">{pfeil[k.b]}</span>}
           </button>
         ))}
       </div>

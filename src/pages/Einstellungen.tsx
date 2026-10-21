@@ -106,8 +106,26 @@ export function Einstellungen() {
           label="Wischgesten"
           an={e.wischen}
           onChange={(b) => s.setzeEinstellung('wischen', b)}
-          text="Tippen dreht die Karte um. Danach: nach rechts = wusste ich, nach oben = so halb, nach links = nicht. Vor dem Umdrehen blätterst du mit Wischen. Ausgeschaltet gibt es nur Knöpfe."
+          text="Tippen dreht die Karte um, danach zur Seite oder nach oben wischen (so halb). Vor dem Umdrehen blätterst du mit Wischen. Ausgeschaltet gibt es nur Knöpfe."
         />
+        )}
+        {handy && e.wischen && (
+          <div className="einst-zeile einst-spalte">
+            <div>
+              <label>Wischrichtung</label>
+              <p className="sehr-leise klein" style={{ margin: 0 }}>
+                Wohin du eine Karte wischst, wenn du sie wusstest. „So halb“ bleibt nach oben.
+              </p>
+            </div>
+            <div className="segment">
+              <button className={!e.wischUmgekehrt ? 'an' : ''} aria-pressed={!e.wischUmgekehrt} onClick={() => s.setzeEinstellung('wischUmgekehrt', false)}>
+                wusste ich →
+              </button>
+              <button className={e.wischUmgekehrt ? 'an' : ''} aria-pressed={e.wischUmgekehrt} onClick={() => s.setzeEinstellung('wischUmgekehrt', true)}>
+                ← wusste ich
+              </button>
+            </div>
+          </div>
         )}
       </section>
 

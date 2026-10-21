@@ -1,5 +1,5 @@
 // Eingabefeld passend zur Antwortart: Zahl + Einheit, Winkel, Auswahl oder Klick ins Diagramm.
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import type { Antwort, PlotSpec } from '../content/types';
 import { zerlege, type Eingabe } from '../lib/antwort';
 import { passendeEinheiten } from '../lib/einheiten';
@@ -106,6 +106,17 @@ interface Props {
 export function AntwortEingabe({ antwort, wert, onChange, onEnter, status, gesperrt, autoFokus, plot, zeigeLoesung, label = 'Deine Antwort' }: Props) {
   const ref = useRef<HTMLInputElement>(null);
   const [hilfe, setHilfe] = useState(false);
+  // Antwortmöglichkeiten bei jeder Aufgabe neu mischen – außer wenn die Beschriftung an der Position hängt (Diagramm A, B …)
+  const ordnung = useMemo(() => {
+    if (antwort.art !== 'auswahl') return [];
+    const idx = antwort.optionen.map((_, i) => i);
+    if (antwort.plots || antwort.optionen.some((o) => /^(Diagramm|Anordnung|Graph|Kurve) [A-Z]$/.test(o))) return idx;
+    for (let i = idx.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [idx[i], idx[j]] = [idx[j], idx[i]];
+    }
+    return idx;
+  }, [antwort]);
   useEffect(() => {
     if (autoFokus && !gesperrt) ref.current?.focus({ preventScroll: true });
   }, [autoFokus, gesperrt, antwort]);
@@ -211,7 +222,8 @@ export function AntwortEingabe({ antwort, wert, onChange, onEnter, status, gespe
   if (antwort.art === 'auswahl' && wert.art === 'auswahl') {
     return (
       <div className={antwort.plots ? 'auswahl-raster mit-plots' : 'auswahl-liste'} role="radiogroup" aria-label={label}>
-        {antwort.optionen.map((o, i) => {
+        {ordnung.map((i, pos) => {
+          const o = antwort.optionen[i];
           const gewaehlt = wert.wahl === i;
           let z = '';
           if (zeigeLoesung && i === antwort.richtig) z = ' ist-richtig';
@@ -226,7 +238,7 @@ export function AntwortEingabe({ antwort, wert, onChange, onEnter, status, gespe
               disabled={gesperrt}
               onClick={() => onChange({ art: 'auswahl', wahl: i })}
             >
-              <span className="option-nr">{String.fromCharCode(65 + i)}</span>
+              <span className="option-nr">{String.fromCharCode(65 + pos)}</span>
               <span className="option-inhalt">
                 {antwort.plots?.[i] && <Plot spec={antwort.plots[i]} hoehe={190} />}
                 <Md text={o} inline />

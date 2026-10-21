@@ -47,6 +47,8 @@ export interface Einstellungen {
   takt: Takt;
   /** Handy: Karteikarten mit Wischgesten bewerten */
   wischen: boolean;
+  /** Handy: „wusste ich“ nach links statt nach rechts wischen */
+  wischUmgekehrt: boolean;
   /** Desktop: Seitenleiste ausblenden */
   fokus: boolean;
 }
@@ -75,6 +77,7 @@ export const STANDARD_EINSTELLUNGEN: Einstellungen = {
   hinweise: true,
   takt: 'standard',
   wischen: true,
+  wischUmgekehrt: false,
   fokus: false,
 };
 

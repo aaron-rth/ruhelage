@@ -5,11 +5,13 @@ import { Balken, Leer, Md, Ring, STATUS_TEXT, StatusWahl, Taste } from '../compo
 import { Icon } from '../components/Icon';
 import { PausenKarte, Sitzung, SitzungsEnde, starteSitzung, useSitzungsStand, type SitzungsBilanz } from '../components/Sitzung';
 import { UebungAnsicht } from '../components/uebungen/UebungAnsicht';
+import { VollbildRahmen } from '../components/Vollbild';
 import { findeThema } from '../content/kurse';
 import type { Generator, Thema } from '../content/types';
 import { heute } from '../lib/datum';
 import { genKey, quote, statusVon, themaFortschritt, uebKey, vorschlag } from '../lib/fortschritt';
 import { intervallText, istFaellig, TAKTE } from '../lib/leitner';
+import { useIstHandy } from '../lib/geraet';
 import { neuerSeed } from '../lib/rng';
 import { useGemerkt, useLaufend } from '../store/laufend';
 import { useStore } from '../store/store';
@@ -235,12 +237,49 @@ function UebungenTab({ t }: { t: Thema }) {
   }, [aktiv, key, t, eintraege.length, setzeAktuell, entferneAktuell]);
 
   const setAktiv = (a: number | null) => setPos({ aktiv: a, seed: neuerSeed() });
+  const handy = useIstHandy();
 
   if (eintraege.length === 0) return <Leer icon="stift" titel="Noch keine Übungen" />;
 
   if (aktiv !== null) {
     const e = eintraege[aktiv];
     const weiter = () => setAktiv(aktiv + 1 < eintraege.length ? aktiv + 1 : null);
+    const weiterText = aktiv + 1 < eintraege.length ? 'Nächste Übung' : 'Fertig';
+    const inhalt =
+      e.art === 'uebung' ? (
+        <UebungAnsicht key={e.id} uebung={t.uebungen.find((u) => u.id === e.id)!} themaId={t.id} onWeiter={weiter} weiterText={weiterText} />
+      ) : (
+        <>
+          <AufgabenAnsicht key={`${e.id}-${seed}`} generator={e.g} themaId={t.id} seed={seed} speicherKey={`aufgabe:${key}`} onNeu={() => setPos({ aktiv, seed: neuerSeed() })} />
+          <div className="aktionen">
+            <button className="btn" onClick={weiter}>
+              {weiterText} <Icon name="rechts" size={16} />
+            </button>
+          </div>
+        </>
+      );
+    if (handy)
+      return (
+        <VollbildRahmen
+          titel={`Übungen · ${t.titel}`}
+          stand={`${aktiv + 1}/${eintraege.length}`}
+          anteil={aktiv / eintraege.length}
+          wechsel={`${e.id}-${seed}`}
+          onZu={() => setAktiv(null)}
+          fuss={
+            <div className="sitzung-nav">
+              <button type="button" className="btn geist klein" onClick={() => aktiv > 0 && setAktiv(aktiv - 1)} disabled={aktiv === 0}>
+                <Icon name="links" size={16} /> Vorherige
+              </button>
+              <button type="button" className="btn geist klein" onClick={weiter}>
+                {aktiv + 1 < eintraege.length ? 'Überspringen' : 'Beenden'} <Icon name="rechts" size={16} />
+              </button>
+            </div>
+          }
+        >
+          <div className="panel">{inhalt}</div>
+        </VollbildRahmen>
+      );
     return (
       <div className="stapel">
         <div className="zeile zwischen">
@@ -251,20 +290,7 @@ function UebungenTab({ t }: { t: Thema }) {
             {aktiv + 1} / {eintraege.length}
           </span>
         </div>
-        <div className="panel">
-          {e.art === 'uebung' ? (
-            <UebungAnsicht key={e.id} uebung={t.uebungen.find((u) => u.id === e.id)!} themaId={t.id} onWeiter={weiter} weiterText={aktiv + 1 < eintraege.length ? 'Nächste Übung' : 'Fertig'} />
-          ) : (
-            <>
-              <AufgabenAnsicht key={`${e.id}-${seed}`} generator={e.g} themaId={t.id} seed={seed} speicherKey={`aufgabe:${key}`} onNeu={() => setPos({ aktiv, seed: neuerSeed() })} />
-              <div className="aktionen">
-                <button className="btn" onClick={weiter}>
-                  {aktiv + 1 < eintraege.length ? 'Nächste Übung' : 'Fertig'} <Icon name="rechts" size={16} />
-                </button>
-              </div>
-            </>
-          )}
-        </div>
+        <div className="panel">{inhalt}</div>
       </div>
     );
   }
@@ -323,8 +349,17 @@ function RechenTab({ t }: { t: Thema }) {
   }, [aktiv, key, t, setzeAktuell, entferneAktuell]);
 
   const setAktiv = (g: Generator | null) => setPos({ gen: g?.id ?? null, seed: neuerSeed() });
+  const handy = useIstHandy();
 
   if (gens.length === 0) return <Leer icon="rechner" titel="Noch keine Rechenaufgaben" />;
+  if (aktiv && handy)
+    return (
+      <VollbildRahmen titel={`Rechentrainer · ${aktiv.titel}`} wechsel={`${aktiv.id}-${seed}`} onZu={() => setAktiv(null)}>
+        <div className="panel">
+          <AufgabenAnsicht key={seed} generator={aktiv} themaId={t.id} seed={seed} speicherKey={`aufgabe:${key}`} onNeu={() => setAktiv(aktiv)} />
+        </div>
+      </VollbildRahmen>
+    );
   if (aktiv)
     return (
       <div className="stapel">

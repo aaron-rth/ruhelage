@@ -90,6 +90,7 @@ export function Sitzung({
   const entferneNochmal = useStore((s) => s.entferneNochmal);
   const bewerteKarte = useStore((s) => s.bewerteKarte);
   const wischen = useStore((s) => s.einstellungen.wischen);
+  const umgekehrt = useStore((s) => s.einstellungen.wischUmgekehrt);
   const handy = useIstHandy();
   /** Richtung der letzten Bewegung – die nächste Karte gleitet von dort herein */
   const richtung = useRef<'rechts' | 'links' | 'stapel' | null>(null);
@@ -193,6 +194,7 @@ export function Sitzung({
           frueher={frueher}
           vollbild={handy}
           wischen={wischen}
+          umgekehrt={umgekehrt}
           onBlaettern={(r) => (r === 'vor' ? weiterGehen() : kannZurueck(stand) && zurueckGehen())}
           einflug={richtung.current}
         />

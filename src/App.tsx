@@ -317,8 +317,8 @@ function Rahmen() {
         {[BEREICHE[1], BEREICHE[0], BEREICHE[2]].map((b) => (
           <Link key={b.id} to={b.to} data-tour={b.to} className={`${bereich === b.id ? 'aktiv' : ''}${b.id === 'lernen' ? ' mitte' : ''}`} aria-current={bereich === b.id ? 'page' : undefined}>
             <span className="tab-icon">
-              <Icon name={b.icon} size={b.id === 'lernen' ? 26 : 23} />
-              {b.id === 'lernen' && offen + nochmal > 0 && <span className="badge akzent">{offen + nochmal}</span>}
+              <Icon name={b.icon} size={23} />
+              {b.id === 'lernen' && offen + nochmal > 0 && <span className="tab-punkt" aria-label="Es gibt Angefangenes oder Nochmal-Einträge" />}
             </span>
             {b.label}
           </Link>
