@@ -42,6 +42,7 @@ export const EINHEITEN: Einheit[] = [
   { key: 's', anzeige: 's', faktor: 1, dim: T, aliase: ['sek', 'sec', 'sekunden'] },
   { key: 'ms', anzeige: 'ms', faktor: 1e-3, dim: T },
   { key: 'µs', anzeige: 'µs', faktor: 1e-6, dim: T, aliase: ['us', 'μs'] },
+  { key: 'ns', anzeige: 'ns', faktor: 1e-9, dim: T },
   { key: 'min', anzeige: 'min', faktor: 60, dim: T, aliase: ['minuten'] },
   { key: 'h', anzeige: 'h', faktor: 3600, dim: T, aliase: ['std', 'stunden'] },
   { key: 'd', anzeige: 'd (Tage)', faktor: 86400, dim: T, aliase: ['tag', 'tage'] },

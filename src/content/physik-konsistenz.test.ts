@@ -275,3 +275,38 @@ describe('Thema 9 – Dämpfung', () => {
       expect(streu).toBeLessThan(Math.abs(mittel) * 0.6 + 0.05);
     }));
 });
+
+describe('Themen 0, 1, 4, 8', () => {
+  it('bw-fall: v = −g·t und Aufprall nach √(2h/g)', () =>
+    lauf('bw-fall', (a, w) => {
+      nah(wert(a, 0), -G * w.t1);
+      nah(0.5 * G * wert(a, 1) ** 2, w.h0);
+      nah(wert(a, 2) ** 2, 2 * G * w.h0);
+    }));
+  it('gb-zaehlen: T·f = 1', () => lauf('gb-zaehlen', (a) => nah(wert(a, 0) * wert(a, 1), 1)));
+  it('hm-knickbahn: s = ½·a·t₁², T ~ √ŝ', () =>
+    lauf('hm-knickbahn', (a, w) => {
+      nah(0.5 * wert(a, 0) * wert(a, 1) ** 2, w.amp);
+      nah(wert(a, 2), 4 * wert(a, 1));
+      nah(wert(a, 3), Math.SQRT2 * wert(a, 2));
+    }));
+  it('en-gesamt: ½DŝBetrag² = ½mv̂² und Energieerhaltung bei s', () =>
+    lauf('en-gesamt', (a, w) => {
+      nah(0.5 * w.m * wert(a, 1) ** 2, wert(a, 0));
+      nah(wert(a, 2) + 0.5 * w.D * w.s ** 2, wert(a, 0));
+    }));
+  it('en-anteil-zeit: Anteile summieren sich zu 1', () => lauf('en-anteil-zeit', (a) => nah(wert(a, 0) + wert(a, 1), 1)));
+  it('en-v-stelle: ½mv² + ½Ds² = ½Dŝ² (mit D/m = ω²)', () =>
+    lauf('en-v-stelle', (a, w) => nah(wert(a, 0) ** 2 + w.w ** 2 * w.s ** 2, w.w ** 2 * w.amp ** 2)));
+  it('en-faden: Kleinwinkel-Energie nahe mgh', () =>
+    lauf('en-faden', (a, w) => {
+      const s = w.l * (w.grad * Math.PI / 180);
+      const eKlein = 0.5 * ((w.m * G) / w.l) * s * s;
+      expect(Math.abs(eKlein - wert(a, 1)) / wert(a, 1)).toBeLessThan(0.05);
+    }));
+  it('en-diagramm: E_pot + E_kin = E', () =>
+    lauf('en-diagramm', (a, w) => {
+      const [p, k] = a.plot!.kurven;
+      for (const t of [0.1, 0.37, 1.3]) nah(p.f(t) + k.f(t), w.E);
+    }));
+});
