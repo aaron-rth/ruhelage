@@ -2,6 +2,7 @@
 import { Link } from 'react-router-dom';
 import { EINFUEHRUNG } from '../components/Einfuehrung';
 import { Icon } from '../components/Icon';
+import { KontoKarte } from '../components/Konto';
 import { StatistikInhalt } from '../components/Statistik';
 import { useStore } from '../store/store';
 
@@ -31,6 +32,7 @@ export function Profil() {
           <span className="sehr-leise klein">nochmal zeigen, wo was ist</span>
         </button>
       </div>
+      <KontoKarte />
       <section className="panel">
         <h2 className="abschnitt-titel" style={{ marginTop: 0 }}>
           Statistik

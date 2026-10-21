@@ -100,6 +100,12 @@ export function AufgabenAnsicht({
     onFertig?.({ richtig, teileRichtig, teile: endZustaende.length });
   }
 
+  // Ergebnis sofort speichern, wenn alle Teile erledigt sind (auch ohne „Fertig“ zu klicken)
+  useEffect(() => {
+    if (!fertig && zustaende.length > 0 && zustaende.every((x) => x.status !== 'offen')) abschliessen(zustaende);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [zustaende, fertig]);
+
   function pruefen() {
     if (!z || z.status !== 'offen') return;
     if (istLeer(z.eingabe)) {
@@ -127,7 +133,7 @@ export function AufgabenAnsicht({
 
   function weiter() {
     if (aktiv < aufgabe.teile.length - 1) setAktiv(aktiv + 1);
-    else abschliessen(zustaende);
+    else if (!fertig) abschliessen(zustaende);
   }
 
   function loesungZeigen() {
