@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Leer, Md } from '../components/Basis';
 import { Icon } from '../components/Icon';
-import { Sitzung, SitzungsEnde, type SitzungsBilanz, type SitzungsItem } from '../components/Sitzung';
+import { PausenKarte, Sitzung, SitzungsEnde, starteSitzung, useSitzungsStand, type SitzungsBilanz, type SitzungsItem } from '../components/Sitzung';
 import { AKTIVER_KURS, findeGenerator, findeKarte, findeUebung } from '../content/kurse';
 import { useStore, type NochmalEintrag } from '../store/store';
 
@@ -25,22 +25,14 @@ function alsItem(n: NochmalEintrag): SitzungsItem {
 export function Nochmal() {
   const liste = useStore((s) => s.nochmal);
   const entferne = useStore((s) => s.entferneNochmal);
-  const [sitzung, setSitzung] = useState<SitzungsItem[] | null>(null);
+  const stand = useSitzungsStand('nochmal');
   const [bilanz, setBilanz] = useState<SitzungsBilanz | null>(null);
+  const setSitzung = (items: SitzungsItem[]) => starteSitzung('nochmal', items, { art: 'nochmal', titel: 'Nochmal-Stapel', pfad: '/nochmal' });
 
-  if (sitzung)
+  if (stand && !stand.pausiert)
     return (
       <div className="inhalt schmal">
-        <Sitzung
-          items={sitzung}
-          titel="Nochmal-Stapel"
-          nochmalModus
-          onEnde={(b) => {
-            setSitzung(null);
-            setBilanz(b);
-          }}
-          onAbbrechen={() => setSitzung(null)}
-        />
+        <Sitzung slot="nochmal" nochmalModus onEnde={setBilanz} />
       </div>
     );
   if (bilanz)
@@ -67,6 +59,7 @@ export function Nochmal() {
           </button>
         )}
       </div>
+      {stand?.pausiert && <PausenKarte slot="nochmal" stand={stand} />}
       {gueltig.length === 0 ? (
         <div className="panel">
           <Leer icon="nochmal" titel="Der Stapel ist leer">

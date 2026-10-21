@@ -13,6 +13,7 @@ import { uebKey } from '../../lib/fortschritt';
 import { erzeugeRng } from '../../lib/rng';
 import { useStore } from '../../store/store';
 import { Md, Meldung, Taste } from '../Basis';
+import { ErklaerPanel } from '../ErklaerPanel';
 import { Icon } from '../Icon';
 
 interface Props {
@@ -45,6 +46,7 @@ function mischIndizes(n: number, seed: number): number[] {
 
 export function UebungAnsicht({ uebung, themaId, onFertig, onWeiter, weiterText = 'Weiter' }: Props) {
   const [geprueft, setGeprueft] = useState<null | boolean>(null);
+  const [erklaer, setErklaer] = useState(false);
   const speichere = useStore((s) => s.speichereErgebnis);
   const seed = useMemo(() => Math.floor(Math.random() * 1e9), [uebung.id]);
 
@@ -57,11 +59,13 @@ export function UebungAnsicht({ uebung, themaId, onFertig, onWeiter, weiterText 
   }
 
   useEffect(() => {
-    if (geprueft === null || !onWeiter) return;
+    if (geprueft === null) return;
     function onKey(e: KeyboardEvent) {
-      if (e.key === 'Enter' && (e.target as HTMLElement)?.tagName !== 'BUTTON') {
+      const tag = (e.target as HTMLElement)?.tagName;
+      if ((e.key === 'e' || e.key === 'E') && tag !== 'INPUT') setErklaer(true);
+      if (onWeiter && e.key === 'Enter' && tag !== 'BUTTON') {
         e.preventDefault();
-        onWeiter!();
+        onWeiter();
       }
     }
     window.addEventListener('keydown', onKey);
@@ -83,17 +87,32 @@ export function UebungAnsicht({ uebung, themaId, onFertig, onWeiter, weiterText 
           <Meldung art={geprueft ? 'richtig' : 'falsch'}>
             <strong>{geprueft ? 'Richtig.' : 'Nicht ganz.'}</strong> {uebung.erklaerung && <Md text={uebung.erklaerung} inline />}
           </Meldung>
-          {onWeiter && (
-            <div className="aktionen">
+          <div className="aktionen">
+            {onWeiter && (
               <button type="button" className="btn primaer" onClick={onWeiter}>
                 {weiterText} <Taste>Enter</Taste>
               </button>
-            </div>
-          )}
+            )}
+            <button type="button" className="btn geist" onClick={() => setErklaer(true)}>
+              <Icon name="buch" size={16} /> Genauer erklärt <Taste>E</Taste>
+            </button>
+          </div>
         </>
       )}
+      {erklaer && <ErklaerPanel themaId={themaId} suchtext={uebungsText(uebung)} onSchliessen={() => setErklaer(false)} />}
     </div>
   );
+}
+
+/** Alle Texte einer Übung – für die Suche nach dem passenden Erklärabschnitt. */
+function uebungsText(u: Uebung): string {
+  const teile: string[] = [u.frage, u.erklaerung ?? ''];
+  if (u.typ === 'mc') teile.push(...u.optionen.map((o) => `${o.text} ${o.warum}`));
+  if (u.typ === 'reihenfolge' || u.typ === 'fehler') teile.push(...u.schritte);
+  if (u.typ === 'luecke') teile.push(u.text, ...u.luecken.map((l) => l.optionen[l.richtig]));
+  if (u.typ === 'zuordnen') teile.push(...u.paare.map((p) => `${p.links} ${p.rechts}`));
+  if (u.typ === 'klassifizieren') teile.push(...u.items.map((i) => i.text));
+  return teile.join(' ');
 }
 
 interface KProps<T> {

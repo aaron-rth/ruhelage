@@ -63,8 +63,8 @@ export function Ring({ wert, groesse = 40, staerke = 3.5, children }: { wert: nu
   );
 }
 
-export const STATUS_TEXT: Record<Status, string> = { kann: 'kann ich', halb: 'so halb', nicht: 'kann ich nicht' };
-export const STATUS_ICON: Record<Status, string> = { kann: 'check', halb: 'tilde', nicht: 'x' };
+export const STATUS_TEXT: Record<Status, string> = { kann: 'kann ich', halb: 'so halb', nicht: 'kann ich nicht', offen: 'noch nicht eingeschätzt' };
+export const STATUS_ICON: Record<Status, string> = { kann: 'check', halb: 'tilde', nicht: 'x', offen: 'info' };
 
 export function StatusWahl({ wert, onChange, kompakt }: { wert: Status; onChange: (s: Status) => void; kompakt?: boolean }) {
   return (
@@ -81,11 +81,11 @@ export function StatusWahl({ wert, onChange, kompakt }: { wert: Status; onChange
 }
 
 export function StatusChip({ status }: { status: Status }) {
-  const cls = status === 'kann' ? 'chip akzent' : status === 'halb' ? 'chip sand' : 'chip koralle';
+  const cls = status === 'kann' ? 'chip akzent' : status === 'halb' ? 'chip sand' : status === 'nicht' ? 'chip koralle' : 'chip';
   return (
     <span className={cls}>
       <Icon name={STATUS_ICON[status]} size={13} />
-      {STATUS_TEXT[status]}
+      {status === 'offen' ? 'noch offen' : STATUS_TEXT[status]}
     </span>
   );
 }

@@ -1,6 +1,8 @@
 import { useLayoutEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Ring, StatusWahl } from '../components/Basis';
+import { Dialog } from '../components/Dialog';
+import { EINFUEHRUNG } from '../components/Einfuehrung';
 import { Icon } from '../components/Icon';
 import { AKTIVER_KURS, findeThema } from '../content/kurse';
 import type { Thema } from '../content/types';
@@ -47,8 +49,61 @@ function Knoten({ t }: { t: Thema }) {
   );
 }
 
+const HINWEIS = 'lernpfad-einschaetzen';
+
+function EinschaetzHinweis({ onZu }: { onZu: () => void }) {
+  return (
+    <Dialog
+      titel="Schätz dich zuerst selbst ein"
+      ueber="Kurzer Hinweis"
+      onSchliessen={onZu}
+      fuss={
+        <button type="button" className="btn primaer" onClick={onZu} autoFocus>
+          Verstanden
+        </button>
+      }
+    >
+      <p>
+        Bei jedem Thema findest du unten drei Knöpfe. Klick an, wie sicher du dich gerade fühlst – ehrlich ist hier am hilfreichsten:
+      </p>
+      <ul className="einschaetz-liste">
+        <li>
+          <span className="status-knopf kann">
+            <Icon name="check" size={15} />
+          </span>
+          <span>
+            <strong>kann ich</strong> – das sitzt, nur noch ab und zu wiederholen
+          </span>
+        </li>
+        <li>
+          <span className="status-knopf halb">
+            <Icon name="tilde" size={15} />
+          </span>
+          <span>
+            <strong>so halb</strong> – grob verstanden, aber noch unsicher
+          </span>
+        </li>
+        <li>
+          <span className="status-knopf nicht">
+            <Icon name="x" size={15} />
+          </span>
+          <span>
+            <strong>kann ich nicht</strong> – hier brauche ich am meisten Übung
+          </span>
+        </li>
+      </ul>
+      <p className="leise klein">
+        Die Tagesrunde nimmt dann zuerst Aufgaben aus deinen schwachen Themen. Du kannst die Einschätzung jederzeit ändern – der Ring zeigt zusätzlich, was deine Ergebnisse sagen.
+      </p>
+    </Dialog>
+  );
+}
+
 export function Lernpfad() {
   const kurs = AKTIVER_KURS;
+  const daten = useStore();
+  const offen = kurs.themen.filter((t) => statusVon(t, daten) === 'offen').length;
+  const zeigeHinweis = daten.einstellungen.hinweise && daten.gesehen.includes(EINFUEHRUNG) && !daten.gesehen.includes(HINWEIS) && offen > 0;
   const box = useRef<HTMLDivElement>(null);
   const [linien, setLinien] = useState<Linie[]>([]);
   const [groesse, setGroesse] = useState({ b: 0, h: 0 });
@@ -102,6 +157,15 @@ export function Lernpfad() {
         )}
       </div>
 
+      {offen > 0 && (
+        <div className="hinweis-band einblenden">
+          <Icon name="info" size={16} />
+          <span>
+            {offen === kurs.themen.length ? 'Noch kein Thema eingeschätzt.' : `Noch ${offen} ${offen === 1 ? 'Thema' : 'Themen'} nicht eingeschätzt.`} Klick bei jedem Thema auf ✓, ~ oder ✗ – danach richtet sich die Tagesrunde.
+          </span>
+        </div>
+      )}
+
       <div className="pfad" ref={box}>
         <svg className="pfad-linien" width={groesse.b} height={groesse.h} aria-hidden>
           {linien.map((l) => {
@@ -129,8 +193,12 @@ export function Lernpfad() {
         <span>
           <span className="status-punkt nicht" /> kann ich nicht
         </span>
+        <span>
+          <span className="status-punkt offen" /> noch nicht eingeschätzt
+        </span>
         <span>Ring = Fortschritt aus Karten und Aufgaben</span>
       </div>
+      {zeigeHinweis && <EinschaetzHinweis onZu={() => daten.hinweisGesehen(HINWEIS)} />}
     </div>
   );
 }
