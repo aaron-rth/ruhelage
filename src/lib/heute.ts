@@ -1,5 +1,5 @@
 // Zusammenstellung der täglichen Mischsession
-import type { SitzungsItem } from '../components/Sitzung';
+import type { SitzungsItem } from './sitzung';
 import type { Kurs, Thema } from '../content/types';
 import type { Daten } from '../store/store';
 import { genKey, quote, schwaeche, uebKey } from './fortschritt';

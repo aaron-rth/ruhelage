@@ -4,9 +4,11 @@ import type { Generator, Teil } from '../content/types';
 import { istLeer, leereEingabe, pruefe, type Eingabe } from '../lib/antwort';
 import { genKey } from '../lib/fortschritt';
 import { erzeugeRng } from '../lib/rng';
+import { liesGemerkt, useLaufend } from '../store/laufend';
 import { useStore } from '../store/store';
 import { AntwortEingabe } from './AntwortEingabe';
 import { Md, Meldung, Taste } from './Basis';
+import { ErklaerPanel } from './ErklaerPanel';
 import { Icon } from './Icon';
 import { Plot } from './Plot';
 
@@ -27,6 +29,15 @@ export interface AufgabenErgebnis {
   teile: number;
 }
 
+/** Gesamter Bearbeitungsstand – wird mit `speicherKey` gemerkt (Seitenwechsel, Neuladen). */
+interface AufgabenStand {
+  gen: string;
+  seed: number;
+  zustaende: TeilZustand[];
+  aktiv: number;
+  fertig: boolean;
+}
+
 function neuerZustand(t: Teil): TeilZustand {
   return { eingabe: leereEingabe(t.antwort), status: 'offen', fehlversuche: 0, hilfen: 0, loesung: false, meldung: null };
 }
@@ -37,6 +48,7 @@ export function AufgabenAnsicht({
   seed,
   onFertig,
   onNeu,
+  speicherKey,
 }: {
   generator: Generator;
   themaId: string;
@@ -44,24 +56,36 @@ export function AufgabenAnsicht({
   onFertig?: (e: AufgabenErgebnis) => void;
   /** Button „Neue Aufgabe“ anzeigen */
   onNeu?: () => void;
+  /** Stand unter diesem Schlüssel merken */
+  speicherKey?: string;
 }) {
   const aufgabe = useMemo(() => generator.erzeuge(erzeugeRng(seed)), [generator, seed]);
-  const [zustaende, setZustaende] = useState<TeilZustand[]>(() => aufgabe.teile.map(neuerZustand));
-  const [aktiv, setAktiv] = useState(0);
-  const [fertig, setFertig] = useState(false);
+  const start = (): AufgabenStand => ({ gen: generator.id, seed, zustaende: aufgabe.teile.map(neuerZustand), aktiv: 0, fertig: false });
+  const passt = (x: AufgabenStand | undefined): x is AufgabenStand => !!x && x.gen === generator.id && x.seed === seed && x.zustaende?.length === aufgabe.teile.length;
+  const [lokal, setLokal] = useState<AufgabenStand>(start);
+  const gemerkt = useLaufend((s) => (speicherKey ? (s.merk[speicherKey]?.wert as AufgabenStand | undefined) : undefined));
+  const merke = useLaufend((s) => s.merke);
+  const st = speicherKey ? (passt(gemerkt) ? gemerkt : start()) : passt(lokal) ? lokal : start();
+  const { zustaende, aktiv, fertig } = st;
+  const [erklaer, setErklaer] = useState(false);
   const speichere = useStore((s) => s.speichereErgebnis);
 
-  useEffect(() => {
-    setZustaende(aufgabe.teile.map(neuerZustand));
-    setAktiv(0);
-    setFertig(false);
-  }, [aufgabe]);
+  function aendere(f: (alt: AufgabenStand) => AufgabenStand) {
+    if (speicherKey) {
+      const alt = liesGemerkt<AufgabenStand>(speicherKey);
+      merke(speicherKey, f(passt(alt) ? alt : start()));
+    } else {
+      setLokal((alt) => f(passt(alt) ? alt : start()));
+    }
+  }
+  const setAktiv = (i: number) => aendere((a) => ({ ...a, aktiv: i }));
+  const setFertig = (b: boolean) => aendere((a) => ({ ...a, fertig: b }));
 
   const z = zustaende[aktiv];
   const teil = aufgabe.teile[aktiv];
 
   function setze(i: number, neu: Partial<TeilZustand>) {
-    setZustaende((alt) => alt.map((x, j) => (j === i ? { ...x, ...neu } : x)));
+    aendere((a) => ({ ...a, zustaende: a.zustaende.map((x, j) => (j === i ? { ...x, ...neu } : x)) }));
   }
 
   function abschliessen(endZustaende: TeilZustand[]) {
@@ -125,6 +149,7 @@ export function AufgabenAnsicht({
       if ((e.key === 'h' || e.key === 'H') && z?.status === 'offen') setze(aktiv, { hilfen: Math.min(3, z.hilfen + 1) });
       if ((e.key === 'l' || e.key === 'L') && z && (z.hilfen >= 3 || z.status !== 'offen')) loesungZeigen();
       if ((e.key === 'n' || e.key === 'N') && fertig && onNeu) onNeu();
+      if ((e.key === 'e' || e.key === 'E') && z && z.status !== 'offen') setErklaer(true);
     }
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
@@ -247,6 +272,21 @@ export function AufgabenAnsicht({
           </div>
         )}
       </section>
+
+      {z.status !== 'offen' && (
+        <div className="aktionen leise-aktionen">
+          <button type="button" className="btn geist klein" onClick={() => setErklaer(true)}>
+            <Icon name="buch" size={15} /> Genauer erklärt <Taste>E</Taste>
+          </button>
+        </div>
+      )}
+      {erklaer && (
+        <ErklaerPanel
+          themaId={themaId}
+          suchtext={`${generator.titel} ${aufgabe.titel} ${aufgabe.kontext} ${teil.frage} ${teil.loesung}`}
+          onSchliessen={() => setErklaer(false)}
+        />
+      )}
 
       {fertig && (
         <Meldung art={zustaende.every((x) => x.status === 'richtig') ? 'richtig' : 'info'}>

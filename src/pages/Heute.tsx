@@ -2,13 +2,14 @@ import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Balken, Ring, StatusChip, Taste } from '../components/Basis';
 import { Icon } from '../components/Icon';
-import { Sitzung, SitzungsEnde, type SitzungsBilanz, type SitzungsItem } from '../components/Sitzung';
+import { PausenKarte, setzePausiert, Sitzung, SitzungsEnde, starteSitzung, useSitzungsStand, type SitzungsBilanz } from '../components/Sitzung';
 import { AKTIVER_KURS } from '../content/kurse';
 import { datumLang, heute, tageZwischen } from '../lib/datum';
 import { statusVon, themaFortschritt } from '../lib/fortschritt';
 import { baueHeute, schwacheThemen } from '../lib/heute';
 import { neuerSeed } from '../lib/rng';
 import { streak, useStore } from '../store/store';
+import { useUi } from '../store/ui';
 
 function gruss(): string {
   const h = new Date().getHours();
@@ -21,7 +22,8 @@ export function Heute() {
   const daten = useStore();
   const h = heute();
   const [seed, setSeed] = useState(neuerSeed);
-  const [sitzung, setSitzung] = useState<SitzungsItem[] | null>(null);
+  const stand = useSitzungsStand('heute', true);
+  const laeuft = !!stand && !stand.pausiert;
   const [bilanz, setBilanz] = useState<SitzungsBilanz | null>(null);
   // Plan nur beim Öffnen bzw. nach einer Sitzung neu bauen, nicht bei jeder Bewertung
   const [planVersion, setPlanVersion] = useState(0);
@@ -33,33 +35,29 @@ export function Heute() {
   const s = streak(daten.tage, h);
   const schwach = schwacheThemen(AKTIVER_KURS, daten, h).slice(0, 3);
 
+  const starte = () => starteSitzung('heute', plan.items, { art: 'heute', titel: 'Heute-Runde', pfad: '/' });
+
   useEffect(() => {
-    if (sitzung || bilanz) return;
+    if (laeuft || bilanz) return;
     function onKey(ev: KeyboardEvent) {
-      if (ev.key === 'Enter' && (ev.target as HTMLElement)?.tagName === 'BODY' && plan.items.length) {
-        ev.preventDefault();
-        setSitzung(plan.items);
+      if (ev.key === 'Enter' && (ev.target as HTMLElement)?.tagName === 'BODY') {
+        if (stand?.pausiert) {
+          ev.preventDefault();
+          setzePausiert('heute', false);
+        } else if (plan.items.length) {
+          ev.preventDefault();
+          starte();
+        }
       }
     }
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [sitzung, bilanz, plan]);
+  });
 
-  if (sitzung) {
+  if (laeuft) {
     return (
       <div className="inhalt schmal">
-        <Sitzung
-          items={sitzung}
-          titel="Heute"
-          onEnde={(b) => {
-            setSitzung(null);
-            setBilanz(b);
-          }}
-          onAbbrechen={() => {
-            setSitzung(null);
-            setPlanVersion((v) => v + 1);
-          }}
-        />
+        <Sitzung slot="heute" onEnde={setBilanz} />
       </div>
     );
   }
@@ -100,6 +98,8 @@ export function Heute() {
         )}
       </div>
 
+      {stand?.pausiert && <PausenKarte slot="heute" stand={stand} onNeu={() => setPlanVersion((v) => v + 1)} />}
+
       <div className="heute-raster">
         <section className="panel heute-start">
           <div className="panel-titel">
@@ -135,8 +135,8 @@ export function Heute() {
                 )}
               </ul>
               <div className="aktionen">
-                <button className="btn primaer gross" onClick={() => setSitzung(plan.items)}>
-                  <Icon name="play" size={16} /> Los geht’s <Taste>Enter</Taste>
+                <button className={`btn gross${stand?.pausiert ? '' : ' primaer'}`} onClick={starte}>
+                  <Icon name="play" size={16} /> {stand?.pausiert ? 'Neue Runde' : 'Los geht’s'} {!stand?.pausiert && <Taste>Enter</Taste>}
                 </button>
                 <button className="btn geist" onClick={() => setSeed(neuerSeed())} title="Andere Aufgaben auswählen">
                   <Icon name="zufall" size={16} /> neu mischen
@@ -175,6 +175,9 @@ export function Heute() {
           <span className="sehr-leise klein">
             Ziel: {e.zielMinuten} min · {e.zielKarten} Karten · {e.zielAufgaben} Aufgaben – <Link to="/einstellungen">anpassen</Link>
           </span>
+          <button type="button" className="btn geist klein" style={{ alignSelf: 'flex-start' }} onClick={() => useUi.getState().zeigeStatistik(true)}>
+            <Icon name="ziel" size={14} /> Statistik ansehen
+          </button>
         </section>
       </div>
 

@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import { Meldung } from '../components/Basis';
+import { EINFUEHRUNG } from '../components/Einfuehrung';
 import { Icon } from '../components/Icon';
 import { heute } from '../lib/datum';
 import { exportiere, liesImport, useStore } from '../store/store';
@@ -87,6 +88,27 @@ export function Einstellungen() {
           <label htmlFor="klausurdatum">Klausurtermin</label>
           <input id="klausurdatum" type="date" className="eingabe" value={e.klausurDatum} onChange={(ev) => ev.target.value && s.setzeEinstellung('klausurDatum', ev.target.value)} />
         </div>
+        <Schalter
+          label="Einführung und Hinweise"
+          an={e.hinweise}
+          onChange={(b) => {
+            s.setzeEinstellung('hinweise', b);
+            if (b) s.hinweiseZuruecksetzen();
+          }}
+          text="Kurze Erklärungen beim ersten Öffnen, z. B. wo was ist und wie die Selbsteinschätzung funktioniert. Beim Einschalten werden alle Hinweise wieder gezeigt."
+        />
+        <div className="einst-zeile">
+          <label>Einführung</label>
+          <button
+            className="btn klein"
+            onClick={() => {
+              s.setzeEinstellung('hinweise', true);
+              useStore.setState((st) => ({ gesehen: st.gesehen.filter((g) => g !== EINFUEHRUNG) }));
+            }}
+          >
+            <Icon name="play" size={14} /> Jetzt ansehen
+          </button>
+        </div>
         <div className="einst-zeile">
           <label>Farbschema</label>
           <div className="segment">
@@ -105,10 +127,10 @@ export function Einstellungen() {
         <p className="leise klein">Exportiere deinen Fortschritt als JSON-Datei, zum Beispiel einmal pro Woche.</p>
         <div className="zeile">
           <button className="btn" onClick={herunterladen}>
-            <Icon name="download" size={16} /> Exportieren
+            <Icon name="upload" size={16} /> Exportieren
           </button>
           <button className="btn" onClick={() => datei.current?.click()}>
-            <Icon name="upload" size={16} /> Importieren
+            <Icon name="download" size={16} /> Importieren
           </button>
           <input
             ref={datei}
@@ -160,6 +182,8 @@ export function Einstellungen() {
         <dl className="tasten-liste">
           <div><dt><kbd className="taste">Leertaste</kbd></dt><dd>Karte umdrehen</dd></div>
           <div><dt><kbd className="taste">1</kbd> <kbd className="taste">2</kbd> <kbd className="taste">3</kbd></dt><dd>wusste ich / so halb / nicht</dd></div>
+          <div><dt><kbd className="taste">←</kbd> <kbd className="taste">→</kbd></dt><dd>vorherige / nächste Karte, Formelsammlung blättern</dd></div>
+          <div><dt><kbd className="taste">E</kbd></dt><dd>Genauer erklärt (nach dem Umdrehen bzw. Prüfen)</dd></div>
           <div><dt><kbd className="taste">Enter</kbd></dt><dd>prüfen, weiter, Runde starten</dd></div>
           <div><dt><kbd className="taste">Esc</kbd></dt><dd>Eingabefeld verlassen (danach gehen H, L, N)</dd></div>
           <div><dt><kbd className="taste">H</kbd></dt><dd>nächste Hilfestufe</dd></div>

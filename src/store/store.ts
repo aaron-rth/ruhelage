@@ -30,6 +30,8 @@ export interface TagesStand {
   sekunden: number;
   karten: number;
   aufgaben: number;
+  /** davon richtig (seit Version mit Statistik) */
+  richtig?: number;
 }
 
 export interface Einstellungen {
@@ -39,6 +41,8 @@ export interface Einstellungen {
   countdown: boolean;
   theme: 'dark' | 'light';
   klausurDatum: string;
+  /** Einführung und kurze Hinweise anzeigen */
+  hinweise: boolean;
 }
 
 export interface Daten {
@@ -51,6 +55,8 @@ export interface Daten {
   einstellungen: Einstellungen;
   /** Spielwiese: gelöste Mini-Aufgaben */
   spielwiese: string[];
+  /** Hinweise, die schon weggeklickt wurden */
+  gesehen: string[];
 }
 
 export const STANDARD_EINSTELLUNGEN: Einstellungen = {
@@ -60,6 +66,7 @@ export const STANDARD_EINSTELLUNGEN: Einstellungen = {
   countdown: true,
   theme: 'dark',
   klausurDatum: '2026-11-06',
+  hinweise: true,
 };
 
 export function leereDaten(): Daten {
@@ -72,12 +79,14 @@ export function leereDaten(): Daten {
     xp: 0,
     einstellungen: { ...STANDARD_EINSTELLUNGEN },
     spielwiese: [],
+    gesehen: [],
   };
 }
 
 interface Aktionen {
   setzeStatus(themaId: string, status: Status): void;
-  bewerteKarte(kartenId: string, themaId: string, b: Bewertung): void;
+  /** Mit `korrektur` wird eine frühere Bewertung ersetzt (ohne erneut XP zu vergeben). */
+  bewerteKarte(kartenId: string, themaId: string, b: Bewertung, korrektur?: { vorher: KartenStand | null }): void;
   /** Ergebnis einer Übung/Aufgabe speichern. key z. B. "gen:faden-periode" */
   speichereErgebnis(key: string, themaId: string, richtig: boolean, xp: number, nochmal?: Omit<NochmalEintrag, 'seit' | 'themaId'>): void;
   entferneNochmal(key: string): void;
@@ -85,6 +94,8 @@ interface Aktionen {
   addXp(xp: number): void;
   setzeEinstellung<K extends keyof Einstellungen>(k: K, v: Einstellungen[K]): void;
   spielwieseGeloest(id: string): void;
+  hinweisGesehen(id: string): void;
+  hinweiseZuruecksetzen(): void;
   importiere(d: Daten): void;
   zuruecksetzen(): void;
 }
@@ -106,6 +117,7 @@ export function migriere(alt: unknown, version: number): Daten {
     ...d,
     einstellungen: { ...basis.einstellungen, ...(d.einstellungen ?? {}) },
     spielwiese: d.spielwiese ?? [],
+    gesehen: d.gesehen ?? [],
   };
 }
 
@@ -132,23 +144,24 @@ export const useStore = create<Store>()(
 
       setzeStatus: (themaId, status) => set((s) => ({ themen: { ...s.themen, [themaId]: { status } } })),
 
-      bewerteKarte: (kartenId, themaId, b) =>
+      bewerteKarte: (kartenId, themaId, b, korrektur) =>
         set((s) => {
           const h = heute();
           const t = tag(s);
-          const xp = b === 'gewusst' ? 2 : 1;
+          const xp = korrektur ? 0 : b === 'gewusst' ? 2 : 1;
           const key = `karte:${kartenId}`;
           let nochmal = s.nochmal;
           if (b === 'nicht' && !nochmal.some((n) => n.key === key)) {
             nochmal = [...nochmal, { key, art: 'karte', ref: kartenId, themaId, seit: h }];
-          } else if (b === 'gewusst') {
+          } else if (b === 'gewusst' || korrektur) {
             nochmal = nochmal.filter((n) => n.key !== key);
           }
+          const basis = korrektur ? (korrektur.vorher ?? undefined) : s.karten[kartenId];
           return {
-            karten: { ...s.karten, [kartenId]: bewerte(s.karten[kartenId], b, h) },
+            karten: { ...s.karten, [kartenId]: bewerte(basis, b, h) },
             nochmal,
             xp: s.xp + xp,
-            tage: { ...s.tage, [h]: { ...t, xp: t.xp + xp, karten: t.karten + 1 } },
+            tage: { ...s.tage, [h]: { ...t, xp: t.xp + xp, karten: t.karten + (korrektur ? 0 : 1) } },
           };
         }),
 
@@ -173,7 +186,7 @@ export const useStore = create<Store>()(
             ergebnisse: { ...s.ergebnisse, [key]: neu },
             nochmal,
             xp: s.xp + xp,
-            tage: { ...s.tage, [h]: { ...t, xp: t.xp + xp, aufgaben: t.aufgaben + 1 } },
+            tage: { ...s.tage, [h]: { ...t, xp: t.xp + xp, aufgaben: t.aufgaben + 1, richtig: (t.richtig ?? 0) + (richtig ? 1 : 0) } },
           };
         }),
 
@@ -198,6 +211,10 @@ export const useStore = create<Store>()(
       spielwieseGeloest: (id) =>
         set((s) => (s.spielwiese.includes(id) ? s : { spielwiese: [...s.spielwiese, id] })),
 
+      hinweisGesehen: (id) => set((s) => (s.gesehen.includes(id) ? s : { gesehen: [...s.gesehen, id] })),
+
+      hinweiseZuruecksetzen: () => set(() => ({ gesehen: [] })),
+
       importiere: (d) => set(() => migriere(d, SCHEMA_VERSION)),
 
       zuruecksetzen: () => set(() => leereDaten()),
@@ -207,6 +224,8 @@ export const useStore = create<Store>()(
       version: SCHEMA_VERSION,
       storage: sichererSpeicher,
       migrate: (alt, version) => migriere(alt, version) as unknown as Store,
+      // auch ohne Versionswechsel neue Felder (z. B. Einstellungen) mit Standardwerten auffüllen
+      merge: (gespeichert, aktuell) => ({ ...aktuell, ...migriere(gespeichert, SCHEMA_VERSION) }),
       partialize: (s) => datenAus(s) as unknown as Store,
     },
   ),
@@ -222,6 +241,7 @@ export function datenAus(s: Daten): Daten {
     xp: s.xp,
     einstellungen: s.einstellungen,
     spielwiese: s.spielwiese,
+    gesehen: s.gesehen,
   };
 }
 
@@ -244,14 +264,37 @@ export function liesImport(text: string): Daten {
   return migriere(obj.daten, obj.schema ?? 1);
 }
 
-/** Streak: aufeinanderfolgende Tage (bis heute oder gestern) mit mindestens etwas Lernen. */
+/**
+ * Zählt ein Tag für die Serie? Nur Öffnen reicht nicht – man muss etwas gelernt haben:
+ * mindestens 3 Karteikarten bewertet oder eine Übung/Aufgabe bearbeitet.
+ */
+export function tagZaehlt(t: TagesStand | undefined): boolean {
+  return !!t && (t.karten >= 3 || t.aufgaben >= 1);
+}
+
+/** Streak: aufeinanderfolgende Tage (bis heute oder gestern), die zählen. */
 export function streak(tage: Record<string, TagesStand>, h: string): number {
-  const aktiv = (d: string) => (tage[d]?.xp ?? 0) >= 5;
   let n = 0;
-  let d = aktiv(h) ? h : plusTage(h, -1);
-  while (aktiv(d)) {
+  let d = tagZaehlt(tage[h]) ? h : plusTage(h, -1);
+  while (tagZaehlt(tage[d])) {
     n++;
     d = plusTage(d, -1);
   }
   return n;
+}
+
+/** Längste Serie überhaupt. */
+export function laengsteSerie(tage: Record<string, TagesStand>): number {
+  const tageMit = Object.keys(tage)
+    .filter((d) => tagZaehlt(tage[d]))
+    .sort();
+  let best = 0;
+  let lauf = 0;
+  let vorher = '';
+  for (const d of tageMit) {
+    lauf = vorher && plusTage(vorher, 1) === d ? lauf + 1 : 1;
+    best = Math.max(best, lauf);
+    vorher = d;
+  }
+  return best;
 }

@@ -3,6 +3,7 @@ import erklaerung from './erklaerung.md?raw';
 import { formeln } from './formeln';
 import { generatoren } from './generatoren';
 import { karten } from './karten';
+import { mehr } from './mehr';
 import { uebungen } from './uebungen';
 
 export const thema: Thema = {
@@ -11,11 +12,10 @@ export const thema: Thema = {
   titel: 'Dämpfung',
   untertitel: 'Gleitreibung, F ~ v, Einhüllende, Reibungsmodelle',
   abhaengig: ['energie', 'dgl'],
-  startStatus: 'halb',
   prioritaet: 6,
   erklaerung,
   quelleErklaerung: 'Buch S. 170–173; Notizen Lehrer 12.10. und Versuch 16.10.',
-  karten,
+  karten: karten.map((k) => ({ ...k, mehr: mehr[k.id] })),
   uebungen,
   generatoren,
   formeln,

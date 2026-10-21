@@ -1,9 +1,9 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Link, NavLink, useParams } from 'react-router-dom';
 import { AufgabenAnsicht } from '../components/AufgabenAnsicht';
 import { Balken, Leer, Md, Ring, STATUS_TEXT, StatusWahl, Taste } from '../components/Basis';
 import { Icon } from '../components/Icon';
-import { Sitzung, SitzungsEnde, type SitzungsBilanz, type SitzungsItem } from '../components/Sitzung';
+import { PausenKarte, Sitzung, SitzungsEnde, starteSitzung, useSitzungsStand, type SitzungsBilanz } from '../components/Sitzung';
 import { UebungAnsicht } from '../components/uebungen/UebungAnsicht';
 import { findeThema } from '../content/kurse';
 import type { Generator, Thema } from '../content/types';
@@ -11,6 +11,7 @@ import { heute } from '../lib/datum';
 import { genKey, quote, statusVon, themaFortschritt, uebKey, vorschlag } from '../lib/fortschritt';
 import { istFaellig } from '../lib/leitner';
 import { neuerSeed } from '../lib/rng';
+import { useGemerkt, useLaufend } from '../store/laufend';
 import { useStore } from '../store/store';
 
 const TABS = [
@@ -75,6 +76,10 @@ export function ThemaSeite() {
 }
 
 function Erklaert({ t }: { t: Thema }) {
+  const setzeAktuell = useLaufend((s) => s.setzeAktuell);
+  useEffect(() => {
+    setzeAktuell({ key: 'lesen', art: 'lesen', titel: `Kurz erklärt · ${t.titel}`, pfad: `/thema/${t.id}/erklaert` });
+  }, [t, setzeAktuell]);
   return (
     <div className="raster-erklaert">
       <article className="panel">
@@ -119,30 +124,26 @@ function Erklaert({ t }: { t: Thema }) {
 function KartenTab({ t }: { t: Thema }) {
   const daten = useStore();
   const h = heute();
-  const [sitzung, setSitzung] = useState<SitzungsItem[] | null>(null);
+  const slot = `karten:${t.id}`;
+  const stand = useSitzungsStand(slot);
   const [bilanz, setBilanz] = useState<SitzungsBilanz | null>(null);
   const faellig = t.karten.filter((k) => istFaellig(daten.karten[k.id], h));
   const neu = t.karten.filter((k) => !daten.karten[k.id]);
   const faecher = [1, 2, 3, 4, 5].map((f) => t.karten.filter((k) => daten.karten[k.id]?.fach === f).length);
 
   if (bilanz) return <SitzungsEnde bilanz={bilanz} onFertig={() => setBilanz(null)} />;
-  if (sitzung)
-    return (
-      <Sitzung
-        items={sitzung}
-        titel={`Karteikarten · ${t.titel}`}
-        onEnde={(b) => {
-          setSitzung(null);
-          setBilanz(b);
-        }}
-        onAbbrechen={() => setSitzung(null)}
-      />
-    );
+  if (stand && !stand.pausiert) return <Sitzung slot={slot} onEnde={setBilanz} />;
   if (t.karten.length === 0) return <Leer icon="karten" titel="Noch keine Karten">Für dieses Thema gibt es noch keine Karteikarten.</Leer>;
 
-  const starte = (liste: typeof t.karten) => setSitzung(liste.map((k) => ({ art: 'karte' as const, id: k.id })));
+  const starte = (liste: typeof t.karten) =>
+    starteSitzung(
+      slot,
+      liste.map((k) => ({ art: 'karte' as const, id: k.id })),
+      { art: 'karten', titel: `Karteikarten · ${t.titel}`, pfad: `/thema/${t.id}/karten` },
+    );
   return (
     <div className="stapel">
+      {stand?.pausiert && <PausenKarte slot={slot} stand={stand} />}
       <div className="panel">
         <div className="zeile zwischen">
           <div>
@@ -181,11 +182,14 @@ function KartenTab({ t }: { t: Thema }) {
       </div>
       <details className="panel karten-liste">
         <summary>Alle Karten ansehen</summary>
+        <p className="sehr-leise klein">Klick auf eine Karte, um ab dort durchzublättern.</p>
         <ul>
-          {t.karten.map((k) => (
+          {t.karten.map((k, i) => (
             <li key={k.id}>
-              <Md text={k.vorne} inline />
-              <span className="sehr-leise klein mono">{daten.karten[k.id] ? `Fach ${daten.karten[k.id].fach}` : 'neu'}</span>
+              <button type="button" onClick={() => starte([...t.karten.slice(i), ...t.karten.slice(0, i)])}>
+                <Md text={k.vorne} inline />
+                <span className="sehr-leise klein mono">{daten.karten[k.id] ? `Fach ${daten.karten[k.id].fach}` : 'neu'}</span>
+              </button>
             </li>
           ))}
         </ul>
@@ -210,17 +214,33 @@ function UebungenTab({ t }: { t: Thema }) {
     ],
     [t],
   );
-  const [aktiv, setAktiv] = useState<number | null>(null);
-  const [seed, setSeed] = useState(neuerSeed);
+  const key = `uebungen:${t.id}`;
+  const [pos, setPos] = useGemerkt<{ aktiv: number | null; seed: number }>(key, () => ({ aktiv: null, seed: neuerSeed() }));
+  const aktiv = pos.aktiv !== null && pos.aktiv < eintraege.length ? pos.aktiv : null;
+  const seed = pos.seed;
+  const setzeAktuell = useLaufend((s) => s.setzeAktuell);
+  const entferneAktuell = useLaufend((s) => s.entferneAktuell);
+
+  useEffect(() => {
+    if (aktiv === null) entferneAktuell(key);
+    else
+      setzeAktuell({
+        key,
+        art: 'uebungen',
+        titel: `Übungen · ${t.titel}`,
+        stand: `Übung ${aktiv + 1} von ${eintraege.length}`,
+        anteil: aktiv / eintraege.length,
+        pfad: `/thema/${t.id}/uebungen`,
+      });
+  }, [aktiv, key, t, eintraege.length, setzeAktuell, entferneAktuell]);
+
+  const setAktiv = (a: number | null) => setPos({ aktiv: a, seed: neuerSeed() });
 
   if (eintraege.length === 0) return <Leer icon="stift" titel="Noch keine Übungen" />;
 
   if (aktiv !== null) {
     const e = eintraege[aktiv];
-    const weiter = () => {
-      setSeed(neuerSeed());
-      setAktiv(aktiv + 1 < eintraege.length ? aktiv + 1 : null);
-    };
+    const weiter = () => setAktiv(aktiv + 1 < eintraege.length ? aktiv + 1 : null);
     return (
       <div className="stapel">
         <div className="zeile zwischen">
@@ -233,10 +253,10 @@ function UebungenTab({ t }: { t: Thema }) {
         </div>
         <div className="panel">
           {e.art === 'uebung' ? (
-            <UebungAnsicht uebung={t.uebungen.find((u) => u.id === e.id)!} themaId={t.id} onWeiter={weiter} weiterText={aktiv + 1 < eintraege.length ? 'Nächste Übung' : 'Fertig'} />
+            <UebungAnsicht key={e.id} uebung={t.uebungen.find((u) => u.id === e.id)!} themaId={t.id} onWeiter={weiter} weiterText={aktiv + 1 < eintraege.length ? 'Nächste Übung' : 'Fertig'} />
           ) : (
             <>
-              <AufgabenAnsicht generator={e.g} themaId={t.id} seed={seed} onNeu={() => setSeed(neuerSeed())} />
+              <AufgabenAnsicht key={`${e.id}-${seed}`} generator={e.g} themaId={t.id} seed={seed} speicherKey={`aufgabe:${key}`} onNeu={() => setPos({ aktiv, seed: neuerSeed() })} />
               <div className="aktionen">
                 <button className="btn" onClick={weiter}>
                   {aktiv + 1 < eintraege.length ? 'Nächste Übung' : 'Fertig'} <Icon name="rechts" size={16} />
@@ -290,8 +310,19 @@ const TYP_LABEL: Record<string, string> = {
 function RechenTab({ t }: { t: Thema }) {
   const daten = useStore();
   const gens = t.generatoren.filter((g) => g.art === 'rechnen');
-  const [aktiv, setAktiv] = useState<Generator | null>(null);
-  const [seed, setSeed] = useState(neuerSeed);
+  const key = `rechnen:${t.id}`;
+  const [pos, setPos] = useGemerkt<{ gen: string | null; seed: number }>(key, () => ({ gen: null, seed: neuerSeed() }));
+  const aktiv = gens.find((g) => g.id === pos.gen) ?? null;
+  const seed = pos.seed;
+  const setzeAktuell = useLaufend((s) => s.setzeAktuell);
+  const entferneAktuell = useLaufend((s) => s.entferneAktuell);
+
+  useEffect(() => {
+    if (!aktiv) entferneAktuell(key);
+    else setzeAktuell({ key, art: 'rechnen', titel: `Rechentrainer · ${t.titel}`, stand: aktiv.titel, pfad: `/thema/${t.id}/rechnen` });
+  }, [aktiv, key, t, setzeAktuell, entferneAktuell]);
+
+  const setAktiv = (g: Generator | null) => setPos({ gen: g?.id ?? null, seed: neuerSeed() });
 
   if (gens.length === 0) return <Leer icon="rechner" titel="Noch keine Rechenaufgaben" />;
   if (aktiv)
@@ -306,7 +337,7 @@ function RechenTab({ t }: { t: Thema }) {
           </span>
         </div>
         <div className="panel">
-          <AufgabenAnsicht key={seed} generator={aktiv} themaId={t.id} seed={seed} onNeu={() => setSeed(neuerSeed())} />
+          <AufgabenAnsicht key={seed} generator={aktiv} themaId={t.id} seed={seed} speicherKey={`aufgabe:${key}`} onNeu={() => setAktiv(aktiv)} />
         </div>
       </div>
     );
@@ -319,13 +350,7 @@ function RechenTab({ t }: { t: Thema }) {
       <ul className="aufgaben-liste">
         {gens.map((g) => (
           <li key={g.id}>
-            <button
-              type="button"
-              onClick={() => {
-                setSeed(neuerSeed());
-                setAktiv(g);
-              }}
-            >
+            <button type="button" onClick={() => setAktiv(g)}>
               <ErgebnisPunkt q={quote(daten, genKey(g.id))} />
               <span className="aufgabe-titel">{g.titel}</span>
               <span className="schwierigkeit" title={`Schwierigkeit ${g.schwierigkeit} von 3`}>

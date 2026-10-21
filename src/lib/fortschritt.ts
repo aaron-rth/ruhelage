@@ -47,11 +47,11 @@ export function themaFortschritt(t: Thema, d: Daten, heute: string): ThemaFortsc
 }
 
 export function statusVon(t: Thema, d: Daten): Status {
-  return d.themen[t.id]?.status ?? t.startStatus;
+  return d.themen[t.id]?.status ?? t.startStatus ?? 'offen';
 }
 
 /** Vorschlag aus den Ergebnissen (wird nur als Hinweis gezeigt). */
-export function vorschlag(f: ThemaFortschritt): Status {
+export function vorschlag(f: ThemaFortschritt): Exclude<Status, 'offen'> {
   if (f.gesamt >= 0.7) return 'kann';
   if (f.gesamt >= 0.35) return 'halb';
   return 'nicht';
@@ -61,7 +61,7 @@ export function vorschlag(f: ThemaFortschritt): Status {
 export function schwaeche(t: Thema, d: Daten, heute: string): number {
   const s = statusVon(t, d);
   const f = themaFortschritt(t, d, heute);
-  const statusGewicht = s === 'nicht' ? 1 : s === 'halb' ? 0.6 : 0.2;
+  const statusGewicht = s === 'nicht' ? 1 : s === 'halb' || s === 'offen' ? 0.6 : 0.2;
   const prio = 1 / (1 + t.prioritaet * 0.08);
   return statusGewicht * (1.2 - f.gesamt) * prio;
 }

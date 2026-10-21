@@ -8,9 +8,11 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
-          react: ['react', 'react-dom', 'react-router-dom', 'zustand'],
-          katex: ['katex', 'marked'],
+        // Bibliotheken und Lerninhalte in eigene Dateien (besser cachebar, kein Riesen-Bundle)
+        manualChunks(id) {
+          if (/node_modules\/(react|react-dom|react-router|react-router-dom|zustand|scheduler)\//.test(id)) return 'react';
+          if (/node_modules\/(katex|marked)\//.test(id)) return 'katex';
+          if (id.includes('/src/content/')) return 'inhalt';
         },
       },
     },

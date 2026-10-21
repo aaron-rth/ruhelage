@@ -1,9 +1,11 @@
 import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { HashRouter, NavLink, Route, Routes, useLocation } from 'react-router-dom';
 import { Lader, Logo } from './components/Basis';
+import { Einfuehrung, EINFUEHRUNG } from './components/Einfuehrung';
 import { Icon } from './components/Icon';
-import { AKTIVER_KURS } from './content/kurse';
+import { Statistik } from './components/Statistik';
 import { heute, tageZwischen } from './lib/datum';
+import { Aktuell, useOffeneEintraege } from './pages/Aktuell';
 import { Einstellungen } from './pages/Einstellungen';
 import { Formeln } from './pages/Formeln';
 import { Heute } from './pages/Heute';
@@ -11,6 +13,7 @@ import { Lernpfad } from './pages/Lernpfad';
 import { Nochmal } from './pages/Nochmal';
 import { ThemaSeite } from './pages/Thema';
 import { streak, useStore } from './store/store';
+import { useUi } from './store/ui';
 
 // selten gebrauchte, größere Seiten erst bei Bedarf laden
 const Spielwiese = lazy(() => import('./pages/Spielwiese').then((m) => ({ default: m.Spielwiese })));
@@ -18,9 +21,10 @@ const Klausur = lazy(() => import('./pages/Klausur').then((m) => ({ default: m.K
 
 const NAV = [
   { to: '/', label: 'Heute', icon: 'heute', ende: true },
+  { to: '/aktuell', label: 'Aktuell', icon: 'play' },
   { to: '/pfad', label: 'Lernpfad', icon: 'pfad' },
-  { to: '/spielwiese', label: 'Spielwiese', icon: 'welle' },
   { to: '/nochmal', label: 'Nochmal', icon: 'nochmal' },
+  { to: '/spielwiese', label: 'Spielwiese', icon: 'welle' },
   { to: '/klausur', label: 'Klausurmodus', icon: 'klausur' },
   { to: '/formeln', label: 'Formelsammlung', icon: 'formel' },
   { to: '/einstellungen', label: 'Einstellungen', icon: 'einstellungen' },
@@ -66,8 +70,9 @@ function SeitenleisteFuss() {
   const h = heute();
   const s = streak(tage, h);
   const rest = tageZwischen(h, e.klausurDatum);
+  const zeige = useUi((u) => u.zeigeStatistik);
   return (
-    <div className="seitenleiste-fuss">
+    <button type="button" className="seitenleiste-fuss" onClick={() => zeige(true)} title="Statistik öffnen">
       {e.countdown && rest >= 0 && (
         <div className="zeile" style={{ gap: 8 }}>
           <Icon name="kalender" size={15} />
@@ -88,7 +93,10 @@ function SeitenleisteFuss() {
           <strong>{s}</strong> {s === 1 ? 'Tag' : 'Tage'} in Folge
         </span>
       </div>
-    </div>
+      <span className="fuss-link">
+        <Icon name="ziel" size={14} /> Statistik ansehen
+      </span>
+    </button>
   );
 }
 
@@ -96,6 +104,11 @@ function Rahmen() {
   useLernzeit();
   useTheme();
   const nochmal = useStore((s) => s.nochmal.length);
+  const offen = useOffeneEintraege().filter((e) => e.art !== 'lesen').length;
+  const einfuehrung = useStore((s) => s.einstellungen.hinweise && !s.gesehen.includes(EINFUEHRUNG));
+  const statistik = useUi((u) => u.statistik);
+  const zeigeStatistik = useUi((u) => u.zeigeStatistik);
+  const serie = useStore((s) => streak(s.tage, heute()));
   const [mehr, setMehr] = useState(false);
   const { pathname } = useLocation();
   useEffect(() => setMehr(false), [pathname]);
@@ -108,10 +121,11 @@ function Rahmen() {
         </NavLink>
         <nav className="nav" aria-label="Hauptnavigation">
           {NAV.map((n) => (
-            <NavLink key={n.to} to={n.to} end={n.ende} className={({ isActive }) => (isActive ? 'aktiv' : undefined)}>
+            <NavLink key={n.to} to={n.to} end={n.ende} data-tour={n.to} className={({ isActive }) => (isActive ? 'aktiv' : undefined)}>
               <Icon name={n.icon} />
               {n.label}
               {n.to === '/nochmal' && nochmal > 0 && <span className="badge">{nochmal}</span>}
+              {n.to === '/aktuell' && offen > 0 && <span className="badge akzent">{offen}</span>}
             </NavLink>
           ))}
         </nav>
@@ -122,13 +136,16 @@ function Rahmen() {
         <NavLink to="/" aria-label="Startseite" style={{ color: 'var(--text)' }}>
           <Logo klein />
         </NavLink>
-        <span className="sehr-leise klein">{AKTIVER_KURS.titel}</span>
+        <button type="button" className="mobil-serie" onClick={() => zeigeStatistik(true)} aria-label={`${serie} Tage in Folge – Statistik öffnen`}>
+          <Icon name="welle" size={15} /> <strong className="mono">{serie}</strong>
+        </button>
       </header>
 
       <main className="haupt" id="inhalt">
         <Suspense fallback={<Lader />}>
           <Routes>
             <Route path="/" element={<Heute />} />
+            <Route path="/aktuell" element={<Aktuell />} />
             <Route path="/pfad" element={<Lernpfad />} />
             <Route path="/thema/:id" element={<ThemaSeite />} />
             <Route path="/thema/:id/:tab" element={<ThemaSeite />} />
@@ -144,13 +161,14 @@ function Rahmen() {
 
       <nav className="mobil-nav" aria-label="Navigation">
         {NAV.slice(0, 4).map((n) => (
-          <NavLink key={n.to} to={n.to} end={n.ende} className={({ isActive }) => (isActive ? 'aktiv' : undefined)}>
+          <NavLink key={n.to} to={n.to} end={n.ende} data-tour={n.to} className={({ isActive }) => (isActive ? 'aktiv' : undefined)}>
             <Icon name={n.icon} size={20} />
             {n.label}
             {n.to === '/nochmal' && nochmal > 0 && <span className="badge akzent">{nochmal}</span>}
+            {n.to === '/aktuell' && offen > 0 && <span className="badge akzent">{offen}</span>}
           </NavLink>
         ))}
-        <button type="button" onClick={() => setMehr((m) => !m)} aria-expanded={mehr}>
+        <button type="button" onClick={() => setMehr((m) => !m)} aria-expanded={mehr} data-tour="mehr">
           <Icon name="mehr" size={20} />
           Mehr
         </button>
@@ -158,13 +176,15 @@ function Rahmen() {
       {mehr && (
         <div className="mehr-menue einblenden">
           {NAV.slice(4).map((n) => (
-            <NavLink key={n.to} to={n.to}>
+            <NavLink key={n.to} to={n.to} data-tour={n.to}>
               <Icon name={n.icon} />
               {n.label}
             </NavLink>
           ))}
         </div>
       )}
+      {einfuehrung && <Einfuehrung />}
+      {statistik && <Statistik />}
     </div>
   );
 }

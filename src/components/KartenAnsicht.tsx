@@ -4,6 +4,7 @@ import type { Karte, KartenTyp } from '../content/types';
 import type { Bewertung } from '../lib/leitner';
 import { useStore } from '../store/store';
 import { Md, Taste } from './Basis';
+import { ErklaerPanel } from './ErklaerPanel';
 import { Icon } from './Icon';
 
 const TYP_TEXT: Record<KartenTyp, string> = {
@@ -15,15 +16,31 @@ const TYP_TEXT: Record<KartenTyp, string> = {
   fehler: 'Typischer Fehler',
 };
 
-export function KartenAnsicht({ karte, themaId, onBewertet }: { karte: Karte; themaId: string; onBewertet: (b: Bewertung) => void }) {
-  const [umgedreht, setUmgedreht] = useState(false);
-  const stand = useStore((s) => s.karten[karte.id]);
-  const bewerteKarte = useStore((s) => s.bewerteKarte);
+const BEWERTUNG_TEXT: Record<Bewertung, string> = { gewusst: 'wusste ich', halb: 'so halb', nicht: 'nicht gewusst' };
 
-  useEffect(() => setUmgedreht(false), [karte.id]);
+export function KartenAnsicht({
+  karte,
+  themaId,
+  onBewertet,
+  frueher,
+}: {
+  karte: Karte;
+  themaId: string;
+  /** Die Sitzung übernimmt das Speichern (damit sich Bewertungen korrigieren lassen). */
+  onBewertet: (b: Bewertung) => void;
+  /** Bewertung, falls die Karte in dieser Sitzung schon dran war */
+  frueher?: Bewertung;
+}) {
+  const [umgedreht, setUmgedreht] = useState(false);
+  const [erklaer, setErklaer] = useState(false);
+  const stand = useStore((s) => s.karten[karte.id]);
+
+  useEffect(() => {
+    setUmgedreht(false);
+    setErklaer(false);
+  }, [karte.id]);
 
   function bewerten(b: Bewertung) {
-    bewerteKarte(karte.id, themaId, b);
     onBewertet(b);
   }
 
@@ -37,6 +54,7 @@ export function KartenAnsicht({ karte, themaId, onBewertet }: { karte: Karte; th
         setUmgedreht((u) => !u);
       }
       if (!umgedreht) return;
+      if (e.key === 'e' || e.key === 'E') setErklaer(true);
       if (e.key === '1') bewerten('gewusst');
       if (e.key === '2') bewerten('halb');
       if (e.key === '3') bewerten('nicht');
@@ -87,6 +105,13 @@ export function KartenAnsicht({ karte, themaId, onBewertet }: { karte: Karte; th
           <Icon name="x" size={16} /> nicht <Taste>3</Taste>
         </button>
       </div>
+      <div className={`karten-extra${umgedreht ? ' sichtbar' : ''}`} aria-hidden={!umgedreht}>
+        <button type="button" className="btn geist klein" onClick={() => setErklaer(true)} disabled={!umgedreht}>
+          <Icon name="buch" size={15} /> Genauer erklärt <Taste>E</Taste>
+        </button>
+        {frueher && <span className="sehr-leise klein">Vorhin: {BEWERTUNG_TEXT[frueher]} – du kannst neu bewerten.</span>}
+      </div>
+      {erklaer && <ErklaerPanel themaId={themaId} suchtext={`${karte.vorne} ${karte.hinten}`} mehr={karte.mehr} onSchliessen={() => setErklaer(false)} />}
     </div>
   );
 }

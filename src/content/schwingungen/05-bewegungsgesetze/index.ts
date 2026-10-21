@@ -3,6 +3,7 @@ import erklaerung from './erklaerung.md?raw';
 import { formeln } from './formeln';
 import { generatoren } from './generatoren';
 import { karten } from './karten';
+import { mehr } from './mehr';
 import { uebungen } from './uebungen';
 
 export const thema: Thema = {
@@ -11,11 +12,10 @@ export const thema: Thema = {
   titel: 'Bewegungsgesetze',
   untertitel: 's(t), v(t), a(t), v̂ und â, sin oder cos',
   abhaengig: ['grundbegriffe', 'federpendel'],
-  startStatus: 'nicht',
   prioritaet: 1,
   erklaerung,
   quelleErklaerung: 'Buch S. 156–157; Notizen Lehrer 23.9./5.10.',
-  karten,
+  karten: karten.map((k) => ({ ...k, mehr: mehr[k.id] })),
   uebungen,
   generatoren,
   formeln,

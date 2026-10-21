@@ -2,7 +2,8 @@
 // werden über die Registry (src/content/kurse.ts) eingebunden.
 import type { Rng } from '../lib/rng';
 
-export type Status = 'kann' | 'halb' | 'nicht';
+/** 'offen' = noch nicht selbst eingeschätzt */
+export type Status = 'kann' | 'halb' | 'nicht' | 'offen';
 
 // ---------- Karteikarten ----------
 export type KartenTyp = 'begriff' | 'formel' | 'warum' | 'wasPassiert' | 'herleitung' | 'fehler';
@@ -15,6 +16,8 @@ export interface Karte {
   /** Rückseite – Markdown mit $…$-Formeln */
   hinten: string;
   quelle: string;
+  /** „Genauer erklärt“ – ausführlichere Erklärung (Markdown) */
+  mehr?: string;
 }
 
 // ---------- Übungen (statisch) ----------
@@ -182,7 +185,8 @@ export interface Thema {
   untertitel: string;
   /** Ids der Themen, die vorher sitzen sollten */
   abhaengig: string[];
-  startStatus: Status;
+  /** Startwert der Selbsteinschätzung – ohne Angabe „noch nicht eingeschätzt“ */
+  startStatus?: Status;
   /** Markiert Themen, die im Unterricht noch neu sind */
   neu?: boolean;
   /** kleiner = wichtiger für „Heute“ (Schwachstellen zuerst) */
