@@ -50,6 +50,7 @@ export const EINHEITEN: Einheit[] = [
   { key: 'Hz', anzeige: 'Hz', faktor: 1, dim: FREQ, aliase: ['hz', 'hertz'] },
   { key: 'kHz', anzeige: 'kHz', faktor: 1e3, dim: FREQ, aliase: ['khz'] },
   { key: 'MHz', anzeige: 'MHz', faktor: 1e6, dim: FREQ },
+  { key: '1/s^2', anzeige: '1/s²', faktor: 1, dim: [0, 0, -2], aliase: ['s^-2', '/s^2'] },
 
   { key: 'm/s', anzeige: 'm/s', faktor: 1, dim: V, aliase: ['ms^-1'] },
   { key: 'cm/s', anzeige: 'cm/s', faktor: 0.01, dim: V },

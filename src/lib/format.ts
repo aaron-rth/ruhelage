@@ -58,6 +58,7 @@ export function tw(x: number, sig = 4): string {
 
 const TEX_EINHEIT: Record<string, string> = {
   '1/s': '\\tfrac{1}{\\mathrm{s}}',
+  '1/s^2': '\\tfrac{1}{\\mathrm{s^2}}',
   '°': '^\\circ',
   'µm': '\\mu\\mathrm{m}',
   'µs': '\\mu\\mathrm{s}',

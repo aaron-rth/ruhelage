@@ -171,3 +171,35 @@ describe('Thema 6 – Kreisfrequenz und Phase', () => {
       nah(Math.atan2(m.y, m.x) < 0 ? Math.atan2(m.y, m.x) + 2 * Math.PI : Math.atan2(m.y, m.x), w.phi);
     }));
 });
+
+describe('Thema 7 – Differenzialgleichungen', () => {
+  it('dgl-erkennen: ω² = k, T = 2π/ω', () =>
+    lauf('dgl-erkennen', (a, w) => {
+      nah(wert(a, 0) ** 2, w.k);
+      nah(wert(a, 1) * wert(a, 0), 2 * Math.PI);
+    }));
+  it('dgl-u-rohr: T aus ω² = D/m mit m = ρAℓ (gesamte Säule)', () =>
+    lauf('dgl-u-rohr', (a, w) => {
+      const m = w.rho * w.A * w.L;
+      nah(wert(a, 1), 2 * Math.PI * Math.sqrt(m / w.D));
+      nah(wert(a, 0), w.D * w.amp);
+      nah(wert(a, 2), w.amp * Math.sqrt(2 * G / w.L));
+    }));
+  it('dgl-boje: Gleichgewicht, ω₀² = g/h₀ = ρgA/m', () =>
+    lauf('dgl-boje', (a, w) => {
+      nah(w.rho * w.A * wert(a, 0), w.m);
+      nah(wert(a, 1) ** 2, G / w.h0, 1e-9);
+      nah(wert(a, 1) ** 2, (w.rho * G * w.A) / w.m, 1e-9);
+      expect(w.amp).toBeLessThan(w.h0);
+      nah(wert(a, 4), wert(a, 3) * wert(a, 1));
+    }));
+  it('dgl-klotz: h₀ < a und T = 2π√(h₀/g)', () =>
+    lauf('dgl-klotz', (a, w) => {
+      expect(wert(a, 0)).toBeLessThan(w.a);
+      nah(wert(a, 1), 2 * Math.PI * Math.sqrt(wert(a, 0) / G));
+    }));
+  it('dgl-faden-planet: T = 2π/√k', () =>
+    lauf('dgl-faden-planet', (a) => {
+      nah(wert(a, 1), (2 * Math.PI) / Math.sqrt(wert(a, 0)));
+    }));
+});
