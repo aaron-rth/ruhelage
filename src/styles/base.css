@@ -204,7 +204,7 @@ code {
 
 @media (max-width: 860px) {
   .app {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   .seitenleiste {
     display: none;
@@ -333,7 +333,7 @@ code {
 @media (max-width: 860px) {
   .raster-2,
   .raster-3 {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   .panel {
     padding: var(--s4);
@@ -870,4 +870,21 @@ input[type='range'] {
 .seitenleiste-fuss .zeile svg {
   flex: none;
   margin-top: 3px;
+}
+.prosa table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+}
+.prosa .katex {
+  max-width: 100%;
+}
+/* KaTeX legt unsichtbares MathML absolut an – Container müssen es einfangen,
+   sonst entsteht auf schmalen Bildschirmen ein seitlicher Scrollbalken. */
+.prosa,
+.prosa table,
+.katex-display,
+.tabs,
+.md-inline {
+  position: relative;
 }

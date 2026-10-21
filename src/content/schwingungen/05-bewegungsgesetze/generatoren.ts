@@ -447,4 +447,46 @@ const ortRichtung: Generator = {
   },
 };
 
-export const generatoren: Generator[] = [vmaxAmax, ampAusV, sZeitpunkt, ersteZeit, stAblesen, vtAuswerten, klickPunkte, graphZuordnen, ortRichtung];
+const atAuswerten: Generator = {
+  id: 'bg-at-auswerten',
+  titel: 'Vom a-t-Diagramm zur Schwingungsgleichung',
+  art: 'diagramm',
+  schwierigkeit: 3,
+  quelle: 'Buch S. 157 (Abb. 3C), S. 191 (Selbstcheck Punkt 3)',
+  erzeuge(rng) {
+    const T = rng.wahl([0.5, 0.8, 1, 1.2, 1.6, 2]);
+    const amax = rng.wahl([0.5, 0.8, 1, 1.5, 2, 2.5, 3, 4]);
+    const st: Start = rng.wahl(STARTS);
+    const w = (2 * Math.PI) / T;
+    const amp = amax / (w * w);
+    const phi0 = START_PHI[st];
+    const plot = zeitPlot({ f: (t) => -amax * Math.sin(w * t + phi0), tMax: 2 * T, yMax: amax, yLabel: 'a in m/s²' });
+    const wTex = `${tz(w, 3)}\\,\\mathrm{\\tfrac1s}`;
+    const aTex = `${tz(amp * 100, 3)}\\,\\mathrm{cm}`;
+    const roh = STARTS.map((s) => `$${startGleichung(s, aTex, wTex)}$`);
+    const opt = mischeOptionen(roh, STARTS.indexOf(st), rng.mische);
+    return {
+      titel: 'Rückwärts aus der Beschleunigung',
+      kontext: 'Das Diagramm zeigt die Beschleunigung eines Federpendels (nach oben positiv).',
+      plot,
+      teile: [
+        teil('Lies die Periodendauer ab.', zahl(T, 's', [{ wert: T / 2, hinweis: 'Das ist nur eine halbe Periode.' }], 0.03), ['Abstand zweier Hochpunkte.', 'Über zwei Perioden messen und halbieren.', 'Auch im a-t-Diagramm wiederholt sich alles nach $T$.'], `$T = ${tgw(T, 's')}$`),
+        teil(
+          'Lies $\\hat a$ ab und berechne die Amplitude $\\hat s$.',
+          zahl(amp, 'cm', [{ wert: amax / w, hinweis: 'Beim Beschleunigen steht $\\omega^2$: $\\hat s = \\frac{\\hat a}{\\omega^2}$.' }]),
+          [gg(`$\\hat a = ${tgw(amax, 'm/s^2')}$ (abgelesen), $T$`, '$\\hat s$', '$\\hat a = \\hat s\\,\\omega^2$'), 'Erst $\\omega = \\frac{2\\pi}T$, dann umstellen.', `$\\omega^2 = ${tz(w * w, 4)}\\,\\mathrm{\\tfrac1{s^2}}$`],
+          `$$\\hat s = \\frac{\\hat a}{\\omega^2} = \\frac{${tgw(amax, 'm/s^2')}}{(${tz(w, 4)}\\,\\mathrm{\\tfrac1s})^2} = ${tg(amp * 100, 'cm')}$$`,
+        ),
+        teil(
+          'Welche Gleichung beschreibt die Auslenkung?',
+          auswahl(opt.optionen, opt.richtig),
+          ['$a(t) = -\\omega^2 s(t)$: Das s-t-Diagramm ist das **Spiegelbild** des a-t-Diagramms.', 'Ist $a$ bei $t = 0$ maximal positiv, ist der Körper unten (s minimal).', 'Ist $a = 0$, ist der Körper in der Ruhelage – die Richtung verrät die Steigung von $-a$.'],
+          `Spiegeln an der t-Achse liefert den Verlauf von $s$: Start ${START_TEXT[st]}.\n$$${startGleichung(st, aTex, wTex)}$$`,
+        ),
+      ],
+      werte: { T, amax, amp, st: STARTS.indexOf(st) },
+    };
+  },
+};
+
+export const generatoren: Generator[] = [vmaxAmax, ampAusV, sZeitpunkt, ersteZeit, stAblesen, vtAuswerten, atAuswerten, klickPunkte, graphZuordnen, ortRichtung];

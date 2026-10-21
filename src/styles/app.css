@@ -219,7 +219,7 @@
   .pfad-zeile.n1,
   .pfad-zeile.n2,
   .pfad-zeile.n3 {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: var(--s3);
   }
 }
@@ -233,7 +233,7 @@
 }
 @media (max-width: 860px) {
   .heute-raster {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 .plan-liste {
@@ -343,7 +343,7 @@
 }
 @media (max-width: 1000px) {
   .raster-erklaert {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   .raster-erklaert aside {
     position: static;
@@ -738,7 +738,7 @@
 }
 @media (max-width: 700px) {
   .auswahl-raster.mit-plots {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 .option {
@@ -971,7 +971,7 @@
 }
 @media (max-width: 700px) {
   .zuordnen-zeile {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   .zuordnen-zeile > svg {
     display: none;
@@ -1590,6 +1590,17 @@
     height: 240px;
   }
   .sw-raster {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+.status-wahl button {
+  white-space: nowrap;
+}
+@media (max-width: 600px) {
+  .thema-status {
+    flex-wrap: wrap;
+  }
+  .prosa {
+    overflow-wrap: break-word;
   }
 }

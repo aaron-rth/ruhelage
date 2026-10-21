@@ -342,3 +342,18 @@ describe('Thema 10 und Querschnitt', () => {
       if (r.art === 'auswahl') expect(r.richtig).toBe(w.laenger ? 1 : 0);
     }));
 });
+
+describe('Thema 5 – a-t-Diagramm', () => {
+  it('bg-at-auswerten: a = −ω²·s – Spiegelbild und ŝ = â/ω²', () =>
+    lauf('bg-at-auswerten', (a, w) => {
+      const om = (2 * Math.PI) / w.T;
+      nah(wert(a, 1) * om * om, w.amax);
+      const f = a.plot!.kurven[0].f;
+      const opt = a.teile[2].antwort;
+      if (opt.art !== 'auswahl') throw new Error();
+      // s(0) = −a(0)/ω² muss zum gewählten Start passen
+      const s0 = -f(0) / (om * om);
+      const text = opt.optionen[opt.richtig];
+      if (Math.abs(s0) > 1e-9) expect(text).toMatch(s0 > 0 ? /^\$s\(t\) = [0-9]/ : /^\$s\(t\) = -/);
+    }));
+});

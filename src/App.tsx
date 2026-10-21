@@ -1,18 +1,20 @@
-import { useEffect, useRef, useState } from 'react';
+import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { HashRouter, NavLink, Route, Routes, useLocation } from 'react-router-dom';
-import { Logo } from './components/Basis';
+import { Lader, Logo } from './components/Basis';
 import { Icon } from './components/Icon';
 import { AKTIVER_KURS } from './content/kurse';
 import { heute, tageZwischen } from './lib/datum';
 import { Einstellungen } from './pages/Einstellungen';
 import { Formeln } from './pages/Formeln';
 import { Heute } from './pages/Heute';
-import { Klausur } from './pages/Klausur';
 import { Lernpfad } from './pages/Lernpfad';
 import { Nochmal } from './pages/Nochmal';
-import { Spielwiese } from './pages/Spielwiese';
 import { ThemaSeite } from './pages/Thema';
 import { streak, useStore } from './store/store';
+
+// selten gebrauchte, größere Seiten erst bei Bedarf laden
+const Spielwiese = lazy(() => import('./pages/Spielwiese').then((m) => ({ default: m.Spielwiese })));
+const Klausur = lazy(() => import('./pages/Klausur').then((m) => ({ default: m.Klausur })));
 
 const NAV = [
   { to: '/', label: 'Heute', icon: 'heute', ende: true },
@@ -124,18 +126,20 @@ function Rahmen() {
       </header>
 
       <main className="haupt" id="inhalt">
-        <Routes>
-          <Route path="/" element={<Heute />} />
-          <Route path="/pfad" element={<Lernpfad />} />
-          <Route path="/thema/:id" element={<ThemaSeite />} />
-          <Route path="/thema/:id/:tab" element={<ThemaSeite />} />
-          <Route path="/spielwiese" element={<Spielwiese />} />
-          <Route path="/nochmal" element={<Nochmal />} />
-          <Route path="/klausur" element={<Klausur />} />
-          <Route path="/formeln" element={<Formeln />} />
-          <Route path="/einstellungen" element={<Einstellungen />} />
-          <Route path="*" element={<Heute />} />
-        </Routes>
+        <Suspense fallback={<Lader />}>
+          <Routes>
+            <Route path="/" element={<Heute />} />
+            <Route path="/pfad" element={<Lernpfad />} />
+            <Route path="/thema/:id" element={<ThemaSeite />} />
+            <Route path="/thema/:id/:tab" element={<ThemaSeite />} />
+            <Route path="/spielwiese" element={<Spielwiese />} />
+            <Route path="/nochmal" element={<Nochmal />} />
+            <Route path="/klausur" element={<Klausur />} />
+            <Route path="/formeln" element={<Formeln />} />
+            <Route path="/einstellungen" element={<Einstellungen />} />
+            <Route path="*" element={<Heute />} />
+          </Routes>
+        </Suspense>
       </main>
 
       <nav className="mobil-nav" aria-label="Navigation">
