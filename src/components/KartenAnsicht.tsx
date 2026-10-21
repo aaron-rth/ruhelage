@@ -30,6 +30,7 @@ export function KartenAnsicht({
   vollbild,
   wischen,
   onBlaettern,
+  einflug,
 }: {
   karte: Karte;
   themaId: string;
@@ -43,6 +44,8 @@ export function KartenAnsicht({
   wischen?: boolean;
   /** vor dem Umdrehen: zur nächsten bzw. vorherigen Karte wischen */
   onBlaettern?: (r: 'vor' | 'zurueck') => void;
+  /** woher die Karte hereinkommt (nach Weiter/Zurück) */
+  einflug?: 'rechts' | 'links' | 'stapel' | null;
 }) {
   const [umgedreht, setUmgedreht] = useState(false);
   const [erklaer, setErklaer] = useState(false);
@@ -62,10 +65,10 @@ export function KartenAnsicht({
 
   function bewerten(b: Bewertung) {
     if (raus) return;
-    if (!gesten) return onBewertet(b);
-    // Karte kurz hinausfliegen lassen, dann bewerten
+    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return onBewertet(b);
+    // Karte hinausfliegen lassen (wie beim Wischen), dann bewerten
     setRaus(b === 'gewusst' ? 'rechts' : b === 'nicht' ? 'links' : 'oben');
-    window.setTimeout(() => onBewertet(b), 190);
+    window.setTimeout(() => onBewertet(b), 220);
   }
 
   useEffect(() => {
@@ -147,7 +150,9 @@ export function KartenAnsicht({
         </div>
         <Md text={karte.vorne} className="prosa karten-text" />
         <span className="karten-tipp sehr-leise klein">
-          {vollbild ? (
+          {gesten ? (
+            'Tippen zum Umdrehen · zur Seite wischen zum Blättern'
+          ) : vollbild ? (
             'Tippen zum Umdrehen'
           ) : (
             <>
@@ -166,62 +171,52 @@ export function KartenAnsicht({
     </button>
   );
 
+  const knoepfe: { b: Bewertung; icon: string; text: string; taste: string }[] = [
+    { b: 'gewusst', icon: 'check', text: 'wusste ich', taste: '1' },
+    { b: 'halb', icon: 'tilde', text: 'so halb', taste: '2' },
+    { b: 'nicht', icon: 'x', text: 'nicht', taste: '3' },
+  ];
+  // beim Wischen entspricht die Reihenfolge den Richtungen: links – oben – rechts
+  const reihe = gesten ? [knoepfe[2], knoepfe[1], knoepfe[0]] : knoepfe;
+  const pfeil: Record<Bewertung, string> = { nicht: '←', halb: '↑', gewusst: '→' };
+
   return (
-    <div className={`karteikarte-wrap${vollbild ? ' vollbild' : ''}`}>
-      {vollbild ? (
-        <div className="karten-buehne">
-          <div
-            className={`karten-wisch${gesten ? ' gesten' : ''}${start.current ? ' zieht' : ''}${raus ? ' raus' : ''}`}
-            style={{ transform }}
-            onPointerDown={runter}
-            onPointerMove={zieh}
-            onPointerUp={hoch}
-            onPointerCancel={hoch}
-          >
-            {kartenKnopf}
-            {gesten && umgedreht && (
-              <>
-                <span className="wisch-marke rechts" style={{ opacity: deutung === 'rechts' ? staerke : 0 }}>
-                  <Icon name="check" size={16} /> wusste ich
-                </span>
-                <span className="wisch-marke links" style={{ opacity: deutung === 'links' ? staerke : 0 }}>
-                  <Icon name="x" size={16} /> nicht
-                </span>
-                <span className="wisch-marke oben" style={{ opacity: deutung === 'oben' ? staerke : 0 }}>
-                  <Icon name="tilde" size={16} /> so halb
-                </span>
-              </>
-            )}
-          </div>
-        </div>
-      ) : (
-        kartenKnopf
-      )}
-
-      {vollbild && gesten && (
-        <p className="wisch-hilfe sehr-leise klein" aria-hidden>
-          {umgedreht ? (
+    <div className={`karteikarte-wrap ${vollbild ? 'vollbild' : 'inline'}`}>
+      <div className="karten-buehne">
+        <div
+          className={`karten-wisch${gesten ? ' gesten' : ''}${start.current ? ' zieht' : ''}${raus ? ' raus' : ''}${einflug && !raus && !start.current ? ` rein-${einflug}` : ''}`}
+          style={{ transform }}
+          onPointerDown={runter}
+          onPointerMove={zieh}
+          onPointerUp={hoch}
+          onPointerCancel={hoch}
+        >
+          {kartenKnopf}
+          {umgedreht && (
             <>
-              <span>← nicht</span>
-              <span>↑ so halb</span>
-              <span>wusste ich →</span>
+              <span className="wisch-marke rechts" style={{ opacity: raus === 'rechts' ? 1 : deutung === 'rechts' ? staerke : 0 }}>
+                <Icon name="check" size={16} /> wusste ich
+              </span>
+              <span className="wisch-marke links" style={{ opacity: raus === 'links' ? 1 : deutung === 'links' ? staerke : 0 }}>
+                <Icon name="x" size={16} /> nicht
+              </span>
+              <span className="wisch-marke oben" style={{ opacity: raus === 'oben' ? 1 : deutung === 'oben' ? staerke : 0 }}>
+                <Icon name="tilde" size={16} /> so halb
+              </span>
             </>
-          ) : (
-            <span>Wischen: nächste / vorherige Karte</span>
           )}
-        </p>
-      )}
+        </div>
+      </div>
 
-      <div className={`bewertung${umgedreht ? ' sichtbar' : ''}${vollbild && gesten ? ' kompakt' : ''}`} aria-hidden={!umgedreht}>
-        <button type="button" className="btn bew gewusst" onClick={() => bewerten('gewusst')} disabled={!umgedreht}>
-          <Icon name="check" size={16} /> wusste ich <Taste>1</Taste>
-        </button>
-        <button type="button" className="btn bew halb" onClick={() => bewerten('halb')} disabled={!umgedreht}>
-          <Icon name="tilde" size={16} /> so halb <Taste>2</Taste>
-        </button>
-        <button type="button" className="btn bew nicht" onClick={() => bewerten('nicht')} disabled={!umgedreht}>
-          <Icon name="x" size={16} /> nicht <Taste>3</Taste>
-        </button>
+      <div className={`bewertung${umgedreht ? ' sichtbar' : ''}${gesten ? ' kompakt' : ''}`} aria-hidden={!umgedreht}>
+        {reihe.map((k) => (
+          <button key={k.b} type="button" className={`btn bew ${k.b}`} onClick={() => bewerten(k.b)} disabled={!umgedreht}>
+            {gesten && k.b === 'nicht' && <span className="pfeil">{pfeil[k.b]}</span>}
+            {gesten && k.b === 'halb' && <span className="pfeil">{pfeil[k.b]}</span>}
+            {!gesten && <Icon name={k.icon} size={16} />} {k.text} <Taste>{k.taste}</Taste>
+            {gesten && k.b === 'gewusst' && <span className="pfeil">{pfeil[k.b]}</span>}
+          </button>
+        ))}
       </div>
       <div className={`karten-extra${umgedreht ? ' sichtbar' : ''}`} aria-hidden={!umgedreht}>
         <button type="button" className="btn geist klein" onClick={() => setErklaer(true)} disabled={!umgedreht}>

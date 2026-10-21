@@ -23,22 +23,42 @@ export function Formeln() {
   const [params, setParams] = useSearchParams();
   const [suche, setSuche] = useState('');
   const [aktiv, setAktiv] = useState(() => Math.max(0, themen.findIndex((t) => t.id === params.get('thema'))));
-  const [zug, setZug] = useState(0);
-  const start = useRef<{ x: number; y: number; waagerecht: boolean | null } | null>(null);
-  const chips = useRef<HTMLDivElement>(null);
+  const leiste = useRef<HTMLDivElement>(null);
   const q = suche.trim().toLowerCase();
 
-  function gehe(i: number) {
-    setAktiv(Math.max(0, Math.min(themen.length - 1, i)));
+  // Das Wischen übernimmt der Browser (Scroll-Snap) – wir lesen nur ab, welche Karte vorne ist.
+  function karteBei(i: number): HTMLElement | null {
+    return leiste.current?.querySelector<HTMLElement>(`[data-i="${i}"]`) ?? null;
   }
+  function gehe(i: number, sanft = true) {
+    const ziel = Math.max(0, Math.min(themen.length - 1, i));
+    const el = leiste.current;
+    const karte = karteBei(ziel);
+    if (el && karte) el.scrollTo({ left: karte.offsetLeft - (el.clientWidth - karte.offsetWidth) / 2, behavior: sanft ? 'smooth' : ('instant' as ScrollBehavior) });
+  }
+
+  // Start (und nach dem Suchen): direkt zur gemerkten Karte
+  useEffect(() => {
+    if (!q) requestAnimationFrame(() => gehe(aktiv, false));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [q === '']);
+
+  useEffect(() => {
+    const el = leiste.current;
+    if (!el || q) return;
+    const io = new IntersectionObserver(
+      (eintraege) => {
+        for (const e of eintraege) if (e.intersectionRatio > 0.6) setAktiv(Number((e.target as HTMLElement).dataset.i));
+      },
+      { root: el, threshold: [0.6] },
+    );
+    el.querySelectorAll('.formel-seite').forEach((k) => io.observe(k));
+    return () => io.disconnect();
+  }, [q, themen.length]);
 
   useEffect(() => {
     const t = themen[aktiv];
     if (t && params.get('thema') !== t.id) setParams({ thema: t.id }, { replace: true });
-    // nur die Themenleiste seitlich mitscrollen – nie die ganze Seite
-    const leiste = chips.current;
-    const chip = leiste?.querySelector<HTMLElement>(`[data-i="${aktiv}"]`);
-    if (leiste && chip) leiste.scrollTo({ left: chip.offsetLeft - leiste.clientWidth / 2 + chip.offsetWidth / 2, behavior: 'smooth' });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [aktiv]);
 
@@ -60,28 +80,6 @@ export function Formeln() {
     return () => window.removeEventListener('keydown', onKey);
   });
 
-  // Wischen: waagerecht blättern, senkrecht normal scrollen lassen
-  function runter(e: React.PointerEvent) {
-    if (e.pointerType === 'mouse') return;
-    start.current = { x: e.clientX, y: e.clientY, waagerecht: null };
-  }
-  function zieh(e: React.PointerEvent) {
-    const s0 = start.current;
-    if (!s0) return;
-    const dx = e.clientX - s0.x;
-    const dy = e.clientY - s0.y;
-    if (s0.waagerecht === null && (Math.abs(dx) > 10 || Math.abs(dy) > 10)) s0.waagerecht = Math.abs(dx) > Math.abs(dy);
-    if (s0.waagerecht) setZug(dx);
-  }
-  function hoch() {
-    const s0 = start.current;
-    start.current = null;
-    if (!s0?.waagerecht) return setZug(0);
-    if (zug < -60) gehe(aktiv + 1);
-    else if (zug > 60) gehe(aktiv - 1);
-    setZug(0);
-  }
-
   const treffer = q
     ? themen.flatMap((t) =>
         t.formeln
@@ -97,9 +95,10 @@ export function Formeln() {
           <span className="ueber">Nachschlagen</span>
           <h1>Formelsammlung</h1>
           <p>
-            Ein Thema pro Karte – wisch zur Seite oder tipp auf eine Karte daneben
+            Ein Thema pro Karte – zur Seite wischen
             <span className="nur-tastatur">
-              , am Laptop auch <Taste>←</Taste> <Taste>→</Taste>
+              {' '}
+              oder mit <Taste>←</Taste> <Taste>→</Taste> blättern
             </span>
             . Es gilt g = 9,81 m/s².
           </p>
@@ -129,63 +128,48 @@ export function Formeln() {
         )
       ) : (
         <>
-          <div className="formel-chips" ref={chips} role="tablist" aria-label="Themen">
+          <div className="formel-nav">
+            <button type="button" className="btn geist klein symbol-knopf" onClick={() => gehe(aktiv - 1)} disabled={aktiv === 0} aria-label="Vorheriges Thema">
+              <Icon name="links" size={18} />
+            </button>
+            <span className="klein formel-position">
+              <span className="mono">{themen[aktiv]?.nr}</span> · {themen[aktiv]?.titel}
+              <span className="sehr-leise"> ({aktiv + 1}/{themen.length})</span>
+            </span>
+            <button type="button" className="btn geist klein symbol-knopf" onClick={() => gehe(aktiv + 1)} disabled={aktiv === themen.length - 1} aria-label="Nächstes Thema">
+              <Icon name="rechts" size={18} />
+            </button>
+          </div>
+
+          <div className="formel-leiste" ref={leiste}>
             {themen.map((t, i) => (
-              <button key={t.id} type="button" role="tab" aria-selected={i === aktiv} data-i={i} className={`chip-knopf${i === aktiv ? ' an' : ''}`} onClick={() => gehe(i)}>
-                <span className="mono">{t.nr}</span> {t.titel}
-              </button>
+              <section
+                key={t.id}
+                data-i={i}
+                className={`formel-seite${i === aktiv ? ' vorne' : ''}`}
+                aria-label={`Thema ${t.nr}: ${t.titel}`}
+                onClick={i !== aktiv ? () => gehe(i) : undefined}
+              >
+                <div className="formel-seite-kopf">
+                  <h2>
+                    <span className="knoten-nr">{t.nr}</span> {t.titel}
+                  </h2>
+                  <Link to={`/thema/${t.id}`} className="klein" tabIndex={i === aktiv ? 0 : -1}>
+                    Zum Thema <Icon name="rechts" size={13} />
+                  </Link>
+                </div>
+                <div className="formel-gitter">
+                  {t.formeln.map((f) => (
+                    <FormelKarte key={f.name} f={f} />
+                  ))}
+                </div>
+              </section>
             ))}
           </div>
-
-          <div className="formel-nav">
-            <button type="button" className="btn geist klein" onClick={() => gehe(aktiv - 1)} disabled={aktiv === 0} aria-label="Vorheriges Thema">
-              <Icon name="links" size={16} />
-            </button>
-            <div className="formel-punkte" aria-hidden>
-              {themen.map((t, i) => (
-                <span key={t.id} className={i === aktiv ? 'an' : ''} />
-              ))}
-            </div>
-            <button type="button" className="btn geist klein" onClick={() => gehe(aktiv + 1)} disabled={aktiv === themen.length - 1} aria-label="Nächstes Thema">
-              <Icon name="rechts" size={16} />
-            </button>
-          </div>
-
-          <div className={`formel-stapel${zug ? ' zieht' : ''}`} onPointerDown={runter} onPointerMove={zieh} onPointerUp={hoch} onPointerCancel={hoch}>
-            {themen.map((t, i) => {
-              const d = i - aktiv;
-              if (Math.abs(d) > 2) return null;
-              const a = Math.abs(d);
-              const stil = {
-                transform: `translateX(calc(${d * (a === 1 ? 15 : 13.5)}% + ${zug}px)) scale(${1 - a * 0.07})`,
-                opacity: d === 0 ? 1 : a === 1 ? 0.5 : 0,
-                zIndex: 10 - a,
-              };
-              return (
-                <section
-                  key={t.id}
-                  className={`formel-seite${d === 0 ? ' vorne' : ' hinten'}`}
-                  style={stil}
-                  aria-hidden={d !== 0}
-                  aria-label={`Thema ${t.nr}: ${t.titel}`}
-                  onClick={d !== 0 ? () => gehe(i) : undefined}
-                >
-                  <div className="formel-seite-kopf">
-                    <h2>
-                      <span className="knoten-nr">{t.nr}</span> {t.titel}
-                    </h2>
-                    <Link to={`/thema/${t.id}`} className="klein" tabIndex={d === 0 ? 0 : -1}>
-                      Zum Thema <Icon name="rechts" size={13} />
-                    </Link>
-                  </div>
-                  <div className="formel-gitter">
-                    {t.formeln.map((f) => (
-                      <FormelKarte key={f.name} f={f} />
-                    ))}
-                  </div>
-                </section>
-              );
-            })}
+          <div className="formel-punkte" aria-hidden>
+            {themen.map((t, i) => (
+              <span key={t.id} className={i === aktiv ? 'an' : ''} />
+            ))}
           </div>
         </>
       )}

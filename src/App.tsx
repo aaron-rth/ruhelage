@@ -185,7 +185,7 @@ function Rahmen() {
             <Logo />
           </NavLink>
           <button type="button" className="btn geist klein symbol-knopf" onClick={() => setFokus(true)} title="Seitenleiste ausblenden (F)" aria-label="Seitenleiste ausblenden">
-            <Icon name="seitenleiste" size={16} />
+            <Icon name="seitenleiste" size={21} />
           </button>
         </div>
         <nav className="nav" aria-label="Hauptnavigation">
@@ -214,6 +214,7 @@ function Rahmen() {
 
       <main className="haupt" id="inhalt">
         <Suspense fallback={<Lader />}>
+          <div className="seiten-wechsel" key={pathname}>
           <Routes>
             <Route path="/" element={<Heute />} />
             <Route path="/aktuell" element={<Aktuell />} />
@@ -227,6 +228,7 @@ function Rahmen() {
             <Route path="/einstellungen" element={<Einstellungen />} />
             <Route path="*" element={<Heute />} />
           </Routes>
+          </div>
         </Suspense>
       </main>
 
