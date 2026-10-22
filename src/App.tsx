@@ -15,7 +15,9 @@ import { Heute } from './pages/Heute';
 import { Lernpfad } from './pages/Lernpfad';
 import { Nochmal } from './pages/Nochmal';
 import { ThemaSeite } from './pages/Thema';
-import { AKTIVER_KURS } from './content/kurse';
+import { KURSE } from './content/kurse';
+import type { Kurs } from './content/types';
+import { hatFormeln, hatProbeklausur, hatSpielwiese, useAktiverKurs, wechsleKurs } from './lib/kurs';
 import { streak, useStore } from './store/store';
 import { useUi } from './store/ui';
 
@@ -31,6 +33,8 @@ interface Unterpunkt {
   icon: string;
   /** aktiv, wenn der Pfad (inkl. Suche) so beginnt */
   passt: (pfad: string, suche: string) => boolean;
+  /** nur zeigen, wenn der aktive Kurs das anbietet */
+  nurWenn?: (k: Kurs) => boolean;
 }
 const BEREICHE: { id: Bereich; to: string; label: string; icon: string; unter: Unterpunkt[] }[] = [
   {
@@ -42,8 +46,8 @@ const BEREICHE: { id: Bereich; to: string; label: string; icon: string; unter: U
       { to: '/', label: 'Heute', icon: 'heute', passt: (p) => p === '/' },
       { to: '/aktuell', label: 'Angefangen', icon: 'pause', passt: (p) => p === '/aktuell' },
       { to: '/nochmal', label: 'Nochmal', icon: 'nochmal', passt: (p) => p === '/nochmal' },
-      { to: '/klausur', label: 'Probeklausur', icon: 'klausur', passt: (p) => p === '/klausur' },
-      { to: '/spielwiese', label: 'Spielwiese', icon: 'welle', passt: (p) => p === '/spielwiese' },
+      { to: '/klausur', label: 'Probeklausur', icon: 'klausur', passt: (p) => p === '/klausur', nurWenn: hatProbeklausur },
+      { to: '/spielwiese', label: 'Spielwiese', icon: 'welle', passt: (p) => p === '/spielwiese', nurWenn: hatSpielwiese },
     ],
   },
   {
@@ -55,7 +59,7 @@ const BEREICHE: { id: Bereich; to: string; label: string; icon: string; unter: U
       { to: '/faecher', label: 'Übersicht', icon: 'buch', passt: (p) => p === '/faecher' },
       { to: '/pfad', label: 'Lernpfad', icon: 'pfad', passt: (p, q) => (p === '/pfad' && !q.includes('plan')) || p.startsWith('/thema') },
       { to: '/pfad?ansicht=plan', label: 'Lernplan', icon: 'kalender', passt: (p, q) => p === '/pfad' && q.includes('plan') },
-      { to: '/formeln', label: 'Formelsammlung', icon: 'formel', passt: (p) => p === '/formeln' },
+      { to: '/formeln', label: 'Formelsammlung', icon: 'formel', passt: (p) => p === '/formeln', nurWenn: hatFormeln },
     ],
   },
   {
@@ -233,6 +237,7 @@ function useCloud() {
 }
 
 function Rahmen() {
+  const kurs = useAktiverKurs();
   useLernzeit();
   useCloud();
   useTheme();
@@ -260,14 +265,25 @@ function Rahmen() {
         </div>
         <div className="fach-wahl">
           <Link to="/faecher" className="fach-zeile an" tabIndex={fokus ? -1 : 0}>
-            <Icon name="welle" size={18} />
+            <Icon name={kurs.fach === 'Physik' ? 'welle' : 'buch'} size={18} />
             <span>
               <strong>
-                {AKTIVER_KURS.fach} <span className="chip klein-chip">{AKTIVER_KURS.klasse}</span>
+                {kurs.fach} <span className="chip klein-chip">{kurs.klasse}</span>
               </strong>
-              <span className="sehr-leise klein">{AKTIVER_KURS.titel}</span>
+              <span className="sehr-leise klein">{kurs.titel}</span>
             </span>
           </Link>
+          {KURSE.filter((k) => k.id !== kurs.id).map((k) => (
+            <Link key={k.id} to="/faecher" className="fach-zeile" tabIndex={fokus ? -1 : 0} onClick={() => wechsleKurs(k.id)}>
+              <Icon name={k.fach === 'Physik' ? 'welle' : 'buch'} size={18} />
+              <span>
+                <strong>
+                  {k.fach} <span className="chip klein-chip">{k.klasse}</span>
+                </strong>
+                <span className="sehr-leise klein">{k.titel}</span>
+              </span>
+            </Link>
+          ))}
           <Link to="/faecher?anfrage=1" className="fach-zeile bald" tabIndex={fokus ? -1 : 0}>
             <Icon name="plus" size={18} />
             <span className="klein">Fach anfragen</span>
@@ -279,7 +295,7 @@ function Rahmen() {
               <Link to={b.to} className="nav-bereich" data-tour={b.to} tabIndex={fokus ? -1 : 0}>
                 {b.label}
               </Link>
-              {b.unter.map((u) => {
+              {b.unter.filter((u) => !u.nurWenn || u.nurWenn(kurs)).map((u) => {
                 const aktiv = u.passt(pathname, search);
                 const n = zahl(u.to);
                 return (
@@ -303,7 +319,7 @@ function Rahmen() {
           <Logo klein />
         </NavLink>
         <span className="mobil-fach">
-          {AKTIVER_KURS.fach} · {AKTIVER_KURS.klasse}
+          {kurs.fach} · {kurs.klasse}
         </span>
         <button type="button" className="mobil-serie" onClick={() => navigate('/statistik')} aria-label={`${serie} Tage in Folge – Statistik öffnen`}>
           <Icon name="welle" size={16} /> <strong className="mono">{serie}</strong>

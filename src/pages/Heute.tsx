@@ -4,7 +4,7 @@ import { Balken, Ring, Taste } from '../components/Basis';
 import { Dialog } from '../components/Dialog';
 import { Icon } from '../components/Icon';
 import { setzePausiert, Sitzung, SitzungsEnde, starteSitzung, useSitzungsStand, type SitzungsBilanz, type SitzungsItem } from '../components/Sitzung';
-import { AKTIVER_KURS } from '../content/kurse';
+import { hatProbeklausur, hatRechnen, hatSpielwiese, useAktiverKurs } from '../lib/kurs';
 import { datumLang, heute, tageZwischen } from '../lib/datum';
 import { themaFortschritt } from '../lib/fortschritt';
 import { baueHeute, mischAufgaben, mischKarten, schwacheThemen } from '../lib/heute';
@@ -24,16 +24,17 @@ const MISCH_SLOTS = ['heute', 'mix-karten', 'mix-uebungen', 'mix-rechnen'] as co
 
 /** Auswahl: gemischt üben oder ein Thema wählen */
 function ModusWahl({ modus, onZu }: { modus: Modus; onZu: () => void }) {
+  const kurs = useAktiverKurs();
   const daten = useStore();
   const navigate = useNavigate();
   const h = heute();
   const m = MODUS[modus];
-  const themen = schwacheThemen(AKTIVER_KURS, daten, h);
+  const themen = schwacheThemen(kurs, daten, h);
 
   function gemischt() {
     let items: SitzungsItem[];
-    if (modus === 'karten') items = mischKarten(AKTIVER_KURS, daten, h, daten.einstellungen.zielKarten);
-    else items = mischAufgaben(AKTIVER_KURS, daten, h, neuerSeed(), modus, Math.max(5, daten.einstellungen.zielAufgaben));
+    if (modus === 'karten') items = mischKarten(kurs, daten, h, daten.einstellungen.zielKarten);
+    else items = mischAufgaben(kurs, daten, h, neuerSeed(), modus, Math.max(5, daten.einstellungen.zielAufgaben));
     if (items.length === 0) return;
     starteSitzung(`mix-${modus}`, items, { art: 'mischung', titel: `${m.titel} · gemischt`, pfad: '/' });
     onZu();
@@ -87,6 +88,7 @@ function gruss(): string {
 }
 
 export function Heute() {
+  const kurs = useAktiverKurs();
   const daten = useStore();
   const h = heute();
   const navigate = useNavigate();
@@ -101,12 +103,16 @@ export function Heute() {
   const [bilanz, setBilanz] = useState<SitzungsBilanz | null>(null);
   // Plan nur beim Öffnen bzw. nach einer Sitzung neu bauen, nicht bei jeder Bewertung
   const [planVersion, setPlanVersion] = useState(0);
-  const dran = useMemo(() => heuteDran(baueLernplan(AKTIVER_KURS, daten, h, daten.einstellungen.klausurDatum), h), [planVersion, h, daten.einstellungen.klausurDatum]);
-  const plan = useMemo(() => baueHeute(AKTIVER_KURS, daten, h, seed, dran), [planVersion, seed, h, dran]);
+  const dran = useMemo(() => heuteDran(baueLernplan(kurs, daten, h, daten.einstellungen.klausurDatum), h), [planVersion, h, daten.einstellungen.klausurDatum, kurs]);
+  const plan = useMemo(() => baueHeute(kurs, daten, h, seed, dran), [planVersion, seed, h, dran, kurs]);
   const tag = daten.tage[h] ?? { xp: 0, sekunden: 0, karten: 0, aufgaben: 0 };
   const e = daten.einstellungen;
   const minuten = Math.floor(tag.sekunden / 60);
   const rest = tageZwischen(h, e.klausurDatum);
+  // Rechentrainer, Probeklausur und Spielwiese gibt es nur, wo der Kurs sie hat
+  const mitRechnen = hatRechnen(kurs);
+  const mitKlausur = hatProbeklausur(kurs);
+  const physik = hatSpielwiese(kurs);
   const s = streak(daten.tage, h);
 
   const starte = () => starteSitzung('heute', plan.items, { art: 'heute', titel: 'Heute-Runde', pfad: '/' });
@@ -283,7 +289,7 @@ export function Heute() {
       <section className="ueben-bereich" data-tour="gezielt">
         <h2 className="abschnitt-titel">Gezielt üben</h2>
         <div className="modus-kacheln">
-          {(Object.keys(MODUS) as Modus[]).map((k) => (
+          {(Object.keys(MODUS) as Modus[]).filter((k) => k !== 'rechnen' || mitRechnen).map((k) => (
             <button key={k} type="button" className="modus-kachel" onClick={() => setModus(k)}>
               <span className="modus-icon">
                 <Icon name={MODUS[k].icon} size={22} />
@@ -292,13 +298,15 @@ export function Heute() {
               <span className="sehr-leise klein">{MODUS[k].text}</span>
             </button>
           ))}
-          <Link to="/klausur" className="modus-kachel">
-            <span className="modus-icon">
-              <Icon name="klausur" size={22} />
-            </span>
-            <strong>Probeklausur</strong>
-            <span className="sehr-leise klein">Ohne Hilfen, mit Timer</span>
-          </Link>
+          {mitKlausur && (
+            <Link to="/klausur" className="modus-kachel">
+              <span className="modus-icon">
+                <Icon name="klausur" size={22} />
+              </span>
+              <strong>Probeklausur</strong>
+              <span className="sehr-leise klein">Ohne Hilfen, mit Timer</span>
+            </Link>
+          )}
           <Link to="/nochmal" className="modus-kachel">
             <span className="modus-icon">
               <Icon name="nochmal" size={22} />
@@ -308,13 +316,15 @@ export function Heute() {
             </strong>
             <span className="sehr-leise klein">Was danebenging</span>
           </Link>
-          <Link to="/spielwiese" className="modus-kachel">
-            <span className="modus-icon">
-              <Icon name="welle" size={22} />
-            </span>
-            <strong>Spielwiese</strong>
-            <span className="sehr-leise klein">Pendel und Graphen ausprobieren</span>
-          </Link>
+          {physik && (
+            <Link to="/spielwiese" className="modus-kachel">
+              <span className="modus-icon">
+                <Icon name="welle" size={22} />
+              </span>
+              <strong>Spielwiese</strong>
+              <span className="sehr-leise klein">Pendel und Graphen ausprobieren</span>
+            </Link>
+          )}
         </div>
       </section>
       {modus && <ModusWahl modus={modus} onZu={() => setModus(null)} />}

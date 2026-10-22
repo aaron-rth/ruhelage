@@ -4,10 +4,10 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { Ring, StatusChip } from '../components/Basis';
 import { FachAnfrage } from '../components/FachAnfrage';
 import { Icon } from '../components/Icon';
-import { AKTIVER_KURS } from '../content/kurse';
 import { datumLang, heute, tageZwischen } from '../lib/datum';
 import { statusVon, themaFortschritt } from '../lib/fortschritt';
 import { schwacheThemen } from '../lib/heute';
+import { hatFormeln, kurseNachFach, useAktiverKurs, wechsleKurs } from '../lib/kurs';
 import { baueLernplan, heuteDran } from '../lib/plan';
 import { useStore } from '../store/store';
 
@@ -16,7 +16,7 @@ export function Faecher() {
   const [params, setParams] = useSearchParams();
   const [anfrage, setAnfrage] = useState(params.get('anfrage') === '1');
   const h = heute();
-  const kurs = AKTIVER_KURS;
+  const kurs = useAktiverKurs();
   const e = daten.einstellungen;
   const rest = tageZwischen(h, e.klausurDatum);
   const fs = kurs.themen.map((t) => themaFortschritt(t, daten, h));
@@ -35,16 +35,21 @@ export function Faecher() {
       </div>
 
       <div className="fach-liste" role="list">
-        <div className="fach-kachel an" role="listitem" aria-current="true">
-          <span className="modus-icon">
-            <Icon name="welle" size={22} />
-          </span>
-          <span className="fach-name">
-            <strong>{kurs.fach}</strong>
-            <span className="chip klein-chip">{kurs.klasse}</span>
-          </span>
-          <span className="sehr-leise klein">{kurs.titel}</span>
-        </div>
+        {kurseNachFach().flatMap(({ kurse }) =>
+          kurse.map((k) => (
+            <button key={k.id} type="button" className={`fach-kachel${k.id === kurs.id ? ' an' : ''}`} role="listitem" aria-current={k.id === kurs.id ? 'true' : undefined} onClick={() => wechsleKurs(k.id)}>
+              <span className="modus-icon">
+                <Icon name={k.fach === 'Physik' ? 'welle' : 'buch'} size={22} />
+              </span>
+              <span className="fach-name">
+                <strong>{k.fach}</strong>
+                <span className="chip klein-chip">{k.klasse}</span>
+                {k.entwurf && <span className="chip klein-chip">Entwurf</span>}
+              </span>
+              <span className="sehr-leise klein">{k.titel}</span>
+            </button>
+          )),
+        )}
         <button type="button" className="fach-kachel bald" onClick={() => setAnfrage(true)}>
           <span className="modus-icon">
             <Icon name="plus" size={22} />
@@ -69,7 +74,7 @@ export function Faecher() {
           </Ring>
           <div>
             <span className="ueber-klein">
-              {kurs.fach} · {kurs.klasse} · {kurs.themen.length} Themen
+              {kurs.fach} · {kurs.klasse} · {kurs.themen.length} {kurs.themen.length === 1 ? 'Thema' : 'Themen'}
             </span>
             <h2>{kurs.titel}</h2>
             {rest >= 0 && (
@@ -90,11 +95,13 @@ export function Faecher() {
             <strong>Lernplan</strong>
             <span className="sehr-leise klein">{dran.length ? `heute: ${dran.map((t) => t.titel).join(', ')}` : 'Themen bis zur Klausur verteilt'}</span>
           </Link>
-          <Link to="/formeln" className="kurs-weg">
-            <Icon name="formel" size={22} />
-            <strong>Formelsammlung</strong>
-            <span className="sehr-leise klein">alle Formeln zum Nachschlagen</span>
-          </Link>
+          {hatFormeln(kurs) && (
+            <Link to="/formeln" className="kurs-weg">
+              <Icon name="formel" size={22} />
+              <strong>Formelsammlung</strong>
+              <span className="sehr-leise klein">alle Formeln zum Nachschlagen</span>
+            </Link>
+          )}
         </div>
       </section>
 

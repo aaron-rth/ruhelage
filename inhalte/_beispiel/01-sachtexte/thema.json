@@ -1,0 +1,75 @@
+{
+  "id": "beispiel-sachtexte",
+  "titel": "Sachtexte analysieren",
+  "untertitel": "Aufbau, Sprache und Intention",
+  "quelleErklaerung": "eigene Zusammenstellung (Beispielpaket)",
+  "karten": [
+    {
+      "id": "beispiel-sachtexte-k1",
+      "typ": "begriff",
+      "vorne": "Was gehört in die Einleitung einer Sachtextanalyse?",
+      "hinten": "Autor, Titel, Textsorte, Erscheinungsort und -jahr sowie das Thema in einem Satz.",
+      "quelle": "Beispielpaket"
+    },
+    {
+      "id": "beispiel-sachtexte-k2",
+      "typ": "warum",
+      "vorne": "Warum reicht es nicht, ein Stilmittel nur zu benennen?",
+      "hinten": "Weil die Analyse zeigen soll, **wie** der Text wirkt. Erst die Wirkung (z. B. „betont die Dringlichkeit“) macht aus der Beobachtung eine Analyse.",
+      "quelle": "Beispielpaket"
+    },
+    {
+      "id": "beispiel-sachtexte-k3",
+      "typ": "begriff",
+      "vorne": "Rhetorische Frage",
+      "hinten": "Eine Frage, auf die keine Antwort erwartet wird, weil sie sich scheinbar von selbst ergibt. Wirkung: lenkt den Leser zur Meinung des Autors.",
+      "quelle": "Beispielpaket"
+    }
+  ],
+  "uebungen": [
+    {
+      "id": "beispiel-sachtexte-u1",
+      "typ": "mc",
+      "frage": "Welcher Satz ist eine gelungene **Analyse** (nicht nur Beschreibung)?",
+      "quelle": "Beispielpaket",
+      "optionen": [
+        { "text": "Der Autor verwendet in Z. 4 eine Metapher.", "warum": "Nur benannt – die Wirkung fehlt." },
+        { "text": "Die Metapher „Datenflut“ (Z. 4) lässt die Informationsmenge bedrohlich wirken und stützt so die Warnung des Autors.", "richtig": true, "warum": "Mittel, Beleg und Wirkung – so soll es sein." },
+        { "text": "Der Text ist sehr interessant geschrieben.", "warum": "Persönliche Wertung ohne Beleg." }
+      ]
+    },
+    {
+      "id": "beispiel-sachtexte-u2",
+      "typ": "zuordnen",
+      "frage": "Ordne die Operatoren ihrem Anforderungsbereich zu.",
+      "quelle": "Beispielpaket",
+      "paare": [
+        { "links": "nennen", "rechts": "I – Wiedergabe" },
+        { "links": "analysieren", "rechts": "II – Anwenden" },
+        { "links": "erörtern", "rechts": "III – Beurteilen" }
+      ]
+    },
+    {
+      "id": "beispiel-sachtexte-s1",
+      "typ": "schreiben",
+      "operator": "analysieren",
+      "quelle": "Beispielpaket (eigener Beispieltext)",
+      "frage": "Analysieren Sie, mit welchen sprachlichen Mitteln der Verfasser im Material seine Leser von seiner Position überzeugen will.",
+      "umfang": "ca. 150–200 Wörter",
+      "material": "*Kommentar (Beispieltext):*\n\n(1) Wer heute durch eine Innenstadt läuft, sieht kaum noch Menschen, die nach oben schauen. (2) Alle starren auf ihr Handy – auch ich. (3) Doch ist das wirklich das Leben, das wir führen wollen? (4) Die Datenflut spült jede ruhige Minute weg. (5) Wir sollten uns die Pausen zurückholen: eine Stunde am Tag ohne Bildschirm. (6) Jeder kann damit anfangen, heute noch.",
+      "erwartung": [
+        "Rhetorische Frage (Satz 3) bezieht den Leser ein und legt die Antwort „nein“ nahe.",
+        "Metapher „Datenflut … spült weg“ (Satz 4) lässt die Mediennutzung übermächtig und bedrohlich wirken.",
+        "„Wir“ und „auch ich“ (Satz 2, 5) schaffen Nähe: Der Verfasser stellt sich auf eine Stufe mit den Lesern.",
+        "Appell mit konkretem Vorschlag (Satz 5–6) macht die Forderung leicht umsetzbar und motiviert zum Handeln.",
+        "Fazit: Die Mittel zielen darauf, den Leser emotional zu erreichen und zum Umdenken zu bewegen."
+      ],
+      "kriterien": [
+        { "name": "Sprachliche Mittel erkannt", "beschreibung": "Mindestens drei passende Mittel korrekt benannt.", "punkte": 3 },
+        { "name": "Belege", "beschreibung": "Jedes Mittel mit Zitat oder Satzangabe belegt.", "punkte": 2 },
+        { "name": "Wirkung und Funktion", "beschreibung": "Für jedes Mittel erklärt, wie es wirkt und wie es die Position stützt.", "punkte": 4 },
+        { "name": "Darstellung", "beschreibung": "Zusammenhängender Text, Fachsprache, sachlicher Stil.", "punkte": 1 }
+      ]
+    }
+  ]
+}

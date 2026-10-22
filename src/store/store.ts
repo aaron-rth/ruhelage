@@ -40,7 +40,12 @@ export interface Einstellungen {
   zielAufgaben: number;
   countdown: boolean;
   theme: 'dark' | 'light';
+  /** Klausurdatum des aktiven Kurses ('' = keine Klausur geplant) */
   klausurDatum: string;
+  /** aktiver Kurs */
+  kurs: string;
+  /** gemerkte Klausurdaten der anderen Kurse (beim Wechsel getauscht) */
+  klausurDaten: Record<string, string>;
   /** Einführung und kurze Hinweise anzeigen */
   hinweise: boolean;
   /** Wiederholungsabstände der Karteikarten */
@@ -53,6 +58,8 @@ export interface Einstellungen {
   fokus: boolean;
   /** dezente Töne bei Antworten und Weiterklicken */
   ton: boolean;
+  /** iPhone: Töne auch bei eingeschaltetem Stummmodus */
+  tonTrotzStumm: boolean;
   /** sanfte Vibration (nur wo unterstützt) */
   haptik: boolean;
 }
@@ -78,12 +85,15 @@ export const STANDARD_EINSTELLUNGEN: Einstellungen = {
   countdown: true,
   theme: 'dark',
   klausurDatum: '2026-11-06',
+  kurs: 'schwingungen',
+  klausurDaten: {},
   hinweise: true,
   takt: 'standard',
   wischen: true,
   wischUmgekehrt: false,
   fokus: false,
   ton: true,
+  tonTrotzStumm: false,
   haptik: true,
 };
 

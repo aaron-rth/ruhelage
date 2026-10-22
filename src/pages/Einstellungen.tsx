@@ -3,7 +3,7 @@ import { Meldung } from '../components/Basis';
 import { starteTour } from '../components/Tour';
 import { Icon } from '../components/Icon';
 import { heute } from '../lib/datum';
-import { rueckmeldung, vibrationMoeglich } from '../lib/feedback';
+import { rueckmeldung, stummmodusSteuerbar, vibrationMoeglich } from '../lib/feedback';
 import { useIstHandy } from '../lib/geraet';
 import { intervallText, TAKTE, type Takt } from '../lib/leitner';
 import { exportiere, liesImport, useStore } from '../store/store';
@@ -139,8 +139,23 @@ export function Einstellungen() {
             s.setzeEinstellung('ton', b);
             if (b) window.setTimeout(() => rueckmeldung('richtig'), 0);
           }}
-          text="Leise, kurze Töne bei richtigen und falschen Antworten und beim Weiterklicken."
+          text="Leise, kurze Töne bei Antworten, beim Umdrehen und Bewerten von Karteikarten (gewusst, so halb und nicht gewusst klingen verschieden)."
         />
+        {e.ton && (
+          <Schalter
+            label="Auch im Stummmodus"
+            an={e.tonTrotzStumm}
+            onChange={(b) => {
+              s.setzeEinstellung('tonTrotzStumm', b);
+              if (b) window.setTimeout(() => rueckmeldung('gewusst'), 0);
+            }}
+            text={
+              stummmodusSteuerbar()
+                ? 'iPhone: Töne auch bei eingeschaltetem Stummschalter. Kann Musik im Hintergrund kurz unterbrechen.'
+                : 'Auf dem iPhone sind die Töne im Stummmodus still. Mit iOS 17 oder neuer lässt sich das hier ändern, sonst Stummschalter aus.'
+            }
+          />
+        )}
         <Schalter
           label="Vibration"
           an={e.haptik && vibrationMoeglich()}

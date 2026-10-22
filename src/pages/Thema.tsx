@@ -7,6 +7,7 @@ import { PausenKarte, Sitzung, SitzungsEnde, starteSitzung, useSitzungsStand, ty
 import { UebungAnsicht } from '../components/uebungen/UebungAnsicht';
 import { VollbildRahmen } from '../components/Vollbild';
 import { findeThema } from '../content/kurse';
+import { operatorVon } from '../content/operatoren';
 import type { Generator, Thema } from '../content/types';
 import { heute } from '../lib/datum';
 import { genKey, quote, statusVon, themaFortschritt, uebKey, vorschlag } from '../lib/fortschritt';
@@ -60,7 +61,7 @@ export function ThemaSeite() {
       </div>
 
       <nav className="tabs" aria-label="Bereiche">
-        {TABS.map((tb) => (
+        {TABS.filter((tb) => tb.id !== 'rechnen' || tab === 'rechnen' || t.generatoren.some((g) => g.art === 'rechnen')).map((tb) => (
           <NavLink key={tb.id} to={`/thema/${t.id}/${tb.id}`} className={() => (tab === tb.id ? 'aktiv' : '')}>
             <Icon name={tb.icon} size={16} />
             {tb.label}
@@ -86,7 +87,7 @@ function Erklaert({ t }: { t: Thema }) {
     <div className="raster-erklaert">
       <article className="panel">
         <Md text={t.erklaerung} />
-        <p className="sehr-leise klein quelle-zeile">Quellen: {t.quelleErklaerung}</p>
+        {t.quelleErklaerung && <p className="sehr-leise klein quelle-zeile">Quellen: {t.quelleErklaerung}</p>}
       </article>
       <aside className="stapel">
         {t.formeln.length > 0 && (
@@ -113,9 +114,11 @@ function Erklaert({ t }: { t: Thema }) {
             <Link className="btn" to={`/thema/${t.id}/uebungen`}>
               <Icon name="stift" size={16} /> {t.uebungen.length + t.generatoren.filter((g) => g.art === 'diagramm').length} Übungen
             </Link>
-            <Link className="btn" to={`/thema/${t.id}/rechnen`}>
-              <Icon name="rechner" size={16} /> {t.generatoren.filter((g) => g.art === 'rechnen').length} Rechentrainer
-            </Link>
+            {t.generatoren.some((g) => g.art === 'rechnen') && (
+              <Link className="btn" to={`/thema/${t.id}/rechnen`}>
+                <Icon name="rechner" size={16} /> {t.generatoren.filter((g) => g.art === 'rechnen').length} Rechentrainer
+              </Link>
+            )}
           </div>
         </div>
       </aside>
@@ -211,7 +214,7 @@ function UebungenTab({ t }: { t: Thema }) {
   const daten = useStore();
   const eintraege: UebEintrag[] = useMemo(
     () => [
-      ...t.uebungen.map((u) => ({ art: 'uebung' as const, id: u.id, frage: u.frage.split('\n')[0], typ: u.typ })),
+      ...t.uebungen.map((u) => ({ art: 'uebung' as const, id: u.id, frage: u.frage.split('\n')[0], typ: u.typ === 'schreiben' ? (operatorVon(u.operator)?.name ?? 'Schreiben') : u.typ })),
       ...t.generatoren.filter((g) => g.art === 'diagramm').map((g) => ({ art: 'gen' as const, id: g.id, frage: g.titel, typ: 'diagramm', g })),
     ],
     [t],

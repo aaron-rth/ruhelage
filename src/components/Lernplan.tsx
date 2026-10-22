@@ -1,6 +1,6 @@
 // Lernplan bis zur Klausur: welche Themen an welchem Tag, und wie viel Zeit das ungefähr braucht.
 import { Link } from 'react-router-dom';
-import { AKTIVER_KURS } from '../content/kurse';
+import { useAktiverKurs } from '../lib/kurs';
 import { datumLang, heute, parseDatum, plusTage } from '../lib/datum';
 import { baueLernplan } from '../lib/plan';
 import { useStore } from '../store/store';
@@ -17,10 +17,11 @@ function tagName(iso: string, h: string): string {
 }
 
 export function Lernplan() {
+  const kurs = useAktiverKurs();
   const daten = useStore();
   const h = heute();
   const e = daten.einstellungen;
-  const plan = baueLernplan(AKTIVER_KURS, daten, h, e.klausurDatum);
+  const plan = baueLernplan(kurs, daten, h, e.klausurDatum);
 
   if (!plan) {
     return (

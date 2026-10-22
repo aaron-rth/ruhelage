@@ -5,7 +5,8 @@ import { Dialog } from '../components/Dialog';
 import { EINFUEHRUNG, useTour } from '../components/Tour';
 import { Lernplan } from '../components/Lernplan';
 import { Icon } from '../components/Icon';
-import { AKTIVER_KURS, findeThema } from '../content/kurse';
+import { useAktiverKurs } from '../lib/kurs';
+import { findeThema } from '../content/kurse';
 import type { Thema } from '../content/types';
 import { heute, tageZwischen } from '../lib/datum';
 import { statusVon, themaFortschritt } from '../lib/fortschritt';
@@ -101,7 +102,7 @@ function EinschaetzHinweis({ onZu }: { onZu: () => void }) {
 }
 
 export function Lernpfad() {
-  const kurs = AKTIVER_KURS;
+  const kurs = useAktiverKurs();
   const daten = useStore();
   const offen = kurs.themen.filter((t) => statusVon(t, daten) === 'offen').length;
   const [params, setParams] = useSearchParams();

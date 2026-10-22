@@ -6,6 +6,7 @@ import type {
   LueckeUebung,
   MCUebung,
   ReihenfolgeUebung,
+  SchreibUebung,
   Uebung,
   ZuordnenUebung,
 } from '../../content/types';
@@ -17,6 +18,7 @@ import { Md, Meldung, Taste } from '../Basis';
 import { rueckmeldung } from '../../lib/feedback';
 import { ErklaerPanel } from '../ErklaerPanel';
 import { Icon } from '../Icon';
+import { OperatorKopf, Schreiben } from './Schreiben';
 
 interface Props {
   uebung: Uebung;
@@ -33,6 +35,7 @@ const TYP_TEXT: Record<Uebung['typ'], string> = {
   fehler: 'Fehler finden',
   zuordnen: 'Zuordnen',
   klassifizieren: 'Klassifizieren',
+  schreiben: 'Schreiben',
 };
 
 /** Gemischte Reihenfolge, die nicht zufällig schon richtig ist. */
@@ -66,7 +69,8 @@ export function UebungAnsicht({ uebung, themaId, onFertig, onWeiter, weiterText 
     if (geprueft === null) return;
     function onKey(e: KeyboardEvent) {
       const tag = (e.target as HTMLElement)?.tagName;
-      if ((e.key === 'e' || e.key === 'E') && tag !== 'INPUT') setErklaer(true);
+      if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+      if (e.key === 'e' || e.key === 'E') setErklaer(true);
       if (onWeiter && e.key === 'Enter' && tag !== 'BUTTON') {
         e.preventDefault();
         onWeiter();
@@ -76,21 +80,29 @@ export function UebungAnsicht({ uebung, themaId, onFertig, onWeiter, weiterText 
     return () => window.removeEventListener('keydown', onKey);
   }, [geprueft, onWeiter]);
 
-  const Koerper = { mc: MC, reihenfolge: Reihenfolge, luecke: Luecke, fehler: Fehler, zuordnen: Zuordnen, klassifizieren: Klassifizieren }[uebung.typ] as (p: KProps<Uebung>) => JSX.Element;
+  const Koerper = { schreiben: SchreibKoerper, mc: MC, reihenfolge: Reihenfolge, luecke: Luecke, fehler: Fehler, zuordnen: Zuordnen, klassifizieren: Klassifizieren }[uebung.typ] as (p: KProps<Uebung>) => JSX.Element;
 
   return (
     <div className="uebung einblenden">
       <div className="zeile zwischen">
-        <span className="chip">{TYP_TEXT[uebung.typ]}</span>
+        {uebung.typ === 'schreiben' ? <OperatorKopf u={uebung} themaId={themaId} /> : <span className="chip">{TYP_TEXT[uebung.typ]}</span>}
         <span className="sehr-leise klein">{uebung.quelle}</span>
       </div>
       <Md text={uebung.frage} className="prosa uebung-frage" />
-      <Koerper key={uebung.id} u={uebung} seed={seed} geprueft={geprueft} onPruefen={fertig} />
+      <Koerper key={uebung.id} u={uebung} themaId={themaId} seed={seed} geprueft={geprueft} onPruefen={fertig} />
       {geprueft !== null && (
         <>
-          <Meldung art={geprueft ? 'richtig' : 'falsch'}>
-            <strong>{geprueft ? 'Richtig.' : 'Nicht ganz.'}</strong> {uebung.erklaerung && <Md text={uebung.erklaerung} inline />}
-          </Meldung>
+          {uebung.typ !== 'schreiben' ? (
+            <Meldung art={geprueft ? 'richtig' : 'falsch'}>
+              <strong>{geprueft ? 'Richtig.' : 'Nicht ganz.'}</strong> {uebung.erklaerung && <Md text={uebung.erklaerung} inline />}
+            </Meldung>
+          ) : (
+            uebung.erklaerung && (
+              <Meldung art="info">
+                <Md text={uebung.erklaerung} inline />
+              </Meldung>
+            )
+          )}
           <div className="aktionen">
             {onWeiter && (
               <button type="button" className="btn primaer" onClick={onWeiter}>
@@ -116,11 +128,13 @@ function uebungsText(u: Uebung): string {
   if (u.typ === 'luecke') teile.push(u.text, ...u.luecken.map((l) => l.optionen[l.richtig]));
   if (u.typ === 'zuordnen') teile.push(...u.paare.map((p) => `${p.links} ${p.rechts}`));
   if (u.typ === 'klassifizieren') teile.push(...u.items.map((i) => i.text));
+  if (u.typ === 'schreiben') teile.push(...u.erwartung);
   return teile.join(' ');
 }
 
 interface KProps<T> {
   u: T;
+  themaId: string;
   seed: number;
   geprueft: boolean | null;
   onPruefen: (richtig: boolean) => void;
@@ -144,6 +158,11 @@ function PruefKnopf({ onClick, disabled }: { onClick: () => void; disabled?: boo
       </button>
     </div>
   );
+}
+
+// ---------- Schreibaufgabe ----------
+function SchreibKoerper({ u, themaId, geprueft, onPruefen }: KProps<SchreibUebung>) {
+  return <Schreiben u={u} themaId={themaId} geprueft={geprueft} onPruefen={onPruefen} />;
 }
 
 // ---------- Multiple Choice ----------

@@ -101,4 +101,27 @@ export const uebungen: Uebung[] = [
       { optionen: ['Dämpfung', 'Anregung', 'Masse'], richtig: 0 },
     ],
   },
+  {
+    id: 'rs-s-resonanz',
+    typ: 'schreiben',
+    operator: 'erlaeutern',
+    frage: 'Erläutern Sie das Phänomen der Resonanz bei einer erzwungenen Schwingung. Gehen Sie auf die Rolle der Dämpfung ein und nennen Sie je ein Beispiel, bei dem Resonanz erwünscht bzw. unerwünscht ist.',
+    umfang: 'ca. 10–14 Sätze',
+    quelle: 'eigene Aufgabe',
+    erwartung: [
+      'Erzwungene Schwingung: Ein Erreger regt den Resonator periodisch an; nach dem Einschwingen schwingt der Resonator mit der Erregerfrequenz.',
+      'Die Amplitude hängt von der Erregerfrequenz ab und wird maximal, wenn die Erregerfrequenz (ungefähr) der Eigenfrequenz entspricht – das ist Resonanz.',
+      'Bei Resonanz eilt der Erreger dem Resonator um $\\frac{\\pi}{2}$ voraus; die Energie wird dann im richtigen Takt zugeführt und besonders gut übertragen.',
+      'Je schwächer die Dämpfung, desto höher und schmaler ist das Resonanzmaximum; ohne Dämpfung würde die Amplitude immer weiter wachsen (Resonanzkatastrophe).',
+      'Beispiele: erwünscht z. B. Schaukel im richtigen Takt anstoßen, Musikinstrumente; unerwünscht z. B. schwingende Brücken, Maschinenteile, Fahrzeugteile (Abhilfe: Dämpfung, Schwingungstilger).',
+    ],
+    kriterien: [
+      { name: 'Erzwungene Schwingung', beschreibung: 'Erreger, Resonator und Schwingen mit Erregerfrequenz beschrieben.', punkte: 2 },
+      { name: 'Resonanzbedingung', beschreibung: 'Maximale Amplitude bei Erregerfrequenz ≈ Eigenfrequenz.', punkte: 2 },
+      { name: 'Energie und Phase', beschreibung: 'Erklärt, warum bei Resonanz besonders viel Energie übertragen wird.', punkte: 1 },
+      { name: 'Dämpfung', beschreibung: 'Einfluss der Dämpfung auf Höhe und Breite des Maximums, Resonanzkatastrophe.', punkte: 3 },
+      { name: 'Beispiele', beschreibung: 'Je ein passendes erwünschtes und unerwünschtes Beispiel.', punkte: 1 },
+      { name: 'Darstellung', beschreibung: 'Zusammenhängend, Fachsprache korrekt.', punkte: 1 },
+    ],
+  },
 ];

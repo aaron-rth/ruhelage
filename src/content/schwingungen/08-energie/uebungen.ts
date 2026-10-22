@@ -105,4 +105,26 @@ export const uebungen: Uebung[] = [
       { links: 'durch Reibung erwärmter Faden', rechts: 'thermische Energie' },
     ],
   },
+  {
+    id: 'en-s-federpendel',
+    typ: 'schreiben',
+    operator: 'erlaeutern',
+    frage: 'Erläutern Sie die Energieumwandlungen bei einem horizontalen Federpendel ohne Reibung während einer Periode. Gehen Sie auch darauf ein, was sich mit Reibung ändert.',
+    umfang: 'ca. 8–12 Sätze',
+    quelle: 'eigene Aufgabe',
+    erwartung: [
+      'Beteiligte Energieformen: Spannenergie $E_{Sp} = \\frac12 D s^2$ und kinetische Energie $E_{kin} = \\frac12 m v^2$.',
+      'Umkehrpunkte: $v = 0$, die ganze Energie steckt in der Feder ($\\frac12 D \\hat s^2$).',
+      'Ruhelage: $s = 0$, die ganze Energie ist kinetisch, die Geschwindigkeit ist maximal.',
+      'Dazwischen wandeln sich die Energieformen ineinander um; die Summe bleibt konstant (Energieerhaltung), $E_{ges} = \\frac12 D \\hat s^2$. Pro Periode passiert die Umwandlung zweimal hin und zurück.',
+      'Mit Reibung wird ständig ein Teil in innere Energie (Wärme) umgewandelt: Gesamtenergie und Amplitude nehmen ab – die Schwingung ist gedämpft.',
+    ],
+    kriterien: [
+      { name: 'Energieformen', beschreibung: 'Spannenergie und kinetische Energie mit Formel genannt.', punkte: 2 },
+      { name: 'Besondere Punkte', beschreibung: 'Zustand an Umkehrpunkt und Ruhelage richtig beschrieben und begründet.', punkte: 3 },
+      { name: 'Energieerhaltung', beschreibung: 'Konstante Gesamtenergie und fortlaufende Umwandlung erläutert.', punkte: 2 },
+      { name: 'Reibung', beschreibung: 'Umwandlung in innere Energie, Abnahme der Amplitude.', punkte: 2 },
+      { name: 'Darstellung', beschreibung: 'Zusammenhängend, Fachsprache, sinnvolle Reihenfolge.', punkte: 1 },
+    ],
+  },
 ];

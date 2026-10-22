@@ -23,7 +23,9 @@ export function plusTage(iso: string, n: number): string {
 }
 
 /** Ganze Tage von `von` bis `bis` (positiv, wenn `bis` später liegt). */
+/** Tage von `von` bis `bis`; ohne Datum (z. B. keine Klausur geplant) -1. */
 export function tageZwischen(von: string, bis: string): number {
+  if (!von || !bis) return -1;
   const ms = parseDatum(bis).getTime() - parseDatum(von).getTime();
   return Math.round(ms / 86_400_000);
 }
