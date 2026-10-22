@@ -34,6 +34,16 @@ export interface TagesStand {
   richtig?: number;
 }
 
+/** Wo es Töne gibt */
+export interface TonBereiche {
+  /** Holzklick bei Knöpfen, Links und Weiterklicken */
+  knoepfe: boolean;
+  /** Karteikarten umdrehen und bewerten */
+  karten: boolean;
+  /** richtig / falsch bei Übungen und Aufgaben */
+  antworten: boolean;
+}
+
 export interface Einstellungen {
   zielMinuten: number;
   zielKarten: number;
@@ -58,6 +68,7 @@ export interface Einstellungen {
   fokus: boolean;
   /** dezente Töne bei Antworten und Weiterklicken */
   ton: boolean;
+  tonBereiche: TonBereiche;
   /** iPhone: Töne auch bei eingeschaltetem Stummmodus */
   tonTrotzStumm: boolean;
   /** sanfte Vibration (nur wo unterstützt) */
@@ -94,6 +105,7 @@ export const STANDARD_EINSTELLUNGEN: Einstellungen = {
   fokus: false,
   ton: true,
   tonTrotzStumm: false,
+  tonBereiche: { knoepfe: true, karten: true, antworten: true },
   haptik: true,
 };
 

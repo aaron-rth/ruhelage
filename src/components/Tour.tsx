@@ -85,6 +85,8 @@ export function Tour() {
   const navigate = useNavigate();
   const handy = useIstHandy();
   const [rahmen, setRahmen] = useState<Rahmen | null>(null);
+  /** Ziel gefunden und ruhig (Seite geladen, Scrollen fertig) – erst dann Rahmen und Karte zeigen */
+  const [bereit, setBereit] = useState(false);
   const karte = useRef<HTMLDivElement>(null);
   const [kartePos, setKartePos] = useState<{ top?: number; bottom?: number; left: number; width: number } | null>(null);
 
@@ -103,6 +105,7 @@ export function Tour() {
     hinweisGesehen('lernpfad-einschaetzen');
     useTour.setState({ schritt: null });
     setRahmen(null);
+    setBereit(false);
   }
   function gehe(i: number) {
     if (i < 0) return;
@@ -119,6 +122,7 @@ export function Tour() {
     if (!s) return;
     navigate(s.pfad);
     setRahmen(null);
+    setBereit(!selektor);
     if (!selektor) return;
     let versuche = 0;
     let stop = false;
@@ -127,29 +131,43 @@ export function Tour() {
       const el = document.querySelector<HTMLElement>(selektor);
       if (el) {
         const r = el.getBoundingClientRect();
-        if (r.top < 70 || r.bottom > window.innerHeight - 90) el.scrollIntoView({ block: 'center', behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+        // sofort springen statt sanft scrollen – sonst läuft der Rahmen hinterher
+        if (r.top < 70 || r.bottom > window.innerHeight - 90) el.scrollIntoView({ block: 'center', behavior: 'auto' });
         return;
       }
       if (versuche++ < 60) requestAnimationFrame(suche);
     };
     const t = window.setTimeout(suche, 60);
+    // Ziel fehlt oder kommt nicht zur Ruhe: Karte trotzdem zeigen
+    const notfall = window.setTimeout(() => setBereit(true), 1500);
     return () => {
       stop = true;
       window.clearTimeout(t);
+      window.clearTimeout(notfall);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [schritt, handy]);
 
-  // Rahmen mitführen (Scrollen, Größe, Animationen)
+  // Rahmen mitführen (Scrollen, Größe). Erst zeigen, wenn das Ziel ein paar Frames ruhig steht.
   useEffect(() => {
     if (!s) return;
     let id = 0;
+    let ruhig = 0;
+    let letzte: Rahmen | null = null;
+    const gleich = (a: Rahmen | null, b: Rahmen) => !!a && Math.abs(a.top - b.top) < 0.5 && Math.abs(a.left - b.left) < 0.5 && Math.abs(a.width - b.width) < 0.5 && Math.abs(a.height - b.height) < 0.5;
     const tick = () => {
       const el = selektor ? document.querySelector<HTMLElement>(selektor) : null;
-      if (el) {
-        const r = el.getBoundingClientRect();
-        setRahmen((alt) => (alt && Math.abs(alt.top - r.top) < 0.5 && Math.abs(alt.left - r.left) < 0.5 && Math.abs(alt.width - r.width) < 0.5 && Math.abs(alt.height - r.height) < 0.5 ? alt : { top: r.top, left: r.left, width: r.width, height: r.height }));
-      } else setRahmen(null);
+      const r = el?.getBoundingClientRect();
+      if (r && r.width > 0 && r.height > 0) {
+        const neu = { top: r.top, left: r.left, width: r.width, height: r.height };
+        ruhig = gleich(letzte, neu) ? ruhig + 1 : 0;
+        letzte = neu;
+        setRahmen((alt) => (gleich(alt, neu) ? alt : neu));
+        if (ruhig >= 6) setBereit(true);
+      } else {
+        ruhig = 0;
+        letzte = null;
+      }
       id = requestAnimationFrame(tick);
     };
     id = requestAnimationFrame(tick);
@@ -184,7 +202,7 @@ export function Tour() {
     }
     left = Math.min(Math.max(16, left), vw - breite - 16);
     setKartePos({ top, left, width: breite });
-  }, [s, rahmen, handy]);
+  }, [s, rahmen, handy, bereit]);
 
   // Tastatur: Esc beendet, Pfeile blättern
   useEffect(() => {
@@ -205,15 +223,18 @@ export function Tour() {
 
   return createPortal(
     <>
-      {rahmen && (
+      {rahmen && bereit && (
         <div
+          key={`rahmen-${schritt}`}
           className="tour-rahmen"
           aria-hidden
           style={{ top: rahmen.top - 6, left: rahmen.left - 6, width: rahmen.width + 12, height: rahmen.height + 12 }}
         />
       )}
+      {bereit && (
       <div
         ref={karte}
+        key={`karte-${schritt}`}
         className={`tour-karte${handy ? ' handy' : ''}`}
         role="dialog"
         aria-live="polite"
@@ -252,6 +273,7 @@ export function Tour() {
           </div>
         </div>
       </div>
+      )}
     </>,
     document.body,
   );

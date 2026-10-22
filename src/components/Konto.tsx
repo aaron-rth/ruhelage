@@ -4,6 +4,7 @@ import { abmelden, cloudLoeschen, codePruefen, codeSenden, syncSofort, useKonto 
 import { zeitText } from '../store/laufend';
 import { Meldung } from './Basis';
 import { Icon } from './Icon';
+import { LoeschDialog } from './LoeschDialog';
 
 export function KontoKarte() {
   const k = useKonto();
@@ -62,26 +63,22 @@ export function KontoKarte() {
           </button>
         </div>
         <div style={{ marginTop: 12 }}>
-          {!loeschen ? (
-            <button className="btn geist klein" onClick={() => setLoeschen(true)}>
-              <Icon name="muell" size={16} /> Cloud-Daten löschen …
-            </button>
-          ) : (
-            <div className="zeile">
-              <button
-                className="btn gefahr klein"
-                onClick={async () => {
-                  const f = await cloudLoeschen();
-                  setLoeschen(false);
-                  setMeldung(f ? { art: 'falsch', text: f } : { art: 'richtig', text: 'Cloud-Daten gelöscht und abgemeldet. Auf diesem Gerät bleibt alles erhalten.' });
-                }}
-              >
-                Ja, Cloud-Daten löschen
-              </button>
-              <button className="btn geist klein" onClick={() => setLoeschen(false)}>
-                Abbrechen
-              </button>
-            </div>
+          <button className="btn geist klein" onClick={() => setLoeschen(true)}>
+            <Icon name="muell" size={16} /> Cloud-Daten löschen …
+          </button>
+          {loeschen && (
+            <LoeschDialog
+              titel="Cloud-Daten wirklich löschen?"
+              weg={['Dein gesamter Lernfortschritt in der Cloud (Karten, Ergebnisse, Statistik)', 'Der Abgleich mit deinen anderen Geräten', 'Du wirst auf diesem Gerät abgemeldet']}
+              bleibt={['Der Fortschritt auf diesem Gerät', 'Auf anderen Geräten: was dort lokal gespeichert ist']}
+              knopf="Cloud-Daten endgültig löschen"
+              onZu={() => setLoeschen(false)}
+              onLoeschen={async () => {
+                const f = await cloudLoeschen();
+                setLoeschen(false);
+                setMeldung(f ? { art: 'falsch', text: f } : { art: 'richtig', text: 'Cloud-Daten gelöscht und abgemeldet. Auf diesem Gerät bleibt alles erhalten.' });
+              }}
+            />
           )}
         </div>
       </section>

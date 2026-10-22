@@ -1,6 +1,6 @@
 // Dezente Rückmeldung: kurze, leise Töne (Web Audio, ohne Audiodateien) und sanfte Vibration.
 // Alles optional – fehlt die Unterstützung, passiert einfach nichts.
-import { useStore } from '../store/store';
+import { useStore, type TonBereiche } from '../store/store';
 
 /** gewusst/halb/nicht: Karteikarten-Bewertung – jede klingt anders, damit man Fehlgriffe hört */
 export type Rueckmeldung = 'klick' | 'richtig' | 'falsch' | 'gewusst' | 'halb' | 'nicht' | 'blatt';
@@ -41,10 +41,10 @@ function audio(): AudioContext | null {
   }
 }
 
-function hueller(a: AudioContext, start: number, dauer: number, lautst: number): GainNode {
+function hueller(a: AudioContext, start: number, dauer: number, lautst: number, anschlag = 0.008): GainNode {
   const g = a.createGain();
   g.gain.setValueAtTime(0.0001, start);
-  g.gain.exponentialRampToValueAtTime(lautst, start + 0.008);
+  g.gain.exponentialRampToValueAtTime(lautst, start + anschlag);
   g.gain.exponentialRampToValueAtTime(0.0001, start + dauer);
   g.connect(a.destination);
   return g;
@@ -94,6 +94,21 @@ function blatt(a: AudioContext) {
   quelle.start(t);
 }
 
+/** weicher, glockiger Ton (Sinus mit leiser Oktave, langsamer Anschlag, langes Ausklingen) */
+function sanft(a: AudioContext, freq: number, start: number, lautst = 0.03) {
+  for (const [f, l] of [
+    [freq, lautst],
+    [freq * 2, lautst * 0.18],
+  ] as const) {
+    const o = a.createOscillator();
+    o.type = 'sine';
+    o.frequency.setValueAtTime(f, start);
+    o.connect(hueller(a, start, 0.45, l, 0.025));
+    o.start(start);
+    o.stop(start + 0.5);
+  }
+}
+
 function ton(a: AudioContext, freq: number, start: number, dauer: number, lautst: number, typ: OscillatorType = 'sine', bis?: number) {
   const o = a.createOscillator();
   o.type = typ;
@@ -110,9 +125,29 @@ export function vibrationMoeglich(): boolean {
   return typeof navigator !== 'undefined' && typeof navigator.vibrate === 'function';
 }
 
-export function rueckmeldung(art: Rueckmeldung) {
+/** Zu welcher Einstellung „Töne bei …“ ein Klang gehört */
+const BEREICH: Record<Rueckmeldung, keyof TonBereiche> = {
+  klick: 'knoepfe',
+  richtig: 'antworten',
+  falsch: 'antworten',
+  gewusst: 'karten',
+  halb: 'karten',
+  nicht: 'karten',
+  blatt: 'karten',
+};
+
+let zuletzt = 0;
+
+/** Holzklick für jeden Knopf und Link (ohne Vibration) – außer es kam gerade schon ein eigener Ton. */
+export function knopfKlick() {
+  if (performance.now() - zuletzt < 80) return;
+  rueckmeldung('klick', false);
+}
+
+export function rueckmeldung(art: Rueckmeldung, vibrieren = true) {
   const e = useStore.getState().einstellungen;
-  if (e.ton) {
+  zuletzt = performance.now();
+  if (e.ton && (e.tonBereiche?.[BEREICH[art]] ?? true)) {
     setzeSession(e.tonTrotzStumm);
     const a = audio();
     if (a) {
@@ -127,22 +162,22 @@ export function rueckmeldung(art: Rueckmeldung) {
         // ein ruhiger, tiefer Ton – kein „Fehler-Buzzer“
         if (art === 'falsch') ton(a, 247, t, 0.22, 0.04, 'sine', 220);
         if (art === 'blatt') blatt(a);
-        // Karteikarten: hell aufwärts / zwei gleiche mittlere Töne / dunkel abwärts
+        // Karteikarten, ruhig und weich: aufwärts / ein einzelner Ton / abwärts
         if (art === 'gewusst') {
-          ton(a, 784, t, 0.12, 0.05, 'triangle');
-          ton(a, 1175, t + 0.07, 0.18, 0.045, 'triangle');
+          sanft(a, 659, t);
+          sanft(a, 880, t + 0.11, 0.026);
         }
-        if (art === 'halb') {
-          ton(a, 523, t, 0.1, 0.045, 'triangle');
-          ton(a, 523, t + 0.11, 0.12, 0.04, 'triangle');
+        if (art === 'halb') sanft(a, 587, t, 0.028);
+        if (art === 'nicht') {
+          sanft(a, 523, t, 0.026);
+          sanft(a, 440, t + 0.13, 0.022);
         }
-        if (art === 'nicht') ton(a, 330, t, 0.26, 0.05, 'sine', 196);
       } catch {
         /* Ton ist nur Zugabe */
       }
     }
   }
-  if (e.haptik && vibrationMoeglich()) {
+  if (vibrieren && e.haptik && vibrationMoeglich()) {
     try {
       navigator.vibrate(VIBRATION[art]);
     } catch {
