@@ -18,6 +18,7 @@ import { ThemaSeite } from './pages/Thema';
 import { KURSE } from './content/kurse';
 import type { Kurs } from './content/types';
 import { hatFormeln, hatProbeklausur, hatSpielwiese, useAktiverKurs, wechsleKurs } from './lib/kurs';
+import { knopfKlick } from './lib/feedback';
 import { streak, useStore } from './store/store';
 import { useUi } from './store/ui';
 
@@ -221,6 +222,19 @@ function istHintergrund(el: HTMLElement | null): boolean {
 }
 
 /** Optionales Konto: beim Start anmelden, nach Änderungen und beim Verlassen synchronisieren. */
+/** Holzklick bei jedem Knopf und Link (eigene Töne, z. B. beim Bewerten, haben Vorrang) */
+function useKnopfKlick() {
+  useEffect(() => {
+    function onClick(e: MouseEvent) {
+      const el = (e.target as Element | null)?.closest?.('button, a[href], [role="button"], [role="radio"], [role="switch"], [role="tab"], summary, select');
+      if (!el || (el as HTMLButtonElement).disabled || el.getAttribute('aria-disabled') === 'true') return;
+      knopfKlick();
+    }
+    document.addEventListener('click', onClick);
+    return () => document.removeEventListener('click', onClick);
+  }, []);
+}
+
 function useCloud() {
   useEffect(() => {
     void kontoStarten();
@@ -240,6 +254,7 @@ function Rahmen() {
   const kurs = useAktiverKurs();
   useLernzeit();
   useCloud();
+  useKnopfKlick();
   useTheme();
   const nochmal = useStore((s) => s.nochmal.length);
   const offen = useOffeneEintraege().filter((e) => e.art !== 'lesen').length;

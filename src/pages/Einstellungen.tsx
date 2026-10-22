@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import { Meldung } from '../components/Basis';
 import { starteTour } from '../components/Tour';
 import { Icon } from '../components/Icon';
+import { LoeschDialog } from '../components/LoeschDialog';
 import { heute } from '../lib/datum';
 import { rueckmeldung, stummmodusSteuerbar, vibrationMoeglich } from '../lib/feedback';
 import { useIstHandy } from '../lib/geraet';
@@ -139,8 +140,30 @@ export function Einstellungen() {
             s.setzeEinstellung('ton', b);
             if (b) window.setTimeout(() => rueckmeldung('richtig'), 0);
           }}
-          text="Leise, kurze Töne bei Antworten, beim Umdrehen und Bewerten von Karteikarten (gewusst, so halb und nicht gewusst klingen verschieden)."
+          text="Leise, kurze Töne. Darunter wählst du, wo."
         />
+        {e.ton && (
+          <div className="ton-bereiche">
+            {(
+              [
+                ['knoepfe', 'Knöpfe & Navigation', 'Holzklick bei jedem Knopf und beim Weiterklicken'],
+                ['karten', 'Karteikarten', 'Umblättern und Bewerten (gewusst, so halb, nicht gewusst klingen verschieden)'],
+                ['antworten', 'Antworten', 'Richtig und falsch bei Übungen und Aufgaben'],
+              ] as const
+            ).map(([k, label, text]) => (
+              <Schalter
+                key={k}
+                label={label}
+                an={e.tonBereiche[k]}
+                text={text}
+                onChange={(b) => {
+                  s.setzeEinstellung('tonBereiche', { ...e.tonBereiche, [k]: b });
+                  if (b) window.setTimeout(() => rueckmeldung(k === 'knoepfe' ? 'klick' : k === 'karten' ? 'gewusst' : 'richtig'), 0);
+                }}
+              />
+            ))}
+          </div>
+        )}
         {e.ton && (
           <Schalter
             label="Auch im Stummmodus"
@@ -228,26 +251,22 @@ export function Einstellungen() {
       <section className="panel">
         <h3 className="mb">Neu anfangen</h3>
         <p className="leise klein">Setzt Karten, Ergebnisse, Nochmal-Stapel und Einstellungen zurück. Das lässt sich nicht rückgängig machen – exportiere vorher eine Sicherung.</p>
-        {!sicher ? (
-          <button className="btn" onClick={() => setSicher(true)}>
-            <Icon name="muell" size={16} /> Fortschritt zurücksetzen …
-          </button>
-        ) : (
-          <div className="zeile">
-            <button
-              className="btn gefahr"
-              onClick={() => {
-                s.zuruecksetzen();
-                setSicher(false);
-                setMeldung({ art: 'richtig', text: 'Alles zurückgesetzt.' });
-              }}
-            >
-              Ja, wirklich zurücksetzen
-            </button>
-            <button className="btn geist" onClick={() => setSicher(false)}>
-              Abbrechen
-            </button>
-          </div>
+        <button className="btn" onClick={() => setSicher(true)}>
+          <Icon name="muell" size={16} /> Fortschritt zurücksetzen …
+        </button>
+        {sicher && (
+          <LoeschDialog
+            titel="Fortschritt wirklich zurücksetzen?"
+            weg={['Alle Karteikarten-Stände und Wiederholungstermine', 'Alle Ergebnisse, der Nochmal-Stapel und deine Selbsteinschätzungen', 'Statistik, Serie und XP', 'Deine Einstellungen']}
+            bleibt={['Deine Cloud-Daten, falls du angemeldet bist – beim nächsten Abgleich kommt der Stand von dort zurück']}
+            knopf="Alles endgültig zurücksetzen"
+            onZu={() => setSicher(false)}
+            onLoeschen={() => {
+              s.zuruecksetzen();
+              setSicher(false);
+              setMeldung({ art: 'richtig', text: 'Alles zurückgesetzt.' });
+            }}
+          />
         )}
       </section>
 
