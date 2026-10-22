@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { Leer, Md, Taste } from '../components/Basis';
 import { Icon } from '../components/Icon';
-import { AKTIVER_KURS } from '../content/kurse';
+import { useAktiverKurs } from '../lib/kurs';
 import type { Formel, Thema } from '../content/types';
 
 function FormelKarte({ f, thema }: { f: Formel; thema?: Thema }) {
@@ -19,7 +19,8 @@ function FormelKarte({ f, thema }: { f: Formel; thema?: Thema }) {
 }
 
 export function Formeln() {
-  const themen = AKTIVER_KURS.themen.filter((t) => t.formeln.length > 0);
+  const kurs = useAktiverKurs();
+  const themen = kurs.themen.filter((t) => t.formeln.length > 0);
   const [params, setParams] = useSearchParams();
   const [suche, setSuche] = useState('');
   const [aktiv, setAktiv] = useState(() => Math.max(0, themen.findIndex((t) => t.id === params.get('thema'))));

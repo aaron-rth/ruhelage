@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { Leer, Md } from '../components/Basis';
 import { Icon } from '../components/Icon';
 import { PausenKarte, Sitzung, SitzungsEnde, starteSitzung, useSitzungsStand, type SitzungsBilanz, type SitzungsItem } from '../components/Sitzung';
-import { AKTIVER_KURS, findeGenerator, findeKarte, findeUebung } from '../content/kurse';
+import { useAktiverKurs } from '../lib/kurs';
+import { findeGenerator, findeKarte, findeUebung } from '../content/kurse';
 import { useStore, type NochmalEintrag } from '../store/store';
 
 function titelVon(n: NochmalEintrag): string {
@@ -23,6 +24,7 @@ function alsItem(n: NochmalEintrag): SitzungsItem {
 }
 
 export function Nochmal() {
+  const kurs = useAktiverKurs();
   const liste = useStore((s) => s.nochmal);
   const entferne = useStore((s) => s.entferneNochmal);
   const stand = useSitzungsStand('nochmal');
@@ -43,7 +45,7 @@ export function Nochmal() {
     );
 
   const gueltig = liste.filter((n) => (n.art === 'karte' ? findeKarte(n.ref) : n.art === 'uebung' ? findeUebung(n.ref) : findeGenerator(n.ref)));
-  const nachThema = AKTIVER_KURS.themen.map((t) => ({ t, eintraege: gueltig.filter((n) => n.themaId === t.id) })).filter((x) => x.eintraege.length);
+  const nachThema = kurs.themen.map((t) => ({ t, eintraege: gueltig.filter((n) => n.themaId === t.id) })).filter((x) => x.eintraege.length);
 
   return (
     <div className="inhalt">

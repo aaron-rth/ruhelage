@@ -1,6 +1,6 @@
 // Statistik: Wochenverlauf, Lernkalender, Karteikarten-Fächer und Themenfortschritt.
 import { useState } from 'react';
-import { AKTIVER_KURS } from '../content/kurse';
+import { useAktiverKurs } from '../lib/kurs';
 import { heute, parseDatum, plusTage } from '../lib/datum';
 import { themaFortschritt } from '../lib/fortschritt';
 import { laengsteSerie, streak, tagZaehlt, useStore, type TagesStand } from '../store/store';
@@ -185,8 +185,9 @@ function Kalender({ tage, h, ziel }: { tage: Record<string, TagesStand>; h: stri
 }
 
 function Faecher() {
+  const kurs = useAktiverKurs();
   const karten = useStore((s) => s.karten);
-  const alle = AKTIVER_KURS.themen.flatMap((t) => t.karten);
+  const alle = kurs.themen.flatMap((t) => t.karten);
   const n = [0, 1, 2, 3, 4, 5].map((f) => alle.filter((k) => (karten[k.id]?.fach ?? 0) === f && (f > 0 || !karten[k.id])).length);
   const segmente = [
     { label: 'neu', n: n[0], cls: 'neu' },
@@ -214,11 +215,12 @@ function Faecher() {
 }
 
 function Themen() {
+  const kurs = useAktiverKurs();
   const daten = useStore();
   const h = heute();
   return (
     <ul className="themen-balken">
-      {AKTIVER_KURS.themen.map((t) => {
+      {kurs.themen.map((t) => {
         const f = themaFortschritt(t, daten, h);
         return (
           <li key={t.id}>

@@ -3792,3 +3792,130 @@ a.fach-zeile.bald:hover {
     animation: none;
   }
 }
+
+/* ---------- Schreibaufgaben ---------- */
+.operator-knopf {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 4px 2px 0;
+  background: none;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  border-radius: var(--r);
+}
+.operator-hinweis {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.82rem;
+  color: var(--text-3);
+  transition: color var(--dauer) var(--kurve);
+}
+.operator-knopf:hover .operator-hinweis,
+.operator-knopf:focus-visible .operator-hinweis {
+  color: var(--akzent);
+}
+.material {
+  border-left: 3px solid var(--linie-stark);
+  background: var(--flaeche-2);
+  border-radius: 0 var(--r) var(--r) 0;
+  padding: var(--s3) var(--s4);
+  margin-bottom: var(--s3);
+}
+.material .prosa > :last-child {
+  margin-bottom: 0;
+}
+.schreib-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--s2);
+  flex-wrap: wrap;
+  margin-bottom: 6px;
+}
+.schreib-feld {
+  width: 100%;
+  height: auto;
+  min-height: 180px;
+  resize: vertical;
+  line-height: 1.55;
+  font: inherit;
+}
+.schreib-feld[readonly] {
+  opacity: 0.8;
+}
+.erwartung,
+.selbstcheck {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+}
+.erwartung h4,
+.selbstcheck h4 {
+  margin: var(--s2) 0 0;
+}
+.erwartung ul {
+  margin: 0;
+  padding-left: 1.2em;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.ki-hinweis {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  width: 100%;
+  text-align: left;
+  padding: var(--s3);
+  border: 1px dashed var(--akzent-linie);
+  border-radius: var(--r);
+  background: var(--akzent-weich);
+  color: inherit;
+  font: inherit;
+  font-size: 0.92rem;
+  cursor: pointer;
+}
+.ki-hinweis > svg:first-child {
+  color: var(--akzent);
+  flex: none;
+}
+.ki-hinweis > span {
+  flex: 1;
+}
+.ki-box {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+  padding: var(--s3) var(--s4);
+  border: 1px solid var(--akzent-linie);
+  border-radius: var(--r);
+  background: var(--akzent-weich);
+}
+.ki-box h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+.ki-box h3 svg {
+  color: var(--akzent);
+}
+.ki-box p {
+  margin: 0;
+}
+.ki-prompt {
+  width: 100%;
+  height: auto;
+  min-height: 240px;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  line-height: 1.5;
+  resize: vertical;
+}
+.operator-info p {
+  margin: 0 0 6px;
+}

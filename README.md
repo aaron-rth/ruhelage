@@ -44,7 +44,13 @@ npm run check:material # stellt sicher, dass kein Lernmaterial im Repo liegt
 
 Technik: Vite, React, TypeScript, React Router (HashRouter), Zustand (localStorage, versioniertes Schema), KaTeX, Marked. Kein Backend, keine Accounts – jeder Browser hat seinen eigenen Speicherstand. Angefangene Sitzungen liegen getrennt unter `ruhelage-laufend` (nicht im Export).
 
-## Ein neues Thema ergänzen (z. B. „Wellen“)
+## Weitere Fächer: Inhaltspakete
+
+Neue Fächer und Themen kommen als Ordner nach `inhalte/` (JSON + Markdown, kein Code). Die App lädt sie automatisch, und `npm run check:inhalte` prüft sie, auch in CI. Ein fehlerhaftes Paket lässt also den Build scheitern, nicht die Website. Format und Regeln stehen in [INHALTE.md](INHALTE.md), ein vollständiges Beispiel in `inhalte/_beispiel/`. Kurse mit `"entwurf": true` sind nur lokal sichtbar.
+
+Für offene Aufgaben gibt es den Übungstyp `schreiben` mit Operator, Erwartungshorizont und Bewertungskriterien. Dazu gehören ein Selbstcheck und ein fertiger KI-Prompt, mit dem man die eigene Antwort nach genau diesen Kriterien korrigieren lassen kann.
+
+## Ein neues Thema mit Rechengeneratoren ergänzen (z. B. „Wellen“)
 
 Inhalte sind strikt vom Code getrennt. Für ein neues Thema muss kein UI-Code angefasst werden.
 
@@ -52,14 +58,14 @@ Inhalte sind strikt vom Code getrennt. Für ein neues Thema muss kein UI-Code an
    - `erklaerung.md` – „Kurz erklärt“ als Markdown, Formeln mit `$…$` bzw. `$$…$$`
    - `karten.ts` – `export const karten: Karte[] = [...]`
    - `mehr.ts` – „Genauer erklärt“ je Karte: `export const mehr: Record<string, string> = { 'karten-id': '…' }` (ein Test prüft, dass jede Karte eine hat)
-   - `uebungen.ts` – `export const uebungen: Uebung[] = [...]` (Typen: `mc`, `reihenfolge`, `luecke`, `fehler`, `zuordnen`, `klassifizieren`)
+   - `uebungen.ts` – `export const uebungen: Uebung[] = [...]` (Typen: `mc`, `reihenfolge`, `luecke`, `fehler`, `zuordnen`, `klassifizieren`, `schreiben`)
    - `generatoren.ts` – `export const generatoren: Generator[] = [...]`
    - `formeln.ts` – `export const formeln: Formel[] = [...]`
    - `index.ts` – fasst alles zu einem `Thema` zusammen (Id, Nummer, Titel, Abhängigkeiten, Priorität; `karten: karten.map((k) => ({ ...k, mehr: mehr[k.id] }))`)
 
    Am einfachsten kopierst du einen vorhandenen Themenordner als Vorlage.
 2. **Kurs anlegen**: `src/content/wellen/index.ts` exportiert ein `Kurs`-Objekt mit allen Themen und dem Layout des Lernpfads (`pfad`: Zeilen mit Themen-Ids).
-3. **Registrieren** in `src/content/kurse.ts`: Kurs in `KURSE` aufnehmen und ggf. `AKTIVER_KURS` umstellen.
+3. **Registrieren** in `src/content/kurse.ts`: Kurs in `EINGEBAUT` aufnehmen. Gewechselt wird auf der Seite „Fächer“.
 4. **Tests laufen lassen**: `npm test` prüft automatisch jeden neuen Generator mit 400 Zufallsseeds (endliche Werte, sinnvolle Einheiten, keine kaputten Texte). Physikalische Konsistenztests kommen in `src/content/physik-konsistenz.test.ts`.
 
 Jede Karte und Aufgabe hat ein Feld `quelle` (z. B. „Buch S. 164“), damit man nachprüfen kann.

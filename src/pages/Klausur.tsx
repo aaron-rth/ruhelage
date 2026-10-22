@@ -4,7 +4,7 @@ import { AntwortEingabe } from '../components/AntwortEingabe';
 import { Balken, Md, Meldung } from '../components/Basis';
 import { Icon } from '../components/Icon';
 import { Plot } from '../components/Plot';
-import { AKTIVER_KURS } from '../content/kurse';
+import { aktiverKurs, useAktiverKurs } from '../lib/kurs';
 import type { Aufgabe, Generator, Thema } from '../content/types';
 import { eingabeText, istLeer, leereEingabe, pruefe, sollText, type Eingabe } from '../lib/antwort';
 import { genKey } from '../lib/fortschritt';
@@ -22,8 +22,9 @@ interface KlausurAufgabe {
 type Phase = 'start' | 'laeuft' | 'auswertung';
 
 function stelleZusammen(themenIds: string[], anzahl: number, seed: number): KlausurAufgabe[] {
+  const kurs = aktiverKurs();
   const rng = erzeugeRng(seed);
-  const themen = AKTIVER_KURS.themen.filter((t) => themenIds.includes(t.id));
+  const themen = kurs.themen.filter((t) => themenIds.includes(t.id));
   const pool = themen.flatMap((t) => t.generatoren.filter((g) => g.klausur).map((g) => ({ g, t })));
   // erst aus möglichst vielen verschiedenen Themen ziehen
   const nachThema = new Map<string, typeof pool>();
@@ -37,7 +38,7 @@ function stelleZusammen(themenIds: string[], anzahl: number, seed: number): Klau
     }
   }
   // in Lernpfad-Reihenfolge sortieren, wie in einer echten Klausur
-  const ordnung = AKTIVER_KURS.themen.map((t) => t.id);
+  const ordnung = kurs.themen.map((t) => t.id);
   auswahl.sort((a, b) => ordnung.indexOf(a.t.id) - ordnung.indexOf(b.t.id));
   return auswahl.map(({ g, t }) => {
     const s = rng.int(1, 2 ** 30);
@@ -52,8 +53,9 @@ function zeitText(sek: number): string {
 }
 
 export function Klausur() {
+  const kurs = useAktiverKurs();
   const [phase, setPhase] = useState<Phase>('start');
-  const [themenIds, setThemenIds] = useState<string[]>(() => AKTIVER_KURS.themen.filter((t) => t.generatoren.some((g) => g.klausur)).map((t) => t.id));
+  const [themenIds, setThemenIds] = useState<string[]>(() => kurs.themen.filter((t) => t.generatoren.some((g) => g.klausur)).map((t) => t.id));
   const [anzahl, setAnzahl] = useState(5);
   const [minuten, setMinuten] = useState<number>(90);
   const [aufgaben, setAufgaben] = useState<KlausurAufgabe[]>([]);
@@ -65,7 +67,7 @@ export function Klausur() {
   useLernaktivitaet(phase === 'laeuft');
   const speichere = useStore((s) => s.speichereErgebnis);
 
-  const moeglich = AKTIVER_KURS.themen.filter((t) => t.generatoren.some((g) => g.klausur));
+  const moeglich = kurs.themen.filter((t) => t.generatoren.some((g) => g.klausur));
 
   function starten() {
     const a = stelleZusammen(themenIds, anzahl, neuerSeed());

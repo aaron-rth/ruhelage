@@ -67,7 +67,23 @@ export interface KlassifizierenUebung extends UebungBasis {
   items: { text: string; kategorie: number; warum?: string }[];
 }
 
+/** Offene Aufgabe mit Operator (erläutern, erörtern, analysieren …): frei schreiben, dann Selbstcheck */
+export interface SchreibUebung extends UebungBasis {
+  typ: 'schreiben';
+  /** Schlüssel aus content/operatoren.ts, z. B. „erlaeutern“ */
+  operator: string;
+  /** optionales Material (Text, Tabelle, Bild) – Markdown */
+  material?: string;
+  /** erwarteter Umfang, z. B. „ca. 150 Wörter“ */
+  umfang?: string;
+  /** Erwartungshorizont: was eine gute Antwort enthält (Stichpunkte) */
+  erwartung: string[];
+  /** Bewertungskriterien für Selbstcheck und KI-Prompt */
+  kriterien: { name: string; beschreibung: string; punkte: number }[];
+}
+
 export type Uebung =
+  | SchreibUebung
   | MCUebung
   | ReihenfolgeUebung
   | LueckeUebung
@@ -210,4 +226,6 @@ export interface Kurs {
   themen: Thema[];
   /** Layout des Lernpfads: Zeilen mit Themen-Ids */
   pfad: string[][];
+  /** nur in der Entwicklungsansicht sichtbar (Inhaltspakete in Arbeit) */
+  entwurf?: boolean;
 }

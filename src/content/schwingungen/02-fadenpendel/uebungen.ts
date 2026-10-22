@@ -129,4 +129,25 @@ export const uebungen: Uebung[] = [
       { links: 'Ortsfaktor aus Messung', rechts: 'g = 4π²ℓ/T²' },
     ],
   },
+  {
+    id: 'fa-s-kleinwinkel',
+    typ: 'schreiben',
+    operator: 'begruenden',
+    frage: 'Begründen Sie, warum ein Fadenpendel nur bei kleinen Auslenkungen (näherungsweise) harmonisch schwingt.',
+    umfang: 'ca. 6–10 Sätze, Formeln erlaubt',
+    quelle: 'eigene Aufgabe',
+    erwartung: [
+      'Rückstellkraft ist die Komponente der Gewichtskraft entlang der Bahn: $F = -m\\,g\\,\\sin\\varphi$.',
+      'Eine Schwingung ist harmonisch, wenn ein lineares Kraftgesetz gilt: $F = -D\\,s$, also Rückstellkraft proportional zur Auslenkung.',
+      '$\\sin\\varphi$ ist nicht proportional zu $\\varphi$ – für kleine Winkel gilt aber $\\sin\\varphi \\approx \\varphi$ (Bogenmaß) und $s = l\\,\\varphi$.',
+      'Damit $F \\approx -\\frac{m\\,g}{l}\\,s$: lineares Kraftgesetz mit $D = \\frac{m\\,g}{l}$ und $T = 2\\pi\\sqrt{l/g}$.',
+      'Bei großen Winkeln ist die Rückstellkraft kleiner als nach dem linearen Gesetz – die Schwingung ist nicht mehr harmonisch, die Periode wird größer.',
+    ],
+    kriterien: [
+      { name: 'Rückstellkraft', beschreibung: 'Rückstellkraft als Komponente der Gewichtskraft mit $\\sin\\varphi$ angegeben.', punkte: 2 },
+      { name: 'Bedingung für harmonisch', beschreibung: 'Lineares Kraftgesetz als Kennzeichen der harmonischen Schwingung genannt.', punkte: 2 },
+      { name: 'Kleinwinkelnäherung', beschreibung: 'Näherung $\\sin\\varphi \\approx \\varphi$ und $s = l\\varphi$ richtig angewendet, Folgerung $F \\sim -s$.', punkte: 3 },
+      { name: 'Darstellung', beschreibung: 'Schlüssige Begründungskette, Fachbegriffe korrekt.', punkte: 1 },
+    ],
+  },
 ];

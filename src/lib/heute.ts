@@ -51,7 +51,8 @@ export function baueHeute(kurs: Kurs, d: Daten, h: string, seed: number, fokus: 
     .slice(0, 3);
   const kandidaten = mitAufgaben.flatMap((t, ti) => [
     ...t.generatoren.map((g) => ({ item: { art: 'aufgabe' as const, id: g.id, seed: rng.int(1, 2 ** 30) }, q: quote(d, genKey(g.id)), ti })),
-    ...t.uebungen.map((u) => ({ item: { art: 'uebung' as const, id: u.id }, q: quote(d, uebKey(u.id)), ti })),
+    // Schreibaufgaben dauern zu lange für eine gemischte Runde – die gibt es gezielt im Thema
+    ...t.uebungen.filter((u) => u.typ !== 'schreiben').map((u) => ({ item: { art: 'uebung' as const, id: u.id }, q: quote(d, uebKey(u.id)), ti })),
   ]);
   const gewicht = (q: number | undefined, ti: number) => (q === undefined ? 0.35 : q) + ti * 0.15 + rng.next() * 0.3;
   const aufgaben = kandidaten
@@ -105,7 +106,7 @@ export function mischAufgaben(kurs: Kurs, d: Daten, h: string, seed: number, art
     art === 'rechnen'
       ? t.generatoren.filter((g) => g.art === 'rechnen').map((g) => ({ item: { art: 'aufgabe' as const, id: g.id, seed: rng.int(1, 2 ** 30) }, w: (quote(d, genKey(g.id)) ?? 0.3) + ti * 0.12 + rng.next() * 0.3 }))
       : [
-          ...t.uebungen.map((u) => ({ item: { art: 'uebung' as const, id: u.id }, w: (quote(d, uebKey(u.id)) ?? 0.3) + ti * 0.12 + rng.next() * 0.3 })),
+          ...t.uebungen.filter((u) => u.typ !== 'schreiben').map((u) => ({ item: { art: 'uebung' as const, id: u.id }, w: (quote(d, uebKey(u.id)) ?? 0.3) + ti * 0.12 + rng.next() * 0.3 })),
           ...t.generatoren.filter((g) => g.art === 'diagramm').map((g) => ({ item: { art: 'aufgabe' as const, id: g.id, seed: rng.int(1, 2 ** 30) }, w: (quote(d, genKey(g.id)) ?? 0.3) + ti * 0.12 + rng.next() * 0.3 })),
         ],
   );

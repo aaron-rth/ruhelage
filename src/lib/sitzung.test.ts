@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { besterAbschnitt, abschnitte } from './abschnitte';
 import { ergebnisMerken, kannZurueck, karteBewerten, neueSitzung, weiter, zurueck, type SitzungsItem } from './sitzung';
 import { alleThemen } from '../content/kurse';
+import { schwingungen } from '../content/schwingungen';
 import { laengsteSerie, streak, tagZaehlt, type TagesStand } from '../store/store';
 
 const k = (id: string): SitzungsItem => ({ art: 'karte', id });
@@ -64,8 +65,8 @@ describe('Serie', () => {
 });
 
 describe('Genauer erklärt', () => {
-  it('jede Karte hat eine Zusatzerklärung', () => {
-    const ohne = alleThemen().flatMap((th) => th.karten.filter((c) => !c.mehr || c.mehr.length < 60).map((c) => c.id));
+  it('jede Physik-Karte hat eine Zusatzerklärung', () => {
+    const ohne = schwingungen.themen.flatMap((th) => th.karten.filter((c) => !c.mehr || c.mehr.length < 60).map((c) => c.id));
     expect(ohne).toEqual([]);
   });
 

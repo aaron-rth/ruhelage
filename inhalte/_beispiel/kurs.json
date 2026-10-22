@@ -1,0 +1,8 @@
+{
+  "id": "beispiel-deutsch",
+  "fach": "Deutsch",
+  "klasse": "K1",
+  "titel": "Beispiel: Sachtexte analysieren",
+  "entwurf": true,
+  "pfad": [["beispiel-sachtexte"]]
+}

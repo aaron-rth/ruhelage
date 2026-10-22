@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { AKTIVER_KURS } from '../content/kurse';
+import { schwingungen as AKTIVER_KURS } from '../content/schwingungen';
 import { leereDaten } from '../store/store';
 import { plusTage } from './datum';
 import { wischRichtung } from './geraet';

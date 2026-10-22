@@ -40,7 +40,12 @@ export interface Einstellungen {
   zielAufgaben: number;
   countdown: boolean;
   theme: 'dark' | 'light';
+  /** Klausurdatum des aktiven Kurses ('' = keine Klausur geplant) */
   klausurDatum: string;
+  /** aktiver Kurs */
+  kurs: string;
+  /** gemerkte Klausurdaten der anderen Kurse (beim Wechsel getauscht) */
+  klausurDaten: Record<string, string>;
   /** Einführung und kurze Hinweise anzeigen */
   hinweise: boolean;
   /** Wiederholungsabstände der Karteikarten */
@@ -78,6 +83,8 @@ export const STANDARD_EINSTELLUNGEN: Einstellungen = {
   countdown: true,
   theme: 'dark',
   klausurDatum: '2026-11-06',
+  kurs: 'schwingungen',
+  klausurDaten: {},
   hinweise: true,
   takt: 'standard',
   wischen: true,
