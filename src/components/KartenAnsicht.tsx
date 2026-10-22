@@ -72,7 +72,7 @@ export function KartenAnsicht({
 
   function bewerten(b: Bewertung) {
     if (raus) return;
-    rueckmeldung('klick');
+    rueckmeldung(b);
     if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return onBewertet(b);
     // Karte hinausfliegen lassen (wie beim Wischen), dann bewerten
     setRaus(b === 'gewusst' ? seiteGewusst : b === 'nicht' ? seiteNicht : 'oben');
@@ -86,6 +86,7 @@ export function KartenAnsicht({
       if (e.key === ' ' || e.key === 'Enter') {
         if (tag === 'BUTTON' && e.key === 'Enter') return;
         e.preventDefault();
+        rueckmeldung('blatt');
         setUmgedreht((u) => !u);
       }
       if (!umgedreht) return;
@@ -143,6 +144,7 @@ export function KartenAnsicht({
       className={`karteikarte${umgedreht ? ' umgedreht' : ''}`}
       onClick={() => {
         if (bewegt.current) return;
+        rueckmeldung('blatt');
         setUmgedreht((u) => !u);
       }}
       aria-label={umgedreht ? 'Karte zurückdrehen' : 'Karte umdrehen'}

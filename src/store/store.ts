@@ -58,6 +58,8 @@ export interface Einstellungen {
   fokus: boolean;
   /** dezente Töne bei Antworten und Weiterklicken */
   ton: boolean;
+  /** iPhone: Töne auch bei eingeschaltetem Stummmodus */
+  tonTrotzStumm: boolean;
   /** sanfte Vibration (nur wo unterstützt) */
   haptik: boolean;
 }
@@ -91,6 +93,7 @@ export const STANDARD_EINSTELLUNGEN: Einstellungen = {
   wischUmgekehrt: false,
   fokus: false,
   ton: true,
+  tonTrotzStumm: false,
   haptik: true,
 };
 
