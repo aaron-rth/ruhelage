@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { leereDaten } from '../store/store';
+import { syncFehlerArt } from './cloud';
 import { fuehreZusammen } from './zusammenfuehren';
 
 describe('Zusammenführen von Speicherständen', () => {
@@ -39,5 +40,27 @@ describe('Zusammenführen von Speicherständen', () => {
     a.karten.x = { fach: 4, faellig: '2026-10-30', wiederholungen: 4, zuletzt: '2026-10-26' };
     const m = fuehreZusammen(a, a);
     expect(JSON.stringify(fuehreZusammen(m, m))).toBe(JSON.stringify(m));
+  });
+});
+
+
+describe('Synchronisierungsfehler', () => {
+  it('offline ist kein Abmelden', () => {
+    expect(syncFehlerArt({ message: 'TypeError: Failed to fetch' }, true)).toBe('offline');
+    expect(syncFehlerArt({ message: 'Load failed' }, true)).toBe('offline');
+    expect(syncFehlerArt({ message: 'irgendwas' }, false)).toBe('offline');
+  });
+  it('nur eine ungültige Sitzung gilt als abgemeldet', () => {
+    expect(syncFehlerArt({ message: 'JWT expired', status: 401 }, true)).toBe('abgemeldet');
+    expect(syncFehlerArt({ message: 'Auth session missing!' }, true)).toBe('abgemeldet');
+    expect(syncFehlerArt({ message: 'duplicate key', status: 409 }, true)).toBe('fehler');
+  });
+});
+
+describe('Neue Einstellungen in alten Speicherständen', () => {
+  it('ergänzt Ton und Haptik mit Standardwerten', async () => {
+    const { migriere } = await import('../store/store');
+    const d = migriere({ einstellungen: { theme: 'light' } }, 1);
+    expect(d.einstellungen).toMatchObject({ theme: 'light', ton: true, haptik: true, wischUmgekehrt: false });
   });
 });

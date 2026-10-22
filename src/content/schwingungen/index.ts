@@ -15,6 +15,8 @@ import { thema as t11 } from './11-querschnitt';
 
 export const schwingungen: Kurs = {
   id: 'schwingungen',
+  fach: 'Physik',
+  klasse: 'K1',
   titel: 'Mechanische Schwingungen',
   klausur: { datum: '2026-11-06', titel: '1. Klausur' },
   themen: [t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11],

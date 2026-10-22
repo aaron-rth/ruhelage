@@ -12,8 +12,8 @@ const SPEICHER_KEY = 'sb-raplowjyzrqpostibikb-auth-token';
 
 interface KontoStand {
   email: string | null;
-  /** 'aus' = nicht angemeldet, 'sync' = synchronisiert gerade */
-  status: 'aus' | 'an' | 'sync' | 'fehler';
+  /** 'aus' = nicht angemeldet, 'sync' = synchronisiert gerade, 'offline' = angemeldet, aber keine Verbindung */
+  status: 'aus' | 'an' | 'sync' | 'offline' | 'fehler';
   zuletzt: number | null;
   fehler: string | null;
 }
@@ -33,8 +33,10 @@ let beobachtet = false;
 function beobachte(s: SupabaseClient) {
   if (beobachtet) return;
   beobachtet = true;
-  s.auth.onAuthStateChange((_e, session) => {
-    useKonto.setState({ email: session?.user.email ?? null, status: session ? (useKonto.getState().status === 'sync' ? 'sync' : 'an') : 'aus' });
+  s.auth.onAuthStateChange((ereignis, session) => {
+    if (!session && ereignis !== 'SIGNED_OUT') return; // z. B. fehlgeschlagene Erneuerung offline: Sitzung bleibt
+    const alt = useKonto.getState().status;
+    useKonto.setState({ email: session?.user.email ?? null, status: session ? (alt === 'sync' || alt === 'offline' ? alt : 'an') : 'aus' });
     // nicht direkt im Callback weitere Supabase-Aufrufe starten
     if (session) window.setTimeout(() => void synchronisiere(), 0);
   });
@@ -97,33 +99,54 @@ export async function cloudLoeschen(): Promise<string | null> {
   return null;
 }
 
+/**
+ * Was bedeutet ein Fehler beim Synchronisieren? Nur eine wirklich ungültige Sitzung meldet ab –
+ * fehlende Verbindung ist ein Synchronisierungsproblem, kein Abmelden.
+ */
+export function syncFehlerArt(e: { message?: string; status?: number; name?: string } | null | undefined, online: boolean): 'offline' | 'abgemeldet' | 'fehler' {
+  const m = `${e?.name ?? ''} ${e?.message ?? ''}`;
+  if (!online || /fetch|network|load failed|timeout|offline/i.test(m) || e?.status === 0) return 'offline';
+  if (e?.status === 401 || e?.status === 403 || /session.*missing|invalid.*(jwt|token)|refresh token|jwt expired/i.test(m)) return 'abgemeldet';
+  return 'fehler';
+}
+
 let laeuft = false;
 
 /** Cloud holen, mit dem Gerät zusammenführen, Ergebnis lokal übernehmen und hochladen. */
 export async function synchronisiere(): Promise<void> {
   if (laeuft || useKonto.getState().status === 'aus') return;
+  if (!navigator.onLine) {
+    useKonto.setState({ status: 'offline', fehler: null });
+    return;
+  }
   laeuft = true;
   useKonto.setState({ status: 'sync', fehler: null });
   try {
     const s = await sb();
-    const { data: u } = await s.auth.getUser();
-    if (!u.user) {
+    // Sitzung lokal lesen (kein Netz nötig) – getUser() würde offline „kein Benutzer“ liefern
+    const { data: sitz } = await s.auth.getSession();
+    const uid = sitz.session?.user.id;
+    if (!uid) {
       useKonto.setState({ status: 'aus', email: null });
       return;
     }
-    const { data, error } = await s.from('fortschritt').select('daten').eq('user_id', u.user.id).maybeSingle();
+    const { data, error } = await s.from('fortschritt').select('daten').eq('user_id', uid).maybeSingle();
     if (error) throw error;
     const lokal = datenAus(useStore.getState());
     const zusammen = data ? fuehreZusammen(lokal, migriere(data.daten, SCHEMA_VERSION)) : lokal;
     const neu = JSON.stringify(zusammen);
     if (neu !== JSON.stringify(lokal)) useStore.getState().importiere(zusammen);
     if (!data || neu !== JSON.stringify(migriere(data.daten, SCHEMA_VERSION))) {
-      const { error: e2 } = await s.from('fortschritt').upsert({ user_id: u.user.id, daten: zusammen, aktualisiert: new Date().toISOString() });
+      const { error: e2 } = await s.from('fortschritt').upsert({ user_id: uid, daten: zusammen, aktualisiert: new Date().toISOString() });
       if (e2) throw e2;
     }
     useKonto.setState({ status: 'an', zuletzt: Date.now() });
   } catch (e) {
-    useKonto.setState({ status: 'fehler', fehler: fehlerText(e instanceof Error ? e.message : String(e)) });
+    const err = e as { message?: string; status?: number; name?: string; code?: string };
+    const art = syncFehlerArt({ ...err, status: err.status ?? (err.code === 'PGRST301' ? 401 : undefined) }, navigator.onLine);
+    if (art === 'offline') useKonto.setState({ status: 'offline', fehler: null });
+    else if (art === 'abgemeldet') useKonto.setState({ status: 'fehler', fehler: 'Deine Anmeldung ist abgelaufen. Bitte melde dich neu an.' });
+    else useKonto.setState({ status: 'fehler', fehler: fehlerText(err.message ?? String(e)) });
   } finally {
     laeuft = false;
   }
@@ -133,11 +156,16 @@ let geplant: number | null = null;
 
 /** Nach Änderungen: höchstens alle 30 s synchronisieren, beim Verlassen der App sofort. */
 export function syncPlanen() {
-  if (useKonto.getState().status === 'aus' || geplant !== null) return;
+  if (useKonto.getState().status === 'aus' || !navigator.onLine || geplant !== null) return;
   geplant = window.setTimeout(() => {
     geplant = null;
     void synchronisiere();
   }, 30_000);
+}
+
+/** Sobald die Verbindung zurück ist, wieder abgleichen. */
+export function beiOnline() {
+  if (useKonto.getState().status === 'offline') syncSofort();
 }
 
 export function syncSofort() {

@@ -14,6 +14,7 @@ import { erzeugeRng } from '../../lib/rng';
 import { useStore } from '../../store/store';
 import { useLernaktivitaet } from '../../store/ui';
 import { Md, Meldung, Taste } from '../Basis';
+import { rueckmeldung } from '../../lib/feedback';
 import { ErklaerPanel } from '../ErklaerPanel';
 import { Icon } from '../Icon';
 
@@ -55,6 +56,7 @@ export function UebungAnsicht({ uebung, themaId, onFertig, onWeiter, weiterText 
   useEffect(() => setGeprueft(null), [uebung.id]);
 
   function fertig(richtig: boolean) {
+    rueckmeldung(richtig ? 'richtig' : 'falsch');
     setGeprueft(richtig);
     speichere(uebKey(uebung.id), themaId, richtig, richtig ? 6 : 2, { key: uebKey(uebung.id), art: 'uebung', ref: uebung.id });
     onFertig?.(richtig);

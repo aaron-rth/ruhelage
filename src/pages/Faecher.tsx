@@ -1,6 +1,8 @@
 // Fächer: Fach wählen, Kursüberblick und was noch zu tun ist.
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import { Ring, StatusChip } from '../components/Basis';
+import { FachAnfrage } from '../components/FachAnfrage';
 import { Icon } from '../components/Icon';
 import { AKTIVER_KURS } from '../content/kurse';
 import { datumLang, heute, tageZwischen } from '../lib/datum';
@@ -11,6 +13,8 @@ import { useStore } from '../store/store';
 
 export function Faecher() {
   const daten = useStore();
+  const [params, setParams] = useSearchParams();
+  const [anfrage, setAnfrage] = useState(params.get('anfrage') === '1');
   const h = heute();
   const kurs = AKTIVER_KURS;
   const e = daten.einstellungen;
@@ -35,25 +39,38 @@ export function Faecher() {
           <span className="modus-icon">
             <Icon name="welle" size={22} />
           </span>
-          <strong>Physik</strong>
+          <span className="fach-name">
+            <strong>{kurs.fach}</strong>
+            <span className="chip klein-chip">{kurs.klasse}</span>
+          </span>
           <span className="sehr-leise klein">{kurs.titel}</span>
         </div>
-        <div className="fach-kachel bald" role="listitem" aria-disabled="true">
+        <button type="button" className="fach-kachel bald" onClick={() => setAnfrage(true)}>
           <span className="modus-icon">
             <Icon name="plus" size={22} />
           </span>
-          <strong>Weitere Fächer</strong>
-          <span className="sehr-leise klein">Kommt bald</span>
-        </div>
+          <strong>Fach anfragen</strong>
+          <span className="sehr-leise klein">Dein Fach fehlt? Schick uns deine Unterlagen.</span>
+        </button>
       </div>
+      {anfrage && (
+        <FachAnfrage
+          onZu={() => {
+            setAnfrage(false);
+            if (params.get('anfrage')) setParams({}, { replace: true });
+          }}
+        />
+      )}
 
-      <section className="panel kurs-karte">
+      <section className="panel kurs-karte" data-tour="kurs">
         <div className="kurs-kopf">
           <Ring wert={gesamt} groesse={64} staerke={5}>
             <span className="mono">{Math.round(gesamt * 100)}%</span>
           </Ring>
           <div>
-            <span className="ueber-klein">Kurs · {kurs.themen.length} Themen</span>
+            <span className="ueber-klein">
+              {kurs.fach} · {kurs.klasse} · {kurs.themen.length} Themen
+            </span>
             <h2>{kurs.titel}</h2>
             {rest >= 0 && (
               <span className="sehr-leise klein">

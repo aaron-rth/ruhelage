@@ -9,6 +9,7 @@ import { useStore } from '../store/store';
 import { useLernaktivitaet } from '../store/ui';
 import { AntwortEingabe } from './AntwortEingabe';
 import { Md, Meldung, Taste } from './Basis';
+import { rueckmeldung } from '../lib/feedback';
 import { ErklaerPanel } from './ErklaerPanel';
 import { Icon } from './Icon';
 import { Plot } from './Plot';
@@ -118,9 +119,11 @@ export function AufgabenAnsicht({
       return;
     }
     if (p.status === 'richtig') {
+      rueckmeldung('richtig');
       setze(aktiv, { status: 'richtig', meldung: { art: 'richtig', text: p.hinweis ? `Richtig! ${p.hinweis}` : 'Richtig!' } });
       return;
     }
+    rueckmeldung('falsch');
     const fehl = z.fehlversuche + 1;
     // Bei jedem Fehlversuch wird die nächste Hilfestufe aufgedeckt
     const hilfen = Math.min(3, Math.max(z.hilfen, fehl));

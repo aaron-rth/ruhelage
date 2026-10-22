@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { findeGenerator, findeKarte, findeUebung } from '../content/kurse';
 import { heute } from '../lib/datum';
+import { rueckmeldung } from '../lib/feedback';
 import { useIstHandy } from '../lib/geraet';
 import { genKey, uebKey } from '../lib/fortschritt';
 import type { Bewertung } from '../lib/leitner';
@@ -23,7 +24,7 @@ import { useLaufend, type AktuellArt } from '../store/laufend';
 import { useStore } from '../store/store';
 import { useLernaktivitaet } from '../store/ui';
 import { AufgabenAnsicht } from './AufgabenAnsicht';
-import { Balken, Leer, Taste } from './Basis';
+import { Balken, Leer, LogoWelle, Taste } from './Basis';
 import { Icon } from './Icon';
 import { KartenAnsicht } from './KartenAnsicht';
 import { UebungAnsicht } from './uebungen/UebungAnsicht';
@@ -175,10 +176,12 @@ export function Sitzung({
   const themaText = 'thema' in inhalt ? `Thema ${inhalt.thema.nr} · ${inhalt.thema.titel}` : '';
   const pause = () => setzePausiert(slot, true);
   const zurueckGehen = () => {
+    rueckmeldung('klick');
     richtung.current = 'links';
     setze(zurueck(stand));
   };
   const weiterGehen = () => {
+    rueckmeldung('klick');
     richtung.current = 'rechts';
     setze(weiter(stand));
   };
@@ -289,7 +292,7 @@ export function SitzungsEnde({ bilanz, onFertig, extra }: { bilanz: SitzungsBila
   const kGesamt = k.gewusst + k.halb + k.nicht;
   return (
     <div className="panel sitzungs-ende einblenden">
-      <Icon name="welle" size={36} className="akzent-icon" />
+      <LogoWelle breite={56} einmal />
       <h2>Geschafft.</h2>
       <p className="leise">Schön, dass du drangeblieben bist. Hier ist dein kurzer Überblick:</p>
       <div className="bilanz">

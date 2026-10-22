@@ -41,13 +41,16 @@ export function KontoKarte() {
           <h3>
             <Icon name="check" size={18} /> Konto
           </h3>
-          <span className={`chip${k.status === 'fehler' ? ' koralle' : ' akzent'}`}>
-            {k.status === 'sync' ? 'synchronisiert …' : k.status === 'fehler' ? 'Fehler' : k.zuletzt ? `synchron · ${zeitText(k.zuletzt)}` : 'angemeldet'}
+          <span className={`chip${k.status === 'fehler' ? ' koralle' : k.status === 'offline' ? ' sand' : ' akzent'}`}>
+            {k.status === 'sync' ? 'synchronisiert …' : k.status === 'fehler' ? 'Fehler' : k.status === 'offline' ? 'offline' : k.zuletzt ? `synchron · ${zeitText(k.zuletzt)}` : 'angemeldet'}
           </span>
         </div>
         <p className="leise klein" style={{ marginTop: 0 }}>
           Angemeldet als <strong>{k.email}</strong>. Dein Fortschritt wird automatisch zwischen deinen Geräten abgeglichen.
         </p>
+        {k.status === 'offline' && (
+          <Meldung art="info">Keine Internetverbindung. Du bleibst angemeldet, dein Fortschritt ist auf diesem Gerät sicher und wird abgeglichen, sobald du wieder online bist.</Meldung>
+        )}
         {k.fehler && <Meldung art="falsch">{k.fehler}</Meldung>}
         {meldung && <Meldung art={meldung.art}>{meldung.text}</Meldung>}
         <div className="zeile" style={{ marginTop: 12 }}>

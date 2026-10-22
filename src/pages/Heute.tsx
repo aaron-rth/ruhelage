@@ -195,7 +195,7 @@ export function Heute() {
       )}
 
       <div className="heute-raster">
-        <section className="panel heute-start">
+        <section className="panel heute-start" data-tour="runde">
           <div className="panel-titel">
             <h2>
               <Icon name="funke" size={18} /> Deine Runde
@@ -274,13 +274,13 @@ export function Heute() {
           <span className="sehr-leise klein">
             Ziel: {e.zielMinuten} min · {e.zielKarten} Karten · {e.zielAufgaben} Aufgaben – <Link to="/einstellungen">anpassen</Link>
           </span>
-          <Link to="/profil" className="btn geist klein" style={{ alignSelf: 'flex-start' }}>
+          <Link to="/statistik" className="btn geist klein" style={{ alignSelf: 'flex-start' }}>
             <Icon name="ziel" size={16} /> Statistik ansehen
           </Link>
         </section>
       </div>
 
-      <section className="ueben-bereich">
+      <section className="ueben-bereich" data-tour="gezielt">
         <h2 className="abschnitt-titel">Gezielt üben</h2>
         <div className="modus-kacheln">
           {(Object.keys(MODUS) as Modus[]).map((k) => (
