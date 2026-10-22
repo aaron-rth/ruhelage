@@ -1,6 +1,6 @@
 # Ruhelage
 
-Eine ruhige, durchdachte Lern-App für den Physik-Leistungskurs – zuerst zum Thema **Mechanische Schwingungen** (Klausur K1).
+Eine ruhige, durchdachte Lern-App für die Schule – mit Karteikarten, Übungen, Lernplan und Probeklausuren. Erstes Fach: Physik (K1, **Mechanische Schwingungen**); weitere Fächer lassen sich in der App anfragen.
 Aufgaben werden im Heft gerechnet, die App prüft das Ergebnis, gibt gestufte Hilfen und merkt sich, was noch nicht sitzt.
 
 **Live:** https://aaron-rth.github.io/ruhelage/ (nach dem Aktivieren von GitHub Pages, siehe unten)
@@ -11,7 +11,7 @@ Drei Bereiche – am Handy als Tabs unten (Lernen in der Mitte), am Laptop als S
 
 - **Lernen**: Weitermachen, Tagesrunde, gezielt üben (Karteikarten, Übungen, Rechentrainer – gemischt oder pro Thema), Probeklausur, Nochmal, Spielwiese
 - **Fächer**: Kursüberblick, was noch zu tun ist, Lernpfad, Lernplan, Formelsammlung
-- **Profil**: Statistik, Einstellungen, Einführung
+- **Profil**: Konto (optional), Statistik, Einstellungen, geführte Einführung
 
 | Bereich | Inhalt |
 |---|---|

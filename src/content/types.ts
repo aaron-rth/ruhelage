@@ -201,6 +201,10 @@ export interface Thema {
 
 export interface Kurs {
   id: string;
+  /** Schulfach, z. B. „Physik“ */
+  fach: string;
+  /** Klassenstufe, z. B. „K1“ oder „Klasse 9“ */
+  klasse: string;
   titel: string;
   klausur?: { datum: string; titel: string };
   themen: Thema[];

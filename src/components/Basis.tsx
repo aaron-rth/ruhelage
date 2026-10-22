@@ -12,10 +12,10 @@ export function Md({ text, inline, className }: { text: string; inline?: boolean
 }
 
 /** Gedämpfte Welle, die zur Ruhe kommt – das Logo von Ruhelage */
-export function LogoWelle({ breite = 34, animiert = false }: { breite?: number; animiert?: boolean }) {
+export function LogoWelle({ breite = 34, animiert = false, einmal = false }: { breite?: number; animiert?: boolean; einmal?: boolean }) {
   const d = 'M2 16 C 5 2, 8 2, 11 16 S 17 26, 20 16 S 25 10, 27.5 16 S 32 19.5, 34 16 S 37 14.6, 39 16 L 46 16';
   return (
-    <svg width={breite} height={(breite * 32) / 48} viewBox="0 0 48 32" fill="none" aria-hidden className={animiert ? 'logo-welle animiert' : 'logo-welle'}>
+    <svg width={breite} height={(breite * 32) / 48} viewBox="0 0 48 32" fill="none" aria-hidden className={`logo-welle${animiert ? ' animiert' : ''}${einmal ? ' einmal' : ''}`}>
       <path d={d} stroke="var(--akzent)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" pathLength={100} />
     </svg>
   );

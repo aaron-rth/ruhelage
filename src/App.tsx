@@ -1,15 +1,15 @@
 import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { HashRouter, Link, NavLink, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { Lader, Logo } from './components/Basis';
-import { Einfuehrung, EINFUEHRUNG } from './components/Einfuehrung';
+import { Tour } from './components/Tour';
 import { Icon } from './components/Icon';
 import { Statistik } from './components/Statistik';
-import { kontoStarten, syncPlanen, syncSofort } from './lib/cloud';
+import { beiOnline, kontoStarten, syncPlanen, syncSofort } from './lib/cloud';
 import { heute, tageZwischen } from './lib/datum';
 import { Aktuell, useOffeneEintraege } from './pages/Aktuell';
 import { Einstellungen } from './pages/Einstellungen';
 import { Faecher } from './pages/Faecher';
-import { Profil } from './pages/Profil';
+import { Profil, StatistikSeite } from './pages/Profil';
 import { Formeln } from './pages/Formeln';
 import { Heute } from './pages/Heute';
 import { Lernpfad } from './pages/Lernpfad';
@@ -64,7 +64,8 @@ const BEREICHE: { id: Bereich; to: string; label: string; icon: string; unter: U
     label: 'Profil',
     icon: 'ziel',
     unter: [
-      { to: '/profil', label: 'Statistik', icon: 'ziel', passt: (p) => p === '/profil' },
+      { to: '/profil', label: 'Profil & Konto', icon: 'ziel', passt: (p) => p === '/profil' },
+      { to: '/statistik', label: 'Statistik', icon: 'kalender', passt: (p) => p === '/statistik' },
       { to: '/einstellungen', label: 'Einstellungen', icon: 'einstellungen', passt: (p) => p === '/einstellungen' },
     ],
   },
@@ -185,7 +186,7 @@ function SeitenleisteFuss() {
   const s = streak(tage, h);
   const rest = tageZwischen(h, e.klausurDatum);
   return (
-    <Link to="/profil" className="seitenleiste-fuss" title="Statistik öffnen">
+    <Link to="/statistik" className="seitenleiste-fuss" title="Statistik öffnen">
       {e.countdown && rest >= 0 && (
         <div className="zeile" style={{ gap: 8 }}>
           <Icon name="kalender" size={16} />
@@ -222,9 +223,11 @@ function useCloud() {
     const ab = useStore.subscribe(() => syncPlanen());
     const sichtbar = () => syncSofort();
     document.addEventListener('visibilitychange', sichtbar);
+    window.addEventListener('online', beiOnline);
     return () => {
       ab();
       document.removeEventListener('visibilitychange', sichtbar);
+      window.removeEventListener('online', beiOnline);
     };
   }, []);
 }
@@ -235,7 +238,6 @@ function Rahmen() {
   useTheme();
   const nochmal = useStore((s) => s.nochmal.length);
   const offen = useOffeneEintraege().filter((e) => e.art !== 'lesen').length;
-  const einfuehrung = useStore((s) => s.einstellungen.hinweise && !s.gesehen.includes(EINFUEHRUNG));
   const statistik = useUi((u) => u.statistik);
   const serie = useStore((s) => streak(s.tage, heute()));
   const { pathname, search } = useLocation();
@@ -260,17 +262,16 @@ function Rahmen() {
           <Link to="/faecher" className="fach-zeile an" tabIndex={fokus ? -1 : 0}>
             <Icon name="welle" size={18} />
             <span>
-              <strong>Physik</strong>
+              <strong>
+                {AKTIVER_KURS.fach} <span className="chip klein-chip">{AKTIVER_KURS.klasse}</span>
+              </strong>
               <span className="sehr-leise klein">{AKTIVER_KURS.titel}</span>
             </span>
           </Link>
-          <div className="fach-zeile bald" aria-disabled="true">
+          <Link to="/faecher?anfrage=1" className="fach-zeile bald" tabIndex={fokus ? -1 : 0}>
             <Icon name="plus" size={18} />
-            <span>
-              <span className="klein">Weitere Fächer</span>
-              <span className="klein sehr-leise">Kommt bald</span>
-            </span>
-          </div>
+            <span className="klein">Fach anfragen</span>
+          </Link>
         </div>
         <nav className="nav" aria-label="Hauptnavigation">
           {BEREICHE.map((b) => (
@@ -301,8 +302,10 @@ function Rahmen() {
         <NavLink to="/" aria-label="Startseite" style={{ color: 'var(--text)' }}>
           <Logo klein />
         </NavLink>
-        <span className="mobil-fach">Physik</span>
-        <button type="button" className="mobil-serie" onClick={() => navigate('/profil')} aria-label={`${serie} Tage in Folge – Statistik öffnen`}>
+        <span className="mobil-fach">
+          {AKTIVER_KURS.fach} · {AKTIVER_KURS.klasse}
+        </span>
+        <button type="button" className="mobil-serie" onClick={() => navigate('/statistik')} aria-label={`${serie} Tage in Folge – Statistik öffnen`}>
           <Icon name="welle" size={16} /> <strong className="mono">{serie}</strong>
         </button>
       </header>
@@ -329,6 +332,7 @@ function Rahmen() {
               <Route path="/klausur" element={<Klausur />} />
               <Route path="/formeln" element={<Formeln />} />
               <Route path="/profil" element={<Profil />} />
+              <Route path="/statistik" element={<StatistikSeite />} />
               <Route path="/einstellungen" element={<Einstellungen />} />
               <Route path="*" element={<Heute />} />
             </Routes>
@@ -347,7 +351,7 @@ function Rahmen() {
           </Link>
         ))}
       </nav>
-      {einfuehrung && <Einfuehrung />}
+      <Tour />
       {statistik && <Statistik />}
     </div>
   );

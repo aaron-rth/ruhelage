@@ -2,7 +2,7 @@ import { useLayoutEffect, useRef, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { Ring, StatusWahl } from '../components/Basis';
 import { Dialog } from '../components/Dialog';
-import { EINFUEHRUNG } from '../components/Einfuehrung';
+import { EINFUEHRUNG, useTour } from '../components/Tour';
 import { Lernplan } from '../components/Lernplan';
 import { Icon } from '../components/Icon';
 import { AKTIVER_KURS, findeThema } from '../content/kurse';
@@ -106,7 +106,8 @@ export function Lernpfad() {
   const offen = kurs.themen.filter((t) => statusVon(t, daten) === 'offen').length;
   const [params, setParams] = useSearchParams();
   const ansicht = params.get('ansicht') === 'plan' ? 'plan' : 'themen';
-  const zeigeHinweis = ansicht === 'themen' && daten.einstellungen.hinweise && daten.gesehen.includes(EINFUEHRUNG) && !daten.gesehen.includes(HINWEIS) && offen > 0;
+  const tourLaeuft = useTour((t) => t.schritt !== null);
+  const zeigeHinweis = !tourLaeuft && ansicht === 'themen' && daten.einstellungen.hinweise && daten.gesehen.includes(EINFUEHRUNG) && !daten.gesehen.includes(HINWEIS) && offen > 0;
   const box = useRef<HTMLDivElement>(null);
   const [linien, setLinien] = useState<Linie[]>([]);
   const [groesse, setGroesse] = useState({ b: 0, h: 0 });

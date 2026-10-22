@@ -15,3 +15,17 @@ createRoot(document.getElementById('root')!).render(
     <App />
   </StrictMode>,
 );
+
+// Startbild weich ausblenden, sobald die App da ist (beim ersten Start erst nach der Zeichnung)
+const start = document.getElementById('start');
+if (start) {
+  const erstesMal = !document.documentElement.classList.contains('wiederkehr');
+  const ruhig = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+  window.setTimeout(
+    () => {
+      start.classList.add('weg');
+      window.setTimeout(() => start.remove(), 300);
+    },
+    erstesMal && !ruhig ? 1300 : 0,
+  );
+}

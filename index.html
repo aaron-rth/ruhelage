@@ -7,25 +7,39 @@
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="theme-color" content="#0E131A" />
-    <meta name="description" content="Ruhelage – ruhig und gründlich Physik lernen: Mechanische Schwingungen." />
+    <meta name="description" content="Ruhelage – ruhig und gründlich für die Schule lernen: Karteikarten, Übungen, Lernplan und Probeklausuren." />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <title>Ruhelage</title>
+    <script>
+      // Farbschema und „schon mal da gewesen“ vor dem ersten Bild setzen (kein Aufblitzen)
+      try {
+        var d = JSON.parse(localStorage.getItem('ruhelage-fortschritt') || 'null');
+        var t = d && d.state && d.state.einstellungen && d.state.einstellungen.theme;
+        if (t === 'light') { document.documentElement.dataset.theme = 'light'; document.documentElement.style.background = '#f4f6f8'; }
+        if (d) document.documentElement.classList.add('wiederkehr');
+      } catch (e) {}
+    </script>
     <style>
-      /* Ladeanimation: die gedämpfte Welle kommt zur Ruhe (wird von React ersetzt) */
+      /* Startbild: die gedämpfte Welle kommt zur Ruhe. Beim ersten Start gezeichnet,
+         später nur kurz eingeblendet, falls das Laden länger dauert. */
       html { background: #0e131a; }
-      .start-lader { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
-      .start-lader path { stroke-dasharray: 100; animation: zeichnen 2.2s cubic-bezier(.2,.7,.2,1) infinite; }
-      @keyframes zeichnen { 0% { stroke-dashoffset: 100; } 60%, 100% { stroke-dashoffset: 0; } }
-      @media (prefers-reduced-motion: reduce) { .start-lader path { animation: none; } }
+      .start-lader { position: fixed; inset: 0; z-index: 200; display: flex; align-items: center; justify-content: center; background: inherit; transition: opacity 260ms ease; }
+      html[data-theme='light'] .start-lader { background: #f4f6f8; }
+      .start-lader.weg { opacity: 0; pointer-events: none; }
+      .start-lader path { stroke-dasharray: 100; animation: zeichnen 1.6s cubic-bezier(.2,.7,.2,1) both; }
+      .wiederkehr .start-lader svg { animation: erscheinen 200ms ease 350ms both; }
+      .wiederkehr .start-lader path { animation: none; }
+      @keyframes zeichnen { 0% { stroke-dashoffset: 100; } 100% { stroke-dashoffset: 0; } }
+      @keyframes erscheinen { from { opacity: 0; } }
+      @media (prefers-reduced-motion: reduce) { .start-lader path, .start-lader svg { animation: none !important; } }
     </style>
   </head>
   <body>
-    <div id="root">
-      <div class="start-lader" aria-label="Ruhelage lädt">
+    <div id="root"></div>
+    <div id="start" class="start-lader" aria-label="Ruhelage lädt">
         <svg width="72" height="48" viewBox="0 0 48 32" fill="none" aria-hidden="true">
           <path d="M2 16 C 5 2, 8 2, 11 16 S 17 26, 20 16 S 25 10, 27.5 16 S 32 19.5, 34 16 S 37 14.6, 39 16 L 46 16" stroke="#2DD4BF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" pathLength="100" />
         </svg>
-      </div>
     </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

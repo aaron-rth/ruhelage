@@ -51,6 +51,10 @@ export interface Einstellungen {
   wischUmgekehrt: boolean;
   /** Desktop: Seitenleiste ausblenden */
   fokus: boolean;
+  /** dezente Töne bei Antworten und Weiterklicken */
+  ton: boolean;
+  /** sanfte Vibration (nur wo unterstützt) */
+  haptik: boolean;
 }
 
 export interface Daten {
@@ -79,6 +83,8 @@ export const STANDARD_EINSTELLUNGEN: Einstellungen = {
   wischen: true,
   wischUmgekehrt: false,
   fokus: false,
+  ton: true,
+  haptik: true,
 };
 
 export function leereDaten(): Daten {

@@ -1,8 +1,9 @@
 import { useRef, useState } from 'react';
 import { Meldung } from '../components/Basis';
-import { EINFUEHRUNG } from '../components/Einfuehrung';
+import { starteTour } from '../components/Tour';
 import { Icon } from '../components/Icon';
 import { heute } from '../lib/datum';
+import { rueckmeldung, vibrationMoeglich } from '../lib/feedback';
 import { useIstHandy } from '../lib/geraet';
 import { intervallText, TAKTE, type Takt } from '../lib/leitner';
 import { exportiere, liesImport, useStore } from '../store/store';
@@ -130,6 +131,28 @@ export function Einstellungen() {
       </section>
 
       <section className="panel">
+        <h3 className="mb">Ton & Haptik</h3>
+        <Schalter
+          label="Töne"
+          an={e.ton}
+          onChange={(b) => {
+            s.setzeEinstellung('ton', b);
+            if (b) window.setTimeout(() => rueckmeldung('richtig'), 0);
+          }}
+          text="Leise, kurze Töne bei richtigen und falschen Antworten und beim Weiterklicken."
+        />
+        <Schalter
+          label="Vibration"
+          an={e.haptik && vibrationMoeglich()}
+          onChange={(b) => {
+            s.setzeEinstellung('haptik', b);
+            if (b) window.setTimeout(() => rueckmeldung('klick'), 0);
+          }}
+          text={vibrationMoeglich() ? 'Ein ganz kurzes Antippen bei Antworten.' : 'Dieser Browser unterstützt keine Vibration (z. B. Safari auf dem iPhone).'}
+        />
+      </section>
+
+      <section className="panel">
         <h3 className="mb">Anzeige</h3>
         <Schalter label="Countdown bis zur Klausur" an={e.countdown} onChange={(b) => s.setzeEinstellung('countdown', b)} text="Ein dezenter Hinweis, wie viele Tage noch bleiben." />
         <div className="einst-zeile">
@@ -140,10 +163,7 @@ export function Einstellungen() {
           <label>Einführung</label>
           <button
             className="btn klein"
-            onClick={() => {
-              s.setzeEinstellung('hinweise', true);
-              useStore.setState((st) => ({ gesehen: st.gesehen.filter((g) => g !== EINFUEHRUNG) }));
-            }}
+            onClick={starteTour}
           >
             <Icon name="play" size={14} /> Jetzt ansehen
           </button>

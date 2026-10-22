@@ -6,6 +6,7 @@ import { wischRichtung } from '../lib/geraet';
 import type { Bewertung } from '../lib/leitner';
 import { useStore } from '../store/store';
 import { Md, Taste } from './Basis';
+import { rueckmeldung } from '../lib/feedback';
 import { ErklaerPanel } from './ErklaerPanel';
 import { Icon } from './Icon';
 
@@ -71,6 +72,7 @@ export function KartenAnsicht({
 
   function bewerten(b: Bewertung) {
     if (raus) return;
+    rueckmeldung('klick');
     if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return onBewertet(b);
     // Karte hinausfliegen lassen (wie beim Wischen), dann bewerten
     setRaus(b === 'gewusst' ? seiteGewusst : b === 'nicht' ? seiteNicht : 'oben');
