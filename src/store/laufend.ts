@@ -23,9 +23,15 @@ interface Gemerkt {
   zeit: number;
 }
 
-interface LaufendStore {
+/** Was zwischen Geräten abgeglichen wird */
+export interface LaufendDaten {
   merk: Record<string, Gemerkt>;
   aktuell: Record<string, AktuellEintrag>;
+  /** gelöschte Einträge („m:“ = merk, „a:“ = aktuell) mit Zeitpunkt – damit sie beim Abgleich nicht zurückkommen */
+  weg: Record<string, number>;
+}
+
+interface LaufendStore extends LaufendDaten {
   merke(key: string, wert: unknown): void;
   vergiss(praefix: string): void;
   setzeAktuell(e: Omit<AktuellEintrag, 'zeit'>): void;
@@ -35,7 +41,12 @@ interface LaufendStore {
 const MAX_MERK = 60;
 const MAX_ALTER_MS = 14 * 24 * 3600 * 1000;
 
-function aufraeumen(merk: Record<string, Gemerkt>): Record<string, Gemerkt> {
+function wegAufraeumen(weg: Record<string, number>): Record<string, number> {
+  const jetzt = Date.now();
+  return Object.fromEntries(Object.entries(weg).filter(([, z]) => jetzt - z < MAX_ALTER_MS));
+}
+
+export function aufraeumen(merk: Record<string, Gemerkt>): Record<string, Gemerkt> {
   const jetzt = Date.now();
   const eintraege = Object.entries(merk)
     .filter(([, g]) => jetzt - g.zeit < MAX_ALTER_MS)
@@ -64,22 +75,32 @@ export const useLaufend = create<LaufendStore>()(
     (set) => ({
       merk: {},
       aktuell: {},
+      weg: {},
       merke: (key, wert) => set((s) => ({ merk: aufraeumen({ ...s.merk, [key]: { wert, zeit: Date.now() } }) })),
       vergiss: (praefix) =>
-        set((s) => ({ merk: Object.fromEntries(Object.entries(s.merk).filter(([k]) => !k.startsWith(praefix))) })),
+        set((s) => {
+          const raus = Object.keys(s.merk).filter((k) => k.startsWith(praefix));
+          if (!raus.length) return s;
+          const jetzt = Date.now();
+          return {
+            merk: Object.fromEntries(Object.entries(s.merk).filter(([k]) => !k.startsWith(praefix))),
+            weg: wegAufraeumen({ ...s.weg, ...Object.fromEntries(raus.map((k) => [`m:${k}`, jetzt])) }),
+          };
+        }),
       setzeAktuell: (e) => set((s) => ({ aktuell: { ...s.aktuell, [e.key]: { ...e, zeit: Date.now() } } })),
       entferneAktuell: (key) =>
         set((s) => {
+          if (!(key in s.aktuell)) return s;
           const rest = { ...s.aktuell };
           delete rest[key];
-          return { aktuell: rest };
+          return { aktuell: rest, weg: wegAufraeumen({ ...s.weg, [`a:${key}`]: Date.now() }) };
         }),
     }),
     {
       name: 'ruhelage-laufend',
       version: 1,
       storage: speicher,
-      partialize: (s) => ({ merk: s.merk, aktuell: s.aktuell }) as unknown as LaufendStore,
+      partialize: (s) => ({ merk: s.merk, aktuell: s.aktuell, weg: s.weg }) as unknown as LaufendStore,
     },
   ),
 );

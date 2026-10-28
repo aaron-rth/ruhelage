@@ -66,6 +66,8 @@ export interface Einstellungen {
   gelesen: string[];
   /** von Hand: Thema in der Tagesrunde ja/nein (sonst automatisch, sobald gestartet) */
   tagesrunde: Record<string, boolean>;
+  /** Zeitpunkt der letzten Änderung je Einstellung (für die Synchronisierung zwischen Geräten) */
+  geaendert: Record<string, number>;
   /** Einführung und kurze Hinweise anzeigen */
   hinweise: boolean;
   /** Wiederholungsabstände der Karteikarten */
@@ -113,6 +115,7 @@ export const STANDARD_EINSTELLUNGEN: Einstellungen = {
   ausgeblendeteThemen: [],
   gelesen: [],
   tagesrunde: {},
+  geaendert: {},
   hinweise: true,
   takt: 'standard',
   wischen: true,
@@ -264,9 +267,10 @@ export const useStore = create<Store>()(
           return { xp: s.xp + xp, tage: { ...s.tage, [h]: { ...t, xp: t.xp + xp } } };
         }),
 
-      setzeEinstellung: (k, v) => set((s) => ({ einstellungen: { ...s.einstellungen, [k]: v } })),
+      setzeEinstellung: (k, v) => set((s) => ({ einstellungen: { ...s.einstellungen, [k]: v, geaendert: { ...s.einstellungen.geaendert, [k]: Date.now() } } })),
 
-      setzeTakt: (t) => set((s) => ({ einstellungen: { ...s.einstellungen, takt: t }, karten: neuTakten(s.karten, TAKTE[t].intervalle) })),
+      setzeTakt: (t) =>
+        set((s) => ({ einstellungen: { ...s.einstellungen, takt: t, geaendert: { ...s.einstellungen.geaendert, takt: Date.now() } }, karten: neuTakten(s.karten, TAKTE[t].intervalle) })),
 
       spielwieseGeloest: (id) =>
         set((s) => (s.spielwiese.includes(id) ? s : { spielwiese: [...s.spielwiese, id] })),

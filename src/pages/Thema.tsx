@@ -11,7 +11,7 @@ import { operatorVon } from '../content/operatoren';
 import type { Generator, Thema } from '../content/types';
 import { heute } from '../lib/datum';
 import { genKey, istGestartet, quote, statusVon, themaFortschritt, uebKey, vorschlag } from '../lib/fortschritt';
-import { setzeThemaAusgeblendet } from '../lib/kurs';
+import { merkeGelesen, setzeTagesrunde, setzeThemaAusgeblendet } from '../lib/kurs';
 import { intervallText, istFaellig, TAKTE } from '../lib/leitner';
 import { useIstHandy } from '../lib/geraet';
 import { neuerSeed } from '../lib/rng';
@@ -94,7 +94,7 @@ function ThemaOptionen({ t }: { t: Thema }) {
           aria-checked={an && !aus}
           disabled={aus}
           className="schalter klein-schalter"
-          onClick={() => daten.setzeEinstellung('tagesrunde', { ...daten.einstellungen.tagesrunde, [t.id]: !an })}
+          onClick={() => setzeTagesrunde(t.id, !an)}
         />
         <span className="klein">In Tagesrunde</span>
       </label>
@@ -118,10 +118,7 @@ function Erklaert({ t }: { t: Thema }) {
   }, [t, setzeAktuell]);
   // nach einer Weile Lesen gilt das Thema als gestartet (kommt dann in die Tagesrunde)
   useEffect(() => {
-    const id = window.setTimeout(() => {
-      const e = useStore.getState().einstellungen;
-      if (!e.gelesen?.includes(t.id)) useStore.getState().setzeEinstellung('gelesen', [...(e.gelesen ?? []), t.id]);
-    }, 10_000);
+    const id = window.setTimeout(() => merkeGelesen(t.id), 10_000);
     return () => window.clearTimeout(id);
   }, [t.id]);
   return (

@@ -3,7 +3,8 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
 import { create } from 'zustand';
 import { datenAus, migriere, SCHEMA_VERSION, useStore } from '../store/store';
-import { fuehreZusammen } from './zusammenfuehren';
+import { useLaufend, type LaufendDaten } from '../store/laufend';
+import { fuehreLaufendZusammen, fuehreZusammen } from './zusammenfuehren';
 
 // Öffentliche Werte – dürfen im Code stehen. Den Schutz übernehmen die Regeln in supabase/schema.sql.
 const URL = 'https://raplowjyzrqpostibikb.supabase.co';
@@ -132,12 +133,24 @@ export async function synchronisiere(): Promise<void> {
     }
     const { data, error } = await s.from('fortschritt').select('daten').eq('user_id', uid).maybeSingle();
     if (error) throw error;
+    // In der Cloud liegt der Lernfortschritt plus „laufend“ (Angefangenes) in einem Objekt
+    const roh = (data?.daten ?? null) as (Record<string, unknown> & { laufend?: LaufendDaten }) | null;
+    const { laufend: cloudLaufend, ...cloudRest } = roh ?? {};
+    const cloud = roh ? migriere(cloudRest, SCHEMA_VERSION) : null;
+
     const lokal = datenAus(useStore.getState());
-    const zusammen = data ? fuehreZusammen(lokal, migriere(data.daten, SCHEMA_VERSION)) : lokal;
+    const zusammen = cloud ? fuehreZusammen(lokal, cloud) : lokal;
     const neu = JSON.stringify(zusammen);
     if (neu !== JSON.stringify(lokal)) useStore.getState().importiere(zusammen);
-    if (!data || neu !== JSON.stringify(migriere(data.daten, SCHEMA_VERSION))) {
-      const { error: e2 } = await s.from('fortschritt').upsert({ user_id: uid, daten: zusammen, aktualisiert: new Date().toISOString() });
+
+    const l = useLaufend.getState();
+    const lokalLaufend: LaufendDaten = { merk: l.merk, aktuell: l.aktuell, weg: l.weg ?? {} };
+    const laufend = cloudLaufend ? fuehreLaufendZusammen(lokalLaufend, cloudLaufend) : lokalLaufend;
+    const neuLaufend = JSON.stringify(laufend);
+    if (neuLaufend !== JSON.stringify(lokalLaufend)) useLaufend.setState(laufend);
+
+    if (!cloud || neu !== JSON.stringify(cloud) || neuLaufend !== JSON.stringify(cloudLaufend ?? null)) {
+      const { error: e2 } = await s.from('fortschritt').upsert({ user_id: uid, daten: { ...zusammen, laufend }, aktualisiert: new Date().toISOString() });
       if (e2) throw e2;
     }
     useKonto.setState({ status: 'an', zuletzt: Date.now() });

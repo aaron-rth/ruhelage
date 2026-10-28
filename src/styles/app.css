@@ -4183,3 +4183,25 @@ a.fach-zeile.bald:hover {
   border-color: var(--akzent-linie);
   color: var(--akzent);
 }
+/* Seitenleiste: lange Fachnamen umbrechen statt abschneiden */
+.fach-zeile {
+  white-space: normal;
+  gap: 10px;
+  min-width: 0;
+}
+.fach-zeile > span {
+  flex: 1;
+}
+.fach-zeile strong {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px 6px;
+  font-size: 0.9rem;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  overflow-wrap: break-word;
+}
+.fach-zeile .klein {
+  white-space: nowrap;
+}

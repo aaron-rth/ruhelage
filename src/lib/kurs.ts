@@ -41,8 +41,14 @@ export function wechsleKurs(id: string) {
   });
 }
 
-function setze(f: (e: Einstellungen) => Partial<Einstellungen>) {
-  useStore.setState((s) => ({ einstellungen: { ...s.einstellungen, ...f(s.einstellungen) } }));
+/** Einstellungen ändern und den Zeitpunkt merken (zusätzliche Schlüssel z. B. „klausurDaten:<kurs>“) */
+function setze(f: (e: Einstellungen) => Partial<Einstellungen>, extraZeit: string[] = []) {
+  useStore.setState((s) => {
+    const neu = f(s.einstellungen);
+    const jetzt = Date.now();
+    const zeiten = Object.fromEntries([...Object.keys(neu), ...extraZeit].map((k) => [k, jetzt]));
+    return { einstellungen: { ...s.einstellungen, ...neu, geaendert: { ...s.einstellungen.geaendert, ...zeiten } } };
+  });
 }
 
 /** Meine Fächer: hinzugefügte (und der aktive), aufgeteilt in laufend und fertig */
@@ -85,7 +91,19 @@ export function klausurDatumVon(e: Einstellungen, id: string): string {
 }
 
 export function setzeKlausurDatum(id: string, datum: string) {
-  setze((e) => (id === e.kurs ? { klausurDatum: datum } : { klausurDaten: { ...e.klausurDaten, [id]: datum } }));
+  // klausurDaten ist die Quelle für alle Kurse; klausurDatum spiegelt den aktiven
+  setze((e) => ({ klausurDaten: { ...e.klausurDaten, [id]: datum }, ...(id === e.kurs ? { klausurDatum: datum } : {}) }), [`klausurDaten:${id}`]);
+}
+
+/** Thema von Hand in die Tagesrunde aufnehmen oder herausnehmen */
+export function setzeTagesrunde(id: string, an: boolean) {
+  setze((e) => ({ tagesrunde: { ...e.tagesrunde, [id]: an } }), [`tagesrunde:${id}`]);
+}
+
+/** „Kurz erklärt“ gelesen – Thema gilt damit als gestartet */
+export function merkeGelesen(id: string) {
+  const e = useStore.getState().einstellungen;
+  if (!e.gelesen?.includes(id)) setze((x) => ({ gelesen: [...(x.gelesen ?? []), id] }));
 }
 
 export function setzeThemaAusgeblendet(id: string, aus: boolean) {

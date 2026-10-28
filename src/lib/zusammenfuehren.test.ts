@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { leereDaten } from '../store/store';
 import { syncFehlerArt } from './cloud';
-import { fuehreZusammen } from './zusammenfuehren';
+import { fuehreEinstellungenZusammen, fuehreLaufendZusammen, fuehreZusammen } from './zusammenfuehren';
 
 describe('Zusammenführen von Speicherständen', () => {
   it('behält von beiden Geräten den weiteren Fortschritt', () => {
@@ -62,5 +62,50 @@ describe('Neue Einstellungen in alten Speicherständen', () => {
     const { migriere } = await import('../store/store');
     const d = migriere({ einstellungen: { theme: 'light' } }, 1);
     expect(d.einstellungen).toMatchObject({ theme: 'light', ton: true, haptik: true, wischUmgekehrt: false });
+  });
+});
+
+describe('Einstellungen und Angefangenes zwischen Geräten', () => {
+  const basis = () => leereDaten().einstellungen;
+
+  it('Fachliches vom zuletzt geänderten Gerät, Geräte-Einstellungen bleiben', () => {
+    const handy = { ...basis(), kurs: 'schwingungen', theme: 'light' as const, klausurDatum: '2026-11-06', meineKurse: ['schwingungen'] };
+    const laptop = {
+      ...basis(),
+      kurs: 'gk',
+      theme: 'dark' as const,
+      klausurDatum: '2026-11-20',
+      klausurDaten: { schwingungen: '2026-11-06' },
+      meineKurse: ['schwingungen', 'gk'],
+      zielKarten: 30,
+      geaendert: { zielKarten: 5, 'klausurDaten:gk': 5 },
+    };
+    const e = fuehreEinstellungenZusammen(handy, laptop);
+    expect(e.kurs).toBe('schwingungen');
+    expect(e.theme).toBe('light');
+    expect(e.meineKurse.sort()).toEqual(['gk', 'schwingungen']);
+    expect(e.klausurDaten.gk).toBe('2026-11-20');
+    expect(e.klausurDatum).toBe('2026-11-06');
+    expect(e.zielKarten).toBe(30);
+  });
+
+  it('neuerer Termin gewinnt, auch für den aktiven Kurs', () => {
+    const a = { ...basis(), kurs: 'x', klausurDatum: '2026-01-01', geaendert: { 'klausurDaten:x': 1 } };
+    const b = { ...basis(), kurs: 'y', klausurDaten: { x: '2026-02-02' }, geaendert: { 'klausurDaten:x': 2 } };
+    expect(fuehreEinstellungenZusammen(a, b).klausurDatum).toBe('2026-02-02');
+  });
+
+  it('Angefangenes: neuerer Eintrag gewinnt, Gelöschtes kommt nicht zurück', () => {
+    const t = Date.now();
+    const lokal = { merk: { a: { wert: 1, zeit: t + 10 } }, aktuell: {}, weg: { 'a:k': t + 20 } };
+    const cloud = {
+      merk: { a: { wert: 2, zeit: t + 15 }, b: { wert: 3, zeit: t + 5 } },
+      aktuell: { k: { key: 'k', art: 'karten' as const, titel: 't', pfad: '/', zeit: t + 10 } },
+      weg: {},
+    };
+    const z = fuehreLaufendZusammen(lokal, cloud);
+    expect((z.merk.a.wert as number)).toBe(2);
+    expect(z.merk.b).toBeDefined();
+    expect(z.aktuell.k).toBeUndefined();
   });
 });

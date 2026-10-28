@@ -18,6 +18,7 @@ import { ThemaSeite } from './pages/Thema';
 import type { Kurs } from './content/types';
 import { hatFormeln, hatProbeklausur, hatSpielwiese, useAktiverKurs, useMeineKurse, wechsleKurs } from './lib/kurs';
 import { knopfKlick } from './lib/feedback';
+import { useLaufend } from './store/laufend';
 import { streak, useStore } from './store/store';
 import { useUi } from './store/ui';
 
@@ -238,11 +239,13 @@ function useCloud() {
   useEffect(() => {
     void kontoStarten();
     const ab = useStore.subscribe(() => syncPlanen());
+    const abLaufend = useLaufend.subscribe(() => syncPlanen());
     const sichtbar = () => syncSofort();
     document.addEventListener('visibilitychange', sichtbar);
     window.addEventListener('online', beiOnline);
     return () => {
       ab();
+      abLaufend();
       document.removeEventListener('visibilitychange', sichtbar);
       window.removeEventListener('online', beiOnline);
     };
