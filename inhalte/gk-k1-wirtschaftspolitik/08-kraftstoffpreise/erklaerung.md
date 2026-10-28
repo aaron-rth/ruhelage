@@ -5,8 +5,6 @@
 1. **Sind die hohen Preise Marktversagen (z. B. ein Kartell) oder eine normale Marktreaktion?**
 2. **Soll der Staat eingreifen, und wenn ja, wie?**
 
-> Hinweis aus deiner Klausurliste: Tankrabatt und Kartelle sollten eigentlich nicht drankommen. Da du nachschreibst, ist der Fall hier aber kompakt enthalten, auch weil er sich sehr gut für ein **politisches Urteil** eignet.
-
 ## Woraus besteht der Spritpreis?
 
 Der Preis an der Zapfsäule setzt sich grob aus zwei Blöcken zusammen:
