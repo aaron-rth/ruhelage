@@ -140,7 +140,7 @@ export function Schreiben({ u, themaId, geprueft, onPruefen }: { u: SchreibUebun
 
       {!vergleich && (
         <div className="aktionen">
-          <button type="button" className="btn primaer" onClick={() => setVergleich(true)}>
+          <button type="button" className="btn primaer umbrechen" onClick={() => setVergleich(true)}>
             <Icon name="check" size={16} /> Fertig – mit Erwartungshorizont vergleichen
           </button>
         </div>

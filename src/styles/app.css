@@ -3980,3 +3980,11 @@ a.fach-zeile.bald:hover {
   padding-left: var(--s3);
   border-left: 2px solid var(--linie);
 }
+/* lange Knopftexte auf schmalen Bildschirmen umbrechen statt überlaufen */
+.btn.umbrechen {
+  white-space: normal;
+  text-align: left;
+  height: auto;
+  min-height: 40px;
+  max-width: 100%;
+}

@@ -1,15 +1,32 @@
 {
   "id": "gk-lf-k1-wirtschaftspolitik",
-  "fach": "Gemeinschaftskunde (Leistungsfach)",
-  "klasse": "K1",
+  "fach": "Gemeinschaftskunde",
+  "klasse": "K1 · LF",
   "titel": "Grundlagen der Wirtschaftspolitik",
   "pfad": [
-    ["gkw-ordnungen"],
-    ["gkw-denkschulen"],
-    ["gkw-sozmarkt", "gkw-konzepte"],
-    ["gkw-ziele", "gkw-export", "gkw-marktversagen"],
-    ["gkw-kraftstoff", "gkw-strompreis"],
-    ["gkw-textanalyse", "gkw-karikatur", "gkw-urteil"]
-  ],
-  "entwurf": true
+    [
+      "gkw-ordnungen"
+    ],
+    [
+      "gkw-denkschulen"
+    ],
+    [
+      "gkw-sozmarkt",
+      "gkw-konzepte"
+    ],
+    [
+      "gkw-ziele",
+      "gkw-export",
+      "gkw-marktversagen"
+    ],
+    [
+      "gkw-kraftstoff",
+      "gkw-strompreis"
+    ],
+    [
+      "gkw-textanalyse",
+      "gkw-karikatur",
+      "gkw-urteil"
+    ]
+  ]
 }
