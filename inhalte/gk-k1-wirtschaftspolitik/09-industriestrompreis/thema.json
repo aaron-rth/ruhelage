@@ -1,0 +1,227 @@
+{
+  "id": "gkw-strompreis",
+  "titel": "Fall: Industriestrompreis",
+  "untertitel": "Fördermodell 2026–2028, Zielkonflikte, Pro und Contra",
+  "abhaengig": ["gkw-ziele", "gkw-marktversagen"],
+  "prioritaet": 1,
+  "quelleErklaerung": "eigene Zusammenfassung nach Unterricht (Arbeitsblatt Industriestrompreis, Zielkonflikttabelle, Textanalyse); Fördermodell geprüft an IHK Lahn-Dill, IHK Lippe zu Detmold, IHK Koblenz und IHK Oberfranken Bayreuth (Förderrichtlinie BMWE, Bundesanzeiger 06.05.2026), Rödl & Partner (Richtlinienentwurf), NWB; Kritik an Monopolkommission Hauptgutachten 2026 Kap. 3 (lt. Börsen-Zeitung, Tagesspiegel, ecomento), ZDFheute (Symbolpolitik), energieverbraucher.de (DIW-Kritik)",
+  "karten": [
+    {
+      "id": "gkw-strompreis-k1",
+      "typ": "begriff",
+      "vorne": "Was ist der Industriestrompreis?",
+      "hinten": "**Kein einheitlicher Strompreis**, sondern eine befristete staatliche Entlastung beim Strompreis für bestimmte **strom- und handelsintensive** Unternehmen, die im internationalen Wettbewerb stehen.",
+      "quelle": "eigene Karte; IHK; Unterrichtsarbeitsblatt"
+    },
+    {
+      "id": "gkw-strompreis-k2",
+      "typ": "begriff",
+      "vorne": "Fördermodell: Höhe, Untergrenze, Menge",
+      "hinten": "Bis zu **50 %** des maßgeblichen Großhandelsstrompreises, aber der geförderte Preis darf **5 ct/kWh** nicht unterschreiten. Gefördert werden höchstens **50 % des Verbrauchs** einer Produktionsstätte.",
+      "quelle": "eigene Karte; IHK Lahn-Dill; IHK Lippe"
+    },
+    {
+      "id": "gkw-strompreis-k3",
+      "typ": "begriff",
+      "vorne": "Dauer und Gegenleistung des Industriestrompreises",
+      "hinten": "Abrechnungsjahre **2026–2028**. Gegenleistung: **50 % der Förderung** innerhalb von **48 Monaten** in Modernisierung/Dekarbonisierung investieren (Effizienz, Erneuerbare, Speicher, Elektrifizierung, Wasserstoff).",
+      "quelle": "eigene Karte; IHK; Rödl & Partner"
+    },
+    {
+      "id": "gkw-strompreis-k4",
+      "typ": "begriff",
+      "vorne": "Wer genehmigt und wer zahlt den Industriestrompreis aus?",
+      "hinten": "Die **EU-Kommission** musste ihn beihilferechtlich genehmigen (April 2026), deshalb ist er befristet. Anträge laufen beim **BAFA**, rückwirkend ab 2027 für 2026.",
+      "quelle": "eigene Karte; IHK Lahn-Dill"
+    },
+    {
+      "id": "gkw-strompreis-k5",
+      "typ": "warum",
+      "vorne": "Warum ist Strom für Branchen wie Chemie oder Glas so entscheidend?",
+      "hinten": "Strom ist dort ein großer Produktionsfaktor. Steigt er, steigen die Herstellungskosten stark, und weil die Firmen international konkurrieren, können sie die Kosten kaum an Kunden weitergeben. Die Folge sind Verluste, Investitionen im Ausland, Abwanderung.",
+      "quelle": "eigene Karte nach Unterrichtsarbeitsblatt"
+    },
+    {
+      "id": "gkw-strompreis-k6",
+      "typ": "begriff",
+      "vorne": "Pro-Argumente zum Industriestrompreis",
+      "hinten": "Wettbewerbsfähigkeit gegenüber USA/Asien; Arbeitsplätze inkl. Zulieferer; befristete Brücke bis zu günstigem Ökostrom; an Klimainvestitionen gekoppelt; verhindert Abwanderung in Länder mit schmutzigerem Strom (Carbon Leakage).",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-strompreis-k7",
+      "typ": "begriff",
+      "vorne": "Contra-Argumente zum Industriestrompreis",
+      "hinten": "Wettbewerbsverzerrung (Mittelstand/Handwerk gehen leer aus); Kosten für Steuerzahler; weniger Sparanreiz; Strukturerhalt statt Wandel, Mitnahmeeffekte; nach Auflagen teils geringe Ersparnis; ordoliberal: Eingriff in den Preismechanismus.",
+      "quelle": "eigene Karte; Monopolkommission; ZDFheute"
+    },
+    {
+      "id": "gkw-strompreis-k8",
+      "typ": "begriff",
+      "vorne": "Was empfiehlt die Monopolkommission (Hauptgutachten 2026) statt eines Industriestrompreises?",
+      "hinten": "Eine **breite Entlastung** aller Stromverbraucher, z. B. durch niedrigere staatlich geprägte Strompreisbestandteile (Stromsteuer, Netzentgelte), statt Subventionen für einzelne Branchen.",
+      "quelle": "eigene Karte; Börsen-Zeitung; Tagesspiegel; ecomento"
+    },
+    {
+      "id": "gkw-strompreis-k9",
+      "typ": "wasPassiert",
+      "vorne": "Zielkonflikt: Industriestrompreis ↔ Umweltschutz",
+      "hinten": "Strom wird für geförderte Betriebe billiger → geringerer Anreiz, Strom zu sparen → mehr Verbrauch. Gegenmittel im Modell: Die Hälfte der Förderung muss in Dekarbonisierung fließen.",
+      "quelle": "eigene Karte nach Unterrichtstabelle"
+    },
+    {
+      "id": "gkw-strompreis-k10",
+      "typ": "wasPassiert",
+      "vorne": "Zielkonflikt: Industriestrompreis ↔ gerechte Verteilung",
+      "hinten": "Große Konzerne erhalten Millionen, kleine Betriebe und Haushalte zahlen über Steuern mit, bekommen aber keine Entlastung → Vorwurf der Ungleichbehandlung.",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-strompreis-k11",
+      "typ": "begriff",
+      "vorne": "Wie lässt sich der Industriestrompreis wirtschaftspolitisch einordnen?",
+      "hinten": "Als **selektive Industriepolitik/Subvention** (Prozesspolitik). Er wirkt auf der Angebotsseite (Kostensenkung), aber nicht über allgemeine Rahmenbedingungen. Ordoliberale lehnen solche Eingriffe ab.",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-strompreis-k12",
+      "typ": "herleitung",
+      "vorne": "Rechne (vereinfacht): Werk mit 30 Mio. kWh, Referenzpreis 12 ct/kWh. Wie hoch ist die Förderung?",
+      "hinten": "Förderfähig: 50 % von 30 Mio. = **15 Mio. kWh**. Entlastung 50 % von 12 ct = 6 ct → Preis 6 ct, liegt über der Untergrenze 5 ct, also **ok**. Förderung = 15 Mio. × 0,06 € = **900.000 €**, davon 450.000 € in Dekarbonisierung investieren.",
+      "quelle": "eigene Karte (vereinfachte Rechnung mit eigenen Zahlen)"
+    },
+    {
+      "id": "gkw-strompreis-k13",
+      "typ": "fehler",
+      "vorne": "Typischer Fehler: „Ab 2026 zahlen alle Unternehmen 5 Cent pro kWh.“",
+      "hinten": "Falsch. Nur bestimmte strom- und handelsintensive Unternehmen werden gefördert, nur für die Hälfte ihres Verbrauchs, und 5 ct ist die **Untergrenze**, nicht der Normalpreis.",
+      "quelle": "eigene Karte"
+    }
+  ],
+  "uebungen": [
+    {
+      "id": "gkw-strompreis-u1",
+      "typ": "luecke",
+      "frage": "Ergänze die Eckdaten des Fördermodells.",
+      "quelle": "eigene Übung",
+      "text": "Gefördert werden bis zu [[0]] des Großhandelsstrompreises, der geförderte Preis darf aber [[1]] nicht unterschreiten. Berücksichtigt wird höchstens [[2]] des Verbrauchs. Die Förderung gilt für die Jahre [[3]]. Als Gegenleistung müssen 50 % der Förderung innerhalb von [[4]] investiert werden.",
+      "luecken": [
+        { "optionen": ["25 %", "50 %", "100 %"], "richtig": 1 },
+        { "optionen": ["2 ct/kWh", "5 ct/kWh", "10 ct/kWh"], "richtig": 1 },
+        { "optionen": ["die Hälfte", "ein Viertel", "der gesamte Verbrauch"], "richtig": 0 },
+        { "optionen": ["2024–2026", "2026–2028", "2030–2035"], "richtig": 1 },
+        { "optionen": ["12 Monaten", "48 Monaten", "10 Jahren"], "richtig": 1 }
+      ]
+    },
+    {
+      "id": "gkw-strompreis-u2",
+      "typ": "klassifizieren",
+      "frage": "Pro oder Contra Industriestrompreis?",
+      "quelle": "eigene Übung",
+      "kategorien": ["Pro", "Contra"],
+      "items": [
+        { "text": "Ein Chemiewerk droht, seine Produktion in die USA zu verlagern.", "kategorie": 0, "warum": "Abwanderung verhindern." },
+        { "text": "Die Bäckerei nebenan zahlt den vollen Strompreis und finanziert über Steuern die Förderung mit.", "kategorie": 1, "warum": "Ungleichbehandlung, Wettbewerbsverzerrung." },
+        { "text": "Die Hälfte der Förderung muss in Klimaschutz investiert werden.", "kategorie": 0, "warum": "Transformation wird angeschoben." },
+        { "text": "Billigerer Strom senkt den Anreiz, Energie zu sparen.", "kategorie": 1, "warum": "Falsches Preissignal." },
+        { "text": "An einer Fabrik hängen viele Zulieferer in der Region.", "kategorie": 0, "warum": "Wertschöpfungsketten und Arbeitsplätze." },
+        { "text": "Eine breite Senkung von Stromsteuer und Netzentgelten würde allen helfen.", "kategorie": 1, "warum": "Bessere Alternative laut Monopolkommission." }
+      ]
+    },
+    {
+      "id": "gkw-strompreis-u3",
+      "typ": "zuordnen",
+      "frage": "Ordne jedem Ziel des magischen Sechsecks einen möglichen Zielkonflikt durch den Industriestrompreis zu.",
+      "quelle": "eigene Übung",
+      "paare": [
+        { "links": "Umweltschutz", "rechts": "Geringerer Anreiz zum Stromsparen" },
+        { "links": "Gerechte Verteilung", "rechts": "Großunternehmen profitieren, Kleinbetriebe zahlen mit" },
+        { "links": "Außenwirtschaftliches Gleichgewicht", "rechts": "Exportüberschuss kann weiter wachsen" },
+        { "links": "Hoher Beschäftigungsstand", "rechts": "Erhalt nicht zukunftsfähiger Strukturen" }
+      ]
+    },
+    {
+      "id": "gkw-strompreis-u4",
+      "typ": "mc",
+      "frage": "Ein Werk hat einen Referenzpreis von 8 ct/kWh. Wie hoch ist die Entlastung pro kWh (vereinfacht)?",
+      "quelle": "eigene Übung",
+      "optionen": [
+        { "text": "4 ct, weil 50 % von 8 ct", "warum": "Dann läge der Preis bei 4 ct, also unter der Untergrenze von 5 ct." },
+        { "text": "3 ct, weil der Preis nicht unter 5 ct sinken darf", "richtig": true, "warum": "8 ct − 3 ct = 5 ct, die Untergrenze begrenzt die Entlastung." },
+        { "text": "8 ct, der Strom wird kostenlos", "warum": "Maximal 50 % Entlastung und Untergrenze 5 ct." }
+      ]
+    },
+    {
+      "id": "gkw-strompreis-u5",
+      "typ": "reihenfolge",
+      "frage": "Bringe die Folgen steigender Strompreise für ein energieintensives Unternehmen in eine logische Reihenfolge.",
+      "quelle": "eigene Übung",
+      "schritte": [
+        "Der Strompreis steigt deutlich.",
+        "Die Herstellungskosten des Unternehmens steigen.",
+        "Es muss seine Preise erhöhen oder auf Gewinn verzichten.",
+        "Im internationalen Wettbewerb verliert es Kunden.",
+        "Investitionen werden verschoben oder im Ausland getätigt.",
+        "Produktion und Arbeitsplätze wandern ab."
+      ]
+    },
+    {
+      "id": "gkw-strompreis-u6",
+      "typ": "fehler",
+      "frage": "Wo steckt der Fehler in diesem Schülertext?",
+      "quelle": "eigene Übung",
+      "schritte": [
+        "Der Industriestrompreis soll stromintensive Unternehmen entlasten.",
+        "Er gilt befristet, weil das EU-Beihilferecht nur zeitlich begrenzte Hilfen erlaubt.",
+        "Ordoliberale begrüßen ihn, weil er den Wettbewerb stärkt.",
+        "Kritiker bemängeln, dass kleine Betriebe leer ausgehen.",
+        "Als Gegenleistung müssen die Unternehmen in Klimaschutz investieren."
+      ],
+      "fehler": 2,
+      "erklaerung": "Ordoliberale lehnen selektive Subventionen eher ab: Sie greifen in den Preismechanismus ein (Prozesspolitik) und verzerren den Wettbewerb zwischen geförderten und nicht geförderten Unternehmen."
+    },
+    {
+      "id": "gkw-strompreis-s1",
+      "typ": "schreiben",
+      "operator": "beurteilen",
+      "frage": "Beurteilen Sie, ob der Industriestrompreis eine „notwendige Hilfe“ oder eine „teure Fehlsteuerung“ ist.",
+      "quelle": "eigene Aufgabe nach Unterrichtsleitfrage",
+      "umfang": "ca. 500–600 Wörter",
+      "erwartung": [
+        "Einleitung: Problem (hohe Strompreise, Wettbewerbsfähigkeit), Leitfrage, Nennung von Kriterien (z. B. Effektivität, Effizienz, Gerechtigkeit, Nachhaltigkeit) und Perspektiven.",
+        "Korrekte Darstellung des Modells (50 %, 5 ct, 50 % des Verbrauchs, 2026–2028, Gegenleistung 50 % in 48 Monaten).",
+        "Effektivität: sichert kurzfristig Wettbewerbsfähigkeit und Arbeitsplätze vs. Ersparnis teils gering, Befristung schafft Unsicherheit.",
+        "Effizienz: gezielte Hilfe vs. breite Entlastung (Monopolkommission), Mitnahmeeffekte, Kosten für den Haushalt.",
+        "Gerechtigkeit: Großindustrie vs. Mittelstand, Handwerk und Haushalte; Verteilungswirkung.",
+        "Nachhaltigkeit: Dekarbonisierungsauflage vs. sinkender Sparanreiz; Carbon Leakage.",
+        "Perspektiven: Akteure (Regierung, Industrie), Betroffene (Beschäftigte, Steuerzahler, kleine Betriebe), System (Wettbewerbsordnung, Haushalt, Klimaziele).",
+        "Gesamturteil mit Gewichtung, z. B. „vertretbare Brücke unter Bedingungen“ oder „Fehlsteuerung, breite Entlastung besser“."
+      ],
+      "kriterien": [
+        { "name": "Sachkenntnis", "beschreibung": "Fördermodell und Problemlage korrekt und präzise.", "punkte": 3 },
+        { "name": "Kriterien und Perspektiven", "beschreibung": "Mind. drei Kriterien und zwei Perspektiven ausdrücklich angewendet.", "punkte": 3 },
+        { "name": "Teilurteile", "beschreibung": "Je Kriterium Pro/Contra mit Begründung und Beleg und ein Zwischenfazit.", "punkte": 5 },
+        { "name": "Gesamturteil", "beschreibung": "Gewichtung offengelegt, Leitfrage eindeutig beantwortet.", "punkte": 3 },
+        { "name": "Darstellung", "beschreibung": "Aufbau, Fachsprache, Überleitungen.", "punkte": 2 }
+      ]
+    },
+    {
+      "id": "gkw-strompreis-s2",
+      "typ": "schreiben",
+      "operator": "erlaeutern",
+      "frage": "Erläutern Sie anhand von drei Zielen des magischen Sechsecks, welche Zielkonflikte der Industriestrompreis auslöst.",
+      "quelle": "eigene Aufgabe",
+      "umfang": "ca. 300 Wörter",
+      "erwartung": [
+        "Pro Ziel: ein Argument für den Industriestrompreis und der mögliche Konflikt, jeweils mit Wirkungskette.",
+        "z. B. Beschäftigung (Jobs sichern ↔ Strukturerhalt), Umwelt (Dekarbonisierungsauflage ↔ weniger Sparanreiz), Verteilung (Jobs ↔ Bevorzugung Großindustrie), Außenwirtschaft (Wettbewerbsfähigkeit ↔ wachsender Überschuss).",
+        "Fazit: Eine Maßnahme kann einige Ziele fördern und andere gefährden."
+      ],
+      "kriterien": [
+        { "name": "Drei Ziele", "beschreibung": "Je Ziel Argument und Konflikt mit nachvollziehbarer Kausalkette.", "punkte": 6 },
+        { "name": "Fazit", "beschreibung": "Zusammenfassende Einschätzung.", "punkte": 1 },
+        { "name": "Darstellung", "beschreibung": "Fachsprache, Struktur.", "punkte": 1 }
+      ]
+    }
+  ]
+}

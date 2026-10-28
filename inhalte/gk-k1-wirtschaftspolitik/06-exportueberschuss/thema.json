@@ -1,0 +1,183 @@
+{
+  "id": "gkw-export",
+  "titel": "Exportüberschuss und außenwirtschaftliches Gleichgewicht",
+  "untertitel": "Zahlungsbilanz, Ursachen, Folgen, Gegenmaßnahmen",
+  "abhaengig": ["gkw-ziele"],
+  "prioritaet": 9,
+  "quelleErklaerung": "eigene Zusammenfassung nach Unterricht (Wirtschaftsgipfel, „Eilmeldung“ zum außenwirtschaftlichen Gleichgewicht, eigene Notiz) und Lehrbuch Orientierungswissen S. 52; Zahlen geprüft an Deutsche Bundesbank (Zahlungsbilanzstatistik 2025), EZB-Pressemitteilung Zahlungsbilanz Februar 2026, Wissenschaftlicher Dienst des Bundestags WD 5-041-17 und Wirtschaftsdienst 9/2017 (Leistungsbilanzüberschuss, EU-Schwellenwerte)",
+  "karten": [
+    {
+      "id": "gkw-export-k1",
+      "typ": "begriff",
+      "vorne": "Was erfasst die Zahlungsbilanz?",
+      "hinten": "Alle wirtschaftlichen Transaktionen zwischen Inländern und Ausländern in einem Zeitraum. Als Ganzes ist sie **immer ausgeglichen**, Überschüsse und Defizite gibt es nur in Teilbilanzen.",
+      "quelle": "eigene Karte; Bundesbank"
+    },
+    {
+      "id": "gkw-export-k2",
+      "typ": "begriff",
+      "vorne": "Teile der Leistungsbilanz",
+      "hinten": "Handelsbilanz (Waren), Dienstleistungsbilanz, Primäreinkommen (z. B. Zinsen, Dividenden), Sekundäreinkommen (Übertragungen ohne Gegenleistung).",
+      "quelle": "eigene Karte; Bundesbank"
+    },
+    {
+      "id": "gkw-export-k3",
+      "typ": "begriff",
+      "vorne": "Aktive Handelsbilanz",
+      "hinten": "Die Warenexporte sind größer als die Warenimporte (Exportüberschuss). Deutschland hat traditionell eine aktive Handelsbilanz.",
+      "quelle": "eigene Karte nach Lehrbuch S. 52"
+    },
+    {
+      "id": "gkw-export-k4",
+      "typ": "warum",
+      "vorne": "Warum bedeutet ein Leistungsbilanzüberschuss zugleich Kapitalexport?",
+      "hinten": "Wer mehr verkauft als kauft, erhält dafür Forderungen gegenüber dem Ausland (Geld, Wertpapiere, Beteiligungen). Das Land baut also Auslandsvermögen auf und „verleiht“ seine Ersparnisse ans Ausland.",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-export-k5",
+      "typ": "begriff",
+      "vorne": "Wie hoch war der deutsche Leistungsbilanzüberschuss 2025?",
+      "hinten": "Rund **203 Mrd. Euro**, etwa **4½ % des BIP** (laut Bundesbank deutlich weniger als im Vorjahr, vor allem wegen eines geringeren Warenhandelsüberschusses). Mitte der 2010er-Jahre lag er zeitweise über 8 %.",
+      "quelle": "eigene Karte; Deutsche Bundesbank"
+    },
+    {
+      "id": "gkw-export-k6",
+      "typ": "begriff",
+      "vorne": "Welche Schwelle nutzt die EU für Leistungsbilanzüberschüsse?",
+      "hinten": "Im makroökonomischen Ungleichgewichtsverfahren gelten Überschüsse über **6 % des BIP** (Dreijahresdurchschnitt) und Defizite über 4 % als Warnsignal. Die Kommission prüft dann genauer.",
+      "quelle": "eigene Karte; WD Bundestag; Wirtschaftsdienst"
+    },
+    {
+      "id": "gkw-export-k7",
+      "typ": "begriff",
+      "vorne": "Ursachen des deutschen Exportüberschusses",
+      "hinten": "Wettbewerbsfähige Industrie; Lohnzurückhaltung der 2000er; Euro schwächer als eine eigene deutsche Währung; hohe Ersparnis bei schwachen Inlandsinvestitionen; Vorsorge der alternden Gesellschaft.",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-export-k8",
+      "typ": "begriff",
+      "vorne": "Vorteile hoher Exportüberschüsse",
+      "hinten": "Sichern Arbeitsplätze und Einkommen; Aufbau von Auslandsvermögen für die alternde Gesellschaft; Zeichen hoher Wettbewerbsfähigkeit.",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-export-k9",
+      "typ": "begriff",
+      "vorne": "Nachteile hoher Exportüberschüsse",
+      "hinten": "Abhängigkeit von Weltkonjunktur und Freihandel (Zölle!); Defizite und Verschuldung anderer Länder, Kritik von EU/IWF/USA; Kapital fehlt für Investitionen im Inland; Auslandsvermögen kann an Wert verlieren.",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-export-k10",
+      "typ": "warum",
+      "vorne": "Warum empfehlen Kritiker eher eine Stärkung der Binnennachfrage als weniger Exporte?",
+      "hinten": "Weniger Exporte würden Arbeitsplätze vernichten, ohne anderen zu helfen. Mehr Investitionen und Konsum im Inland erhöhen dagegen die Importe und bauen den Überschuss ab, während Wohlstand im Land bleibt.",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-export-k11",
+      "typ": "wasPassiert",
+      "vorne": "Was passiert, wenn ein großer Handelspartner hohe Zölle auf deutsche Industrieprodukte einführt?",
+      "hinten": "Deutsche Waren werden dort teurer → Exporte sinken → Exportunternehmen produzieren weniger, Arbeitsplätze geraten in Gefahr → Wachstum sinkt. Die starke Exportabhängigkeit wird zum Risiko.",
+      "quelle": "eigene Karte nach Unterricht (Eilmeldung)"
+    },
+    {
+      "id": "gkw-export-k12",
+      "typ": "fehler",
+      "vorne": "Typischer Fehler: „Die Zahlungsbilanz Deutschlands hat einen Überschuss.“",
+      "hinten": "Falsch formuliert. Die Zahlungsbilanz ist als Ganzes immer ausgeglichen. Richtig: Die **Leistungsbilanz** (bzw. Handelsbilanz) weist einen Überschuss aus.",
+      "quelle": "eigene Karte"
+    }
+  ],
+  "uebungen": [
+    {
+      "id": "gkw-export-u1",
+      "typ": "klassifizieren",
+      "frage": "In welche Teilbilanz der Leistungsbilanz gehört der Vorgang?",
+      "quelle": "eigene Übung",
+      "kategorien": ["Handelsbilanz", "Dienstleistungsbilanz", "Primäreinkommen", "Sekundäreinkommen"],
+      "items": [
+        { "text": "Ein deutscher Maschinenbauer liefert eine Anlage nach Brasilien.", "kategorie": 0, "warum": "Warenexport." },
+        { "text": "Eine Familie aus Stuttgart macht Urlaub in Italien.", "kategorie": 1, "warum": "Reiseverkehr = Dienstleistungsimport." },
+        { "text": "Ein deutscher Anleger erhält Dividenden von einem US-Konzern.", "kategorie": 2, "warum": "Vermögenseinkommen aus dem Ausland." },
+        { "text": "Ein Arbeitnehmer überweist Geld an seine Eltern in Polen.", "kategorie": 3, "warum": "Übertragung ohne Gegenleistung." },
+        { "text": "Deutschland importiert Erdgas aus Norwegen.", "kategorie": 0, "warum": "Warenimport." }
+      ]
+    },
+    {
+      "id": "gkw-export-u2",
+      "typ": "mc",
+      "frage": "Ein Land hat einen hohen Leistungsbilanzüberschuss. Was gilt dann gleichzeitig?",
+      "quelle": "eigene Übung",
+      "optionen": [
+        { "text": "Es verschuldet sich im Ausland.", "warum": "Das gilt bei einem Defizit." },
+        { "text": "Es baut Vermögen bzw. Forderungen im Ausland auf.", "richtig": true, "warum": "Der Überschuss wird durch einen Kapitalexport ausgeglichen." },
+        { "text": "Seine Zahlungsbilanz ist im Überschuss.", "warum": "Die Zahlungsbilanz ist insgesamt immer ausgeglichen." }
+      ]
+    },
+    {
+      "id": "gkw-export-u3",
+      "typ": "klassifizieren",
+      "frage": "Spricht das Argument eher für oder gegen einen hohen Exportüberschuss?",
+      "quelle": "eigene Übung",
+      "kategorien": ["spricht dafür", "spricht dagegen"],
+      "items": [
+        { "text": "Exporte sichern Hunderttausende Industriearbeitsplätze.", "kategorie": 0, "warum": "Beschäftigung." },
+        { "text": "Handelspartner verschulden sich, um deutsche Waren zu kaufen.", "kategorie": 1, "warum": "Ungleichgewichte bei anderen Ländern." },
+        { "text": "Für die alternde Gesellschaft wird Auslandsvermögen aufgebaut.", "kategorie": 0, "warum": "Vorsorge." },
+        { "text": "Zölle anderer Staaten treffen die Wirtschaft besonders hart.", "kategorie": 1, "warum": "Abhängigkeit." },
+        { "text": "Brücken und Schulen verfallen, während Kapital ins Ausland fließt.", "kategorie": 1, "warum": "Fehlende Inlandsinvestitionen." }
+      ]
+    },
+    {
+      "id": "gkw-export-u4",
+      "typ": "luecke",
+      "frage": "Ergänze den Text.",
+      "quelle": "eigene Übung",
+      "text": "Deutschland hat traditionell eine [[0]] Handelsbilanz. Die EU sieht einen Leistungsbilanzüberschuss von mehr als [[1]] des BIP als Warnsignal. Statt Exporte zu bremsen, empfehlen Kritiker, die [[2]] zu stärken, z. B. durch mehr [[3]].",
+      "luecken": [
+        { "optionen": ["passive", "aktive", "ausgeglichene"], "richtig": 1 },
+        { "optionen": ["3 %", "6 %", "10 %"], "richtig": 1 },
+        { "optionen": ["Binnennachfrage", "Exportförderung", "Sparquote"], "richtig": 0 },
+        { "optionen": ["öffentliche Investitionen", "Importzölle", "Lohnsenkungen"], "richtig": 0 }
+      ]
+    },
+    {
+      "id": "gkw-export-u5",
+      "typ": "reihenfolge",
+      "frage": "Bringe die Wirkungskette „mehr öffentliche Investitionen baut den Überschuss ab“ in die richtige Reihenfolge.",
+      "quelle": "eigene Übung",
+      "schritte": [
+        "Der Staat investiert mehr in Schienen, Netze und Schulen.",
+        "Die Nachfrage im Inland steigt, Unternehmen erhalten Aufträge.",
+        "Einkommen und Konsum im Inland steigen.",
+        "Es werden mehr Güter (auch aus dem Ausland) gekauft, die Importe steigen.",
+        "Der Leistungsbilanzüberschuss sinkt."
+      ]
+    },
+    {
+      "id": "gkw-export-s1",
+      "typ": "schreiben",
+      "operator": "eroertern",
+      "frage": "Erörtern Sie, ob die deutsche Politik den Exportüberschuss aktiv abbauen sollte.",
+      "quelle": "eigene Aufgabe",
+      "umfang": "ca. 400–500 Wörter",
+      "erwartung": [
+        "Einleitung: Begriff Leistungsbilanzüberschuss, Bezug zum Ziel außenwirtschaftliches Gleichgewicht (StabG), aktuelle Größenordnung.",
+        "Pro Abbau: Abhängigkeit/Risiko (Zölle), Ungleichgewichte in der EU und Kritik der Partner, fehlende Inlandsinvestitionen, Wertverlustrisiko des Auslandsvermögens.",
+        "Contra Abbau: Arbeitsplätze und Wohlstand, Ergebnis freier Marktentscheidungen, Vorsorge in alternder Gesellschaft, schneller Abbau würde Unternehmen schaden.",
+        "Unterscheidung: Abbau über Stärkung der Binnennachfrage vs. Drosselung von Exporten.",
+        "Begründetes Urteil, z. B. langfristiger Abbau durch Investitionen ja, erzwungener schneller Ausgleich nein."
+      ],
+      "kriterien": [
+        { "name": "Sachkenntnis", "beschreibung": "Begriffe korrekt, Bezug zum StabG und zur EU-Schwelle.", "punkte": 2 },
+        { "name": "Argumente", "beschreibung": "Je mind. zwei Pro- und Contra-Argumente mit Begründung und Beispiel.", "punkte": 4 },
+        { "name": "Differenzierung", "beschreibung": "Unterscheidet Wege des Abbaus (Binnennachfrage vs. Exportdrosselung).", "punkte": 2 },
+        { "name": "Urteil", "beschreibung": "Abwägung und schlüssiges eigenes Urteil.", "punkte": 3 },
+        { "name": "Darstellung", "beschreibung": "Struktur, Fachsprache.", "punkte": 1 }
+      ]
+    }
+  ]
+}

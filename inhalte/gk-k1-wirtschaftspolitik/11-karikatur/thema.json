@@ -1,0 +1,170 @@
+{
+  "id": "gkw-karikatur",
+  "titel": "Methode: Karikaturanalyse",
+  "untertitel": "Orientierung, Beschreibung, Deutung, Bewertung",
+  "abhaengig": ["gkw-textanalyse"],
+  "prioritaet": 7,
+  "quelleErklaerung": "eigene Zusammenfassung nach dem Methodenglossar des Lehrbuchs (Karikatur analysieren und interpretieren) in eigenen Worten (Schrittfolge wie im Methodenglossar). Die Übungskarikatur ist eine eigene, nur in Worten beschriebene Bildidee.",
+  "karten": [
+    {
+      "id": "gkw-karikatur-k1",
+      "typ": "begriff",
+      "vorne": "Was ist eine Karikatur?",
+      "hinten": "Eine **gezeichnete Meinung**: Sie nimmt durch Übertreibung kritisch oder polemisch Stellung zu einem politischen, gesellschaftlichen oder wirtschaftlichen Sachverhalt und will zum Nachdenken anregen.",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-karikatur-k2",
+      "typ": "begriff",
+      "vorne": "Die vier Schritte der Karikaturanalyse",
+      "hinten": "1. **Orientierung** (Thema, Zeichner, Ort, Datum)\n2. **Beschreibung** (Aufbau, Personen, Text, Gestaltungsmittel)\n3. **Deutung** (Symbole, Sachbezug, Kernaussage, Position, Adressat)\n4. **Bewertung** (Treffsicherheit, Zustimmung/Kritik)",
+      "quelle": "eigene Karte nach Methodenglossar"
+    },
+    {
+      "id": "gkw-karikatur-k3",
+      "typ": "warum",
+      "vorne": "Warum trennt man Beschreibung und Deutung?",
+      "hinten": "Damit die Deutung nachvollziehbar auf Beobachtungen aufbaut. Wer gleich deutet, übersieht Details und kann seine Interpretation nicht belegen.",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-karikatur-k4",
+      "typ": "begriff",
+      "vorne": "Leitfragen der Deutung",
+      "hinten": "Wofür stehen Symbole und Figuren? Auf welchen Sachverhalt bezieht sich die Karikatur? Was ist die Kernaussage? Wen kritisiert der Zeichner, welche Position vertritt er? An wen richtet er sich, und was will er erreichen?",
+      "quelle": "eigene Karte nach Methodenglossar"
+    },
+    {
+      "id": "gkw-karikatur-k5",
+      "typ": "begriff",
+      "vorne": "Leitfragen der Bewertung",
+      "hinten": "Wird die Aussage präzise vermittelt? Passen die Gestaltungsmittel? Passen Bild und Text zusammen? Wo hat der Zeichner recht, was kann man ihm entgegenhalten?",
+      "quelle": "eigene Karte nach Methodenglossar"
+    },
+    {
+      "id": "gkw-karikatur-k6",
+      "typ": "begriff",
+      "vorne": "Symbol „Gießkanne“",
+      "hinten": "Steht für Subventionen oder Hilfen, die breit und ohne genaue Zielrichtung verteilt werden (Gießkannenprinzip), z. B. in Karikaturen zum Tankrabatt.",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-karikatur-k7",
+      "typ": "begriff",
+      "vorne": "Symbol „Rakete und Feder“ bei Preisen",
+      "hinten": "Preise steigen schnell wie eine Rakete, sinken aber langsam wie eine Feder. Typisch für Kritik an Mineralölkonzernen.",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-karikatur-k8",
+      "typ": "fehler",
+      "vorne": "Typischer Fehler in der Bewertung",
+      "hinten": "„Die Karikatur ist lustig und gut gezeichnet.“ Das ist keine Bewertung. Bewertet wird, ob die **Aussage** zutrifft und die Mittel sie gut transportieren, und zwar mit Fachargumenten.",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-karikatur-k9",
+      "typ": "begriff",
+      "vorne": "Typische Gestaltungsmittel einer Karikatur",
+      "hinten": "Übertreibung/Verzerrung, Größenverhältnisse (Macht), Personifikation, Symbole, Tiervergleiche, Ironie, Kontrast von Bild und Text, Farbgebung.",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-karikatur-k10",
+      "typ": "wasPassiert",
+      "vorne": "Wie deutet man eine Karikatur, in der Köche mit den Namensschildern „Keynes“ und „Friedman“ in einem Topf „Wirtschaftspolitik“ rühren?",
+      "hinten": "Die Köche stehen für Ökonomen bzw. ihre Theorien, der Topf für die Wirtschaftspolitik. Kernaussage: Politik mischt Rezepte gegensätzlicher Schulen (Nachfrage- vs. Angebotsorientierung). Mögliche Kritik: „Viele Köche verderben den Brei“, also widersprüchliche, unklare Politik.",
+      "quelle": "eigene Karte (eigene Deutungsübung)"
+    }
+  ],
+  "uebungen": [
+    {
+      "id": "gkw-karikatur-u1",
+      "typ": "reihenfolge",
+      "frage": "Bringe die Schritte der Karikaturanalyse in die richtige Reihenfolge.",
+      "quelle": "eigene Übung",
+      "schritte": [
+        "Orientierung: Thema, Zeichner, Veröffentlichungsort und -datum",
+        "Beschreibung: Aufbau, Personen, Gegenstände, Text",
+        "Deutung: Symbole entschlüsseln, Sachbezug, Kernaussage",
+        "Bewertung: Treffsicherheit der Aussage, eigene Einschätzung"
+      ]
+    },
+    {
+      "id": "gkw-karikatur-u2",
+      "typ": "klassifizieren",
+      "frage": "Beschreibung oder Deutung? Ordne die Sätze zu.",
+      "quelle": "eigene Übung",
+      "kategorien": ["Beschreibung", "Deutung"],
+      "items": [
+        { "text": "Im Vordergrund steht ein kleiner Mann mit Zipfelmütze vor einer Zapfsäule.", "kategorie": 0, "warum": "Reine Bildbeobachtung." },
+        { "text": "Der Mann verkörpert den durchschnittlichen deutschen Autofahrer.", "kategorie": 1, "warum": "Symbol wird entschlüsselt." },
+        { "text": "Auf der Zapfsäule steht in großen Ziffern „2,29“.", "kategorie": 0, "warum": "Bild-/Textelement benannt." },
+        { "text": "Der Zeichner kritisiert, dass die Steuersenkung nicht bei den Verbrauchern ankommt.", "kategorie": 1, "warum": "Kernaussage und Position." },
+        { "text": "Ein Mann im Anzug ist deutlich größer gezeichnet als die anderen Figuren.", "kategorie": 0, "warum": "Gestaltungsmittel beschrieben." },
+        { "text": "Die Größe zeigt die Marktmacht der Mineralölkonzerne.", "kategorie": 1, "warum": "Gestaltungsmittel gedeutet." }
+      ]
+    },
+    {
+      "id": "gkw-karikatur-u3",
+      "typ": "zuordnen",
+      "frage": "Ordne die Bildelemente ihrer häufigen Bedeutung zu.",
+      "quelle": "eigene Übung",
+      "paare": [
+        { "links": "Gießkanne", "rechts": "ungezielt verteilte Subventionen" },
+        { "links": "Waage", "rechts": "Gerechtigkeit bzw. Abwägung" },
+        { "links": "Kristallkugel", "rechts": "unsichere Prognose" },
+        { "links": "Schere", "rechts": "wachsende Ungleichheit zwischen Arm und Reich" }
+      ]
+    },
+    {
+      "id": "gkw-karikatur-u4",
+      "typ": "mc",
+      "frage": "Welcher Satz gehört in die **Bewertung** einer Karikatur?",
+      "quelle": "eigene Übung",
+      "optionen": [
+        { "text": "Die Karikatur zeigt drei Ökonomen vor einem Fenster.", "warum": "Das ist Beschreibung." },
+        { "text": "Der Zeichner hat insofern recht, als Konjunkturprognosen oft danebenliegen; er übersieht aber, dass der Rat auch wichtige Analysen liefert.", "richtig": true, "warum": "Zustimmung und begründeter Einwand, also eine Bewertung." },
+        { "text": "Die Ökonomen stehen für den Sachverständigenrat.", "warum": "Das ist Deutung." }
+      ]
+    },
+    {
+      "id": "gkw-karikatur-u5",
+      "typ": "fehler",
+      "frage": "Eine Schülerin analysiert eine Karikatur. Welcher Schritt ist methodisch falsch?",
+      "quelle": "eigene Übung",
+      "schritte": [
+        "Orientierung: Die Karikatur erschien 2026 in einer Tageszeitung und behandelt den Tankrabatt.",
+        "Beschreibung: Ein Politiker gießt mit einer großen Gießkanne Geld über Autos aller Größen.",
+        "Beschreibung: Der Zeichner will damit zeigen, dass der Tankrabatt ungerecht ist.",
+        "Deutung: Die Gießkanne steht für eine ungezielte Subvention, von der Besitzer großer Autos am meisten profitieren.",
+        "Bewertung: Die Kritik trifft zu, weil Vielfahrer stärker entlastet werden, auch wenn Pendler ebenfalls profitieren."
+      ],
+      "fehler": 2,
+      "erklaerung": "Die Absicht des Zeichners zu nennen ist Deutung, nicht Beschreibung. In die Beschreibung gehören nur sichtbare Bild- und Textelemente."
+    },
+    {
+      "id": "gkw-karikatur-s1",
+      "typ": "schreiben",
+      "operator": "interpretieren",
+      "frage": "Interpretieren Sie die beschriebene Karikatur.",
+      "quelle": "eigene Aufgabe (eigene Bildidee, nur in Worten beschrieben)",
+      "umfang": "ca. 350 Wörter",
+      "material": "**Beschreibung einer (fiktiven) Karikatur, Tageszeitung, Oktober 2026:**\n\nAn einer Tankstelle steigt aus der Zapfsäule eine Rakete mit der Aufschrift „Ölpreis“ steil nach oben. Daneben schwebt eine Feder mit der Aufschrift „Tankrabatt“ sehr langsam zu Boden. Ein kleiner Autofahrer mit Zipfelmütze schaut mit leerem Geldbeutel nach oben. Im Hintergrund sitzt ein großer, dicker Mann im Anzug mit der Aufschrift „Raffinerie“ auf einem Stapel Geldsäcke und lächelt. Am Rand steht ein Mann mit Lupe und Aktenordner („Kartellamt“) und kratzt sich am Kopf. Bildunterschrift: „Rauf geht's immer schneller.“",
+      "erwartung": [
+        "Orientierung: Thema Spritpreise/Tankrabatt 2026, Tageszeitung, Oktober 2026 (zweiter Tankrabatt).",
+        "Beschreibung: Rakete/Feder, kleiner Autofahrer mit Zipfelmütze und leerem Geldbeutel, großer Mann auf Geldsäcken, Mann mit Lupe, Bildunterschrift, Größenverhältnisse.",
+        "Deutung der Symbole: Rakete/Feder = Preise steigen schnell, Entlastungen kommen langsam/unvollständig an; Michel = Durchschnittsbürger als Verlierer; großer Mann auf Geldsäcken = Raffinerien/Konzerne mit Marktmacht und hohen Margen; Kartellamt ratlos = Schwierigkeit, Absprachen nachzuweisen.",
+        "Sachbezug: Tankrabatt 2026 (ca. 17 ct), Weitergabe laut Kartellamt nur ca. 78–83 %, Oligopol, gestiegene Raffineriemargen, keine Weitergabepflicht.",
+        "Kernaussage/Position: Der Zeichner kritisiert, dass die Steuersenkung eher den Konzernen als den Verbrauchern nützt und der Staat machtlos wirkt.",
+        "Bewertung: Teilweise berechtigt (Weitergabe unvollständig, Margen gestiegen); vereinfacht aber (Großteil kam an; Ölpreis als echte Kostenursache; Kartellverdacht ≠ Nachweis)."
+      ],
+      "kriterien": [
+        { "name": "Orientierung und Beschreibung", "beschreibung": "Vollständig und ohne vorgezogene Deutung.", "punkte": 2 },
+        { "name": "Deutung", "beschreibung": "Alle wesentlichen Symbole schlüssig entschlüsselt, Kernaussage formuliert.", "punkte": 4 },
+        { "name": "Fachbezug", "beschreibung": "Wissen zu Tankrabatt, Oligopol, Kartellamt korrekt eingebracht.", "punkte": 2 },
+        { "name": "Bewertung", "beschreibung": "Zustimmung und Einwände begründet.", "punkte": 2 }
+      ]
+    }
+  ]
+}

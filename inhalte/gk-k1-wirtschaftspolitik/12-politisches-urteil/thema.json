@@ -1,0 +1,235 @@
+{
+  "id": "gkw-urteil",
+  "titel": "Methode: Politisches Urteil",
+  "untertitel": "Vier Schritte, Kriterien, Perspektiven, Sach- und Werturteil",
+  "abhaengig": ["gkw-textanalyse"],
+  "prioritaet": 1,
+  "quelleErklaerung": "eigene Zusammenfassung nach den von der Lehrerin freigegebenen Bausteinen „Beurteilen und Bewerten: Die vier Schritte der Urteilsbildung“ und „Mögliche Kriterien“, Unterricht (Kriterien und Perspektiven beim Wirtschaftsgipfel, Politikzyklus) und Methodenglossar (strukturierte Kontroverse); abgeglichen mit dem Bildungsplan 2016/2022 Gemeinschaftskunde BW (Urteilskompetenz, Kriterien, Sach-/Werturteil) und der Jahresplanung Kursstufe Gemeinschaftskunde des Landesbildungsservers BW (Krapf).",
+  "karten": [
+    {
+      "id": "gkw-urteil-k1",
+      "typ": "begriff",
+      "vorne": "Die vier Schritte der Urteilsbildung",
+      "hinten": "1. Aufgabenstellung klären (Problem, Begriffe)\n2. Vorüberlegungen (Kriterien, Perspektiven, Teilbereiche)\n3. Teilurteile formulieren (beurteilen)\n4. Gesamturteil formulieren (bewerten, Gewichtung offenlegen)",
+      "quelle": "eigene Karte nach freigegebenen Bausteinen"
+    },
+    {
+      "id": "gkw-urteil-k2",
+      "typ": "begriff",
+      "vorne": "Beurteilen vs. bewerten",
+      "hinten": "**Beurteilen:** kriteriengeleitetes **Sachurteil** über einen Sachverhalt.\n**Bewerten:** beurteilen **plus** Offenlegen der eigenen Wertmaßstäbe, also ein **Werturteil** („bewerten = beurteilen +“).",
+      "quelle": "eigene Karte nach freigegebenen Bausteinen"
+    },
+    {
+      "id": "gkw-urteil-k3",
+      "typ": "begriff",
+      "vorne": "Sachurteil vs. Werturteil",
+      "hinten": "**Sachurteil:** Was ist der Fall, was wirkt? (Fakten, Wirkungen)\n**Werturteil:** Was soll sein, was ist gerecht/wünschenswert? (Werte)",
+      "quelle": "eigene Karte; Bildungsplan BW"
+    },
+    {
+      "id": "gkw-urteil-k4",
+      "typ": "begriff",
+      "vorne": "Effektivität vs. Effizienz",
+      "hinten": "**Effektivität:** Ist die Maßnahme geeignet, das Ziel überhaupt zu erreichen?\n**Effizienz:** Ließe sich dasselbe Ziel mit geringeren Mitteln erreichen (Kosten-Nutzen)?",
+      "quelle": "eigene Karte nach Kriterienliste"
+    },
+    {
+      "id": "gkw-urteil-k5",
+      "typ": "begriff",
+      "vorne": "Vier Arten von Gerechtigkeit",
+      "hinten": "**Leistungsgerechtigkeit** (Leistung wird belohnt), **Bedarfsgerechtigkeit** (Bedürfnisse werden gedeckt), **Chancengerechtigkeit** (gleiche Startchancen), **Generationengerechtigkeit** (Interessen künftiger Generationen).",
+      "quelle": "eigene Karte nach Kriterienliste"
+    },
+    {
+      "id": "gkw-urteil-k6",
+      "typ": "begriff",
+      "vorne": "Legalität vs. Legitimität",
+      "hinten": "**Legalität:** Rechtmäßigkeit, also Vereinbarkeit mit Grundgesetz und Gesetzen.\n**Legitimität:** Anerkennungswürdigkeit einer Entscheidung oder Ordnung (gerecht, demokratisch zustande gekommen, akzeptiert). Etwas kann legal, aber umstritten legitim sein.",
+      "quelle": "eigene Karte nach Kriterienliste"
+    },
+    {
+      "id": "gkw-urteil-k7",
+      "typ": "begriff",
+      "vorne": "Drei Perspektiven (Unterrichtsversion)",
+      "hinten": "**Politische Akteure** (Regierung, Parteien, Unternehmen, Verbände)\n**Politisch Betroffene** (Bürger, Beschäftigte, Verbraucher)\n**Politisches System** (Wirtschaftsordnung, Demokratie, Staat als Ganzes)",
+      "quelle": "eigene Karte nach Unterricht"
+    },
+    {
+      "id": "gkw-urteil-k8",
+      "typ": "begriff",
+      "vorne": "Dreischritt der Argumentation",
+      "hinten": "**Behauptung → Begründung → Beleg/Beispiel.** Beispiel: „Der Tankrabatt ist wenig zielgenau (B), weil alle Autofahrer entlastet werden, auch Wohlhabende (Begr.), wer viel fährt, spart am meisten (Bsp.).“",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-urteil-k9",
+      "typ": "warum",
+      "vorne": "Warum soll man ein Effizienz- und ein Legitimitätskriterium kombinieren?",
+      "hinten": "Weil sie oft in Spannung stehen (z. B. billig vs. gerecht). Erst die Abwägung zwischen „funktioniert es?“ und „ist es richtig?“ macht ein Urteil differenziert und begründet.",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-urteil-k10",
+      "typ": "warum",
+      "vorne": "Warum muss man im Gesamturteil die Gewichtung offenlegen?",
+      "hinten": "Weil Teilurteile oft in verschiedene Richtungen zeigen. Erst die Begründung, welches Kriterium schwerer wiegt (und warum), macht das Gesamturteil nachvollziehbar statt beliebig.",
+      "quelle": "eigene Karte nach freigegebenen Bausteinen"
+    },
+    {
+      "id": "gkw-urteil-k11",
+      "typ": "begriff",
+      "vorne": "Strukturierte Kontroverse: Ablauf",
+      "hinten": "1. Argumente für eigene Position erarbeiten\n2. Streitgespräch Pro vs. Contra\n3. Rollen tauschen, Gegenargumentation entwickeln\n4. zweites Streitgespräch, dann Rollen verlassen und eigenes Urteil bilden",
+      "quelle": "eigene Karte nach Methodenglossar"
+    },
+    {
+      "id": "gkw-urteil-k12",
+      "typ": "fehler",
+      "vorne": "Typischer Fehler: „Insgesamt gibt es Vor- und Nachteile.“ als Schluss",
+      "hinten": "Das ist kein Urteil. Man muss sich festlegen (auch „eher ja, weil …“) und die Gewichtung begründen.",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-urteil-k13",
+      "typ": "begriff",
+      "vorne": "Politikzyklus",
+      "hinten": "Problem → Auseinandersetzung (Akteure, Interessen, Ursachen) → Entscheidung → Umsetzung/Folgen → Bewertung/Kontrolle → ggf. neues Problem. Hilft, Fälle wie Tankrabatt oder Industriestrompreis zu strukturieren.",
+      "quelle": "eigene Karte nach Unterrichtsfolie"
+    },
+    {
+      "id": "gkw-urteil-k14",
+      "typ": "begriff",
+      "vorne": "Aufbau eines Urteilstexts",
+      "hinten": "**Einleitung:** Hinführung, Leitfrage, Kriterien.\n**Hauptteil:** je Kriterium Pro/Contra aus mehreren Perspektiven + Teilurteil.\n**Schluss:** Gewichtung, Gesamturteil, ggf. Handlungsempfehlung.",
+      "quelle": "eigene Karte"
+    }
+  ],
+  "uebungen": [
+    {
+      "id": "gkw-urteil-u1",
+      "typ": "reihenfolge",
+      "frage": "Bringe die Schritte der Urteilsbildung in die richtige Reihenfolge.",
+      "quelle": "eigene Übung",
+      "schritte": [
+        "Problem und Leitfrage klären, Begriffe definieren",
+        "Passende Kriterien und Perspektiven auswählen und begründen",
+        "Kriterien auf den Fall anwenden und Teilurteile bilden",
+        "Teilurteile ordnen und Kriterien gewichten",
+        "Gesamturteil formulieren und Leitfrage beantworten"
+      ]
+    },
+    {
+      "id": "gkw-urteil-u2",
+      "typ": "klassifizieren",
+      "frage": "Sachurteil oder Werturteil?",
+      "quelle": "eigene Übung",
+      "kategorien": ["Sachurteil", "Werturteil"],
+      "items": [
+        { "text": "Der Tankrabatt wurde beim Diesel zu etwa 83 % weitergegeben.", "kategorie": 0, "warum": "Nachprüfbare Wirkung." },
+        { "text": "Es ist ungerecht, dass der Bäcker den Strom des Chemiekonzerns mitfinanziert.", "kategorie": 1, "warum": "Bewertung nach Gerechtigkeit." },
+        { "text": "Eine Senkung der Stromsteuer würde mehr Unternehmen erreichen als der Industriestrompreis.", "kategorie": 0, "warum": "Aussage über Wirkung/Reichweite." },
+        { "text": "Der Staat sollte Klimaschutz wichtiger nehmen als niedrige Spritpreise.", "kategorie": 1, "warum": "Soll-Aussage mit Wertgewichtung." },
+        { "text": "Preisobergrenzen können zu Knappheit führen.", "kategorie": 0, "warum": "Ökonomischer Wirkungszusammenhang." }
+      ]
+    },
+    {
+      "id": "gkw-urteil-u3",
+      "typ": "klassifizieren",
+      "frage": "Effizienz- oder Legitimitätskriterium?",
+      "quelle": "eigene Übung",
+      "kategorien": ["Effizienz (Zweckrationalität)", "Legitimität (Wertrationalität)"],
+      "items": [
+        { "text": "Effektivität", "kategorie": 0, "warum": "Fragt nach Zielerreichung." },
+        { "text": "Kosten-Nutzen-Verhältnis", "kategorie": 0, "warum": "Wirtschaftlichkeit." },
+        { "text": "Gerechtigkeit", "kategorie": 1, "warum": "Wertmaßstab." },
+        { "text": "Legalität", "kategorie": 1, "warum": "Rechtmäßigkeit." },
+        { "text": "Durchsetzbarkeit", "kategorie": 0, "warum": "Fragt nach Umsetzbarkeit." },
+        { "text": "Transparenz", "kategorie": 1, "warum": "Demokratische Qualität des Verfahrens." },
+        { "text": "Generationengerechtigkeit", "kategorie": 1, "warum": "Wertmaßstab für künftige Generationen." }
+      ]
+    },
+    {
+      "id": "gkw-urteil-u4",
+      "typ": "zuordnen",
+      "frage": "Ordne die Leitfrage dem passenden Kriterium zu.",
+      "quelle": "eigene Übung",
+      "paare": [
+        { "links": "Ist das Ziel mit geringeren Mitteln auch erreichbar?", "rechts": "Effizienz" },
+        { "links": "Ist die Lösung geeignet, das Ziel zu erreichen?", "rechts": "Effektivität" },
+        { "links": "Ist die Maßnahme mit dem Grundgesetz vereinbar?", "rechts": "Legalität" },
+        { "links": "Kommen die Verursacher für die Kosten auf?", "rechts": "Verursacherprinzip" },
+        { "links": "Werden auch Interessen künftiger Generationen berücksichtigt?", "rechts": "Generationengerechtigkeit" }
+      ]
+    },
+    {
+      "id": "gkw-urteil-u5",
+      "typ": "mc",
+      "frage": "Welcher Schluss ist ein gelungenes Gesamturteil?",
+      "quelle": "eigene Übung",
+      "optionen": [
+        { "text": "Der Industriestrompreis hat Vor- und Nachteile, man muss abwarten.", "warum": "Keine Festlegung und keine Gewichtung." },
+        { "text": "Ich bin dagegen, weil Subventionen grundsätzlich schlecht sind.", "warum": "Pauschale Meinung ohne Kriterien und ohne Bezug zu den Teilurteilen." },
+        { "text": "Zwar ist der Industriestrompreis wenig effizient, doch wiegt für mich die Sicherung von Arbeitsplätzen in der Transformation schwerer; daher halte ich ihn als befristete, an Klimainvestitionen gebundene Brücke für vertretbar.", "richtig": true, "warum": "Teilurteile aufgegriffen, Gewichtung begründet, klare Antwort mit Einschränkung." }
+      ]
+    },
+    {
+      "id": "gkw-urteil-u6",
+      "typ": "zuordnen",
+      "frage": "Aus welcher Perspektive wird argumentiert?",
+      "quelle": "eigene Übung",
+      "paare": [
+        { "links": "„Als Pendlerin aus dem ländlichen Raum habe ich keine Alternative zum Auto.“", "rechts": "Politisch Betroffene" },
+        { "links": "„Die Regierung braucht eine Lösung, die im Bundesrat eine Mehrheit findet.“", "rechts": "Politische Akteure" },
+        { "links": "„Dauerhafte Subventionen untergraben den Wettbewerb als Kern unserer Wirtschaftsordnung.“", "rechts": "Politisches System" }
+      ]
+    },
+    {
+      "id": "gkw-urteil-s1",
+      "typ": "schreiben",
+      "operator": "bewerten",
+      "frage": "Bewerten Sie, ob der Staat stark steigende Spritpreise durch eine Preisobergrenze (Spritpreisdeckel) begrenzen sollte.",
+      "quelle": "eigene Aufgabe",
+      "umfang": "ca. 500–600 Wörter",
+      "erwartung": [
+        "Einleitung: Anlass (Spritpreise 2026, Tankrabatt, geplanter Spritpreisdeckel ab spätestens 01.01.2027), Leitfrage, gewählte Kriterien mit kurzer Begründung.",
+        "Begriffsklärung: Preisobergrenze = staatlich festgelegter Höchstpreis (Eingriff in die Preisbildung).",
+        "Effektivität: schnelle, sichtbare Entlastung vs. Gefahr von Knappheit, wenn der Deckel unter den Kosten liegt; Wirkung hängt von Ausgestaltung ab (dynamisch, an Einkaufspreise gekoppelt).",
+        "Effizienz/Funktionsfähigkeit: Preis verliert Signal- und Lenkungsfunktion; Verwaltungsaufwand; Alternative gezielte Entlastung günstiger.",
+        "Gerechtigkeit: entlastet alle unabhängig vom Bedarf (nicht bedarfsgerecht), schützt aber auch Geringverdiener vor Preisspitzen.",
+        "Nachhaltigkeit: kein Sparanreiz, widerspricht CO₂-Preis und Klimazielen.",
+        "Ordnungspolitische Einordnung: Eingriff in die Marktwirtschaft, ordoliberal abzulehnen; im StabG-Rahmen „marktwirtschaftliche Ordnung“ problematisch.",
+        "Perspektiven: Pendler/Logistik, Mineralölwirtschaft/Tankstellen, Staat/Umweltverbände, System.",
+        "Gewichtung der Kriterien mit offengelegtem Wertmaßstab, eindeutiges Gesamturteil, ggf. Handlungsempfehlung (z. B. gezielte Entlastung + Kartellaufsicht statt Deckel)."
+      ],
+      "kriterien": [
+        { "name": "Einleitung und Kriterien", "beschreibung": "Leitfrage, Anlass, mind. ein Effizienz- und ein Legitimitätskriterium begründet gewählt.", "punkte": 2 },
+        { "name": "Sachkenntnis", "beschreibung": "Funktionsweise des Preismechanismus und Folgen eines Höchstpreises korrekt.", "punkte": 3 },
+        { "name": "Teilurteile", "beschreibung": "Je Kriterium Pro und Contra im Dreischritt mit Zwischenfazit.", "punkte": 5 },
+        { "name": "Perspektiven", "beschreibung": "Mind. zwei Perspektiven erkennbar eingenommen.", "punkte": 2 },
+        { "name": "Gesamturteil", "beschreibung": "Gewichtung mit Wertmaßstab begründet, Leitfrage beantwortet.", "punkte": 3 },
+        { "name": "Darstellung", "beschreibung": "Aufbau Einleitung–Hauptteil–Schluss, Fachsprache.", "punkte": 1 }
+      ]
+    },
+    {
+      "id": "gkw-urteil-s2",
+      "typ": "schreiben",
+      "operator": "beurteilen",
+      "frage": "Beurteilen Sie unter den Kriterien Effizienz und Gerechtigkeit, ob der Tankrabatt 2026 eine geeignete Maßnahme war.",
+      "quelle": "eigene Aufgabe",
+      "umfang": "ca. 350 Wörter",
+      "erwartung": [
+        "Kurze Sachdarstellung: Energiesteuer −14,04 ct (ca. 17 ct brutto), Mai–Juni und Okt.–Dez. 2026, Kosten (ca. 1,6 Mrd. bzw. bis 2,5 Mrd. €), Weitergabe 78–83 %.",
+        "Effizienz: schnelle Wirkung und einfache Umsetzung vs. hohe Kosten pro tatsächlich erreichter Entlastung, Versickern in Margen, gezielte Alternativen günstiger. Zwischenfazit.",
+        "Gerechtigkeit: entlastet Pendler und Betriebe vs. nicht bedarfsgerecht (Vielfahrer und Wohlhabende profitieren mehr), Steuerzahler insgesamt tragen Kosten, Generationen-/Klimagerechtigkeit. Zwischenfazit.",
+        "Abschließendes Sachurteil (beurteilen) auf Basis beider Kriterien."
+      ],
+      "kriterien": [
+        { "name": "Sachdarstellung", "beschreibung": "Fakten zum Tankrabatt korrekt.", "punkte": 2 },
+        { "name": "Kriterium Effizienz", "beschreibung": "Pro/Contra mit Belegen, Zwischenfazit.", "punkte": 3 },
+        { "name": "Kriterium Gerechtigkeit", "beschreibung": "Pro/Contra mit Belegen, Art der Gerechtigkeit benannt, Zwischenfazit.", "punkte": 3 },
+        { "name": "Urteil", "beschreibung": "Begründetes Ergebnis aus beiden Teilurteilen.", "punkte": 2 }
+      ]
+    }
+  ]
+}

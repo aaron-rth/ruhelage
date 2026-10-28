@@ -1,0 +1,223 @@
+{
+  "id": "gkw-textanalyse",
+  "titel": "Methode: Textanalyse",
+  "untertitel": "Operatoren, Aufbau, Argumenttypen, Formulierungsbausteine",
+  "abhaengig": ["gkw-konzepte"],
+  "prioritaet": 1,
+  "quelleErklaerung": "eigene Zusammenfassung nach den von der Lehrerin freigegebenen „Bausteinen für Textanalysen im Fach Sozialwissenschaften“ und Unterricht (Textanalyse Industriestrompreis); Operatoren und Anforderungsbereiche geprüft an Hinweisen zum Basisoperatorenkatalog der gesellschaftswissenschaftlichen Fächer in Baden-Württemberg und Abitur-Operatorenlisten (u. a. Landesbildungsserver BW, TU Dresden Operatoren Geschichte 2022). Der Übungskommentar ist ein selbst geschriebener, fiktiver Text.",
+  "karten": [
+    {
+      "id": "gkw-textanalyse-k1",
+      "typ": "begriff",
+      "vorne": "Fünf Teile einer Textanalyse (Sozialwissenschaften)",
+      "hinten": "1. Einleitung\n2. Position des Autors\n3. Begründungsgang (wichtigster Teil)\n4. Argumentationsweise\n5. Intention\n(+ ggf. Einordnung, wenn gefragt)",
+      "quelle": "eigene Karte nach Bausteinen Textanalyse"
+    },
+    {
+      "id": "gkw-textanalyse-k2",
+      "typ": "begriff",
+      "vorne": "Was gehört in die Einleitung?",
+      "hinten": "Autor/-in (ggf. Funktion), Titel, Textsorte, Erscheinungsort und -datum, Thema bzw. Diskussionskontext (wertneutral, ein Satz), ggf. Adressat.",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-textanalyse-k3",
+      "typ": "begriff",
+      "vorne": "Typische Bausteine des Begründungsgangs",
+      "hinten": "Problematisierung, Ist-Zustand, Thesen, Argumente/Belege/Beispiele, Entkräftung von Gegenpositionen, Fazit, Forderung, Ausblick.",
+      "quelle": "eigene Karte nach Bausteinen Textanalyse"
+    },
+    {
+      "id": "gkw-textanalyse-k4",
+      "typ": "begriff",
+      "vorne": "Fünf Argumenttypen",
+      "hinten": "**Fakten**argument (Zahlen, Statistiken), **Autoritäts**argument (Experten, Institutionen), **normatives** Argument (Werte, Gerechtigkeit), **Effizienz**argument (Kosten/Nutzen), **Entkräftungs**argument (Widerlegung von Gegenargumenten).",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-textanalyse-k5",
+      "typ": "begriff",
+      "vorne": "Erklären vs. Erläutern",
+      "hinten": "**Erklären:** Sachverhalt aus Ursachen und Zusammenhängen verständlich machen.\n**Erläutern:** wie erklären, aber zusätzlich mit **Beispielen und Belegen** veranschaulichen.",
+      "quelle": "eigene Karte; Operatorenlisten"
+    },
+    {
+      "id": "gkw-textanalyse-k6",
+      "typ": "begriff",
+      "vorne": "Die drei Anforderungsbereiche",
+      "hinten": "**AFB I:** Reproduktion (nennen, beschreiben, darstellen)\n**AFB II:** Reorganisation/Transfer (analysieren, erklären, erläutern, vergleichen, einordnen)\n**AFB III:** Reflexion/Urteil (beurteilen, bewerten, erörtern, überprüfen, entwickeln)",
+      "quelle": "eigene Karte; Operatorenlisten"
+    },
+    {
+      "id": "gkw-textanalyse-k7",
+      "typ": "warum",
+      "vorne": "Warum reicht es nicht, ein sprachliches Mittel nur zu benennen?",
+      "hinten": "Die Analyse soll zeigen, **wie** der Text überzeugen will. Erst die Verbindung Mittel + Beleg (Zeile) + Wirkung/Funktion für die Position macht aus der Beobachtung eine Analyse.",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-textanalyse-k8",
+      "typ": "begriff",
+      "vorne": "Was prüft man bei der „Ideologiekritik“ eines Textes?",
+      "hinten": "Kontroversität (Pro und Contra?), Vielschichtigkeit (mehrere Perspektiven/Ebenen?), Aussagekraft der Belege, Widerspruchsfreiheit. Und: Welche Sichtweise fehlt?",
+      "quelle": "eigene Karte nach Bausteinen Textanalyse"
+    },
+    {
+      "id": "gkw-textanalyse-k9",
+      "typ": "fehler",
+      "vorne": "Typischer Fehler: „Dann sagt der Autor, dass … Danach sagt er, dass …“",
+      "hinten": "Das ist Nacherzählung. Besser ist es, die **Funktion** des Abschnitts zu benennen: „Um seine These zu stützen, verweist er auf … (Z. …)“ oder „Anschließend entkräftet er den Einwand, … (Z. …)“.",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-textanalyse-k10",
+      "typ": "fehler",
+      "vorne": "Typischer Fehler: eigene Meinung in der Analyse",
+      "hinten": "Die Analyse (AFB II) bleibt sachlich. Die eigene Bewertung gehört in die AFB III-Aufgabe (beurteilen/bewerten/erörtern).",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-textanalyse-k11",
+      "typ": "begriff",
+      "vorne": "Wie formuliert man fremde Aussagen korrekt?",
+      "hinten": "In **indirekter Rede (Konjunktiv I)** oder mit redeeinleitenden Verben: „Der Autor behauptet, der Staat **sei** …“ – „Laut der Autorin **müsse** die Regierung …“",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-textanalyse-k12",
+      "typ": "begriff",
+      "vorne": "Analyse der Intention: Leitfrage",
+      "hinten": "**Warum** schreibt der Autor den Text? Was oder wen will er erreichen, wozu fordert er (auch indirekt) auf? (informieren, überzeugen, warnen, appellieren)",
+      "quelle": "eigene Karte"
+    }
+  ],
+  "uebungen": [
+    {
+      "id": "gkw-textanalyse-u1",
+      "typ": "zuordnen",
+      "frage": "Ordne die (fiktiven) Textstellen dem Argumenttyp zu.",
+      "quelle": "eigene Übung",
+      "paare": [
+        { "links": "„Die amtliche Statistik zeigt: Die Produktion sinkt seit Jahren.“", "rechts": "Faktenargument" },
+        { "links": "„Selbst der Sachverständigenrat warnt vor diesem Schritt.“", "rechts": "Autoritätsargument" },
+        { "links": "„Es ist schlicht ungerecht, wenn die Kassiererin die Stromrechnung des Chemiekonzerns mitbezahlt.“", "rechts": "Normatives Argument" },
+        { "links": "„Jeder Euro Förderung sichert ein Vielfaches an Steuereinnahmen.“", "rechts": "Effizienzargument" },
+        { "links": "„Man mag einwenden, das sei teuer, doch eine Abwanderung käme den Staat noch teurer.“", "rechts": "Entkräftungsargument" }
+      ]
+    },
+    {
+      "id": "gkw-textanalyse-u2",
+      "typ": "reihenfolge",
+      "frage": "Bringe die Teile einer Textanalyse in die richtige Reihenfolge.",
+      "quelle": "eigene Übung",
+      "schritte": [
+        "Einleitung (Autor, Titel, Textsorte, Quelle, Datum, Thema)",
+        "Position des Autors (Grundhaltung, Kernthese)",
+        "Begründungsgang mit Zeilenangaben",
+        "Argumentationsweise (sprachlich, argumentativ, inhaltlich)",
+        "Intention des Autors"
+      ]
+    },
+    {
+      "id": "gkw-textanalyse-u3",
+      "typ": "klassifizieren",
+      "frage": "Ordne die Operatoren dem Anforderungsbereich zu.",
+      "quelle": "eigene Übung",
+      "kategorien": ["AFB I", "AFB II", "AFB III"],
+      "items": [
+        { "text": "nennen", "kategorie": 0, "warum": "Reine Wiedergabe." },
+        { "text": "darstellen", "kategorie": 0, "warum": "Sachverhalt strukturiert wiedergeben." },
+        { "text": "analysieren", "kategorie": 1, "warum": "Material systematisch untersuchen." },
+        { "text": "erläutern", "kategorie": 1, "warum": "Erklären mit Beispielen." },
+        { "text": "einordnen", "kategorie": 1, "warum": "In einen Zusammenhang stellen." },
+        { "text": "beurteilen", "kategorie": 2, "warum": "Kriteriengeleitetes Sachurteil." },
+        { "text": "erörtern", "kategorie": 2, "warum": "Pro und Contra abwägen und urteilen." },
+        { "text": "bewerten", "kategorie": 2, "warum": "Urteil mit offengelegten Wertmaßstäben." }
+      ]
+    },
+    {
+      "id": "gkw-textanalyse-u4",
+      "typ": "mc",
+      "frage": "Welcher Satz ist eine gelungene **Analyse** der Argumentationsweise?",
+      "quelle": "eigene Übung",
+      "optionen": [
+        { "text": "Die Autorin verwendet in Z. 7 eine rhetorische Frage.", "warum": "Nur benannt, die Wirkung fehlt." },
+        { "text": "Mit der rhetorischen Frage „Wer soll das noch bezahlen?“ (Z. 7) legt die Autorin den Lesern nahe, dass die Förderung unfinanzierbar sei, und stützt so ihre Ablehnung.", "richtig": true, "warum": "Mittel, Beleg und Wirkung für die Position." },
+        { "text": "Ich finde, die Autorin hat recht, weil Subventionen schlecht sind.", "warum": "Eigene Meinung gehört nicht in die Analyse." }
+      ]
+    },
+    {
+      "id": "gkw-textanalyse-u5",
+      "typ": "fehler",
+      "frage": "Eine Einleitung hat einen Fehler. Welchen Satz würdest du streichen?",
+      "quelle": "eigene Übung",
+      "schritte": [
+        "Der vorliegende Kommentar „Strom zum Sonderpreis“ wurde von Jana Moser verfasst.",
+        "Er erschien am 12. Mai 2026 in einer überregionalen Wirtschaftszeitung.",
+        "Der Text behandelt im Rahmen der Debatte um den Industriestrompreis die Frage, ob der Staat energieintensive Unternehmen entlasten soll.",
+        "Die Autorin hat mit ihrer überzeugenden Argumentation völlig recht."
+      ],
+      "fehler": 3,
+      "erklaerung": "Die Einleitung muss wertneutral sein. Eine eigene Bewertung gehört nicht in die Analyse, sondern in eine AFB III-Aufgabe."
+    },
+    {
+      "id": "gkw-textanalyse-u6",
+      "typ": "luecke",
+      "frage": "Ergänze die Formulierungsbausteine.",
+      "quelle": "eigene Übung",
+      "text": "Zunächst [[0]] die Autorin die hohen Strompreise als Gefahr für den Standort (Z. 1–3). Ihre zentrale [[1]] lautet, dass … Diese [[2]] sie mit Zahlen zur Produktion (Z. 5). Den Einwand der hohen Kosten [[3]] sie, indem … Abschließend [[4]] sie die Bundesregierung auf, …",
+      "luecken": [
+        { "optionen": ["problematisiert", "fordert", "widerlegt"], "richtig": 0 },
+        { "optionen": ["These", "Intention", "Einleitung"], "richtig": 0 },
+        { "optionen": ["belegt", "entkräftet", "nennt"], "richtig": 0 },
+        { "optionen": ["unterstützt", "entkräftet", "zitiert"], "richtig": 1 },
+        { "optionen": ["fordert", "beschreibt", "analysiert"], "richtig": 0 }
+      ]
+    },
+    {
+      "id": "gkw-textanalyse-s1",
+      "typ": "schreiben",
+      "operator": "analysieren",
+      "frage": "Analysieren Sie den Kommentar im Hinblick auf Position, Begründungsgang, Argumentationsweise und Intention der Autorin.",
+      "quelle": "eigene Aufgabe mit selbst geschriebenem, fiktivem Kommentar",
+      "umfang": "ca. 500–600 Wörter",
+      "material": "**Jana Moser: Strom zum Sonderpreis – Brücke oder Sackgasse?**\n*Fiktiver Kommentar (eigener Übungstext), Wirtschaftsteil einer überregionalen Tageszeitung, 12. Mai 2026*\n\n(1) Wer in diesen Wochen mit Betriebsräten in Ludwigshafen, Duisburg oder im Schwarzwald spricht, hört überall dieselbe Sorge: Wie lange wird hier noch produziert? (2) Strom kostet die deutsche Industrie ein Mehrfaches dessen, was Konkurrenten in Texas oder Shanghai zahlen. (3) Die Produktion energieintensiver Branchen ist seit 2021 deutlich gesunken, und manche Anlage wurde stillgelegt statt erneuert.\n\n(4) Der Industriestrompreis, den die Bundesregierung für 2026 bis 2028 beschlossen hat, ist deshalb kein Geschenk, sondern Notwehr. (5) Er senkt die Stromkosten der betroffenen Betriebe spürbar, und zwar nicht bedingungslos: Die Hälfte der Förderung muss in klimafreundliche Anlagen fließen. (6) Damit wird aus der Hilfe ein Investitionsprogramm für die Energiewende.\n\n(7) Kritiker rechnen vor, das alles sei teuer und bevorzuge die Großen. (8) Doch was kostet es erst, wenn ganze Wertschöpfungsketten verschwinden? (9) An jedem Chemiestandort hängen Zulieferer, Handwerksbetriebe, Kantinen und Steuereinnahmen der Gemeinde. (10) Selbst Industriegewerkschaften und Arbeitgeberverbände, sonst selten einer Meinung, fordern die Entlastung gemeinsam.\n\n(11) Natürlich wäre es eleganter, Strom für alle billiger zu machen. (12) Aber auf diese große Lösung zu warten, während die Hochöfen erkalten, wäre fahrlässig. (13) Die Regierung muss den Industriestrompreis jetzt schnell und unbürokratisch auszahlen und parallel den Ausbau der Netze beschleunigen. (14) Sonst ist die Brücke bald eine Brücke ins Nichts.",
+      "erwartung": [
+        "Einleitung: Autorin, Titel, Textsorte Kommentar, Erscheinungsdatum 12.05.2026, Thema: Debatte, ob der Staat energieintensive Industrie mit einem Industriestrompreis entlasten soll; Adressat: wirtschaftlich interessierte Öffentlichkeit und Politik.",
+        "Position: Die Autorin befürwortet den Industriestrompreis als notwendige, an Bedingungen geknüpfte Übergangshilfe (Satz 4).",
+        "Begründungsgang: Problematisierung durch Sorge der Beschäftigten (1) → Ist-Zustand: hohe Strompreise im internationalen Vergleich, sinkende Produktion (2–3) → These „Notwehr, kein Geschenk“ (4) → Argument Entlastung mit Klimaauflage, Umdeutung zum Investitionsprogramm (5–6) → Aufgreifen und Entkräften der Kritik an Kosten und Bevorzugung (7–9) → Autoritätsargument (10) → Zugeständnis an eine breite Entlastung, aber Ablehnung des Wartens (11–12) → Forderung an die Regierung und Ausblick/Warnung (13–14).",
+        "Argumentationsweise argumentativ: Faktenargumente (2–3, allerdings ohne genaue Zahlen und Quellen), Effizienz-/Kostenargument (8–9), Autoritätsargument (10), Entkräftungsargument (7–9, 11–12).",
+        "Argumentationsweise sprachlich: Einstieg mit Alltagsszene und Ortsnamen schafft Nähe/Betroffenheit (1); Metaphern „Notwehr“ (4), „Hochöfen erkalten“ (12), „Brücke ins Nichts“ (14) dramatisieren; rhetorische Frage (8) legt Antwort nahe; Gegenüberstellung Texas/Shanghai (2) betont den Wettbewerbsnachteil.",
+        "Inhaltliche Qualität: Kritik wird nur verkürzt aufgegriffen (z. B. Wettbewerbsverzerrung für Mittelstand, Mitnahmeeffekte, fehlender Sparanreiz kaum behandelt); Perspektive von Steuerzahlern/kleinen Betrieben fehlt weitgehend; Fakten bleiben unbelegt.",
+        "Intention: Leser von der Notwendigkeit überzeugen, Kritiker entkräften, Appell an die Regierung zu schneller Umsetzung und Netzausbau."
+      ],
+      "kriterien": [
+        { "name": "Einleitung und Position", "beschreibung": "Alle Formalia, Thema wertneutral in einem Satz, Position mit Beleg.", "punkte": 3 },
+        { "name": "Begründungsgang", "beschreibung": "Vollständig, in eigenen Worten, Funktion der Abschnitte benannt, durchgehend Satz-/Zeilenangaben.", "punkte": 6 },
+        { "name": "Argumentationsweise", "beschreibung": "Mind. drei Argumenttypen und drei sprachliche Mittel jeweils mit Beleg und Wirkung; Hinweise auf Schwächen/fehlende Perspektiven.", "punkte": 5 },
+        { "name": "Intention", "beschreibung": "Zielsetzung und Adressaten schlüssig aus der Analyse abgeleitet.", "punkte": 2 },
+        { "name": "Darstellung", "beschreibung": "Analytischer Stil (keine Nacherzählung), indirekte Rede, Fachsprache, keine eigene Wertung.", "punkte": 2 }
+      ]
+    },
+    {
+      "id": "gkw-textanalyse-s2",
+      "typ": "schreiben",
+      "operator": "einordnen",
+      "frage": "Ordnen Sie die Position der Autorin (Material wie in der vorherigen Aufgabe) in die wirtschaftspolitischen Konzeptionen ein.",
+      "quelle": "eigene Aufgabe",
+      "umfang": "ca. 200 Wörter",
+      "material": "Siehe den fiktiven Kommentar „Strom zum Sonderpreis – Brücke oder Sackgasse?“ aus der Analyseaufgabe dieses Themas.",
+      "erwartung": [
+        "Autorin befürwortet einen aktiven, selektiven Staatseingriff (Subvention) → nicht ordoliberal, da Ordoliberale Prozesspolitik und Subventionen ablehnen.",
+        "Kostensenkung für Unternehmen zur Sicherung der Produktion → Nähe zur Angebotsorientierung (Angebotsbedingungen verbessern), aber über gezielte Subvention statt allgemeiner Rahmenbedingungen.",
+        "Betonung von Arbeitsplätzen und staatlicher Verantwortung in der Krise → auch Anklänge an eine aktive (keynesianisch geprägte) Rolle des Staates.",
+        "Fazit: pragmatische Industriepolitik, die Elemente verschiedener Konzepte mischt; Begründung mit Textbelegen."
+      ],
+      "kriterien": [
+        { "name": "Einordnung", "beschreibung": "Mindestens zwei Konzepte begründet zu- bzw. abgegrenzt.", "punkte": 3 },
+        { "name": "Textbelege", "beschreibung": "Einordnung mit Satzangaben belegt.", "punkte": 2 },
+        { "name": "Darstellung", "beschreibung": "Fachbegriffe korrekt.", "punkte": 1 }
+      ]
+    }
+  ]
+}

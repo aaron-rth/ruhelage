@@ -1,0 +1,237 @@
+{
+  "id": "gkw-ziele",
+  "titel": "Ziele der Wirtschaftspolitik",
+  "untertitel": "Stabilitätsgesetz, magisches Vier- und Sechseck, Zielkonflikte",
+  "abhaengig": ["gkw-konzepte"],
+  "prioritaet": 2,
+  "quelleErklaerung": "eigene Zusammenfassung nach Unterricht (Notizen Buch S. 45 Zielkonflikte) und Lehrbuch Kap. 1.3 (M2–M9, Orientierungswissen S. 52); geprüft an bpb – Lexikon der Wirtschaft „Stabilitätsgesetz“, bpb – Junges Politik-Lexikon „Magisches Viereck“, Bundestag – Kalenderblatt Stabilitätsgesetz, gesetze-im-internet.de (StabG, SachvRatG) und bpb – Handwörterbuch politisches System „Sachverständigenrat“",
+  "karten": [
+    {
+      "id": "gkw-ziele-k1",
+      "typ": "begriff",
+      "vorne": "Nenne die vier Ziele des § 1 Stabilitätsgesetz.",
+      "hinten": "1. Stabilität des Preisniveaus\n2. hoher Beschäftigungsstand\n3. außenwirtschaftliches Gleichgewicht\n4. stetiges und angemessenes Wirtschaftswachstum",
+      "quelle": "eigene Karte; StabG § 1"
+    },
+    {
+      "id": "gkw-ziele-k2",
+      "typ": "warum",
+      "vorne": "Warum heißt das Viereck „magisch“?",
+      "hinten": "Weil sich die vier Ziele kaum gleichzeitig vollständig erreichen lassen. Einige stehen in Zielkonflikt zueinander. Es bräuchte also fast „Magie“.",
+      "quelle": "eigene Karte; bpb"
+    },
+    {
+      "id": "gkw-ziele-k3",
+      "typ": "begriff",
+      "vorne": "Wann und warum entstand das Stabilitätsgesetz?",
+      "hinten": "1967 unter der Großen Koalition (Wirtschaftsminister Karl Schiller) als Reaktion auf die Rezession 1966/67. Es war der Wechsel zu aktiver, keynesianischer Konjunktursteuerung (Globalsteuerung).",
+      "quelle": "eigene Karte; Bundestag Kalenderblatt"
+    },
+    {
+      "id": "gkw-ziele-k4",
+      "typ": "warum",
+      "vorne": "Was bedeutet der Zusatz „im Rahmen der marktwirtschaftlichen Ordnung“ in § 1 StabG?",
+      "hinten": "Der Staat darf die Ziele nur mit marktkonformen Mitteln anstreben (Ausgaben, Steuern, Rücklagen). Preisfestsetzung oder direkte Lenkung von Unternehmen wie in einer Planwirtschaft sind ausgeschlossen.",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-ziele-k5",
+      "typ": "begriff",
+      "vorne": "Welche zwei Ziele ergänzen das magische Sechseck?",
+      "hinten": "5. Erhalt einer lebenswerten Umwelt (Umweltschutz, Art. 20a GG seit 1994)\n6. gerechte Einkommens- und Vermögensverteilung (Sozialstaatsprinzip, Art. 20 GG)",
+      "quelle": "eigene Karte nach Lehrbuch M4b"
+    },
+    {
+      "id": "gkw-ziele-k6",
+      "typ": "fehler",
+      "vorne": "Typischer Fehler: „Das Stabilitätsgesetz nennt sechs Ziele.“",
+      "hinten": "Falsch. Das Gesetz nennt nur **vier** Ziele. Das Sechseck ist eine Weiterentwicklung in der Fachliteratur.",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-ziele-k7",
+      "typ": "wasPassiert",
+      "vorne": "Zielkonflikt: hoher Beschäftigungsstand ↔ Preisniveaustabilität",
+      "hinten": "Bei Vollbeschäftigung sind Arbeitskräfte knapp → Gewerkschaften setzen hohe Lohnerhöhungen durch → Unternehmen erhöhen die Preise → neue Lohnforderungen (**Lohn-Preis-Spirale**). Außerdem: mehr Einkommen → mehr Nachfrage → steigende Preise.",
+      "quelle": "eigene Karte nach Unterrichtsnotiz Buch S. 45"
+    },
+    {
+      "id": "gkw-ziele-k8",
+      "typ": "wasPassiert",
+      "vorne": "Zielkonflikt: Wirtschaftswachstum ↔ Umweltschutz",
+      "hinten": "Mehr Produktion → mehr Rohstoff- und Energieverbrauch → mehr Emissionen und Abfall. Umgekehrt können strenge Umweltauflagen Kosten erhöhen und Wachstum bremsen.",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-ziele-k9",
+      "typ": "wasPassiert",
+      "vorne": "Zielkonflikt: Preisniveaustabilität ↔ Wachstum",
+      "hinten": "Gegen Inflation erhöht die Zentralbank die Zinsen → Kredite werden teurer → Unternehmen investieren weniger → das Wachstum schwächt sich ab.",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-ziele-k10",
+      "typ": "begriff",
+      "vorne": "Zielharmonie: Beispiel",
+      "hinten": "**Wachstum ↔ hoher Beschäftigungsstand:** Wächst die Wirtschaft, brauchen Unternehmen mehr Arbeitskräfte → Arbeitslosigkeit sinkt.",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-ziele-k11",
+      "typ": "begriff",
+      "vorne": "Messgrößen der vier Ziele",
+      "hinten": "Preisniveau: Inflationsrate (Verbraucherpreisindex)\nBeschäftigung: Arbeitslosenquote\nAußenwirtschaft: Leistungsbilanzsaldo in % des BIP\nWachstum: Veränderung des realen BIP",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-ziele-k12",
+      "typ": "begriff",
+      "vorne": "Wer ist heute für die Preisniveaustabilität in Deutschland zuständig?",
+      "hinten": "Seit 1999 die **Europäische Zentralbank** (Ziel: 2 % Inflation mittelfristig). Die Bundesregierung kann die Inflation nur noch indirekt beeinflussen.",
+      "quelle": "eigene Karte; EZB"
+    },
+    {
+      "id": "gkw-ziele-k13",
+      "typ": "begriff",
+      "vorne": "Sachverständigenrat: Zusammensetzung und Aufgabe",
+      "hinten": "Seit 1963; **5** unabhängige Ökonom/-innen, vom Bundespräsidenten auf Vorschlag der Bundesregierung für 5 Jahre berufen. Jahresgutachten bis 15. November über die Lage und die Erreichbarkeit der StabG-Ziele. Die Regierung nimmt innerhalb von 8 Wochen Stellung.",
+      "quelle": "eigene Karte; SachvRatG; bpb"
+    },
+    {
+      "id": "gkw-ziele-k14",
+      "typ": "begriff",
+      "vorne": "Konzertierte Aktion",
+      "hinten": "Im StabG vorgesehene Abstimmung zwischen Staat, Gewerkschaften und Arbeitgeberverbänden. Die Regierung gibt Orientierungsdaten, damit sich alle gesamtwirtschaftlich vernünftig verhalten (z. B. maßvolle Lohnabschlüsse).",
+      "quelle": "eigene Karte; StabG § 3"
+    },
+    {
+      "id": "gkw-ziele-k15",
+      "typ": "begriff",
+      "vorne": "Wie wird Wirtschaftspolitik in der EU koordiniert?",
+      "hinten": "Die Mitgliedstaaten behalten die Wirtschaftspolitik, koordinieren sie aber im Rat (Art. 121 AEUV, Grundzüge der Wirtschaftspolitik, Europäisches Semester). Die Geldpolitik der Eurozone macht die EZB.",
+      "quelle": "eigene Karte nach Lehrbuch M5"
+    }
+  ],
+  "uebungen": [
+    {
+      "id": "gkw-ziele-u1",
+      "typ": "klassifizieren",
+      "frage": "Zielharmonie oder Zielkonflikt? Ordne zu.",
+      "quelle": "eigene Übung",
+      "kategorien": ["Zielharmonie", "Zielkonflikt"],
+      "items": [
+        { "text": "Wachstum – hoher Beschäftigungsstand", "kategorie": 0, "warum": "Mehr Produktion braucht mehr Arbeitskräfte." },
+        { "text": "Hoher Beschäftigungsstand – Preisniveaustabilität", "kategorie": 1, "warum": "Lohn-Preis-Spirale, Nachfragedruck." },
+        { "text": "Wachstum – Umweltschutz", "kategorie": 1, "warum": "Mehr Produktion bedeutet mehr Ressourcenverbrauch und Emissionen." },
+        { "text": "Preisniveaustabilität (Zinserhöhung) – Wachstum", "kategorie": 1, "warum": "Höhere Zinsen bremsen Investitionen." },
+        { "text": "Gerechte Einkommensverteilung – Preisniveaustabilität bei maßvollen Löhnen", "kategorie": 1, "warum": "Lohnzuwächse für mehr Gerechtigkeit können Preise treiben; maßvolle Löhne helfen der Stabilität, aber nicht der Verteilung." }
+      ]
+    },
+    {
+      "id": "gkw-ziele-u2",
+      "typ": "zuordnen",
+      "frage": "Ordne jedem Ziel die passende Messgröße zu.",
+      "quelle": "eigene Übung",
+      "paare": [
+        { "links": "Preisniveaustabilität", "rechts": "Inflationsrate (Verbraucherpreisindex)" },
+        { "links": "Hoher Beschäftigungsstand", "rechts": "Arbeitslosenquote" },
+        { "links": "Außenwirtschaftliches Gleichgewicht", "rechts": "Leistungsbilanzsaldo in % des BIP" },
+        { "links": "Stetiges, angemessenes Wachstum", "rechts": "Veränderungsrate des realen BIP" }
+      ]
+    },
+    {
+      "id": "gkw-ziele-u3",
+      "typ": "reihenfolge",
+      "frage": "Bringe die Wirkungskette des Zielkonflikts Vollbeschäftigung ↔ Preisstabilität in die richtige Reihenfolge.",
+      "quelle": "eigene Übung",
+      "schritte": [
+        "Die Wirtschaft boomt, es gibt kaum Arbeitslose.",
+        "Arbeitskräfte sind knapp, die Gewerkschaften haben eine starke Verhandlungsposition.",
+        "Es werden deutliche Lohnerhöhungen durchgesetzt.",
+        "Unternehmen geben die höheren Kosten über höhere Preise weiter.",
+        "Die Inflationsrate steigt, und es folgen neue Lohnforderungen."
+      ]
+    },
+    {
+      "id": "gkw-ziele-u4",
+      "typ": "mc",
+      "frage": "Welche Aussage über das magische Sechseck ist richtig?",
+      "quelle": "eigene Übung",
+      "optionen": [
+        { "text": "Es wurde 1994 ins Stabilitätsgesetz aufgenommen.", "warum": "1994 kam Art. 20a (Umweltschutz) ins Grundgesetz, das StabG blieb unverändert bei vier Zielen." },
+        { "text": "Es ergänzt die vier Ziele um Umweltschutz und gerechte Einkommens- und Vermögensverteilung.", "richtig": true, "warum": "Genau, als Weiterentwicklung in der Fachliteratur." },
+        { "text": "Es ersetzt das Ziel des Wachstums durch das Ziel des Umweltschutzes.", "warum": "Wachstum bleibt Ziel, es werden zwei Ziele ergänzt." }
+      ]
+    },
+    {
+      "id": "gkw-ziele-u5",
+      "typ": "luecke",
+      "frage": "Ergänze den Text zum Sachverständigenrat.",
+      "quelle": "eigene Übung",
+      "text": "Der Sachverständigenrat wurde [[0]] eingerichtet und besteht aus [[1]] Mitgliedern. Sie werden vom [[2]] berufen. Das Jahresgutachten muss bis zum [[3]] vorliegen, und die Bundesregierung muss innerhalb von [[4]] dazu Stellung nehmen.",
+      "luecken": [
+        { "optionen": ["1949", "1963", "1967"], "richtig": 1 },
+        { "optionen": ["drei", "fünf", "sieben"], "richtig": 1 },
+        { "optionen": ["Bundestag", "Bundeskanzler", "Bundespräsidenten"], "richtig": 2 },
+        { "optionen": ["1. Januar", "15. November", "30. Juni"], "richtig": 1 },
+        { "optionen": ["vier Wochen", "acht Wochen", "einem Jahr"], "richtig": 1 }
+      ]
+    },
+    {
+      "id": "gkw-ziele-u6",
+      "typ": "fehler",
+      "frage": "Ein Schüler erklärt das Stabilitätsgesetz. Wo liegt der Fehler?",
+      "quelle": "eigene Übung",
+      "schritte": [
+        "Das Gesetz entstand 1967 nach der ersten Nachkriegsrezession.",
+        "Es verpflichtet Bund und Länder, das gesamtwirtschaftliche Gleichgewicht zu beachten.",
+        "Es nennt vier Ziele, die gleichzeitig gefördert werden sollen.",
+        "Um die Ziele zu erreichen, darf der Staat Höchstpreise für alle Güter festlegen.",
+        "Ein Instrument ist die Konjunkturausgleichsrücklage."
+      ],
+      "fehler": 3,
+      "erklaerung": "Die Maßnahmen müssen „im Rahmen der marktwirtschaftlichen Ordnung“ bleiben. Allgemeine staatliche Preisfestsetzung gehört zur Planwirtschaft und ist damit ausgeschlossen."
+    },
+    {
+      "id": "gkw-ziele-s1",
+      "typ": "schreiben",
+      "operator": "erlaeutern",
+      "frage": "Erläutern Sie zwei Zielkonflikte und eine Zielharmonie des magischen Sechsecks.",
+      "quelle": "eigene Aufgabe",
+      "umfang": "ca. 300 Wörter",
+      "erwartung": [
+        "Kurze Einleitung: Ziele des StabG + Erweiterung zum Sechseck, Begriffe Zielkonflikt/Zielharmonie definiert.",
+        "Zielkonflikt 1 mit vollständiger Wirkungskette, z. B. Vollbeschäftigung → Lohnerhöhungen → Preiserhöhungen → Inflation.",
+        "Zielkonflikt 2 mit Wirkungskette, z. B. Wachstum → mehr Ressourcen/Emissionen → Umweltbelastung oder Zinserhöhung → weniger Investitionen → weniger Wachstum.",
+        "Zielharmonie mit Wirkungskette, z. B. Wachstum → mehr Arbeitskräfte nötig → Beschäftigung steigt.",
+        "Möglichst aktuelles Beispiel (z. B. Energiewende, Inflation 2022/23, Industriestrompreis)."
+      ],
+      "kriterien": [
+        { "name": "Zielkonflikte", "beschreibung": "Zwei Konflikte mit schlüssiger Kausalkette (nicht nur behauptet).", "punkte": 4 },
+        { "name": "Zielharmonie", "beschreibung": "Eine Harmonie mit Kausalkette.", "punkte": 2 },
+        { "name": "Beispiele", "beschreibung": "Mindestens ein konkretes Beispiel.", "punkte": 2 },
+        { "name": "Darstellung", "beschreibung": "Fachbegriffe, Struktur.", "punkte": 2 }
+      ]
+    },
+    {
+      "id": "gkw-ziele-s2",
+      "typ": "schreiben",
+      "operator": "beurteilen",
+      "frage": "Beurteilen Sie, ob das magische Viereck des Stabilitätsgesetzes zu einem „magischen Sechseck“ erweitert werden sollte (z. B. durch eine Gesetzesänderung).",
+      "quelle": "eigene Aufgabe",
+      "umfang": "ca. 400 Wörter",
+      "erwartung": [
+        "Klärung der Frage und Nennung der Kriterien (z. B. Effektivität, Legitimität/Verfassungsbezug, Nachhaltigkeit, Umsetzbarkeit).",
+        "Pro: Umweltschutz ist Staatsziel (Art. 20a GG), Sozialstaatsprinzip (Art. 20 GG); Wachstum allein misst Wohlstand nicht; Generationengerechtigkeit/Klimawandel; zunehmende Ungleichheit.",
+        "Contra: fehlende eindeutige Messbarkeit von „gerecht“ und „lebenswerte Umwelt“; mehr Ziele erhöhen Zielkonflikte und die Gefahr des Scheiterns (Ansehensverlust der Politik); Verteilung eher Aufgabe der Sozial- und Steuerpolitik.",
+        "Teilurteile zu den gewählten Kriterien, abschließendes begründetes Urteil."
+      ],
+      "kriterien": [
+        { "name": "Kriterien", "beschreibung": "Mind. zwei Kriterien ausdrücklich gewählt und begründet.", "punkte": 2 },
+        { "name": "Argumente", "beschreibung": "Mind. zwei Pro- und zwei Contra-Argumente, sachlich richtig.", "punkte": 4 },
+        { "name": "Urteil", "beschreibung": "Teilurteile je Kriterium und schlüssiges Gesamturteil.", "punkte": 3 },
+        { "name": "Darstellung", "beschreibung": "Struktur, Fachsprache.", "punkte": 1 }
+      ]
+    }
+  ]
+}

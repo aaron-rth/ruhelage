@@ -1,0 +1,211 @@
+{
+  "id": "gkw-sozmarkt",
+  "titel": "Soziale Marktwirtschaft",
+  "untertitel": "Idee, drei Deutungen von „sozial“ und Kontroversen",
+  "abhaengig": ["gkw-denkschulen"],
+  "prioritaet": 3,
+  "quelleErklaerung": "eigene Zusammenfassung nach Unterricht (Arbeitsblätter „Was ist sozial an der SMW? – drei Definitionen“, Pro/Contra-Debatte) und Lehrbuch M10–M15, Orientierungswissen S. 27 f.; geprüft an bpb – Informationen zur politischen Bildung „Soziale Marktwirtschaft“, Konrad-Adenauer-Stiftung (Geschichte der SMW), ifo Schnelldienst 21/2018 (Fuest: Soziale Marktwirtschaft) und germanhistorydocs (Erhard 1948)",
+  "karten": [
+    {
+      "id": "gkw-sozmarkt-k1",
+      "typ": "begriff",
+      "vorne": "Wer prägte den Begriff „Soziale Marktwirtschaft“, wer setzte sie politisch durch?",
+      "hinten": "**Begriff:** Alfred Müller-Armack (1947).\n**Politisch:** Ludwig Erhard (CDU), Wirtschaftsminister 1949–1963, Bundeskanzler 1963–1966.",
+      "quelle": "eigene Karte; KAS; germanhistorydocs"
+    },
+    {
+      "id": "gkw-sozmarkt-k2",
+      "typ": "begriff",
+      "vorne": "Kernidee der Sozialen Marktwirtschaft (Müller-Armack)",
+      "hinten": "Das Prinzip der **Freiheit auf dem Markt** mit dem des **sozialen Ausgleichs** verbinden. Der Wettbewerb wird vom Staat gesichert, unerwünschte Ergebnisse werden sozial korrigiert.",
+      "quelle": "eigene Karte; bpb"
+    },
+    {
+      "id": "gkw-sozmarkt-k3",
+      "typ": "begriff",
+      "vorne": "Welche drei Aufgaben hat der Staat in der Sozialen Marktwirtschaft?",
+      "hinten": "1. Rechtsrahmen für Freiheit (Vertrags-, Berufs-, Gewerbefreiheit, Eigentum)\n2. Sicherung des Wettbewerbs (Kartellverbot, Fusions- und Missbrauchskontrolle)\n3. Sozialer Ausgleich (Sozialversicherung, progressive Steuern, Transfers)",
+      "quelle": "eigene Karte nach Lehrbuch Orientierungswissen"
+    },
+    {
+      "id": "gkw-sozmarkt-k4",
+      "typ": "begriff",
+      "vorne": "Deutung 1 von „sozial“",
+      "hinten": "**Der Markt ist an sich sozial:** Wettbewerb schafft Güter, Arbeitsplätze und Wohlstand für alle („Wohlstand für Alle“). Ein umfassender Sozialstaat ist dafür kaum nötig.",
+      "quelle": "eigene Karte nach Unterrichtsarbeitsblatt"
+    },
+    {
+      "id": "gkw-sozmarkt-k5",
+      "typ": "begriff",
+      "vorne": "Deutung 2 von „sozial“",
+      "hinten": "**Sozial ist ein Staat, der den Wettbewerb schützt:** Kartellverbot und Monopolkontrolle verhindern, dass Mächtige die Regeln zu ihren Gunsten ändern. Fairer Wettbewerb schützt die Schwächeren (ordoliberale Sicht).",
+      "quelle": "eigene Karte nach Unterrichtsarbeitsblatt"
+    },
+    {
+      "id": "gkw-sozmarkt-k6",
+      "typ": "begriff",
+      "vorne": "Deutung 3 von „sozial“",
+      "hinten": "**Erst der soziale Ausgleich macht sie sozial:** Der Staat sichert diejenigen ab, die am Markt nicht genug verdienen können, und begrenzt Ungleichheit („Sicherheitsnetz“). Streitfrage: Wie viel Ausgleich ist nötig, ohne Leistungsanreize zu zerstören?",
+      "quelle": "eigene Karte nach Unterrichtsarbeitsblatt"
+    },
+    {
+      "id": "gkw-sozmarkt-k7",
+      "typ": "warum",
+      "vorne": "Warum gilt das Grundgesetz als „wirtschaftspolitisch neutral“?",
+      "hinten": "Es schreibt keine bestimmte Wirtschaftsordnung vor. Es setzt aber Grenzen: Berufsfreiheit (Art. 12), Eigentum, das verpflichtet (Art. 14), Vergesellschaftung möglich (Art. 15), Sozialstaatsprinzip (Art. 20). Reine Plan- und reine Laissez-faire-Wirtschaft wären damit kaum vereinbar.",
+      "quelle": "eigene Karte; BVerfG-Rechtsprechung lt. bpb"
+    },
+    {
+      "id": "gkw-sozmarkt-k8",
+      "typ": "begriff",
+      "vorne": "Pro-Argumente: „Deutschland ist eine funktionierende Soziale Marktwirtschaft“",
+      "hinten": "Hohe Beschäftigung; starke Umverteilung über Steuern und Transfers (verfügbare Einkommen deutlich gleicher als Markteinkommen); dichtes soziales Netz; langfristig gestiegener Lebensstandard.",
+      "quelle": "eigene Karte nach Unterrichtsdebatte"
+    },
+    {
+      "id": "gkw-sozmarkt-k9",
+      "typ": "begriff",
+      "vorne": "Contra-Argumente: „Das soziale Versprechen wird nicht mehr eingelöst“",
+      "hinten": "Sehr ungleiche Vermögensverteilung; geringe Chancengleichheit (Bildung hängt vom Elternhaus ab); großer Niedriglohnsektor; Gefühl sozialer Ungerechtigkeit, sinkendes Vertrauen.",
+      "quelle": "eigene Karte nach Unterrichtsdebatte"
+    },
+    {
+      "id": "gkw-sozmarkt-k10",
+      "typ": "begriff",
+      "vorne": "Worum ging es in der Gauck-Debatte 2014?",
+      "hinten": "Bundespräsident Gauck verteidigte in einer Rede zum Jubiläum des Walter-Eucken-Instituts die ordoliberale Marktwirtschaft: Wettbewerb breche Privilegien auf, Ungerechtigkeit entstehe, wo er eingeschränkt werde. Kritiker warfen ihm vor, Ungleichheit und Finanzkrise auszublenden.",
+      "quelle": "eigene Karte nach Lehrbuch M12–M14"
+    },
+    {
+      "id": "gkw-sozmarkt-k11",
+      "typ": "warum",
+      "vorne": "Warum ist die Aussage „Die Soziale Marktwirtschaft ist neoliberal“ zugleich richtig und falsch?",
+      "hinten": "**Richtig** im ursprünglichen Sinn: Ihre Väter waren Neoliberale mit starkem Ordnungsrahmen.\n**Falsch** im heutigen Sinn: Mit hohen Sozialausgaben und viel Regulierung ist sie nicht marktradikal.",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-sozmarkt-k12",
+      "typ": "begriff",
+      "vorne": "Aktuelle Herausforderungen der Sozialen Marktwirtschaft",
+      "hinten": "Globalisierung, europäische Integration, demografischer Wandel (Rente, Pflege), Klimawandel und Energiewende, Digitalisierung, Balance zwischen „Markt“ und „Sozialem“.",
+      "quelle": "eigene Karte nach Lehrbuch Orientierungswissen"
+    },
+    {
+      "id": "gkw-sozmarkt-k13",
+      "typ": "fehler",
+      "vorne": "Typischer Fehler: „Die Soziale Marktwirtschaft steht wörtlich im Grundgesetz.“",
+      "hinten": "Falsch. Das Grundgesetz nennt sie nicht. Der Begriff wurde 1990 im Staatsvertrag zur Währungs-, Wirtschafts- und Sozialunion mit der DDR festgeschrieben.",
+      "quelle": "eigene Karte"
+    }
+  ],
+  "uebungen": [
+    {
+      "id": "gkw-sozmarkt-u1",
+      "typ": "klassifizieren",
+      "frage": "Welche Deutung von „sozial“ steckt in der Aussage?",
+      "quelle": "eigene Übung",
+      "kategorien": ["Markt selbst ist sozial", "Wettbewerbsschutz ist sozial", "Sozialer Ausgleich macht sozial"],
+      "items": [
+        { "text": "„Das beste Sozialprogramm ist ein sicherer Arbeitsplatz in einem wachsenden Unternehmen.“", "kategorie": 0, "warum": "Wohlstand entsteht durch den Markt selbst." },
+        { "text": "„Wenn drei Konzerne die Preise absprechen, zahlen alle drauf. Das Kartellamt schützt die Kleinen.“", "kategorie": 1, "warum": "Fairer Wettbewerb als soziale Leistung des Staates." },
+        { "text": "„Wer krank wird, darf nicht ins Bodenlose fallen.“", "kategorie": 2, "warum": "Absicherung gegen Lebensrisiken durch den Sozialstaat." },
+        { "text": "„Billige Produkte durch Konkurrenz helfen gerade Menschen mit wenig Geld.“", "kategorie": 0, "warum": "Marktergebnis selbst als sozial verstanden." },
+        { "text": "„Höhere Einkommen müssen einen höheren Steuersatz zahlen.“", "kategorie": 2, "warum": "Umverteilung über progressive Steuern." },
+        { "text": "„Privilegien für Einzelne zerstören die Chancen aller anderen.“", "kategorie": 1, "warum": "Ordoliberaler Gedanke: Wettbewerb gegen Machtballung." }
+      ]
+    },
+    {
+      "id": "gkw-sozmarkt-u2",
+      "typ": "mc",
+      "frage": "Welche Aussage über Ludwig Erhard ist richtig?",
+      "quelle": "eigene Übung",
+      "optionen": [
+        { "text": "Er prägte 1947 den Begriff „Soziale Marktwirtschaft“.", "warum": "Das war Alfred Müller-Armack." },
+        { "text": "Er setzte die Soziale Marktwirtschaft als Wirtschaftsminister politisch durch und warb mit „Wohlstand für Alle“.", "richtig": true, "warum": "Richtig, er war Wirtschaftsminister 1949–1963, das Buch erschien 1957." },
+        { "text": "Er war Begründer der Freiburger Schule.", "warum": "Das war vor allem Walter Eucken (mit Franz Böhm)." }
+      ]
+    },
+    {
+      "id": "gkw-sozmarkt-u3",
+      "typ": "klassifizieren",
+      "frage": "Pro oder Contra zur Frage: „Ist Deutschland heute noch eine Soziale Marktwirtschaft?“",
+      "quelle": "eigene Übung",
+      "kategorien": ["Pro (ja)", "Contra (nein)"],
+      "items": [
+        { "text": "Durch Steuern und Transfers sind die verfügbaren Einkommen deutlich gleicher verteilt als die Markteinkommen.", "kategorie": 0, "warum": "Umverteilung wirkt." },
+        { "text": "Kinder aus Akademikerfamilien studieren viel häufiger als Kinder aus Arbeiterfamilien.", "kategorie": 1, "warum": "Geringe Chancengleichheit." },
+        { "text": "Die Zahl der Erwerbstätigen ist langfristig deutlich gestiegen.", "kategorie": 0, "warum": "Arbeit als Weg aus Armut." },
+        { "text": "Wenige Haushalte besitzen einen großen Teil des Vermögens.", "kategorie": 1, "warum": "Vermögensungleichheit." },
+        { "text": "Es gibt viele Beschäftigte, die trotz Vollzeitjob kaum über die Runden kommen.", "kategorie": 1, "warum": "Niedriglohnsektor." },
+        { "text": "Kranken-, Renten- und Arbeitslosenversicherung sichern die großen Lebensrisiken ab.", "kategorie": 0, "warum": "Soziales Netz." }
+      ]
+    },
+    {
+      "id": "gkw-sozmarkt-u4",
+      "typ": "zuordnen",
+      "frage": "Ordne die Artikel des Grundgesetzes ihrem wirtschaftlichen Inhalt zu.",
+      "quelle": "eigene Übung",
+      "paare": [
+        { "links": "Art. 12 GG", "rechts": "Berufsfreiheit" },
+        { "links": "Art. 14 GG", "rechts": "Eigentum ist gewährleistet, aber verpflichtet" },
+        { "links": "Art. 15 GG", "rechts": "Vergesellschaftung gegen Entschädigung möglich" },
+        { "links": "Art. 20 GG", "rechts": "Sozialstaatsprinzip" }
+      ]
+    },
+    {
+      "id": "gkw-sozmarkt-u5",
+      "typ": "luecke",
+      "frage": "Ergänze den Text.",
+      "quelle": "eigene Übung",
+      "text": "Die Soziale Marktwirtschaft beruht geistig vor allem auf dem [[0]]. Sie soll die Freiheit auf dem Markt mit sozialem [[1]] verbinden. Das Grundgesetz ist wirtschaftspolitisch [[2]]. Ausdrücklich festgeschrieben wurde die Soziale Marktwirtschaft erst [[3]].",
+      "luecken": [
+        { "optionen": ["Ordoliberalismus", "Keynesianismus", "Marxismus"], "richtig": 0 },
+        { "optionen": ["Ausgleich", "Wettbewerb", "Wachstum"], "richtig": 0 },
+        { "optionen": ["festgelegt", "neutral", "sozialistisch"], "richtig": 1 },
+        { "optionen": ["1949 im Grundgesetz", "1967 im Stabilitätsgesetz", "1990 im Staatsvertrag zur deutschen Einheit"], "richtig": 2 }
+      ]
+    },
+    {
+      "id": "gkw-sozmarkt-s1",
+      "typ": "schreiben",
+      "operator": "eroertern",
+      "frage": "Erörtern Sie, ob die Wirtschaftsordnung der Bundesrepublik heute (noch) als „sozial“ bezeichnet werden kann.",
+      "quelle": "eigene Aufgabe",
+      "umfang": "ca. 500–600 Wörter",
+      "erwartung": [
+        "Einleitung: Leitfrage, kurze Definition der Sozialen Marktwirtschaft (Müller-Armack/Erhard, Markt + sozialer Ausgleich).",
+        "Klärung, was „sozial“ bedeuten kann (mind. zwei der drei Deutungen), und Festlegung des eigenen Maßstabs.",
+        "Pro mit Begründung und Beispiel: hohe Beschäftigung, Umverteilung über Steuern/Transfers, Sozialversicherungssystem, Wettbewerbsschutz durch Kartellamt.",
+        "Contra mit Begründung und Beispiel: Vermögensungleichheit, geringe Chancengleichheit/Bildungsaufstieg, Niedriglohnsektor, Gefühl wachsender Ungerechtigkeit.",
+        "Abwägung: Gewichtung der Argumente, z. B. Unterschied zwischen Einkommens- und Vermögensverteilung oder zwischen Absicherung und Chancen.",
+        "Begründetes eigenes Urteil, das die Leitfrage beantwortet (ggf. „ja, aber …“), evtl. Ausblick (z. B. Bildung, Erbschaftsteuer, Demografie)."
+      ],
+      "kriterien": [
+        { "name": "Begriffsklärung", "beschreibung": "„Sozial“ wird mit mind. zwei Deutungen geklärt und als Maßstab genutzt.", "punkte": 3 },
+        { "name": "Pro-Argumente", "beschreibung": "Mind. drei Argumente nach Behauptung–Begründung–Beispiel.", "punkte": 4 },
+        { "name": "Contra-Argumente", "beschreibung": "Mind. drei Argumente nach Behauptung–Begründung–Beispiel.", "punkte": 4 },
+        { "name": "Urteil", "beschreibung": "Gewichtung erkennbar, eigenes Urteil schlüssig aus der Abwägung abgeleitet.", "punkte": 4 },
+        { "name": "Darstellung", "beschreibung": "Gliederung Einleitung–Hauptteil–Schluss, Fachsprache, Überleitungen.", "punkte": 2 }
+      ]
+    },
+    {
+      "id": "gkw-sozmarkt-s2",
+      "typ": "schreiben",
+      "operator": "darstellen",
+      "frage": "Stellen Sie die drei unterschiedlichen Deutungen des „Sozialen“ in der Sozialen Marktwirtschaft dar.",
+      "quelle": "eigene Aufgabe",
+      "umfang": "ca. 200 Wörter",
+      "erwartung": [
+        "Deutung 1: Markt an sich sozial, Wohlstand für alle durch Wettbewerb und Wachstum.",
+        "Deutung 2: Staat sichert Wettbewerb (Kartellverbot, Monopolkontrolle), verhindert Privilegien.",
+        "Deutung 3: Sozialer Ausgleich durch Sozialstaat (Versicherungen, Transfers, progressive Steuer).",
+        "Jeweils ein kurzes Beispiel."
+      ],
+      "kriterien": [
+        { "name": "Vollständigkeit", "beschreibung": "Alle drei Deutungen richtig wiedergegeben.", "punkte": 3 },
+        { "name": "Beispiele", "beschreibung": "Zu jeder Deutung ein passendes Beispiel.", "punkte": 2 },
+        { "name": "Darstellung", "beschreibung": "Strukturiert, sachlich, ohne Wertung.", "punkte": 1 }
+      ]
+    }
+  ]
+}

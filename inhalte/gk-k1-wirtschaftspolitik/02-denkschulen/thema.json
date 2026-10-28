@@ -1,0 +1,233 @@
+{
+  "id": "gkw-denkschulen",
+  "titel": "Denkschulen der Wirtschaftsordnung",
+  "untertitel": "Liberalismus, Sozialismus, Ordoliberalismus, Neoliberalismus",
+  "abhaengig": ["gkw-ordnungen"],
+  "prioritaet": 2,
+  "quelleErklaerung": "eigene Zusammenfassung nach Unterricht (Tabelle Wirtschaftsordnungen, Denkschul-Schema) und Lehrbuch M3–M5, M11, M15; geprüft an bpb – Lexikon der Wirtschaft (Liberalismus, Neoliberalismus, Ordoliberalismus), Bundesbank-Rede „Marktwirtschaftliche Prinzipien in der Währungsunion“ (Eucken-Prinzipien) und Enquete-Kommission Bundestag, Projektgruppe Ordnungspolitik",
+  "karten": [
+    {
+      "id": "gkw-denkschulen-k1",
+      "typ": "begriff",
+      "vorne": "Unterschied Denkschule – Wirtschaftsordnung",
+      "hinten": "**Denkschule:** Theorie, wie Wirtschaft sein soll (z. B. Ordoliberalismus).\n**Wirtschaftsordnung:** tatsächlich geltende Ordnung eines Landes (z. B. Soziale Marktwirtschaft).",
+      "quelle": "eigene Karte nach Unterrichtsschema"
+    },
+    {
+      "id": "gkw-denkschulen-k2",
+      "typ": "begriff",
+      "vorne": "„Unsichtbare Hand“ (Adam Smith)",
+      "hinten": "Wenn jeder auf freien Märkten seinen eigenen Vorteil verfolgt, führen Wettbewerb und Preise wie von einer unsichtbaren Hand gelenkt zum größtmöglichen Wohlstand aller, ohne staatliche Planung.",
+      "quelle": "eigene Karte; bpb Lexikon der Wirtschaft"
+    },
+    {
+      "id": "gkw-denkschulen-k3",
+      "typ": "begriff",
+      "vorne": "Forderungen des klassischen Liberalismus",
+      "hinten": "Gewerbefreiheit, Freihandel, Vertragsfreiheit, Privateigentum, Nichteinmischung des Staates in Produktion und Lohnfindung. Staat nur als „Nachtwächter“.",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-denkschulen-k4",
+      "typ": "begriff",
+      "vorne": "Mehrwert und Ausbeutung (Marx)",
+      "hinten": "Der Arbeiter schafft mit seiner Arbeit mehr Wert, als er als Lohn erhält. Den Überschuss (**Mehrwert**) eignet sich der Besitzer der Produktionsmittel an. Das nennt Marx **Ausbeutung**.",
+      "quelle": "eigene Karte nach Lehrbuch M15"
+    },
+    {
+      "id": "gkw-denkschulen-k5",
+      "typ": "begriff",
+      "vorne": "Demokratischer vs. revolutionärer Sozialismus",
+      "hinten": "**Demokratisch:** Gesellschaft schrittweise und über Wahlen verändern.\n**Revolutionär:** gewaltsamer Umsturz von Staat und Wirtschaft (z. B. Russland 1917).",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-denkschulen-k6",
+      "typ": "begriff",
+      "vorne": "Grundidee des Ordoliberalismus",
+      "hinten": "Der Markt ist der beste Koordinator, schützt sich aber nicht selbst vor Kartellen und Monopolen. Der Staat setzt deshalb einen festen **Ordnungsrahmen** (Schiedsrichter), greift aber nicht in den Wirtschaftsprozess ein (kein Mitspieler).",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-denkschulen-k7",
+      "typ": "begriff",
+      "vorne": "Nenne die vier Grundpfeiler nach Eucken.",
+      "hinten": "1. funktionsfähige Märkte (Preissystem, offene Märkte, kein Kartell)\n2. Preisniveaustabilität (Vorrang der Währungspolitik)\n3. Privateigentum und volle Haftung\n4. stetige, berechenbare Wirtschaftspolitik",
+      "quelle": "eigene Karte nach Lehrbuch M5; Bundesbank"
+    },
+    {
+      "id": "gkw-denkschulen-k8",
+      "typ": "warum",
+      "vorne": "Warum ist das Haftungsprinzip für Eucken so wichtig?",
+      "hinten": "Wer Gewinne behalten darf, muss auch Verluste tragen. Sonst wird riskant und verantwortungslos gewirtschaftet (Beispiel Finanzkrise 2008: Banken „zu groß zum Scheitern“, Verluste trug der Staat).",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-denkschulen-k9",
+      "typ": "begriff",
+      "vorne": "Ordnungspolitik vs. Prozesspolitik",
+      "hinten": "**Ordnungspolitik:** dauerhafte Spielregeln setzen (Eigentumsrecht, Wettbewerbsrecht, Geldordnung).\n**Prozesspolitik:** in den laufenden Wirtschaftsablauf eingreifen (Konjunkturprogramme, Subventionen, Preisvorgaben).",
+      "quelle": "eigene Karte; bpb Lexikon der Wirtschaft"
+    },
+    {
+      "id": "gkw-denkschulen-k10",
+      "typ": "begriff",
+      "vorne": "Wie hat sich die Bedeutung von „Neoliberalismus“ gewandelt?",
+      "hinten": "**Früher (1930er):** „neuer“ Liberalismus mit starkem staatlichem Ordnungsrahmen, einschließlich der Ordoliberalen.\n**Heute:** meist abwertender Kampfbegriff für Marktradikalismus, Deregulierung und Sozialabbau.",
+      "quelle": "eigene Karte nach Lehrbuch M11/M12"
+    },
+    {
+      "id": "gkw-denkschulen-k11",
+      "typ": "begriff",
+      "vorne": "Merkmale des Kapitalismus",
+      "hinten": "Privateigentum an Produktionsmitteln, Gewinnstreben, Lohnarbeit, Steuerung über den Markt. Begriff stark von Marx geprägt, heute oft kritisch für „Marktwirtschaft“ verwendet.",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-denkschulen-k12",
+      "typ": "fehler",
+      "vorne": "Typischer Fehler: „Ordoliberale wollen möglichst wenig Staat.“",
+      "hinten": "Ungenau. Ordoliberale wollen einen **starken** Staat, der Wettbewerb durchsetzt (z. B. Kartellverbot). Abgelehnt werden nur Eingriffe in den Wirtschaftsprozess.",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-denkschulen-k13",
+      "typ": "warum",
+      "vorne": "Warum entstand der Sozialismus im 19. Jahrhundert?",
+      "hinten": "Als Reaktion auf die **soziale Frage** der Industrialisierung: Massenarmut, lange Arbeitszeiten, Kinderarbeit, Elendsviertel bei gleichzeitig wachsendem Reichtum der Fabrikbesitzer.",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-denkschulen-k14",
+      "typ": "begriff",
+      "vorne": "Freiburger Schule",
+      "hinten": "Gruppe von Ökonomen und Juristen in Freiburg (u. a. **Walter Eucken**, Franz Böhm) ab den 1930er-Jahren, Begründer des Ordoliberalismus und wichtige Vordenker der Sozialen Marktwirtschaft.",
+      "quelle": "eigene Karte"
+    }
+  ],
+  "uebungen": [
+    {
+      "id": "gkw-denkschulen-u1",
+      "typ": "klassifizieren",
+      "frage": "Ordne die Aussagen der passenden Denkschule zu.",
+      "quelle": "eigene Übung",
+      "kategorien": ["Liberalismus", "Sozialismus", "Ordoliberalismus"],
+      "items": [
+        { "text": "Die unsichtbare Hand des Marktes sorgt für Wohlstand.", "kategorie": 0, "warum": "Kerngedanke von Adam Smith." },
+        { "text": "Die Produktionsmittel müssen vergesellschaftet werden.", "kategorie": 1, "warum": "Aufhebung des Privateigentums an Produktionsmitteln." },
+        { "text": "Kartellverträge dürfen nicht durch Vertragsfreiheit gedeckt sein.", "kategorie": 2, "warum": "Eucken: Vertragsfreiheit ja, aber nicht zur Abschaffung des Wettbewerbs." },
+        { "text": "Der Staat ist Schiedsrichter, nicht Mitspieler.", "kategorie": 2, "warum": "Ordnungspolitik statt Prozesspolitik." },
+        { "text": "Der Staat soll sich auf Polizei, Justiz und Landesverteidigung beschränken.", "kategorie": 0, "warum": "Nachtwächterstaat." },
+        { "text": "Die Geschichte ist eine Geschichte von Klassenkämpfen.", "kategorie": 1, "warum": "Marx/Engels." },
+        { "text": "Wirtschaftspolitik muss stetig und berechenbar sein.", "kategorie": 2, "warum": "Eines der Eucken-Prinzipien." }
+      ]
+    },
+    {
+      "id": "gkw-denkschulen-u2",
+      "typ": "zuordnen",
+      "frage": "Ordne die Personen ihrer Denkschule bzw. ihrem Werk zu.",
+      "quelle": "eigene Übung",
+      "paare": [
+        { "links": "Adam Smith", "rechts": "klassischer Liberalismus, „Der Wohlstand der Nationen“" },
+        { "links": "Karl Marx", "rechts": "Kritik des Kapitalismus, „Das Kapital“" },
+        { "links": "Walter Eucken", "rechts": "Freiburger Schule, Ordoliberalismus" },
+        { "links": "Friedrich Engels", "rechts": "Mitautor des Kommunistischen Manifests" }
+      ]
+    },
+    {
+      "id": "gkw-denkschulen-u3",
+      "typ": "mc",
+      "frage": "Ein Kommentar kritisiert „neoliberale Politik, die Krankenhäuser privatisiert und Sozialleistungen kürzt“. In welchem Sinn wird „neoliberal“ hier verwendet?",
+      "quelle": "eigene Übung",
+      "optionen": [
+        { "text": "Im ursprünglichen Sinn der 1930er-Jahre", "warum": "Damals stand „neoliberal“ für einen starken Ordnungsrahmen mit sozialem Netz, also gerade nicht für Sozialabbau." },
+        { "text": "Als heutiger Kampfbegriff für Marktradikalismus", "richtig": true, "warum": "Privatisierung und Sozialkürzungen sind die typischen Inhalte des heutigen, abwertenden Gebrauchs." },
+        { "text": "Als Synonym für Sozialismus", "warum": "Neoliberalismus gehört zur liberalen Tradition, nicht zur sozialistischen." }
+      ]
+    },
+    {
+      "id": "gkw-denkschulen-u4",
+      "typ": "luecke",
+      "frage": "Ergänze die Aussagen zum Ordoliberalismus.",
+      "quelle": "eigene Übung",
+      "text": "Der Ordoliberalismus entstand an der [[0]] Schule. Sein wichtigster Vertreter [[1]] forderte, dass die Zentralbank die Geldmenge nicht schneller wachsen lässt als die [[2]]. Wer Gewinne macht, soll auch für Verluste [[3]]. Der Staat soll vor allem [[4]] betreiben.",
+      "luecken": [
+        { "optionen": ["Frankfurter", "Freiburger", "Chicagoer"], "richtig": 1 },
+        { "optionen": ["Walter Eucken", "John Maynard Keynes", "Milton Friedman"], "richtig": 0 },
+        { "optionen": ["Staatsverschuldung", "Produktion", "Lohnsumme"], "richtig": 1 },
+        { "optionen": ["haften", "Subventionen bekommen", "Steuern senken"], "richtig": 0 },
+        { "optionen": ["Prozesspolitik", "Ordnungspolitik", "Planwirtschaft"], "richtig": 1 }
+      ]
+    },
+    {
+      "id": "gkw-denkschulen-u5",
+      "typ": "reihenfolge",
+      "frage": "Bringe die Entwicklung in die historisch richtige Reihenfolge.",
+      "quelle": "eigene Übung",
+      "schritte": [
+        "Adam Smith begründet den klassischen Wirtschaftsliberalismus (18. Jh.).",
+        "Die Industrialisierung führt zur sozialen Frage (19. Jh.).",
+        "Marx und Engels veröffentlichen das Kommunistische Manifest (1848).",
+        "Die Freiburger Schule entwickelt den Ordoliberalismus (ab 1930er).",
+        "Die Soziale Marktwirtschaft wird in der Bundesrepublik umgesetzt (ab 1948/49)."
+      ]
+    },
+    {
+      "id": "gkw-denkschulen-u6",
+      "typ": "fehler",
+      "frage": "Welcher Satz über den Ordoliberalismus ist falsch?",
+      "quelle": "eigene Übung",
+      "schritte": [
+        "Der Ordoliberalismus hält den Wettbewerb für den besten Koordinationsmechanismus.",
+        "Er fürchtet, dass Wettbewerb sich ohne Regeln selbst abschafft.",
+        "Deshalb fordert er ein striktes Kartellverbot.",
+        "Zur Konjunktursteuerung soll der Staat in Krisen große Ausgabenprogramme auflegen.",
+        "Wirtschaftspolitik soll berechenbar sein, damit Unternehmen planen können."
+      ],
+      "fehler": 3,
+      "erklaerung": "Konjunkturprogramme sind Prozesspolitik im Sinne von Keynes. Ordoliberale lehnen solche Eingriffe in den Wirtschaftsprozess ab, weil sie die Preissignale stören und Unsicherheit schaffen."
+    },
+    {
+      "id": "gkw-denkschulen-s1",
+      "typ": "schreiben",
+      "operator": "vergleichen",
+      "frage": "Vergleichen Sie Liberalismus, Sozialismus und Ordoliberalismus hinsichtlich Leitidee, Eigentumsordnung, Verhältnis von Staat und Markt sowie Ziel.",
+      "quelle": "eigene Aufgabe",
+      "umfang": "ca. 400 Wörter",
+      "erwartung": [
+        "Liberalismus: individuelle Freiheit, Eigeninteresse und unsichtbare Hand; Privateigentum; Nachtwächterstaat; Wohlstand durch freie Märkte.",
+        "Sozialismus: Gleichheit, Abschaffung von Ausbeutung (Mehrwert); Gemeineigentum an Produktionsmitteln; zentrale Planung durch Staat/Planbehörde; sozial gerechte, klassenlose Gesellschaft.",
+        "Ordoliberalismus: Freiheit durch gesicherten Wettbewerb; Privateigentum mit voller Haftung; Staat setzt Ordnungsrahmen (Kartellverbot, offene Märkte, Geldwertstabilität), keine Prozesseingriffe; bestmögliche Güterversorgung.",
+        "Gemeinsamkeit Liberalismus/Ordoliberalismus: Markt und Privateigentum; Unterschied: Rolle des Staates beim Schutz des Wettbewerbs.",
+        "Ordoliberalismus als Antwort auf Schwächen beider Extreme (Machtballung im Laissez-faire, Unfreiheit im Sozialismus).",
+        "Kriteriengeleitete, gegenüberstellende Struktur."
+      ],
+      "kriterien": [
+        { "name": "Liberalismus korrekt", "beschreibung": "Alle vier Aspekte richtig dargestellt.", "punkte": 3 },
+        { "name": "Sozialismus korrekt", "beschreibung": "Alle vier Aspekte richtig dargestellt, Fachbegriffe (Mehrwert, Vergesellschaftung).", "punkte": 3 },
+        { "name": "Ordoliberalismus korrekt", "beschreibung": "Alle vier Aspekte, mind. zwei Eucken-Prinzipien genannt.", "punkte": 3 },
+        { "name": "Vergleich", "beschreibung": "Gemeinsamkeiten und Unterschiede ausdrücklich herausgestellt, nicht nur nebeneinander beschrieben.", "punkte": 3 },
+        { "name": "Darstellung", "beschreibung": "Kriterien als Gliederung, Fachsprache.", "punkte": 2 }
+      ]
+    },
+    {
+      "id": "gkw-denkschulen-s2",
+      "typ": "schreiben",
+      "operator": "erlaeutern",
+      "frage": "Erläutern Sie den Bedeutungswandel des Begriffs „Neoliberalismus“ und warum dieser für die Analyse politischer Texte wichtig ist.",
+      "quelle": "eigene Aufgabe",
+      "umfang": "ca. 200–250 Wörter",
+      "erwartung": [
+        "Ursprung: Neuer Liberalismus der 1930er-Jahre als Reaktion auf das Scheitern des Laissez-faire; starker Staat, der Wettbewerb sichert und Schwache absichert; Ordoliberale zählen dazu.",
+        "Heute: überwiegend abwertend für Marktradikalismus, Deregulierung, Privatisierung und Sozialabbau.",
+        "Folge: Derselbe Begriff kann gegensätzliche Programme bezeichnen.",
+        "Für die Textanalyse: prüfen, welche Bedeutung der Autor meint; Begriff kann als wertende Wortwahl (Feindbild) eingesetzt werden."
+      ],
+      "kriterien": [
+        { "name": "Beide Bedeutungen", "beschreibung": "Ursprüngliche und heutige Bedeutung korrekt erklärt.", "punkte": 4 },
+        { "name": "Bedeutung für Textanalyse", "beschreibung": "Nachvollziehbar erklärt, warum man genau hinsehen muss.", "punkte": 2 },
+        { "name": "Darstellung", "beschreibung": "Zusammenhängend, Fachsprache.", "punkte": 2 }
+      ]
+    }
+  ]
+}
