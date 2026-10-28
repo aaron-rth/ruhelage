@@ -3,6 +3,7 @@ import { Meldung } from '../components/Basis';
 import { starteTour } from '../components/Tour';
 import { Icon } from '../components/Icon';
 import { LoeschDialog } from '../components/LoeschDialog';
+import { klausurDatumVon, setzeKlausurDatum, useMeineKurse } from '../lib/kurs';
 import { heute } from '../lib/datum';
 import { rueckmeldung, stummmodusSteuerbar, vibrationMoeglich } from '../lib/feedback';
 import { useIstHandy } from '../lib/geraet';
@@ -41,6 +42,7 @@ function Schalter({ label, an, onChange, text }: { label: string; an: boolean; o
 }
 
 export function Einstellungen() {
+  const meine = useMeineKurse();
   const s = useStore();
   const handy = useIstHandy();
   const e = s.einstellungen;
@@ -193,9 +195,31 @@ export function Einstellungen() {
       <section className="panel">
         <h3 className="mb">Anzeige</h3>
         <Schalter label="Countdown bis zur Klausur" an={e.countdown} onChange={(b) => s.setzeEinstellung('countdown', b)} text="Ein dezenter Hinweis, wie viele Tage noch bleiben." />
-        <div className="einst-zeile">
-          <label htmlFor="klausurdatum">Klausurtermin</label>
-          <input id="klausurdatum" type="date" className="eingabe" value={e.klausurDatum} onChange={(ev) => ev.target.value && s.setzeEinstellung('klausurDatum', ev.target.value)} />
+        <div className="einst-block">
+          <label>Klausurtermine</label>
+          <p className="sehr-leise klein" style={{ margin: 0 }}>
+            Je Fach ein Termin. Danach richten sich Countdown und Lernplan. Ohne Termin gibt es keinen Lernplan.
+          </p>
+          <div className="klausur-termine">
+            {meine.laufend.map((k) => {
+              const d = klausurDatumVon(e, k.id);
+              return (
+                <div key={k.id} className="klausur-termin">
+                  <label htmlFor={`klausur-${k.id}`}>
+                    <strong>{k.fach}</strong> <span className="chip klein-chip">{k.klasse}</span>
+                  </label>
+                  <div className="zeile" style={{ gap: 6 }}>
+                    <input id={`klausur-${k.id}`} type="date" className="eingabe" value={d} onChange={(ev) => setzeKlausurDatum(k.id, ev.target.value)} />
+                    {d && (
+                      <button type="button" className="btn geist klein symbol-knopf" onClick={() => setzeKlausurDatum(k.id, '')} title="Termin entfernen" aria-label={`Klausurtermin ${k.fach} entfernen`}>
+                        <Icon name="x" size={16} />
+                      </button>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
         <div className="einst-zeile">
           <label>Einführung</label>

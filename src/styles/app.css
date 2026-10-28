@@ -4131,3 +4131,26 @@ a.fach-zeile.bald:hover {
   border: 1px solid var(--linie);
   border-radius: var(--r);
 }
+.einst-block {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: var(--s3) 0;
+  border-bottom: 1px solid var(--linie);
+}
+.klausur-termine {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+  margin-top: 6px;
+}
+.klausur-termin {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s2);
+  flex-wrap: wrap;
+}
+.klausur-termin input[type='date'] {
+  min-width: 0;
+}

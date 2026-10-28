@@ -78,6 +78,16 @@ export function setzeKursFertig(id: string, fertig: boolean) {
   if (!fertig) wechsleKurs(id);
 }
 
+/** Klausurtermin eines Kurses ('' = keiner). Der aktive Kurs hat seinen Termin in klausurDatum. */
+export function klausurDatumVon(e: Einstellungen, id: string): string {
+  if (id === e.kurs) return e.klausurDatum;
+  return e.klausurDaten?.[id] ?? KURSE.find((k) => k.id === id)?.klausur?.datum ?? '';
+}
+
+export function setzeKlausurDatum(id: string, datum: string) {
+  setze((e) => (id === e.kurs ? { klausurDatum: datum } : { klausurDaten: { ...e.klausurDaten, [id]: datum } }));
+}
+
 export function setzeThemaAusgeblendet(id: string, aus: boolean) {
   setze((e) => ({ ausgeblendeteThemen: aus ? [...new Set([...(e.ausgeblendeteThemen ?? []), id])] : (e.ausgeblendeteThemen ?? []).filter((x) => x !== id) }));
 }
