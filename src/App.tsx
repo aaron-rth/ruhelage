@@ -15,9 +15,8 @@ import { Heute } from './pages/Heute';
 import { Lernpfad } from './pages/Lernpfad';
 import { Nochmal } from './pages/Nochmal';
 import { ThemaSeite } from './pages/Thema';
-import { KURSE } from './content/kurse';
 import type { Kurs } from './content/types';
-import { hatFormeln, hatProbeklausur, hatSpielwiese, useAktiverKurs, wechsleKurs } from './lib/kurs';
+import { hatFormeln, hatProbeklausur, hatSpielwiese, useAktiverKurs, useMeineKurse, wechsleKurs } from './lib/kurs';
 import { knopfKlick } from './lib/feedback';
 import { streak, useStore } from './store/store';
 import { useUi } from './store/ui';
@@ -252,6 +251,7 @@ function useCloud() {
 
 function Rahmen() {
   const kurs = useAktiverKurs();
+  const meine = useMeineKurse();
   useLernzeit();
   useCloud();
   useKnopfKlick();
@@ -288,7 +288,7 @@ function Rahmen() {
               <span className="sehr-leise klein">{kurs.titel}</span>
             </span>
           </Link>
-          {KURSE.filter((k) => k.id !== kurs.id).map((k) => (
+          {meine.laufend.filter((k) => k.id !== kurs.id).map((k) => (
             <Link key={k.id} to="/faecher" className="fach-zeile" tabIndex={fokus ? -1 : 0} onClick={() => wechsleKurs(k.id)}>
               <Icon name={k.fach === 'Physik' ? 'welle' : 'buch'} size={18} />
               <span>
@@ -299,9 +299,9 @@ function Rahmen() {
               </span>
             </Link>
           ))}
-          <Link to="/faecher?anfrage=1" className="fach-zeile bald" tabIndex={fokus ? -1 : 0}>
+          <Link to="/faecher?hinzu=1" className="fach-zeile bald" tabIndex={fokus ? -1 : 0}>
             <Icon name="plus" size={18} />
-            <span className="klein">Fach anfragen</span>
+            <span className="klein">Fach hinzufügen</span>
           </Link>
         </div>
         <nav className="nav" aria-label="Hauptnavigation">
@@ -333,9 +333,9 @@ function Rahmen() {
         <NavLink to="/" aria-label="Startseite" style={{ color: 'var(--text)' }}>
           <Logo klein />
         </NavLink>
-        <span className="mobil-fach">
+        <Link to="/faecher" className="mobil-fach" title={`${kurs.fach} · ${kurs.klasse}`}>
           {kurs.fach} · {kurs.klasse}
-        </span>
+        </Link>
         <button type="button" className="mobil-serie" onClick={() => navigate('/statistik')} aria-label={`${serie} Tage in Folge – Statistik öffnen`}>
           <Icon name="welle" size={16} /> <strong className="mono">{serie}</strong>
         </button>

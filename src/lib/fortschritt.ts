@@ -50,6 +50,19 @@ export function statusVon(t: Thema, d: Daten): Status {
   return d.themen[t.id]?.status ?? t.startStatus ?? 'offen';
 }
 
+/**
+ * Gestartet = „Kurz erklärt“ gelesen, selbst eingeschätzt oder schon Karten/Übungen gemacht.
+ * Nur aus gestarteten Themen kommen neue Karten und Aufgaben in die Tagesrunde.
+ */
+export function istGestartet(t: Thema, d: Daten): boolean {
+  const manuell = d.einstellungen.tagesrunde?.[t.id];
+  if (manuell !== undefined) return manuell;
+  if (statusVon(t, d) !== 'offen') return true;
+  if (d.einstellungen.gelesen?.includes(t.id)) return true;
+  if (t.karten.some((k) => d.karten[k.id])) return true;
+  return t.uebungen.some((u) => d.ergebnisse[uebKey(u.id)]) || t.generatoren.some((g) => d.ergebnisse[genKey(g.id)]);
+}
+
 /** Vorschlag aus den Ergebnissen (wird nur als Hinweis gezeigt). */
 export function vorschlag(f: ThemaFortschritt): Exclude<Status, 'offen'> {
   if (f.gesamt >= 0.7) return 'kann';

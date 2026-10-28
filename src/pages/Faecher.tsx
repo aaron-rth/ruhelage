@@ -1,13 +1,14 @@
 // Fächer: Fach wählen, Kursüberblick und was noch zu tun ist.
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { Ring, StatusChip } from '../components/Basis';
 import { FachAnfrage } from '../components/FachAnfrage';
+import { FachHinzu } from '../components/FachHinzu';
 import { Icon } from '../components/Icon';
 import { datumLang, heute, tageZwischen } from '../lib/datum';
 import { statusVon, themaFortschritt } from '../lib/fortschritt';
 import { schwacheThemen } from '../lib/heute';
-import { hatFormeln, kurseNachFach, useAktiverKurs, wechsleKurs } from '../lib/kurs';
+import { hatFormeln, setzeKursFertig, useAktiverKurs, useMeineKurse, wechsleKurs } from '../lib/kurs';
 import { baueLernplan, heuteDran } from '../lib/plan';
 import { useStore } from '../store/store';
 
@@ -15,6 +16,13 @@ export function Faecher() {
   const daten = useStore();
   const [params, setParams] = useSearchParams();
   const [anfrage, setAnfrage] = useState(params.get('anfrage') === '1');
+  const [hinzu, setHinzu] = useState(params.get('hinzu') === '1');
+  const { laufend, fertig } = useMeineKurse();
+  // Links aus der Seitenleiste öffnen die Dialoge auch, wenn man schon auf der Seite ist
+  useEffect(() => {
+    if (params.get('hinzu') === '1') setHinzu(true);
+    if (params.get('anfrage') === '1') setAnfrage(true);
+  }, [params]);
   const h = heute();
   const kurs = useAktiverKurs();
   const e = daten.einstellungen;
@@ -35,29 +43,68 @@ export function Faecher() {
       </div>
 
       <div className="fach-liste" role="list">
-        {kurseNachFach().flatMap(({ kurse }) =>
-          kurse.map((k) => (
-            <button key={k.id} type="button" className={`fach-kachel${k.id === kurs.id ? ' an' : ''}`} role="listitem" aria-current={k.id === kurs.id ? 'true' : undefined} onClick={() => wechsleKurs(k.id)}>
-              <span className="modus-icon">
-                <Icon name={k.fach === 'Physik' ? 'welle' : 'buch'} size={22} />
-              </span>
-              <span className="fach-name">
-                <strong>{k.fach}</strong>
-                <span className="chip klein-chip">{k.klasse}</span>
-                {k.entwurf && <span className="chip klein-chip">Entwurf</span>}
-              </span>
-              <span className="sehr-leise klein">{k.titel}</span>
-            </button>
-          )),
-        )}
-        <button type="button" className="fach-kachel bald" onClick={() => setAnfrage(true)}>
+        {laufend.map((k) => {
+          const an = k.id === kurs.id;
+          return (
+            <div key={k.id} className={`fach-reihe-wrap${an ? ' an' : ''}`} role="listitem">
+              <button type="button" className="fach-reihe" aria-current={an ? 'true' : undefined} onClick={() => wechsleKurs(k.id)}>
+                <span className="modus-icon">
+                  <Icon name={k.fach === 'Physik' ? 'welle' : 'buch'} size={20} />
+                </span>
+                <span className="fach-reihe-text">
+                  <span className="fach-name">
+                    <strong>{k.fach}</strong>
+                    <span className="chip klein-chip">{k.klasse}</span>
+                    {k.entwurf && <span className="chip klein-chip">Entwurf</span>}
+                  </span>
+                  <span className="sehr-leise klein">{k.titel}</span>
+                </span>
+              </button>
+              <button type="button" className="btn geist klein symbol-knopf" onClick={() => setzeKursFertig(k.id, true)} title="Als fertig markieren (ausblenden)" aria-label={`${k.fach} als fertig markieren`}>
+                <Icon name="check" size={18} />
+              </button>
+            </div>
+          );
+        })}
+        <button type="button" className="fach-reihe fach-neu" onClick={() => setHinzu(true)}>
           <span className="modus-icon">
-            <Icon name="plus" size={22} />
+            <Icon name="plus" size={20} />
           </span>
-          <strong>Fach anfragen</strong>
-          <span className="sehr-leise klein">Dein Fach fehlt? Schick uns deine Unterlagen.</span>
+          <span className="fach-reihe-text">
+            <strong>Fach hinzufügen</strong>
+            <span className="sehr-leise klein">Stufe und Fach auswählen – oder ein neues anfragen</span>
+          </span>
         </button>
       </div>
+      {fertig.length > 0 && (
+        <details className="fertige-faecher">
+          <summary className="sehr-leise klein">Fertige Fächer ({fertig.length})</summary>
+          <ul>
+            {fertig.map((k) => (
+              <li key={k.id}>
+                <span>
+                  <strong>{k.fach}</strong> <span className="chip klein-chip">{k.klasse}</span> <span className="sehr-leise klein">{k.titel}</span>
+                </span>
+                <button type="button" className="btn geist klein" onClick={() => setzeKursFertig(k.id, false)}>
+                  <Icon name="zuruecksetzen" size={16} /> Zurückholen
+                </button>
+              </li>
+            ))}
+          </ul>
+        </details>
+      )}
+      {hinzu && (
+        <FachHinzu
+          onZu={() => {
+            setHinzu(false);
+            if (params.get('hinzu')) setParams({}, { replace: true });
+          }}
+          onAnfrage={() => {
+            setHinzu(false);
+            setAnfrage(true);
+          }}
+        />
+      )}
       {anfrage && (
         <FachAnfrage
           onZu={() => {

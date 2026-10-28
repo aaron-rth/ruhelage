@@ -56,6 +56,16 @@ export interface Einstellungen {
   kurs: string;
   /** gemerkte Klausurdaten der anderen Kurse (beim Wechsel getauscht) */
   klausurDaten: Record<string, string>;
+  /** selbst hinzugefügte Kurse (der aktive zählt immer dazu) */
+  meineKurse: string[];
+  /** als fertig markierte Kurse – ausgeblendet, lassen sich zurückholen */
+  fertigeKurse: string[];
+  /** ausgeblendete Themen (fertig oder nicht klausurrelevant) */
+  ausgeblendeteThemen: string[];
+  /** Themen, deren „Kurz erklärt“ gelesen wurde */
+  gelesen: string[];
+  /** von Hand: Thema in der Tagesrunde ja/nein (sonst automatisch, sobald gestartet) */
+  tagesrunde: Record<string, boolean>;
   /** Einführung und kurze Hinweise anzeigen */
   hinweise: boolean;
   /** Wiederholungsabstände der Karteikarten */
@@ -98,6 +108,11 @@ export const STANDARD_EINSTELLUNGEN: Einstellungen = {
   klausurDatum: '2026-11-06',
   kurs: 'schwingungen',
   klausurDaten: {},
+  meineKurse: ['schwingungen'],
+  fertigeKurse: [],
+  ausgeblendeteThemen: [],
+  gelesen: [],
+  tagesrunde: {},
   hinweise: true,
   takt: 'standard',
   wischen: true,
