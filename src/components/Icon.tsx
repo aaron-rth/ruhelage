@@ -111,6 +111,12 @@ const P: Record<string, ReactElement> = {
       <circle cx="12" cy="12" r="2.8" />
     </>
   ),
+  augeAus: (
+    <>
+      <path d="M2.5 12S6 5.5 12 5.5c2 0 3.7.7 5.1 1.7M21.5 12s-3.5 6.5-9.5 6.5c-2 0-3.7-.7-5.1-1.7" />
+      <path d="M9.9 14.1a2.8 2.8 0 0 1 4.2-4.2M4 20 20 4" />
+    </>
+  ),
   plus: <path d="M12 5v14M5 12h14" />,
   hoch: <path d="m6 15 6-6 6 6" />,
   runter: <path d="m6 9 6 6 6-6" />,

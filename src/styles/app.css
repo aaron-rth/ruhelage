@@ -4172,3 +4172,14 @@ a.fach-zeile.bald:hover {
   transform-origin: left center;
   margin-right: -6px;
 }
+.knoten.weggelassen {
+  opacity: 0.55;
+  border-style: dashed;
+}
+.knoten.weggelassen:hover {
+  opacity: 0.85;
+}
+.thema-weglassen.weg {
+  border-color: var(--akzent-linie);
+  color: var(--akzent);
+}

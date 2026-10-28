@@ -98,9 +98,15 @@ function ThemaOptionen({ t }: { t: Thema }) {
         />
         <span className="klein">In Tagesrunde</span>
       </label>
-      <button type="button" className="btn geist klein" onClick={() => setzeThemaAusgeblendet(t.id, !aus)} title={aus ? 'Thema wieder einblenden' : 'Für Lernplan und Übungen ausblenden (z. B. nicht klausurrelevant)'}>
-        {aus ? 'Wieder einblenden' : 'Nicht klausurrelevant'}
+      <button
+        type="button"
+        className={`btn klein thema-weglassen${aus ? ' weg' : ''}`}
+        onClick={() => setzeThemaAusgeblendet(t.id, !aus)}
+        title={aus ? 'Thema wieder in Lernplan, Tagesrunde und Übungen aufnehmen' : 'Thema aus Lernplan, Tagesrunde und Übungen weglassen (z. B. kommt nicht in der Klausur)'}
+      >
+        <Icon name={aus ? 'plus' : 'augeAus'} size={16} /> {aus ? 'Wieder lernen' : 'Weglassen'}
       </button>
+      {aus && <span className="sehr-leise klein">Weggelassen – zählt nicht für Lernplan und Tagesrunde.</span>}
     </div>
   );
 }

@@ -20,12 +20,12 @@ interface Linie {
   key: string;
 }
 
-function Knoten({ t }: { t: Thema }) {
+function Knoten({ t, weg }: { t: Thema; weg: boolean }) {
   const daten = useStore();
   const status = statusVon(t, daten);
   const f = themaFortschritt(t, daten, heute());
   return (
-    <div className={`knoten status-${status}`} data-id={t.id}>
+    <div className={`knoten status-${status}${weg ? ' weggelassen' : ''}`} data-id={t.id}>
       <Link to={`/thema/${t.id}`} className="knoten-link">
         <span className="knoten-nr">{t.nr}</span>
         <span className="knoten-text">
@@ -46,7 +46,13 @@ function Knoten({ t }: { t: Thema }) {
             <Icon name="karten" size={13} /> {f.kartenFaellig} fällig
           </span>
         )}
-        {!istGestartet(t, daten) && <span className="sehr-leise klein knoten-aus">noch nicht gestartet</span>}
+        {weg ? (
+          <button type="button" className="btn geist klein knoten-aus" onClick={() => setzeThemaAusgeblendet(t.id, false)} title="Wieder lernen (in Lernplan und Tagesrunde aufnehmen)">
+            <Icon name="augeAus" size={15} /> weggelassen
+          </button>
+        ) : (
+          !istGestartet(t, daten) && <span className="sehr-leise klein knoten-aus">noch nicht gestartet</span>
+        )}
       </div>
     </div>
   );
@@ -105,7 +111,7 @@ function EinschaetzHinweis({ onZu }: { onZu: () => void }) {
 export function Lernpfad() {
   const kurs = useAktiverKurs();
   const komplett = useAktiverKursKomplett();
-  const ausgeblendet = komplett.themen.filter((t) => !kurs.themen.includes(t));
+  const weg = new Set(komplett.themen.filter((t) => !kurs.themen.includes(t)).map((t) => t.id));
   const daten = useStore();
   const offen = kurs.themen.filter((t) => statusVon(t, daten) === 'offen').length;
   const [params, setParams] = useSearchParams();
@@ -126,7 +132,7 @@ export function Lernpfad() {
       const pos = new Map<string, DOMRect>();
       el.querySelectorAll<HTMLElement>('.knoten').forEach((k) => pos.set(k.dataset.id!, k.getBoundingClientRect()));
       const ls: Linie[] = [];
-      for (const t of kurs.themen) {
+      for (const t of komplett.themen) {
         const ziel = pos.get(t.id);
         if (!ziel) continue;
         for (const dep of t.abhaengig) {
@@ -148,7 +154,7 @@ export function Lernpfad() {
     const ro = new ResizeObserver(messen);
     ro.observe(el);
     return () => ro.disconnect();
-  }, [kurs, ansicht]);
+  }, [komplett, weg.size, ansicht]);
 
   return (
     <div className="inhalt">
@@ -196,11 +202,11 @@ export function Lernpfad() {
             return <path key={l.key} d={`M${l.x1},${l.y1} C${l.x1},${my} ${l.x2},${my} ${l.x2},${l.y2}`} />;
           })}
         </svg>
-        {kurs.pfad.map((zeile, i) => (
+        {komplett.pfad.map((zeile, i) => (
           <div key={i} className={`pfad-zeile n${zeile.length}`}>
             {zeile.map((id) => {
               const t = findeThema(id);
-              return t ? <Knoten key={id} t={t} /> : null;
+              return t ? <Knoten key={id} t={t} weg={weg.has(id)} /> : null;
             })}
           </div>
         ))}
@@ -219,25 +225,13 @@ export function Lernpfad() {
         <span>
           <span className="status-punkt offen" /> noch nicht eingeschätzt
         </span>
+        {weg.size > 0 && (
+          <span>
+            <Icon name="augeAus" size={13} /> weggelassen
+          </span>
+        )}
         <span>Ring = Fortschritt aus Karten und Aufgaben</span>
       </div>
-      {ausgeblendet.length > 0 && (
-        <details className="ausgeblendet-liste">
-          <summary className="sehr-leise klein">Ausgeblendete Themen ({ausgeblendet.length}) – kommen nicht in Tagesrunde, Lernplan und Übungsmixe</summary>
-          <ul>
-            {ausgeblendet.map((t) => (
-              <li key={t.id}>
-                <Link to={`/thema/${t.id}`} className="klein">
-                  {t.nr} · {t.titel}
-                </Link>
-                <button type="button" className="btn geist klein" onClick={() => setzeThemaAusgeblendet(t.id, false)}>
-                  <Icon name="auge" size={16} /> Einblenden
-                </button>
-              </li>
-            ))}
-          </ul>
-        </details>
-      )}
       </>
       )}
       {zeigeHinweis && <EinschaetzHinweis onZu={() => daten.hinweisGesehen(HINWEIS)} />}
