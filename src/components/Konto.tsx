@@ -1,10 +1,45 @@
 // Optionales Konto im Profil: Anmeldung per E-Mail-Code, Status der Synchronisierung.
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { abmelden, cloudLoeschen, codePruefen, codeSenden, syncSofort, useKonto } from '../lib/cloud';
 import { zeitText } from '../store/laufend';
 import { Meldung } from './Basis';
 import { Icon } from './Icon';
 import { LoeschDialog } from './LoeschDialog';
+
+const SPERRE_MS = 60_000;
+const GESENDET_KEY = 'ruhelage-code-gesendet';
+
+/** Zeitpunkt der letzten Code-Anforderung – überlebt Neuladen, damit die Sperre nicht umgangen wird */
+function liesGesendet(): number {
+  try {
+    return Number(localStorage.getItem(GESENDET_KEY)) || 0;
+  } catch {
+    return 0;
+  }
+}
+
+/** Sekunden, bis wieder ein Code angefordert werden darf (0 = jetzt) */
+function useSperre(): [number, () => void] {
+  const [gesendet, setGesendet] = useState(liesGesendet);
+  const [jetzt, setJetzt] = useState(Date.now());
+  const rest = Math.max(0, Math.ceil((gesendet + SPERRE_MS - jetzt) / 1000));
+  useEffect(() => {
+    if (rest <= 0) return;
+    const t = window.setInterval(() => setJetzt(Date.now()), 1000);
+    return () => window.clearInterval(t);
+  }, [rest > 0]);
+  function merke() {
+    const z = Date.now();
+    setGesendet(z);
+    setJetzt(z);
+    try {
+      localStorage.setItem(GESENDET_KEY, String(z));
+    } catch {
+      /* ohne Speicher gilt die Sperre nur bis zum Neuladen */
+    }
+  }
+  return [rest, merke];
+}
 
 export function KontoKarte() {
   const k = useKonto();
@@ -14,15 +49,22 @@ export function KontoKarte() {
   const [laedt, setLaedt] = useState(false);
   const [meldung, setMeldung] = useState<{ art: 'richtig' | 'falsch' | 'info'; text: string } | null>(null);
   const [loeschen, setLoeschen] = useState(false);
+  const [sperre, merkeGesendet] = useSperre();
 
   async function senden() {
     if (!/^\S+@\S+\.\S+$/.test(email)) return setMeldung({ art: 'info', text: 'Bitte eine gültige E-Mail-Adresse eingeben.' });
+    if (sperre > 0) return;
     setLaedt(true);
     const f = await codeSenden(email.trim());
     setLaedt(false);
     if (f) return setMeldung({ art: 'falsch', text: f });
+    merkeGesendet();
+    setCode('');
     setSchritt('code');
-    setMeldung({ art: 'info', text: 'Wir haben dir eine E-Mail geschickt. Gib den Code hier ein oder tipp auf den Link in der Mail.' });
+    setMeldung({
+      art: 'info',
+      text: 'Wir haben dir einen Code geschickt. Die Mail landet oft im Spam-Ordner – schau auch dort nach. Sie kann ein, zwei Minuten brauchen. Nimm immer den neuesten Code: Jeder neue Code macht die älteren ungültig.',
+    });
   }
 
   async function pruefen() {
@@ -104,8 +146,8 @@ export function KontoKarte() {
             onKeyDown={(e) => e.key === 'Enter' && void senden()}
             aria-label="E-Mail-Adresse"
           />
-          <button className="btn primaer" onClick={() => void senden()} disabled={laedt}>
-            {laedt ? 'Sende …' : 'Code senden'}
+          <button className="btn primaer" onClick={() => void senden()} disabled={laedt || sperre > 0}>
+            {laedt ? 'Sende …' : sperre > 0 ? `Neuer Code in ${sperre} s` : 'Code senden'}
           </button>
         </div>
       ) : (
@@ -122,6 +164,9 @@ export function KontoKarte() {
           />
           <button className="btn primaer" onClick={() => void pruefen()} disabled={laedt || code.trim().length < 6}>
             {laedt ? 'Prüfe …' : 'Anmelden'}
+          </button>
+          <button className="btn geist" onClick={() => void senden()} disabled={laedt || sperre > 0}>
+            {sperre > 0 ? `Neuer Code in ${sperre} s` : 'Neuen Code senden'}
           </button>
           <button className="btn geist" onClick={() => setSchritt('email')}>
             Andere E-Mail
