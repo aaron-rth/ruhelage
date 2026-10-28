@@ -5,7 +5,7 @@ import { Dialog } from '../components/Dialog';
 import { EINFUEHRUNG, useTour } from '../components/Tour';
 import { Lernplan } from '../components/Lernplan';
 import { Icon } from '../components/Icon';
-import { useAktiverKurs } from '../lib/kurs';
+import { setzeThemaAusgeblendet, useAktiverKurs, useAktiverKursKomplett } from '../lib/kurs';
 import { findeThema } from '../content/kurse';
 import type { Thema } from '../content/types';
 import { heute, tageZwischen } from '../lib/datum';
@@ -46,6 +46,9 @@ function Knoten({ t }: { t: Thema }) {
             <Icon name="karten" size={13} /> {f.kartenFaellig} fällig
           </span>
         )}
+        <button type="button" className="btn geist klein symbol-knopf knoten-aus" onClick={() => setzeThemaAusgeblendet(t.id, true)} title="Thema ausblenden (fertig oder nicht klausurrelevant)" aria-label={`${t.titel} ausblenden`}>
+          <Icon name="auge" size={16} />
+        </button>
       </div>
     </div>
   );
@@ -103,6 +106,8 @@ function EinschaetzHinweis({ onZu }: { onZu: () => void }) {
 
 export function Lernpfad() {
   const kurs = useAktiverKurs();
+  const komplett = useAktiverKursKomplett();
+  const ausgeblendet = komplett.themen.filter((t) => !kurs.themen.includes(t));
   const daten = useStore();
   const offen = kurs.themen.filter((t) => statusVon(t, daten) === 'offen').length;
   const [params, setParams] = useSearchParams();
@@ -218,6 +223,23 @@ export function Lernpfad() {
         </span>
         <span>Ring = Fortschritt aus Karten und Aufgaben</span>
       </div>
+      {ausgeblendet.length > 0 && (
+        <details className="ausgeblendet-liste">
+          <summary className="sehr-leise klein">Ausgeblendete Themen ({ausgeblendet.length}) – kommen nicht in Tagesrunde, Lernplan und Übungsmixe</summary>
+          <ul>
+            {ausgeblendet.map((t) => (
+              <li key={t.id}>
+                <Link to={`/thema/${t.id}`} className="klein">
+                  {t.nr} · {t.titel}
+                </Link>
+                <button type="button" className="btn geist klein" onClick={() => setzeThemaAusgeblendet(t.id, false)}>
+                  <Icon name="auge" size={16} /> Einblenden
+                </button>
+              </li>
+            ))}
+          </ul>
+        </details>
+      )}
       </>
       )}
       {zeigeHinweis && <EinschaetzHinweis onZu={() => daten.hinweisGesehen(HINWEIS)} />}

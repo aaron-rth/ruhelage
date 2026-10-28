@@ -1,14 +1,31 @@
-// Aktiver Kurs: steht in den Einstellungen, damit er mit dem Konto synchronisiert wird.
+// Aktiver Kurs und „Meine Fächer“: steht in den Einstellungen, damit es mit dem Konto synchronisiert wird.
+import { useMemo } from 'react';
 import { KURSE, kursMitId } from '../content/kurse';
 import type { Kurs } from '../content/types';
-import { useStore } from '../store/store';
+import { useStore, type Einstellungen } from '../store/store';
 
+/** Kurs ohne ausgeblendete Themen – damit rechnen Tagesrunde, Lernplan, Übungsmixe usw. */
+function ohneAusgeblendete(k: Kurs, aus: string[]): Kurs {
+  if (!aus.some((id) => k.themen.some((t) => t.id === id))) return k;
+  const weg = new Set(aus);
+  return { ...k, themen: k.themen.filter((t) => !weg.has(t.id)), pfad: k.pfad.map((z) => z.filter((id) => !weg.has(id))).filter((z) => z.length) };
+}
+
+/** Aktiver Kurs ohne ausgeblendete Themen */
 export function useAktiverKurs(): Kurs {
+  const id = useStore((s) => s.einstellungen.kurs);
+  const aus = useStore((s) => s.einstellungen.ausgeblendeteThemen);
+  return useMemo(() => ohneAusgeblendete(kursMitId(id), aus ?? []), [id, aus]);
+}
+
+/** Aktiver Kurs mit allen Themen (Lernpfad zeigt auch die ausgeblendeten) */
+export function useAktiverKursKomplett(): Kurs {
   return kursMitId(useStore((s) => s.einstellungen.kurs));
 }
 
 export function aktiverKurs(): Kurs {
-  return kursMitId(useStore.getState().einstellungen.kurs);
+  const e = useStore.getState().einstellungen;
+  return ohneAusgeblendete(kursMitId(e.kurs), e.ausgeblendeteThemen ?? []);
 }
 
 /** Kurs wechseln. Das Klausurdatum gehört zum Kurs und wird mitgetauscht. */
@@ -22,6 +39,47 @@ export function wechsleKurs(id: string) {
     const daten = { ...e.klausurDaten, [alt.id]: e.klausurDatum };
     return { einstellungen: { ...e, kurs: ziel.id, klausurDaten: daten, klausurDatum: daten[ziel.id] ?? ziel.klausur?.datum ?? '' } };
   });
+}
+
+function setze(f: (e: Einstellungen) => Partial<Einstellungen>) {
+  useStore.setState((s) => ({ einstellungen: { ...s.einstellungen, ...f(s.einstellungen) } }));
+}
+
+/** Meine Fächer: hinzugefügte (und der aktive), aufgeteilt in laufend und fertig */
+export function meineKurse(e: Einstellungen): { laufend: Kurs[]; fertig: Kurs[] } {
+  const ids = new Set([...(e.meineKurse ?? []), e.kurs]);
+  const fertig = new Set(e.fertigeKurse ?? []);
+  const alle = KURSE.filter((k) => ids.has(k.id));
+  return { laufend: alle.filter((k) => !fertig.has(k.id)), fertig: alle.filter((k) => fertig.has(k.id)) };
+}
+
+export function useMeineKurse() {
+  const e = useStore((s) => s.einstellungen);
+  return useMemo(() => meineKurse(e), [e]);
+}
+
+/** Kurs zu „Meine Fächer“ hinzufügen und gleich öffnen */
+export function fuegeKursHinzu(id: string) {
+  setze((e) => ({ meineKurse: [...new Set([...(e.meineKurse ?? []), e.kurs, id])], fertigeKurse: (e.fertigeKurse ?? []).filter((x) => x !== id) }));
+  wechsleKurs(id);
+}
+
+/** Kurs als fertig markieren (ausblenden) oder zurückholen. Beim Ausblenden des aktiven Kurses wird gewechselt. */
+export function setzeKursFertig(id: string, fertig: boolean) {
+  setze((e) => ({
+    meineKurse: [...new Set([...(e.meineKurse ?? []), e.kurs])],
+    fertigeKurse: fertig ? [...new Set([...(e.fertigeKurse ?? []), id])] : (e.fertigeKurse ?? []).filter((x) => x !== id),
+  }));
+  const e = useStore.getState().einstellungen;
+  if (fertig && e.kurs === id) {
+    const naechster = meineKurse(e).laufend.find((k) => k.id !== id);
+    if (naechster) wechsleKurs(naechster.id);
+  }
+  if (!fertig) wechsleKurs(id);
+}
+
+export function setzeThemaAusgeblendet(id: string, aus: boolean) {
+  setze((e) => ({ ausgeblendeteThemen: aus ? [...new Set([...(e.ausgeblendeteThemen ?? []), id])] : (e.ausgeblendeteThemen ?? []).filter((x) => x !== id) }));
 }
 
 /** Kurse nach Fach gruppiert (für Fächer-Seite und Seitenleiste). */

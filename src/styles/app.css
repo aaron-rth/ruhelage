@@ -3342,6 +3342,12 @@ a.seitenleiste-fuss:hover {
     border: 1px solid var(--linie);
     color: var(--text-2);
     font-size: 0.8rem;
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-decoration: none;
   }
 }
 .mobil-fach {
@@ -3987,4 +3993,141 @@ a.fach-zeile.bald:hover {
   height: auto;
   min-height: 40px;
   max-width: 100%;
+}
+
+/* ---------- Meine Fächer ---------- */
+.fach-liste {
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+@media (max-width: 600px) {
+  .fach-liste {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+.fach-reihe-wrap {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding-right: 8px;
+  border: 1px solid var(--linie);
+  border-radius: var(--r-l);
+  background: var(--flaeche);
+  min-width: 0;
+}
+.fach-reihe-wrap.an {
+  border-color: var(--akzent-linie);
+  box-shadow: 0 0 0 1px var(--akzent-linie) inset;
+}
+.fach-reihe {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  min-width: 0;
+  padding: var(--s3);
+  border: 0;
+  border-radius: var(--r-l);
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.fach-reihe-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+.fach-reihe-text > span {
+  overflow-wrap: anywhere;
+}
+.fach-reihe .fach-name {
+  flex-wrap: wrap;
+  margin-top: 0;
+}
+.fach-reihe.fach-neu {
+  border: 1.5px dashed var(--linie-stark);
+  color: var(--text-2);
+}
+.fach-reihe.fach-neu .modus-icon {
+  background: var(--flaeche-2);
+  color: var(--text-2);
+}
+.fach-reihe:hover,
+.fach-reihe.fach-neu:hover {
+  border-color: var(--akzent-linie);
+}
+.fertige-faecher {
+  margin: calc(-1 * var(--s2)) 0 var(--s4);
+}
+.fertige-faecher summary {
+  cursor: pointer;
+  padding: 4px 0;
+}
+.fertige-faecher ul {
+  list-style: none;
+  margin: var(--s2) 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.fertige-faecher li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s2);
+  flex-wrap: wrap;
+  padding: var(--s2) var(--s3);
+  border: 1px solid var(--linie);
+  border-radius: var(--r);
+}
+.fach-angebot {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.fach-angebot .fach-reihe {
+  border: 1px solid var(--linie);
+}
+.stufen-wahl {
+  flex-wrap: wrap;
+}
+.fach-fehlt {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s2);
+  flex-wrap: wrap;
+  padding-top: var(--s3);
+  border-top: 1px solid var(--linie);
+}
+/* Lernpfad: Thema ausblenden */
+.knoten-aus {
+  margin-left: auto;
+}
+.ausgeblendet-liste {
+  margin-top: var(--s4);
+}
+.ausgeblendet-liste ul {
+  list-style: none;
+  margin: var(--s2) 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.ausgeblendet-liste li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s2);
+  padding: var(--s2) var(--s3);
+  border: 1px solid var(--linie);
+  border-radius: var(--r);
 }
