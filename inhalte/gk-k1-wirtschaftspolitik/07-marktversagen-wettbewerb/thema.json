@@ -1,0 +1,256 @@
+{
+  "id": "gkw-marktversagen",
+  "titel": "Marktversagen und Wettbewerbspolitik",
+  "untertitel": "Formen des Marktversagens, Kartelle, Bundeskartellamt, Ministererlaubnis",
+  "abhaengig": ["gkw-sozmarkt"],
+  "prioritaet": 2,
+  "quelleErklaerung": "eigene Zusammenfassung nach Unterricht (Notizen „Wann liegt Marktversagen vor und welche Aufgaben hat das Bundeskartellamt?“) und Lehrbuch Kap. 1.2 (M1–M13, Orientierungswissen S. 37); geprüft an gesetze-im-internet.de (GWB §§ 1, 18, 19, 36, 42), bpb – Lexikon der Wirtschaft (Marktversagen, Kartell, Marktformen), Bundeskartellamt (Aufgaben, Kronzeugenprogramm, Bußgeldleitlinien lt. CMS/Noerr), Berichte zum Bierkartell (Lebensmittel Zeitung, Lebensmittel Praxis) und zum Fall Edeka/Kaiser's Tengelmann (Hanns-Seidel-Stiftung, LTO, Tagesspiegel, Universität Hohenheim)",
+  "karten": [
+    {
+      "id": "gkw-marktversagen-k1",
+      "typ": "begriff",
+      "vorne": "Definition Marktversagen",
+      "hinten": "Der Preismechanismus aus Angebot und Nachfrage führt **nicht** zu volkswirtschaftlich wünschenswerten Ergebnissen: Die Produktionsfaktoren werden nicht so eingesetzt, dass sie den größtmöglichen Nutzen für die Gesamtwirtschaft bringen. Dann darf bzw. soll der Staat eingreifen.",
+      "quelle": "eigene Karte nach Lehrbuch M2 und Unterrichtsnotiz"
+    },
+    {
+      "id": "gkw-marktversagen-k2",
+      "typ": "begriff",
+      "vorne": "Nenne fünf Formen von Marktversagen.",
+      "hinten": "1. externe Effekte\n2. öffentliche Güter\n3. Marktmacht (Monopole, Oligopole, Kartelle)\n4. Informationsmängel (Informationsasymmetrie)\n5. natürliche Monopole (Netze)",
+      "quelle": "eigene Karte; bpb"
+    },
+    {
+      "id": "gkw-marktversagen-k3",
+      "typ": "begriff",
+      "vorne": "Externe Effekte",
+      "hinten": "Kosten oder Nutzen einer wirtschaftlichen Handlung treffen Unbeteiligte und sind nicht im Preis enthalten. Negativ: Umweltverschmutzung, CO₂ → zu viel davon. Positiv: Forschung, Bildung → zu wenig davon. Antwort: Verursacherprinzip, Abgaben, Auflagen, Subventionen.",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-marktversagen-k4",
+      "typ": "begriff",
+      "vorne": "Öffentliche Güter",
+      "hinten": "Güter, von deren Nutzung niemand ausgeschlossen werden kann (Nicht-Ausschließbarkeit) und bei denen die Nutzung des einen die des anderen nicht schmälert (Nicht-Rivalität), z. B. Deich, Straßenbeleuchtung. Problem: **Trittbrettfahrer**, also bietet kein Privater sie an.",
+      "quelle": "eigene Karte; bpb"
+    },
+    {
+      "id": "gkw-marktversagen-k5",
+      "typ": "warum",
+      "vorne": "Warum ist ein hoher Preis allein kein Beweis für Marktversagen?",
+      "hinten": "Hohe Preise können normale Knappheit oder höhere Kosten (Rohstoffe, Steuern, Krisen) anzeigen. Dann funktioniert der Preismechanismus gerade. Marktversagen liegt erst vor, wenn der Mechanismus selbst gestört ist, z. B. durch Absprachen oder Machtmissbrauch.",
+      "quelle": "eigene Karte nach Unterrichtsauftrag"
+    },
+    {
+      "id": "gkw-marktversagen-k6",
+      "typ": "begriff",
+      "vorne": "Kartell",
+      "hinten": "Zusammenschluss von Unternehmen derselben Branche, die **rechtlich selbstständig bleiben**, aber den Wettbewerb untereinander durch Absprachen einschränken. In Deutschland grundsätzlich verboten (§ 1 GWB).",
+      "quelle": "eigene Karte; GWB"
+    },
+    {
+      "id": "gkw-marktversagen-k7",
+      "typ": "begriff",
+      "vorne": "Preis-, Quoten- und Gebietskartell",
+      "hinten": "**Preiskartell:** Absprache über (Mindest-)Preise.\n**Quotenkartell:** Aufteilung der Produktions- bzw. Absatzmengen.\n**Gebietskartell:** Aufteilung der Absatzgebiete.",
+      "quelle": "eigene Karte nach Lehrbuch M4"
+    },
+    {
+      "id": "gkw-marktversagen-k8",
+      "typ": "begriff",
+      "vorne": "Die drei Instrumente des Bundeskartellamts",
+      "hinten": "1. **Kartellverbot** (§ 1 GWB): Absprachen aufdecken und mit Bußgeld ahnden\n2. **Missbrauchsaufsicht** (§ 19 GWB): marktbeherrschende Unternehmen kontrollieren\n3. **Fusionskontrolle** (§§ 35 ff. GWB): Zusammenschlüsse prüfen und ggf. untersagen",
+      "quelle": "eigene Karte nach Lehrbuch M5 und GWB"
+    },
+    {
+      "id": "gkw-marktversagen-k9",
+      "typ": "begriff",
+      "vorne": "Ab wann gilt ein Unternehmen als marktbeherrschend (Vermutung nach § 18 GWB)?",
+      "hinten": "**Einzelunternehmen:** ab 40 % Marktanteil (das Lehrbuch nennt noch die alte Grenze von einem Drittel).\n**Oligopol:** ≤ 3 Unternehmen mit zusammen 50 % oder ≤ 5 Unternehmen mit zusammen zwei Dritteln.",
+      "quelle": "eigene Karte; gesetze-im-internet.de § 18 GWB"
+    },
+    {
+      "id": "gkw-marktversagen-k10",
+      "typ": "begriff",
+      "vorne": "Kronzeugenregelung",
+      "hinten": "Wer ein Kartell, an dem er beteiligt war, als Erster dem Bundeskartellamt meldet und kooperiert, kann ganz ohne Bußgeld bleiben. Spätere Kooperierende erhalten Ermäßigungen. So werden Kartelle von innen aufgebrochen.",
+      "quelle": "eigene Karte; GWB §§ 81h ff."
+    },
+    {
+      "id": "gkw-marktversagen-k11",
+      "typ": "begriff",
+      "vorne": "Wie hoch kann ein Kartellbußgeld sein?",
+      "hinten": "Bis zu **10 % des weltweiten Konzernumsatzes** im Vorjahr. Beispiel: Beim Bierkartell verhängte das Amt 2013/14 insgesamt rund 338 Mio. Euro.",
+      "quelle": "eigene Karte; Bußgeldleitlinien; Lebensmittel Zeitung"
+    },
+    {
+      "id": "gkw-marktversagen-k12",
+      "typ": "begriff",
+      "vorne": "Ministererlaubnis (§ 42 GWB)",
+      "hinten": "Der Bundeswirtschaftsminister kann eine vom Kartellamt untersagte Fusion doch erlauben, wenn gesamtwirtschaftliche Vorteile überwiegen oder ein überragendes Interesse der Allgemeinheit besteht.",
+      "quelle": "eigene Karte; GWB"
+    },
+    {
+      "id": "gkw-marktversagen-k13",
+      "typ": "begriff",
+      "vorne": "Fall Edeka/Kaiser's Tengelmann in Kürze",
+      "hinten": "2015 Untersagung durch das Kartellamt (zu viel Marktmacht) → März 2016 Ministererlaubnis durch Gabriel (Arbeitsplätze, Tarifbindung) → Klagen, OLG Düsseldorf stoppt vorläufig → Schlichtung: Rewe erhält Teil der Filialen (v. a. Berlin) und zieht Beschwerde zurück.",
+      "quelle": "eigene Karte; LTO; Tagesspiegel; Hanns-Seidel-Stiftung"
+    },
+    {
+      "id": "gkw-marktversagen-k14",
+      "typ": "wasPassiert",
+      "vorne": "Was passiert im Monopol im Vergleich zur vollständigen Konkurrenz?",
+      "hinten": "Der Monopolist setzt Menge und Preis so, dass sein Gewinn maximal wird: **höherer Preis, geringere Menge**. Nachfrager ohne Ausweichmöglichkeit zahlen mehr, und es fehlt der Druck zu Innovation.",
+      "quelle": "eigene Karte nach Lehrbuch Orientierungswissen"
+    },
+    {
+      "id": "gkw-marktversagen-k15",
+      "typ": "fehler",
+      "vorne": "Typischer Fehler: „Wenn alle Tankstellen gleichzeitig die Preise erhöhen, ist das ein Kartell.“",
+      "hinten": "Nicht unbedingt. Im Oligopol beobachten sich Anbieter und reagieren aufeinander (Parallelverhalten). Ein Kartell setzt eine **Absprache** voraus, und die muss nachgewiesen werden.",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-marktversagen-k16",
+      "typ": "begriff",
+      "vorne": "Funktionen des Preises",
+      "hinten": "**Signalfunktion** (zeigt Knappheit), **Lenkungs-/Allokationsfunktion** (lenkt Produktionsfaktoren), **Ausgleichsfunktion** (Angebot = Nachfrage), **Auslesefunktion** (unwirtschaftliche Anbieter scheiden aus).",
+      "quelle": "eigene Karte; bpb"
+    }
+  ],
+  "uebungen": [
+    {
+      "id": "gkw-marktversagen-u1",
+      "typ": "klassifizieren",
+      "frage": "Welche Form von Marktversagen liegt vor?",
+      "quelle": "eigene Übung",
+      "kategorien": ["externer Effekt", "öffentliches Gut", "Marktmacht", "Informationsmangel"],
+      "items": [
+        { "text": "Ein Kohlekraftwerk stößt CO₂ aus, ohne dafür voll zu zahlen.", "kategorie": 0, "warum": "Die Kosten trägt die Allgemeinheit (Klima)." },
+        { "text": "Kein Unternehmen baut freiwillig einen Hochwasserdeich für eine ganze Stadt.", "kategorie": 1, "warum": "Niemand kann von dem Schutz ausgeschlossen werden." },
+        { "text": "Drei Zementhersteller sprechen ihre Preise ab.", "kategorie": 2, "warum": "Preiskartell." },
+        { "text": "Ein Gebrauchtwagenhändler verschweigt einen Unfallschaden.", "kategorie": 3, "warum": "Der Verkäufer weiß mehr als der Käufer." },
+        { "text": "Eine Suchmaschine mit 90 % Marktanteil bevorzugt eigene Angebote.", "kategorie": 2, "warum": "Missbrauch einer marktbeherrschenden Stellung." },
+        { "text": "Eine Impfung schützt auch Menschen, die sich nicht impfen lassen.", "kategorie": 0, "warum": "Positiver externer Effekt, deshalb fördert der Staat Impfungen." }
+      ]
+    },
+    {
+      "id": "gkw-marktversagen-u2",
+      "typ": "zuordnen",
+      "frage": "Ordne die Fälle der Kartellart zu.",
+      "quelle": "eigene Übung",
+      "paare": [
+        { "links": "Brauereien vereinbaren, den Kastenpreis gemeinsam um einen Euro zu erhöhen.", "rechts": "Preiskartell" },
+        { "links": "Zwei Baufirmen teilen Süd- und Norddeutschland unter sich auf.", "rechts": "Gebietskartell" },
+        { "links": "Drei Zuckerhersteller legen fest, wer wie viel Tonnen im Jahr verkauft.", "rechts": "Quotenkartell" }
+      ]
+    },
+    {
+      "id": "gkw-marktversagen-u3",
+      "typ": "zuordnen",
+      "frage": "Welches Instrument des Bundeskartellamts greift?",
+      "quelle": "eigene Übung",
+      "paare": [
+        { "links": "Ein Energieversorger mit regionalem Monopol verlangt deutlich überhöhte Fernwärmepreise.", "rechts": "Missbrauchsaufsicht" },
+        { "links": "Der Marktführer im Lebensmittelhandel will einen Konkurrenten übernehmen.", "rechts": "Fusionskontrolle" },
+        { "links": "Hersteller tauschen vor Jahresgesprächen mit dem Handel ihre geplanten Preiserhöhungen aus.", "rechts": "Kartellverbot" }
+      ]
+    },
+    {
+      "id": "gkw-marktversagen-u4",
+      "typ": "mc",
+      "frage": "Ein Unternehmen hat auf einem Markt 35 % Marktanteil, kein anderes Unternehmen hat mehr als 10 %. Was gilt nach heutigem § 18 GWB?",
+      "quelle": "eigene Übung",
+      "optionen": [
+        { "text": "Es wird automatisch als marktbeherrschend vermutet.", "warum": "Die Vermutung greift für ein Einzelunternehmen erst ab 40 % (früher ein Drittel)." },
+        { "text": "Die Vermutungsgrenze ist nicht erreicht, eine Marktbeherrschung kann sich aber aus anderen Faktoren (Finanzkraft, Datenzugang, Abstand zu Wettbewerbern) ergeben.", "richtig": true, "warum": "Die 40 % sind eine Vermutung, keine starre Grenze. Das Amt betrachtet die Gesamtumstände." },
+        { "text": "Das Unternehmen muss zerschlagen werden.", "warum": "Marktbeherrschung an sich ist nicht verboten, nur ihr Missbrauch." }
+      ]
+    },
+    {
+      "id": "gkw-marktversagen-u5",
+      "typ": "reihenfolge",
+      "frage": "Bringe den Fall Edeka/Kaiser's Tengelmann in die richtige Reihenfolge.",
+      "quelle": "eigene Übung",
+      "schritte": [
+        "Kaiser's Tengelmann schreibt Verluste, Edeka will die Kette übernehmen.",
+        "Das Bundeskartellamt untersagt die Übernahme.",
+        "Wirtschaftsminister Gabriel erteilt eine Ministererlaubnis mit Auflagen.",
+        "Konkurrenten klagen, das OLG Düsseldorf stoppt die Erlaubnis vorläufig.",
+        "Nach einer Schlichtung bekommt Rewe einen Teil der Filialen und zieht seine Beschwerde zurück."
+      ]
+    },
+    {
+      "id": "gkw-marktversagen-u6",
+      "typ": "luecke",
+      "frage": "Ergänze den Text.",
+      "quelle": "eigene Übung",
+      "text": "Kartelle sind nach [[0]] GWB verboten. Das Bußgeld kann bis zu [[1]] des Konzernumsatzes betragen. Wer ein Kartell als Erster meldet, kann als [[2]] straffrei bleiben. Eine untersagte Fusion kann der Wirtschaftsminister per [[3]] doch erlauben.",
+      "luecken": [
+        { "optionen": ["§ 1", "§ 19", "§ 42"], "richtig": 0 },
+        { "optionen": ["1 %", "10 %", "50 %"], "richtig": 1 },
+        { "optionen": ["Kronzeuge", "Sachverständiger", "Schlichter"], "richtig": 0 },
+        { "optionen": ["Missbrauchsaufsicht", "Ministererlaubnis", "Notverordnung"], "richtig": 1 }
+      ]
+    },
+    {
+      "id": "gkw-marktversagen-u7",
+      "typ": "fehler",
+      "frage": "Welcher Schritt in dieser Argumentation ist falsch?",
+      "quelle": "eigene Übung",
+      "schritte": [
+        "Im Polypol kann kein einzelner Anbieter den Preis bestimmen.",
+        "Kartelle schalten den Wettbewerb zwischen ihren Mitgliedern aus.",
+        "Deshalb liegen die Preise bei Kartellen meist höher als bei Wettbewerb.",
+        "Ein marktbeherrschendes Unternehmen verstößt schon durch seine Größe gegen das GWB.",
+        "Das Bundeskartellamt kann den Missbrauch von Marktmacht untersagen."
+      ],
+      "fehler": 3,
+      "erklaerung": "Marktbeherrschung an sich ist erlaubt (z. B. durch bessere Produkte). Verboten ist nur ihr **Missbrauch** (§ 19 GWB) bzw. das Entstehen durch eine wettbewerbsschädliche Fusion."
+    },
+    {
+      "id": "gkw-marktversagen-s1",
+      "typ": "schreiben",
+      "operator": "erklaeren",
+      "frage": "Erklären Sie, wann Marktversagen vorliegt, und zeigen Sie an zwei Formen, wie der Staat jeweils eingreifen kann.",
+      "quelle": "eigene Aufgabe",
+      "umfang": "ca. 300 Wörter",
+      "erwartung": [
+        "Funktionieren des Marktes bei vollständiger Konkurrenz (Preisfunktionen) kurz erklärt.",
+        "Definition Marktversagen: Preismechanismus führt nicht zu volkswirtschaftlich wünschenswerten Ergebnissen.",
+        "Form 1 mit Ursache, Folge und staatlicher Antwort, z. B. negative externe Effekte → CO₂-Preis/Auflagen (Verursacherprinzip).",
+        "Form 2, z. B. Marktmacht/Kartelle → Kartellverbot, Missbrauchsaufsicht, Fusionskontrolle; oder öffentliche Güter → staatliche Bereitstellung über Steuern.",
+        "Hinweis: Hohe Preise allein sind kein Marktversagen."
+      ],
+      "kriterien": [
+        { "name": "Definition und Grundlage", "beschreibung": "Marktmechanismus und Marktversagen korrekt erklärt.", "punkte": 2 },
+        { "name": "Zwei Formen", "beschreibung": "Je Ursache und Folge schlüssig erklärt, mit Beispiel.", "punkte": 4 },
+        { "name": "Staatliche Eingriffe", "beschreibung": "Passendes Instrument zu jeder Form, Wirkung erklärt.", "punkte": 2 },
+        { "name": "Darstellung", "beschreibung": "Fachsprache, Kausalzusammenhänge.", "punkte": 2 }
+      ]
+    },
+    {
+      "id": "gkw-marktversagen-s2",
+      "typ": "schreiben",
+      "operator": "beurteilen",
+      "frage": "Beurteilen Sie die Ministererlaubnis im Fall Edeka/Kaiser's Tengelmann.",
+      "quelle": "eigene Aufgabe",
+      "umfang": "ca. 400 Wörter",
+      "erwartung": [
+        "Sachverhalt knapp: Untersagung durch Kartellamt, Ministererlaubnis Gabriel 2016, Begründung Arbeitsplätze/Tarifbindung, Klagen und Schlichtung.",
+        "Kriterien gewählt, z. B. Effektivität (Arbeitsplatzsicherung), Effizienz/Wettbewerb (Preise, Auswahl, Lieferanten), Legitimität (gesetzliche Grundlage § 42, demokratische Verantwortung, Befangenheitsvorwurf).",
+        "Pro: Arbeitsplätze und Tarifbindung (befristet) gesichert, Zerschlagung verhindert, Politik übernimmt demokratisch Verantwortung.",
+        "Contra: Konzentration im ohnehin hochkonzentrierten Lebensmittelhandel (Top 4 ca. 85 %), Nachteile für Verbraucher und Lieferanten, Arbeitsplätze nur zeitweise garantiert, Alternativen (Aufteilung) möglich, Monopolkommission dagegen.",
+        "Teilurteile zu jedem Kriterium und begründetes Gesamturteil."
+      ],
+      "kriterien": [
+        { "name": "Sachkenntnis", "beschreibung": "Fall und rechtliche Grundlage korrekt.", "punkte": 2 },
+        { "name": "Kriterien", "beschreibung": "Mind. zwei Kriterien genannt und angewendet.", "punkte": 2 },
+        { "name": "Argumente", "beschreibung": "Pro und Contra, je mind. zwei, mit Belegen.", "punkte": 4 },
+        { "name": "Urteil", "beschreibung": "Teilurteile und schlüssiges Gesamturteil.", "punkte": 3 },
+        { "name": "Darstellung", "beschreibung": "Struktur und Fachsprache.", "punkte": 1 }
+      ]
+    }
+  ]
+}

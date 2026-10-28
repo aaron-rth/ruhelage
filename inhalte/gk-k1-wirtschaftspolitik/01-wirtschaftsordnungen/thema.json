@@ -1,0 +1,226 @@
+{
+  "id": "gkw-ordnungen",
+  "titel": "Wirtschaftsordnungen",
+  "untertitel": "Bausteine, Koordination, Markt- vs. Planwirtschaft",
+  "prioritaet": 1,
+  "quelleErklaerung": "eigene Zusammenfassung nach Unterricht und Lehrbuch Kap. 1.1.1; geprüft an bpb – Lexikon der Wirtschaft (Stichwörter Wirtschaftsordnung, Marktwirtschaft, Zentralverwaltungswirtschaft) und bpb – Informationen zur politischen Bildung „Soziale Marktwirtschaft“",
+  "karten": [
+    {
+      "id": "gkw-ordnungen-k1",
+      "typ": "begriff",
+      "vorne": "Was ist eine Wirtschaftsordnung?",
+      "hinten": "Die Gesamtheit der Regeln, Institutionen und Abläufe (Gesetze, Eigentumsrechte, Märkte, Behörden), die festlegen, **was, wie und für wen** in einer Volkswirtschaft produziert wird.",
+      "quelle": "eigene Karte; bpb Lexikon der Wirtschaft"
+    },
+    {
+      "id": "gkw-ordnungen-k2",
+      "typ": "begriff",
+      "vorne": "Nenne die vier Bausteine einer Wirtschaftsordnung.",
+      "hinten": "1. Planungs- und Lenkungsform (zentral/dezentral)\n2. Eigentumsform (privat/staatlich)\n3. Markt- und Preisbildung (Markt/staatlich festgesetzt)\n4. Unternehmensform (Gewinnprinzip/Planerfüllungsprinzip)",
+      "quelle": "eigene Karte nach Unterricht"
+    },
+    {
+      "id": "gkw-ordnungen-k3",
+      "typ": "begriff",
+      "vorne": "Gewinnprinzip vs. Planerfüllungsprinzip",
+      "hinten": "**Gewinnprinzip:** Unternehmen richten ihre Produktion danach aus, möglichst viel Gewinn zu erzielen (Marktwirtschaft).\n**Planerfüllungsprinzip:** Betriebe sollen die von der Planbehörde vorgegebenen Mengen erfüllen (Planwirtschaft).",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-ordnungen-k4",
+      "typ": "begriff",
+      "vorne": "Individualismus vs. Kollektivismus",
+      "hinten": "**Individualismus:** Der Einzelne und seine freie Entfaltung stehen im Mittelpunkt → Liberalismus → Marktwirtschaft.\n**Kollektivismus:** Die Gemeinschaft hat Vorrang, Einzelinteressen ordnen sich unter → Sozialismus → Zentralverwaltungswirtschaft.",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-ordnungen-k5",
+      "typ": "begriff",
+      "vorne": "Welche drei Koordinationsmechanismen gibt es?",
+      "hinten": "**Markt** (Tausch über Preise), **Hierarchie** (Anweisung von oben, z. B. Unternehmensleitung) und **Kooperation** (Zusammenarbeit eigenständiger Partner als Mischform).",
+      "quelle": "eigene Karte nach Lehrbuch M4"
+    },
+    {
+      "id": "gkw-ordnungen-k6",
+      "typ": "begriff",
+      "vorne": "Allokation und Distribution",
+      "hinten": "**Allokation:** Verteilung der Produktionsfaktoren (Arbeit, Kapital, Boden) auf die Herstellung bestimmter Güter.\n**Distribution:** Verteilung der hergestellten Güter bzw. Einkommen auf die Menschen.",
+      "quelle": "eigene Karte; bpb Lexikon der Wirtschaft"
+    },
+    {
+      "id": "gkw-ordnungen-k7",
+      "typ": "warum",
+      "vorne": "Warum funktioniert der Preis in der Marktwirtschaft als „Signal“?",
+      "hinten": "Steigt der Preis, zeigt das Knappheit an: Anbieter produzieren mehr (Gewinnaussicht), Nachfrager sparen oder weichen aus. Fällt er, passiert das Umgekehrte. So werden Millionen Einzelpläne ohne zentrale Behörde abgestimmt.",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-ordnungen-k8",
+      "typ": "begriff",
+      "vorne": "Was meint der Begriff „Nachtwächterstaat“?",
+      "hinten": "Ein Staat, der sich auf den Schutz von Freiheit, Eigentum und Sicherheit beschränkt (Polizei, Justiz, Militär) und sich sonst aus der Wirtschaft heraushält. Der Begriff war ursprünglich spöttisch gemeint (Kritik am Liberalismus).",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-ordnungen-k9",
+      "typ": "warum",
+      "vorne": "Warum hatte die Planwirtschaft der DDR Versorgungsprobleme bei hochwertigen Konsumgütern?",
+      "hinten": "Die Planbehörde konnte die Wünsche von Millionen Menschen nicht genau vorhersehen, Preise zeigten keine Knappheit an und Betriebe hatten keinen Anreiz zu Innovation (Planerfüllung statt Gewinn). Ergebnis: Grundversorgung ja, aber Wartezeiten und Mangel z. B. bei Autos oder Elektronik.",
+      "quelle": "eigene Karte nach Unterricht"
+    },
+    {
+      "id": "gkw-ordnungen-k10",
+      "typ": "begriff",
+      "vorne": "Idealtyp vs. Realtyp",
+      "hinten": "**Idealtyp:** gedankliches Modell in reiner Form (freie Marktwirtschaft, Zentralverwaltungswirtschaft).\n**Realtyp:** tatsächlich existierende Ordnung, immer eine Mischform (z. B. Soziale Marktwirtschaft).",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-ordnungen-k11",
+      "typ": "begriff",
+      "vorne": "Welche drei gesellschaftlichen Grundwerte werden in Wirtschaftsordnungen unterschiedlich gewichtet?",
+      "hinten": "**Freiheit, Gerechtigkeit und Sicherheit.** Die freie Marktwirtschaft betont Freiheit, die Planwirtschaft Gleichheit/Sicherheit, die Soziale Marktwirtschaft versucht einen Ausgleich.",
+      "quelle": "eigene Karte nach Lehrbuch Kap. 1 Einstieg"
+    },
+    {
+      "id": "gkw-ordnungen-k12",
+      "typ": "fehler",
+      "vorne": "Typischer Fehler: „In der Marktwirtschaft gibt es keine Hierarchie.“",
+      "hinten": "Falsch. Innerhalb jedes Unternehmens wird hierarchisch koordiniert (Anweisungen der Leitung). Marktwirtschaft heißt nur, dass **zwischen** den Unternehmen und Haushalten über Märkte koordiniert wird.",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-ordnungen-k13",
+      "typ": "wasPassiert",
+      "vorne": "Was passiert in einer freien Marktwirtschaft, wenn die Nachfrage nach E-Bikes stark steigt?",
+      "hinten": "Der Preis steigt → Hersteller verdienen mehr → sie weiten die Produktion aus, neue Anbieter treten ein → das Angebot wächst → der Preis sinkt wieder Richtung Gleichgewicht. Kapital und Arbeit wandern in die E-Bike-Produktion (Allokation über Preise).",
+      "quelle": "eigene Karte"
+    }
+  ],
+  "uebungen": [
+    {
+      "id": "gkw-ordnungen-u1",
+      "typ": "klassifizieren",
+      "frage": "Ordne die Merkmale der passenden idealtypischen Wirtschaftsordnung zu.",
+      "quelle": "eigene Übung",
+      "kategorien": ["Freie Marktwirtschaft", "Zentralverwaltungswirtschaft"],
+      "items": [
+        { "text": "Privateigentum an Produktionsmitteln", "kategorie": 0, "warum": "Fabriken und Maschinen gehören Privatpersonen bzw. Unternehmen." },
+        { "text": "Preise werden von einer Behörde festgesetzt", "kategorie": 1, "warum": "Keine Preisbildung über Angebot und Nachfrage." },
+        { "text": "Gewinnprinzip", "kategorie": 0, "warum": "Unternehmen orientieren sich an Gewinnaussichten." },
+        { "text": "Planerfüllungsprinzip", "kategorie": 1, "warum": "Betriebe sollen das Plan-Soll erreichen." },
+        { "text": "Dezentrale Planung durch Haushalte und Unternehmen", "kategorie": 0, "warum": "Viele Einzelpläne, abgestimmt über den Preismechanismus." },
+        { "text": "Menschenbild des Kollektivismus", "kategorie": 1, "warum": "Gemeinschaft hat Vorrang vor dem Einzelnen." },
+        { "text": "Staat beschränkt sich auf Schutz von Freiheit und Eigentum", "kategorie": 0, "warum": "„Nachtwächterstaat“ des klassischen Liberalismus." },
+        { "text": "Staat hat unbeschränkte wirtschaftliche und politische Macht", "kategorie": 1, "warum": "Zentrale Planbehörde lenkt alles." }
+      ]
+    },
+    {
+      "id": "gkw-ordnungen-u2",
+      "typ": "zuordnen",
+      "frage": "Ordne jedem Baustein die passende Leitfrage zu.",
+      "quelle": "eigene Übung",
+      "paare": [
+        { "links": "Planungs- und Lenkungsform", "rechts": "Wer entscheidet, was hergestellt wird?" },
+        { "links": "Eigentumsform", "rechts": "Wem gehören Boden, Fabriken und Maschinen?" },
+        { "links": "Markt- und Preisbildung", "rechts": "Wie kommen die Preise zustande?" },
+        { "links": "Unternehmensform", "rechts": "Woran richten Betriebe ihr Handeln aus?" }
+      ]
+    },
+    {
+      "id": "gkw-ordnungen-u3",
+      "typ": "mc",
+      "frage": "Ein Autohersteller beauftragt einen festen Zulieferer langfristig mit der gemeinsamen Entwicklung einer Batterie. Beide bleiben eigenständige Firmen. Welcher Koordinationsmechanismus liegt vor?",
+      "quelle": "eigene Übung",
+      "optionen": [
+        { "text": "Markt", "warum": "Beim reinen Markt würde einmalig über den Preis getauscht, ohne enge Zusammenarbeit." },
+        { "text": "Hierarchie", "warum": "Hierarchie wäre es, wenn eine Leitung der anderen Seite Anweisungen geben könnte, z. B. innerhalb eines Konzerns." },
+        { "text": "Kooperation", "richtig": true, "warum": "Eigenständige Partner arbeiten vertraglich eng zusammen: Mischform zwischen Markt und Hierarchie." }
+      ]
+    },
+    {
+      "id": "gkw-ordnungen-u4",
+      "typ": "luecke",
+      "frage": "Ergänze den Merktext.",
+      "quelle": "eigene Übung",
+      "text": "In der Marktwirtschaft werden die Pläne der Wirtschaftsteilnehmer über den [[0]] abgestimmt. Steigt er, signalisiert das [[1]]. Die Zentralverwaltungswirtschaft beruht dagegen auf [[2]] an den Produktionsmitteln, und Betriebe folgen dem [[3]]. Reale Ordnungen sind immer [[4]].",
+      "luecken": [
+        { "optionen": ["Preis", "Plan", "Lohn"], "richtig": 0 },
+        { "optionen": ["Überfluss", "Knappheit", "Inflation"], "richtig": 1 },
+        { "optionen": ["Privateigentum", "Gemeineigentum", "Genossenschaftsrecht"], "richtig": 1 },
+        { "optionen": ["Gewinnprinzip", "Planerfüllungsprinzip", "Haftungsprinzip"], "richtig": 1 },
+        { "optionen": ["Idealtypen", "Mischformen", "Planwirtschaften"], "richtig": 1 }
+      ]
+    },
+    {
+      "id": "gkw-ordnungen-u5",
+      "typ": "fehler",
+      "frage": "Ein Mitschüler erklärt die Marktwirtschaft. Welche Aussage ist falsch?",
+      "quelle": "eigene Übung",
+      "schritte": [
+        "In der Marktwirtschaft planen Haushalte und Unternehmen dezentral.",
+        "Preise entstehen durch Angebot und Nachfrage.",
+        "Unternehmen orientieren sich am Gewinn.",
+        "Weil alles über Märkte läuft, gibt es auch innerhalb von Unternehmen keine Anweisungen.",
+        "Der Staat schützt im Idealtyp vor allem Eigentum und Vertragsfreiheit."
+      ],
+      "fehler": 3,
+      "erklaerung": "Innerhalb von Unternehmen wird hierarchisch koordiniert. Märkte koordinieren nur zwischen den Wirtschaftseinheiten."
+    },
+    {
+      "id": "gkw-ordnungen-u6",
+      "typ": "mc",
+      "frage": "Welche Aussage beschreibt den Unterschied zwischen Idealtyp und Realtyp richtig?",
+      "quelle": "eigene Übung",
+      "optionen": [
+        { "text": "Idealtypen sind die besten Ordnungen, Realtypen sind schlechtere Kopien.", "warum": "„Ideal“ meint hier „gedanklich rein“, nicht „wünschenswert“." },
+        { "text": "Idealtypen sind gedankliche Modelle in reiner Form, reale Ordnungen mischen deren Elemente.", "richtig": true, "warum": "Genau: Sie dienen als Vergleichsmaßstab, z. B. für die Soziale Marktwirtschaft als Mischform." },
+        { "text": "Realtypen gibt es nur in Planwirtschaften.", "warum": "Jede tatsächlich existierende Ordnung ist ein Realtyp." }
+      ]
+    },
+    {
+      "id": "gkw-ordnungen-s1",
+      "typ": "schreiben",
+      "operator": "vergleichen",
+      "frage": "Vergleichen Sie die idealtypische freie Marktwirtschaft mit der Zentralverwaltungswirtschaft anhand der Bausteine einer Wirtschaftsordnung.",
+      "quelle": "eigene Aufgabe",
+      "umfang": "ca. 300–400 Wörter",
+      "erwartung": [
+        "Einleitung: Definition Wirtschaftsordnung und Hinweis, dass es sich um Idealtypen handelt.",
+        "Vergleichskriterien ausdrücklich genannt (Lenkungsform, Eigentum, Preisbildung, Unternehmensziel, ggf. Rolle des Staates und Menschenbild).",
+        "Lenkung: dezentral durch Haushalte/Unternehmen vs. zentral durch Planbehörde.",
+        "Eigentum: privat vs. Staats-/Gemeineigentum an Produktionsmitteln.",
+        "Preise: Angebot und Nachfrage vs. staatliche Festsetzung.",
+        "Unternehmen: Gewinnprinzip vs. Planerfüllungsprinzip.",
+        "Staat: Nachtwächterstaat vs. allumfassende Macht; Menschenbild Individualismus vs. Kollektivismus.",
+        "Gemeinsamkeiten benannt (z. B. beide müssen die Knappheitsfrage lösen, beide existieren nicht in Reinform).",
+        "Fazit: zentraler Unterschied ist, wer entscheidet (Markt/Preis oder Staat/Plan)."
+      ],
+      "kriterien": [
+        { "name": "Vergleichskriterien", "beschreibung": "Mindestens vier Bausteine als Kriterien genannt und konsequent auf beide Ordnungen angewendet.", "punkte": 4 },
+        { "name": "Fachliche Richtigkeit", "beschreibung": "Ausprägungen korrekt, Fachbegriffe (Gewinnprinzip, Planerfüllung, Produktionsmittel) richtig verwendet.", "punkte": 4 },
+        { "name": "Gemeinsamkeiten und Fazit", "beschreibung": "Mindestens eine Gemeinsamkeit und ein zusammenfassendes Ergebnis.", "punkte": 2 },
+        { "name": "Darstellung", "beschreibung": "Gegenüberstellend gegliedert (nicht zwei getrennte Beschreibungen), sachlich, zusammenhängender Text.", "punkte": 2 }
+      ]
+    },
+    {
+      "id": "gkw-ordnungen-s2",
+      "typ": "schreiben",
+      "operator": "erlaeutern",
+      "frage": "Erläutern Sie, warum Wirtschaftsordnungen von der Gewichtung der Grundwerte Freiheit, Gerechtigkeit und Sicherheit abhängen.",
+      "quelle": "eigene Aufgabe",
+      "umfang": "ca. 200–250 Wörter",
+      "erwartung": [
+        "Freie Marktwirtschaft: maximale Freiheit (Eigentum, Beruf, Vertrag), dafür Risiko von Ungleichheit und Unsicherheit.",
+        "Zentralverwaltungswirtschaft: Gleichheit und soziale Sicherheit (Arbeitsplatz, Grundversorgung) als Ziel, dafür starke Einschränkung der Freiheit.",
+        "Soziale Marktwirtschaft als Versuch, Freiheit des Marktes mit sozialem Ausgleich zu verbinden.",
+        "Beispiel für einen Zielkonflikt, z. B. Kündigungsschutz (Sicherheit) vs. Vertragsfreiheit (Freiheit)."
+      ],
+      "kriterien": [
+        { "name": "Zusammenhang erklärt", "beschreibung": "Für jede Ordnung wird gezeigt, welcher Wert Vorrang hat und was das bedeutet.", "punkte": 4 },
+        { "name": "Beispiel", "beschreibung": "Mindestens ein konkretes, passendes Beispiel.", "punkte": 2 },
+        { "name": "Darstellung", "beschreibung": "Fachsprache, logischer Aufbau.", "punkte": 2 }
+      ]
+    }
+  ]
+}

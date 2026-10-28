@@ -1,0 +1,237 @@
+{
+  "id": "gkw-konzepte",
+  "titel": "Nachfrage- vs. Angebotsorientierung",
+  "untertitel": "Keynes, Monetarismus, Krise 1966/67 und Kritik",
+  "abhaengig": ["gkw-denkschulen"],
+  "prioritaet": 4,
+  "quelleErklaerung": "eigene Zusammenfassung nach Unterricht (Tabelle „Nachfrage- und Angebotsorientierung – Strategien und Kritik“) und Lehrbuch M6–M9, M12, Orientierungswissen; geprüft an bpb – Lexikon der Wirtschaft (Keynesianismus, Angebotsorientierte Wirtschaftspolitik, Monetarismus, Antizyklische Finanzpolitik) und Bundestag – Kalenderblatt Stabilitätsgesetz (Krise 1966/67, Schiller)",
+  "karten": [
+    {
+      "id": "gkw-konzepte-k1",
+      "typ": "begriff",
+      "vorne": "Instabilitätshypothese (Keynes)",
+      "hinten": "Der Markt ist von sich aus instabil und findet nicht automatisch zur Vollbeschäftigung zurück. Er kann in einem Gleichgewicht bei Unterbeschäftigung stecken bleiben.",
+      "quelle": "eigene Karte; bpb Lexikon der Wirtschaft"
+    },
+    {
+      "id": "gkw-konzepte-k2",
+      "typ": "begriff",
+      "vorne": "Aus welchen Teilen besteht die gesamtwirtschaftliche Nachfrage?",
+      "hinten": "Konsumnachfrage der Haushalte + Investitionsnachfrage der Unternehmen + Staatsnachfrage + Auslandsnachfrage (Export).",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-konzepte-k3",
+      "typ": "begriff",
+      "vorne": "Deficit Spending",
+      "hinten": "Der Staat erhöht in der Krise vorübergehend seine Ausgaben **auf Kredit**, um die fehlende private Nachfrage zu ersetzen. Die Schulden sollen im Boom mit höheren Steuereinnahmen zurückgezahlt werden.",
+      "quelle": "eigene Karte nach Lehrbuch M7"
+    },
+    {
+      "id": "gkw-konzepte-k4",
+      "typ": "begriff",
+      "vorne": "Multiplikatoreffekt",
+      "hinten": "Eine zusätzliche Staatsausgabe schafft Einkommen, das teilweise wieder ausgegeben wird und neues Einkommen schafft. Das Volkseinkommen steigt dadurch um ein **Mehrfaches** der ursprünglichen Ausgabe.",
+      "quelle": "eigene Karte; bpb"
+    },
+    {
+      "id": "gkw-konzepte-k5",
+      "typ": "begriff",
+      "vorne": "Antizyklisch vs. prozyklisch",
+      "hinten": "**Antizyklisch:** gegen den Konjunkturtrend handeln (Krise: mehr ausgeben; Boom: sparen, Rücklagen bilden).\n**Prozyklisch:** mit dem Trend handeln (Krise: sparen) und die Schwankung dadurch verstärken.",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-konzepte-k6",
+      "typ": "begriff",
+      "vorne": "Grundannahme der Angebotsorientierung",
+      "hinten": "Der Markt ist in sich stabil. Wachstumsschwäche liegt an schlechten Bedingungen für Unternehmen (hohe Steuern und Kosten, Bürokratie) und an zu viel staatlichem Eingreifen.",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-konzepte-k7",
+      "typ": "begriff",
+      "vorne": "Monetarismus (Milton Friedman)",
+      "hinten": "Inflation ist ein Geldmengenphänomen. Die Zentralbank soll die Geldmenge regelgebunden und stetig wachsen lassen (etwa wie die Produktionsmöglichkeiten) und keine Konjunktursteuerung betreiben.",
+      "quelle": "eigene Karte; bpb Lexikon der Wirtschaft"
+    },
+    {
+      "id": "gkw-konzepte-k8",
+      "typ": "wasPassiert",
+      "vorne": "Wirkungskette Nachfrageorientierung",
+      "hinten": "Staat erhöht Ausgaben → Nachfrage steigt → Produktion und Einstellungen steigen → Einkommen steigen → Konsum steigt (Multiplikator) → Vollbeschäftigung und höhere Steuereinnahmen.",
+      "quelle": "eigene Karte nach Unterricht"
+    },
+    {
+      "id": "gkw-konzepte-k9",
+      "typ": "wasPassiert",
+      "vorne": "Wirkungskette Angebotsorientierung",
+      "hinten": "Staat senkt Steuern, Kosten und Bürokratie → Gewinnerwartungen steigen → Investitionen steigen → Produktion und Arbeitsplätze wachsen → Einkommen und Nachfrage steigen.",
+      "quelle": "eigene Karte nach Unterricht"
+    },
+    {
+      "id": "gkw-konzepte-k10",
+      "typ": "warum",
+      "vorne": "Warum geriet der Keynesianismus in den 1970er-Jahren in die Kritik?",
+      "hinten": "Es gab **Stagflation** (Inflation und Arbeitslosigkeit zugleich). Mehr Nachfrage hätte die Inflation verstärkt. Außerdem wurden Schulden im Aufschwung oft nicht getilgt, sodass die Staatsverschuldung stieg.",
+      "quelle": "eigene Karte nach Lehrbuch M12"
+    },
+    {
+      "id": "gkw-konzepte-k11",
+      "typ": "begriff",
+      "vorne": "Kritik an der Angebotsorientierung",
+      "hinten": "Mehr Gewinn heißt nicht automatisch mehr Investitionen; die Ungleichheit wächst; in einer akuten Krise fehlt Nachfrage, gegen die Kostensenkungen wenig helfen.",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-konzepte-k12",
+      "typ": "begriff",
+      "vorne": "Erhard vs. Schiller in der Krise 1966/67",
+      "hinten": "**Erhard (CDU):** prozyklisch, Sparprogramm in der Krise, kein lenkendes Eingreifen.\n**Schiller (SPD, Große Koalition):** antizyklisch, zusätzliche Staatsinvestitionen, Globalsteuerung → Stabilitätsgesetz 1967.",
+      "quelle": "eigene Karte nach Lehrbuch M8/M9"
+    },
+    {
+      "id": "gkw-konzepte-k13",
+      "typ": "fehler",
+      "vorne": "Typischer Fehler: „Keynes wollte dauerhaft Schulden machen.“",
+      "hinten": "Falsch. Keynes wollte **antizyklisch** handeln: Schulden in der Krise, aber Überschüsse und Rücklagen im Boom. Dauerhaft steigende Schulden entstehen, wenn Politiker den zweiten Teil weglassen.",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-konzepte-k14",
+      "typ": "begriff",
+      "vorne": "Konjunkturausgleichsrücklage",
+      "hinten": "Geld, das der Staat im Aufschwung zurücklegt (z. B. bei der Bundesbank), um es in der nächsten Krise ausgeben zu können. Instrument aus dem Stabilitätsgesetz 1967.",
+      "quelle": "eigene Karte nach Lehrbuch M2 (Kap. 1.3)"
+    }
+  ],
+  "uebungen": [
+    {
+      "id": "gkw-konzepte-u1",
+      "typ": "klassifizieren",
+      "frage": "Nachfrage- oder angebotsorientiert? Ordne die Forderungen zu.",
+      "quelle": "eigene Übung",
+      "kategorien": ["nachfrageorientiert", "angebotsorientiert"],
+      "items": [
+        { "text": "Ein kreditfinanziertes Investitionsprogramm für Schulen und Brücken in der Rezession", "kategorie": 0, "warum": "Deficit Spending, Staat ersetzt fehlende Nachfrage." },
+        { "text": "Senkung der Unternehmenssteuern, um Investitionen anzuregen", "kategorie": 1, "warum": "Bessere Bedingungen für die Angebotsseite." },
+        { "text": "Abbau von Berichtspflichten und Genehmigungsverfahren", "kategorie": 1, "warum": "Deregulierung, Bürokratieabbau." },
+        { "text": "Einmalzahlung an alle Haushalte, um den Konsum anzukurbeln", "kategorie": 0, "warum": "Kaufkraft und Konsumnachfrage stärken." },
+        { "text": "Zentralbank soll die Geldmenge nach fester Regel wachsen lassen", "kategorie": 1, "warum": "Monetarismus, gehört zur Angebotsorientierung." },
+        { "text": "Kräftige Lohnerhöhungen, damit die Menschen mehr ausgeben", "kategorie": 0, "warum": "Lohn als Nachfragefaktor." },
+        { "text": "Lohnzurückhaltung, damit Arbeit billiger wird und Firmen einstellen", "kategorie": 1, "warum": "Lohn als Kostenfaktor." }
+      ]
+    },
+    {
+      "id": "gkw-konzepte-u2",
+      "typ": "reihenfolge",
+      "frage": "Bringe die keynesianische Wirkungskette in die richtige Reihenfolge.",
+      "quelle": "eigene Übung",
+      "schritte": [
+        "Die private Nachfrage bricht ein, es entsteht eine Nachfragelücke.",
+        "Der Staat erhöht seine Ausgaben auf Kredit.",
+        "Unternehmen erhalten Aufträge und stellen Personal ein.",
+        "Die Beschäftigten haben mehr Einkommen und konsumieren mehr.",
+        "Der Konsum erzeugt weitere Aufträge (Multiplikator).",
+        "Im Aufschwung steigen die Steuereinnahmen, Schulden werden zurückgezahlt."
+      ]
+    },
+    {
+      "id": "gkw-konzepte-u3",
+      "typ": "reihenfolge",
+      "frage": "Bringe die angebotsorientierte Wirkungskette in die richtige Reihenfolge.",
+      "quelle": "eigene Übung",
+      "schritte": [
+        "Der Staat senkt Unternehmenssteuern und baut Bürokratie ab.",
+        "Die Kosten der Unternehmen sinken, die Gewinnerwartungen steigen.",
+        "Die Unternehmen investieren mehr.",
+        "Produktion und Arbeitsplätze wachsen.",
+        "Einkommen und Nachfrage steigen."
+      ]
+    },
+    {
+      "id": "gkw-konzepte-u4",
+      "typ": "mc",
+      "frage": "1966 legte die Regierung Erhard mitten in der Wirtschaftskrise ein Sparprogramm auf. Wie nennt man diese Politik?",
+      "quelle": "eigene Übung",
+      "optionen": [
+        { "text": "antizyklisch", "warum": "Antizyklisch wäre in der Krise mehr Ausgaben gewesen, wie es Schiller dann tat." },
+        { "text": "prozyklisch", "richtig": true, "warum": "Sparen im Abschwung verstärkt den Abschwung." },
+        { "text": "monetaristisch", "warum": "Monetarismus betrifft die Geldmengensteuerung durch die Zentralbank, nicht den Staatshaushalt." }
+      ]
+    },
+    {
+      "id": "gkw-konzepte-u5",
+      "typ": "zuordnen",
+      "frage": "Ordne die Begriffe den Erklärungen zu.",
+      "quelle": "eigene Übung",
+      "paare": [
+        { "links": "Stagflation", "rechts": "Stillstand der Wirtschaft bei gleichzeitig hoher Inflation" },
+        { "links": "Deficit Spending", "rechts": "Kreditfinanzierte Staatsausgaben in der Krise" },
+        { "links": "Globalsteuerung", "rechts": "Steuerung der gesamtwirtschaftlichen Größen durch den Staat (Schiller)" },
+        { "links": "Konjunkturausgleichsrücklage", "rechts": "Im Boom gebildetes Polster für die nächste Krise" }
+      ]
+    },
+    {
+      "id": "gkw-konzepte-u6",
+      "typ": "fehler",
+      "frage": "Welcher Schritt in dieser Argumentation eines Keynesianers ist falsch?",
+      "quelle": "eigene Übung",
+      "schritte": [
+        "In der Krise sparen die Haushalte aus Angst vor Arbeitslosigkeit.",
+        "Dadurch sinkt die Nachfrage, und die Unternehmen produzieren weniger.",
+        "Sinkende Löhne lösen das Problem automatisch, weil Arbeit billiger wird.",
+        "Deshalb muss der Staat die fehlende Nachfrage ersetzen.",
+        "Im Aufschwung soll er Rücklagen bilden."
+      ],
+      "fehler": 2,
+      "erklaerung": "Keynes bestritt gerade, dass sinkende Löhne helfen: Löhne sind nach unten starr, und niedrigere Löhne verringern Kaufkraft und Nachfrage weiter. Die Lohnsenkung ist ein angebotsorientiertes Argument."
+    },
+    {
+      "id": "gkw-konzepte-s1",
+      "typ": "schreiben",
+      "operator": "vergleichen",
+      "frage": "Vergleichen Sie die nachfrage- und die angebotsorientierte Wirtschaftspolitik hinsichtlich Grundannahmen, Instrumenten, Rolle des Staates und Kritik.",
+      "quelle": "eigene Aufgabe",
+      "umfang": "ca. 450 Wörter",
+      "erwartung": [
+        "Grundannahme: Markt instabil, Nachfragelücke (Keynes) vs. Markt stabil, Probleme durch Staat und Kosten (Angebot/Friedman).",
+        "Instrumente: antizyklische Fiskalpolitik, Deficit Spending, Multiplikator vs. Steuer- und Kostensenkung, Deregulierung, Haushaltskonsolidierung, regelgebundene Geldpolitik.",
+        "Rolle des Staates: aktiver Lenker der Konjunktur vs. Gestalter guter Rahmenbedingungen, der sich zurückhält.",
+        "Ziele: Vollbeschäftigung/gesamtwirtschaftliches Gleichgewicht vs. Wachstum durch Investitionen, Geldwertstabilität.",
+        "Kritik Nachfrage: Staatsverschuldung, Zeitverzögerungen, Inflation, Stagflation der 1970er.",
+        "Kritik Angebot: Gewinne werden nicht automatisch investiert, Ungleichheit, wirkungslos bei Nachfrageeinbruch.",
+        "Gemeinsamkeit: beide wollen Wachstum und Beschäftigung, nur auf unterschiedlichem Weg.",
+        "Historische Beispiele (z. B. Schiller 1967 vs. angebotsorientierte Wende ab 1980er) als Pluspunkt."
+      ],
+      "kriterien": [
+        { "name": "Grundannahmen", "beschreibung": "Beide Menschen-/Marktbilder korrekt gegenübergestellt.", "punkte": 3 },
+        { "name": "Instrumente und Staat", "beschreibung": "Je mind. drei Instrumente, Rolle des Staates klar.", "punkte": 4 },
+        { "name": "Kritik", "beschreibung": "Je mind. zwei Kritikpunkte, begründet.", "punkte": 3 },
+        { "name": "Vergleich", "beschreibung": "Gemeinsamkeiten und Unterschiede ausdrücklich herausgestellt, Fazit.", "punkte": 2 },
+        { "name": "Darstellung", "beschreibung": "Fachsprache, kriteriengeleitete Gliederung.", "punkte": 2 }
+      ]
+    },
+    {
+      "id": "gkw-konzepte-s2",
+      "typ": "schreiben",
+      "operator": "analysieren",
+      "frage": "Analysieren Sie die Krisenpolitik von Ludwig Erhard und Karl Schiller 1966/67 und ordnen Sie beide Politiken theoretisch ein.",
+      "quelle": "eigene Aufgabe",
+      "umfang": "ca. 300 Wörter",
+      "material": "**Eigene Zusammenstellung:** 1966 rutscht die Bundesrepublik in ihre erste Nachkriegsrezession. Die Regierung Erhard beschließt ein Sparprogramm und appelliert an Unternehmen und Gewerkschaften, maßzuhalten. Die Bundesbank hatte zuvor die Zinsen erhöht. Ende 1966 zerbricht die Koalition. Der neue Wirtschaftsminister Schiller kündigt zusätzliche Staatsaufträge in Milliardenhöhe für Bahn, Post, Straßen und Hochschulen an und spricht sich mit der Bundesbank ab. 1967 wird das Stabilitäts- und Wachstumsgesetz verabschiedet.",
+      "erwartung": [
+        "Erhard: prozyklisch (Sparen in der Krise), Vertrauen auf Selbstheilungskräfte des Marktes, ordoliberale Haltung gegen Prozesspolitik.",
+        "Schiller: antizyklisch, Deficit Spending/zusätzliche öffentliche Investitionen, Nachfrage stärken, Globalsteuerung, keynesianisch.",
+        "Erwartete Wirkung bei Schiller über Multiplikator; bei Erhard Verschärfung der Krise durch sinkende Nachfrage.",
+        "Stabilitätsgesetz als Institutionalisierung des Paradigmenwechsels hin zu Keynes."
+      ],
+      "kriterien": [
+        { "name": "Erhard", "beschreibung": "Politik beschrieben und als prozyklisch/ordoliberal eingeordnet, mit Begründung.", "punkte": 3 },
+        { "name": "Schiller", "beschreibung": "Politik beschrieben und als antizyklisch/keynesianisch eingeordnet, mit Begründung.", "punkte": 3 },
+        { "name": "Theoriebezug", "beschreibung": "Fachbegriffe (Nachfragelücke, Multiplikator, Globalsteuerung) korrekt genutzt.", "punkte": 2 },
+        { "name": "Darstellung", "beschreibung": "Bezug auf das Material, strukturiert.", "punkte": 2 }
+      ]
+    }
+  ]
+}

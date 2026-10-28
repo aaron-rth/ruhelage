@@ -1,0 +1,218 @@
+{
+  "id": "gkw-kraftstoff",
+  "titel": "Fall: Kraftstoffpreise und Tankrabatt",
+  "untertitel": "Kartellverdacht oder Marktreaktion? Maßnahmen A–F, Politikzyklus",
+  "abhaengig": ["gkw-marktversagen"],
+  "prioritaet": 8,
+  "quelleErklaerung": "eigene Zusammenfassung nach Unterricht (Kraftstoffpreise/Kartellverdacht, Maßnahmen A–F, Rollendebatte, Politikzyklus); Zahlen geprüft an Bundeskartellamt (Seite Tankrabatt, Quartalsbericht der Markttransparenzstelle vom 10.07.2026, Kraftstoff-News Oktober 2026), DATEV/IHK Ostthüringen/ZDFheute (Bundesrat-Beschluss Tankrabatt Oktober 2026), test.de, verkehrsrundschau.de (Kritik, Spritpreisdeckel), en2x und ADAC lt. leinetal24 (Energiesteuer, CO₂-Preis 2026)",
+  "karten": [
+    {
+      "id": "gkw-kraftstoff-k1",
+      "typ": "begriff",
+      "vorne": "Aus welchen zwei Blöcken setzt sich der Spritpreis zusammen?",
+      "hinten": "**Staatliche Steuern/Abgaben:** Energiesteuer (fester Betrag/Liter), CO₂-Preis, 19 % Mehrwertsteuer.\n**Wirtschaftliche Faktoren:** Rohöl (in Dollar), Raffinerie und Großhandel, Transport/Vertrieb, Margen von Konzernen und Tankstellen.",
+      "quelle": "eigene Karte; en2x; ADAC"
+    },
+    {
+      "id": "gkw-kraftstoff-k2",
+      "typ": "begriff",
+      "vorne": "Wie hoch ist die reguläre Energiesteuer auf Kraftstoff?",
+      "hinten": "Rund **65 Cent/Liter bei Benzin** und **47 Cent/Liter bei Diesel**, ein fester Betrag unabhängig vom Ölpreis. Darauf kommen CO₂-Preis und Mehrwertsteuer.",
+      "quelle": "eigene Karte; en2x"
+    },
+    {
+      "id": "gkw-kraftstoff-k3",
+      "typ": "begriff",
+      "vorne": "CO₂-Preis 2026 im Verkehr",
+      "hinten": "Preiskorridor von **55 bis 65 € je Tonne CO₂** (nationaler Emissionshandel), das sind grob 15–19 Cent pro Liter.",
+      "quelle": "eigene Karte; ADAC lt. leinetal24; en2x"
+    },
+    {
+      "id": "gkw-kraftstoff-k4",
+      "typ": "begriff",
+      "vorne": "Tankrabatt 2026: Zeiträume und Höhe",
+      "hinten": "**1.5.–30.6.2026** und erneut **1.10.–31.12.2026**: Energiesteuer −14,04 Cent/Liter, mit Mehrwertsteuer ca. 17 Cent (16,7). Kosten zweiter Rabatt bis 2,5 Mrd. €, je zur Hälfte von Bund und Ländern getragen.",
+      "quelle": "eigene Karte; Bundeskartellamt; DATEV; IHK"
+    },
+    {
+      "id": "gkw-kraftstoff-k5",
+      "typ": "begriff",
+      "vorne": "Wie viel vom ersten Tankrabatt kam laut Bundeskartellamt an?",
+      "hinten": "**Diesel:** ca. 13,8 Cent (82,6 %), **Super E5:** ca. 13 Cent (77,8 %). Überwiegend, aber nicht vollständig weitergegeben.",
+      "quelle": "eigene Karte; Bundeskartellamt, Quartalsbericht 10.07.2026"
+    },
+    {
+      "id": "gkw-kraftstoff-k6",
+      "typ": "warum",
+      "vorne": "Warum kann das Kartellamt Tankstellen nicht zwingen, den Tankrabatt weiterzugeben?",
+      "hinten": "Es gibt keine gesetzliche Weitergabepflicht. Preise bilden sich frei. Das Amt kann nur eingreifen, wenn Marktmacht missbraucht wird oder Absprachen nachgewiesen werden.",
+      "quelle": "eigene Karte; Bundeskartellamt"
+    },
+    {
+      "id": "gkw-kraftstoff-k7",
+      "typ": "warum",
+      "vorne": "Warum sind gleichzeitige Preiserhöhungen an allen Tankstellen kein Beweis für ein Kartell?",
+      "hinten": "Im **Oligopol** beobachten sich die Anbieter in Echtzeit und passen sich an (Parallelverhalten). Zudem steigen die Kosten (Rohöl) für alle gleichzeitig. Ein Kartell erfordert eine nachgewiesene **Absprache**.",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-kraftstoff-k8",
+      "typ": "begriff",
+      "vorne": "Markttransparenzstelle für Kraftstoffe",
+      "hinten": "Teil des Bundeskartellamts (seit 2013). Tankstellen müssen Preisänderungen in Echtzeit melden. Die Daten fließen in Spritpreis-Apps und dienen der Marktbeobachtung, z. B. bei der Auswertung der Tankrabatt-Weitergabe.",
+      "quelle": "eigene Karte; Bundeskartellamt"
+    },
+    {
+      "id": "gkw-kraftstoff-k9",
+      "typ": "begriff",
+      "vorne": "Kritik am Tankrabatt",
+      "hinten": "Teuer und nicht zielgenau (Vielfahrer/Besserverdienende profitieren am meisten), kein Anreiz zum Spritsparen (Klima), Weitergabe nicht garantiert (Entlastung kann in Margen versickern).",
+      "quelle": "eigene Karte; verkehrsrundschau.de; test.de"
+    },
+    {
+      "id": "gkw-kraftstoff-k10",
+      "typ": "begriff",
+      "vorne": "Argumente für den Tankrabatt",
+      "hinten": "Wirkt sofort und unbürokratisch, entlastet Pendler, Handwerk und Logistik, dämpft kurzfristig die Inflation.",
+      "quelle": "eigene Karte"
+    },
+    {
+      "id": "gkw-kraftstoff-k11",
+      "typ": "wasPassiert",
+      "vorne": "Was könnte bei einem staatlichen Spritpreisdeckel passieren, der unter den Kosten liegt?",
+      "hinten": "Anbieter verdienen nichts mehr bzw. machen Verluste → sie liefern weniger oder Raffinerien drosseln → **Knappheit** (leere Tanks, Schlangen). Der Preis verliert seine Signalfunktion.",
+      "quelle": "eigene Karte; verkehrsrundschau.de (Warnung der Branche)"
+    },
+    {
+      "id": "gkw-kraftstoff-k12",
+      "typ": "begriff",
+      "vorne": "Schritte des Politikzyklus (Unterrichtsversion)",
+      "hinten": "Problem → Akteure und Interessen → Ursachen → Entscheidung → Folgen → Kontrolle/Bewertung, dann ggf. neues Problem.",
+      "quelle": "eigene Karte nach Unterrichtsfolie"
+    },
+    {
+      "id": "gkw-kraftstoff-k13",
+      "typ": "begriff",
+      "vorne": "Welche Akteure haben im Spritpreis-Konflikt welche Interessen?",
+      "hinten": "Autofahrende/Pendler: niedrige Preise. Raffinerien/Konzerne: Kosten decken, Gewinne. Tankstellenpächter: kleine Margen sichern. Bundeskartellamt: funktionierender Wettbewerb. Umweltverbände: Klimaschutz, weniger Verbrauch. Sozialverbände: Entlastung einkommensschwacher Haushalte. Staat: Haushalt, Akzeptanz.",
+      "quelle": "eigene Karte nach Unterricht (Rollendebatte)"
+    },
+    {
+      "id": "gkw-kraftstoff-k14",
+      "typ": "fehler",
+      "vorne": "Typischer Fehler: „Der Tankrabatt senkt den Preis automatisch um 17 Cent.“",
+      "hinten": "Falsch. Gesenkt wird die **Steuer**. Ob und wie stark der Preis an der Zapfsäule sinkt, entscheiden die Anbieter. 2026 kam laut Kartellamt nur etwa 78–83 % an.",
+      "quelle": "eigene Karte"
+    }
+  ],
+  "uebungen": [
+    {
+      "id": "gkw-kraftstoff-u1",
+      "typ": "klassifizieren",
+      "frage": "Gehört der Preisbestandteil zu den staatlichen Abgaben oder zu den wirtschaftlichen Faktoren?",
+      "quelle": "eigene Übung",
+      "kategorien": ["staatliche Steuern/Abgaben", "wirtschaftliche Faktoren"],
+      "items": [
+        { "text": "Energiesteuer", "kategorie": 0, "warum": "Fester Steuerbetrag pro Liter." },
+        { "text": "Rohölpreis am Weltmarkt", "kategorie": 1, "warum": "Produktkosten." },
+        { "text": "CO₂-Preis", "kategorie": 0, "warum": "Staatlich festgelegter Preis im nationalen Emissionshandel." },
+        { "text": "Raffineriemarge", "kategorie": 1, "warum": "Verarbeitungskosten und Gewinn der Raffinerie." },
+        { "text": "Mehrwertsteuer", "kategorie": 0, "warum": "19 % auf den Gesamtpreis." },
+        { "text": "Transport und Lagerung", "kategorie": 1, "warum": "Vertriebskosten." }
+      ]
+    },
+    {
+      "id": "gkw-kraftstoff-u2",
+      "typ": "klassifizieren",
+      "frage": "Spricht die Beobachtung eher für eine normale Marktreaktion oder für Wettbewerbsprobleme?",
+      "quelle": "eigene Übung",
+      "kategorien": ["normale Marktreaktion", "Hinweis auf Wettbewerbsprobleme"],
+      "items": [
+        { "text": "Der Rohölpreis steigt wegen eines Krieges in einer Förderregion stark.", "kategorie": 0, "warum": "Höhere Kosten und Knappheit." },
+        { "text": "Die Raffineriemargen verdoppeln sich, obwohl der Ölpreis wieder fällt.", "kategorie": 1, "warum": "Spricht für Marktmacht." },
+        { "text": "Der Dollar wird teurer im Vergleich zum Euro.", "kategorie": 0, "warum": "Öl wird in Dollar gehandelt." },
+        { "text": "Preise steigen sofort, sinken aber nur sehr langsam („Rakete und Feder“).", "kategorie": 1, "warum": "Asymmetrische Preisanpassung als Indiz." },
+        { "text": "Der CO₂-Preis steigt planmäßig zum Jahresbeginn.", "kategorie": 0, "warum": "Staatlich bedingte Kostensteigerung." },
+        { "text": "Nur wenige Unternehmen betreiben alle Raffinerien im Land.", "kategorie": 1, "warum": "Hohe Konzentration erleichtert Machtausübung." }
+      ]
+    },
+    {
+      "id": "gkw-kraftstoff-u3",
+      "typ": "zuordnen",
+      "frage": "Ordne jeder Maßnahme ihren typischen Nachteil zu.",
+      "quelle": "eigene Übung",
+      "paare": [
+        { "links": "Preisobergrenze", "rechts": "Gefahr von Knappheit, wenn Anbieter nicht mehr liefern" },
+        { "links": "Tankrabatt (Steuersenkung)", "rechts": "Teuer und nicht zielgenau, Weitergabe unsicher" },
+        { "links": "Alternative Mobilität fördern", "rechts": "Wirkt erst langfristig" },
+        { "links": "Gezielte Entlastung für Pendler", "rechts": "Verwaltungsaufwand und Abgrenzungsprobleme" },
+        { "links": "Margentransparenz", "rechts": "Kann im Oligopol Preisabstimmung erleichtern" }
+      ]
+    },
+    {
+      "id": "gkw-kraftstoff-u4",
+      "typ": "mc",
+      "frage": "Welche Maßnahme bekämpft am ehesten die **Ursache**, falls die hohen Preise auf Machtmissbrauch der Raffinerien beruhen?",
+      "quelle": "eigene Übung",
+      "optionen": [
+        { "text": "Tankrabatt", "warum": "Senkt nur die Steuer; die überhöhte Marge bleibt bestehen und kann sogar steigen." },
+        { "text": "Verschärfte Kartell- und Missbrauchskontrolle", "richtig": true, "warum": "Setzt direkt am Wettbewerbsproblem an und ist marktkonform." },
+        { "text": "Förderung des ÖPNV", "warum": "Langfristig sinnvoll, ändert aber nichts an der Marktmacht." }
+      ]
+    },
+    {
+      "id": "gkw-kraftstoff-u5",
+      "typ": "reihenfolge",
+      "frage": "Ordne die Schritte des Politikzyklus am Beispiel Spritpreise.",
+      "quelle": "eigene Übung",
+      "schritte": [
+        "Problem: Spritpreise steigen 2026 stark und belasten Pendler und Betriebe.",
+        "Akteure: Autofahrende, Konzerne, Verbände und Parteien vertreten unterschiedliche Interessen.",
+        "Ursachen werden geklärt: Ölpreis, Steuern, mögliche Marktmacht.",
+        "Entscheidung: Bundestag und Bundesrat beschließen einen Tankrabatt.",
+        "Folgen: Ein Teil der Steuersenkung kommt an der Zapfsäule an, ein Teil nicht.",
+        "Kontrolle: Das Kartellamt wertet die Weitergabe aus, eine neue Debatte über einen Preisdeckel beginnt."
+      ]
+    },
+    {
+      "id": "gkw-kraftstoff-u6",
+      "typ": "luecke",
+      "frage": "Ergänze die Fakten zum Tankrabatt 2026.",
+      "quelle": "eigene Übung",
+      "text": "Die Energiesteuer wurde um [[0]] Cent pro Liter gesenkt, mit Mehrwertsteuer sind das rund [[1]] Cent. Beim ersten Rabatt kamen beim Diesel laut Kartellamt etwa [[2]] an. Die Kosten des zweiten Rabatts teilen sich [[3]].",
+      "luecken": [
+        { "optionen": ["10", "14,04", "17"], "richtig": 1 },
+        { "optionen": ["14", "17", "25"], "richtig": 1 },
+        { "optionen": ["50 %", "83 %", "100 %"], "richtig": 1 },
+        { "optionen": ["Bund und Länder je zur Hälfte", "nur die Kommunen", "die Mineralölkonzerne"], "richtig": 0 }
+      ]
+    },
+    {
+      "id": "gkw-kraftstoff-s1",
+      "typ": "schreiben",
+      "operator": "bewerten",
+      "frage": "Sind Kartelle eine Gefahr für unsere Wirtschaftsordnung, und wann muss der Staat angesichts steigender Spritpreise eingreifen? Bewerten Sie zwei der Maßnahmen A–F und formulieren Sie ein politisches Urteil.",
+      "quelle": "eigene Aufgabe nach Unterrichtsleitfrage",
+      "umfang": "ca. 600 Wörter",
+      "erwartung": [
+        "Einleitung: Fallbezug (Spritpreise 2026, Tankrabatt), Leitfrage, gewählte Kriterien (z. B. Effektivität/Effizienz und Gerechtigkeit/Legitimität/Nachhaltigkeit).",
+        "Kurze Klärung: Kartell = Absprache selbstständiger Unternehmen, gefährdet Preismechanismus und damit die Soziale Marktwirtschaft; Verdacht ≠ Nachweis; hohe Preise allein ≠ Marktversagen.",
+        "Ursachenanalyse: Ölpreis/Krieg, Steuern und CO₂-Preis, Oligopolstruktur, gestiegene Raffineriemargen.",
+        "Maßnahme 1 (z. B. Tankrabatt F) nach Kriterien: wirkt schnell, aber teuer, nicht zielgenau, Weitergabe nur ca. 78–83 %, falsches Klimasignal.",
+        "Maßnahme 2 (z. B. Kartell-/Missbrauchskontrolle A oder gezielte Entlastung C) nach Kriterien mit Pro und Contra.",
+        "Perspektiven: Betroffene (Pendler, Geringverdiener), Akteure (Konzerne, Staat, Kartellamt), System (Wettbewerb, Haushalt, Klimaziele).",
+        "Sachurteil (Was wirkt?) und Werturteil (Was ist gerecht/legitim?), Gewichtung der Kriterien offengelegt.",
+        "Gesamturteil zur Leitfrage und konkrete Handlungsempfehlung."
+      ],
+      "kriterien": [
+        { "name": "Einleitung und Kriterien", "beschreibung": "Fallbezug, Leitfrage, mind. zwei begründet gewählte Kriterien.", "punkte": 2 },
+        { "name": "Sachanalyse", "beschreibung": "Kartell, Marktversagen und Preisursachen korrekt erklärt, Verdacht von Nachweis unterschieden.", "punkte": 3 },
+        { "name": "Teilurteile Maßnahme 1", "beschreibung": "Kriterien angewendet, Pro/Contra mit Begründung und Beleg (Zahlen 2026).", "punkte": 3 },
+        { "name": "Teilurteile Maßnahme 2", "beschreibung": "Kriterien angewendet, Pro/Contra mit Begründung und Beleg.", "punkte": 3 },
+        { "name": "Perspektiven", "beschreibung": "Mind. zwei Perspektiven berücksichtigt.", "punkte": 2 },
+        { "name": "Gesamturteil", "beschreibung": "Gewichtung offengelegt, Leitfrage beantwortet, Handlungsempfehlung.", "punkte": 3 },
+        { "name": "Darstellung", "beschreibung": "Aufbau, Fachsprache, Behauptung–Begründung–Beispiel.", "punkte": 2 }
+      ]
+    }
+  ]
+}
