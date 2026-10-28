@@ -10,7 +10,8 @@ import { findeThema } from '../content/kurse';
 import { operatorVon } from '../content/operatoren';
 import type { Generator, Thema } from '../content/types';
 import { heute } from '../lib/datum';
-import { genKey, quote, statusVon, themaFortschritt, uebKey, vorschlag } from '../lib/fortschritt';
+import { genKey, istGestartet, quote, statusVon, themaFortschritt, uebKey, vorschlag } from '../lib/fortschritt';
+import { setzeThemaAusgeblendet } from '../lib/kurs';
 import { intervallText, istFaellig, TAKTE } from '../lib/leitner';
 import { useIstHandy } from '../lib/geraet';
 import { neuerSeed } from '../lib/rng';
@@ -56,6 +57,7 @@ export function ThemaSeite() {
             {f.versucht > 0 && vs !== status && (
               <span className="sehr-leise klein">Deine Ergebnisse sagen eher: {STATUS_TEXT[vs]}</span>
             )}
+            <ThemaOptionen t={t} />
           </div>
         </div>
       </div>
@@ -78,11 +80,44 @@ export function ThemaSeite() {
   );
 }
 
+/** In Tagesrunde (automatisch, sobald gestartet – oder von Hand) und Ausblenden für die Klausur */
+function ThemaOptionen({ t }: { t: Thema }) {
+  const daten = useStore();
+  const an = istGestartet(t, daten);
+  const aus = daten.einstellungen.ausgeblendeteThemen?.includes(t.id) ?? false;
+  return (
+    <div className="thema-optionen">
+      <label className="thema-option">
+        <button
+          type="button"
+          role="switch"
+          aria-checked={an && !aus}
+          disabled={aus}
+          className="schalter klein-schalter"
+          onClick={() => daten.setzeEinstellung('tagesrunde', { ...daten.einstellungen.tagesrunde, [t.id]: !an })}
+        />
+        <span className="klein">In Tagesrunde</span>
+      </label>
+      <button type="button" className="btn geist klein" onClick={() => setzeThemaAusgeblendet(t.id, !aus)} title={aus ? 'Thema wieder einblenden' : 'Für Lernplan und Übungen ausblenden (z. B. nicht klausurrelevant)'}>
+        {aus ? 'Wieder einblenden' : 'Nicht klausurrelevant'}
+      </button>
+    </div>
+  );
+}
+
 function Erklaert({ t }: { t: Thema }) {
   const setzeAktuell = useLaufend((s) => s.setzeAktuell);
   useEffect(() => {
     setzeAktuell({ key: 'lesen', art: 'lesen', titel: `Kurz erklärt · ${t.titel}`, pfad: `/thema/${t.id}/erklaert` });
   }, [t, setzeAktuell]);
+  // nach einer Weile Lesen gilt das Thema als gestartet (kommt dann in die Tagesrunde)
+  useEffect(() => {
+    const id = window.setTimeout(() => {
+      const e = useStore.getState().einstellungen;
+      if (!e.gelesen?.includes(t.id)) useStore.getState().setzeEinstellung('gelesen', [...(e.gelesen ?? []), t.id]);
+    }, 10_000);
+    return () => window.clearTimeout(id);
+  }, [t.id]);
   return (
     <div className="raster-erklaert">
       <article className="panel">

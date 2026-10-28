@@ -2,7 +2,7 @@
 import type { SitzungsItem } from './sitzung';
 import type { Kurs, Thema } from '../content/types';
 import type { Daten } from '../store/store';
-import { genKey, quote, schwaeche, uebKey } from './fortschritt';
+import { genKey, istGestartet, quote, schwaeche, uebKey } from './fortschritt';
 import { istFaellig } from './leitner';
 import { erzeugeRng } from './rng';
 
@@ -18,6 +18,14 @@ export interface HeutePlan {
 
 export function schwacheThemen(kurs: Kurs, d: Daten, h: string): Thema[] {
   return [...kurs.themen].sort((a, b) => schwaeche(b, d, h) - schwaeche(a, d, h));
+}
+
+/** Themen für neue Karten und Aufgaben: nur gestartete. Ist noch keins gestartet, die erste Zeile des Lernpfads. */
+function gestartete(kurs: Kurs, sortiert: Thema[], d: Daten): Thema[] {
+  const an = sortiert.filter((t) => istGestartet(t, d));
+  if (an.length) return an;
+  const erste = new Set(kurs.pfad[0] ?? []);
+  return sortiert.filter((t) => erste.has(t.id));
 }
 
 /** `fokus`: Themen, die laut Lernplan heute dran sind – ihre Aufgaben kommen zuerst. */
@@ -36,7 +44,8 @@ export function baueHeute(kurs: Kurs, d: Daten, h: string, seed: number, fokus: 
   // 2) neue Karten aus den schwächsten Themen auffüllen
   const neueKarten: { id: string }[] = [];
   const platz = Math.max(0, e.zielKarten - faellige.length);
-  for (const t of sortiert) {
+  const offen = gestartete(kurs, sortiert, d);
+  for (const t of offen) {
     if (neueKarten.length >= platz) break;
     for (const k of t.karten) {
       if (neueKarten.length >= platz) break;
@@ -46,7 +55,7 @@ export function baueHeute(kurs: Kurs, d: Daten, h: string, seed: number, fokus: 
 
   // 3) Aufgaben aus den drei schwächsten Themen (mit Aufgaben), wenig geübte zuerst
   const fokusIds = new Set(fokus.map((t) => t.id));
-  const mitAufgaben = [...sortiert.filter((t) => fokusIds.has(t.id)), ...sortiert.filter((t) => !fokusIds.has(t.id))]
+  const mitAufgaben = [...offen.filter((t) => fokusIds.has(t.id)), ...offen.filter((t) => !fokusIds.has(t.id))]
     .filter((t) => t.generatoren.length + t.uebungen.length > 0)
     .slice(0, 3);
   const kandidaten = mitAufgaben.flatMap((t, ti) => [
@@ -94,7 +103,7 @@ export function baueHeute(kurs: Kurs, d: Daten, h: string, seed: number, fokus: 
 export function mischKarten(kurs: Kurs, d: Daten, h: string, anzahl: number): SitzungsItem[] {
   const sortiert = schwacheThemen(kurs, d, h);
   const faellig = sortiert.flatMap((t) => t.karten.filter((k) => istFaellig(d.karten[k.id], h)));
-  const neu = sortiert.flatMap((t) => t.karten.filter((k) => !d.karten[k.id]));
+  const neu = gestartete(kurs, sortiert, d).flatMap((t) => t.karten.filter((k) => !d.karten[k.id]));
   return [...faellig, ...neu].slice(0, anzahl).map((k) => ({ art: 'karte' as const, id: k.id }));
 }
 

@@ -4154,3 +4154,21 @@ a.fach-zeile.bald:hover {
 .klausur-termin input[type='date'] {
   min-width: 0;
 }
+.thema-optionen {
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+  flex-wrap: wrap;
+}
+.thema-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  color: var(--text-2);
+}
+.schalter.klein-schalter {
+  transform: scale(0.8);
+  transform-origin: left center;
+  margin-right: -6px;
+}

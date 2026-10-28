@@ -9,7 +9,7 @@ import { setzeThemaAusgeblendet, useAktiverKurs, useAktiverKursKomplett } from '
 import { findeThema } from '../content/kurse';
 import type { Thema } from '../content/types';
 import { heute, tageZwischen } from '../lib/datum';
-import { statusVon, themaFortschritt } from '../lib/fortschritt';
+import { istGestartet, statusVon, themaFortschritt } from '../lib/fortschritt';
 import { useStore } from '../store/store';
 
 interface Linie {
@@ -46,9 +46,7 @@ function Knoten({ t }: { t: Thema }) {
             <Icon name="karten" size={13} /> {f.kartenFaellig} fällig
           </span>
         )}
-        <button type="button" className="btn geist klein symbol-knopf knoten-aus" onClick={() => setzeThemaAusgeblendet(t.id, true)} title="Thema ausblenden (fertig oder nicht klausurrelevant)" aria-label={`${t.titel} ausblenden`}>
-          <Icon name="auge" size={16} />
-        </button>
+        {!istGestartet(t, daten) && <span className="sehr-leise klein knoten-aus">noch nicht gestartet</span>}
       </div>
     </div>
   );

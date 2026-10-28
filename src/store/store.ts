@@ -62,6 +62,10 @@ export interface Einstellungen {
   fertigeKurse: string[];
   /** ausgeblendete Themen (fertig oder nicht klausurrelevant) */
   ausgeblendeteThemen: string[];
+  /** Themen, deren „Kurz erklärt“ gelesen wurde */
+  gelesen: string[];
+  /** von Hand: Thema in der Tagesrunde ja/nein (sonst automatisch, sobald gestartet) */
+  tagesrunde: Record<string, boolean>;
   /** Einführung und kurze Hinweise anzeigen */
   hinweise: boolean;
   /** Wiederholungsabstände der Karteikarten */
@@ -107,6 +111,8 @@ export const STANDARD_EINSTELLUNGEN: Einstellungen = {
   meineKurse: ['schwingungen'],
   fertigeKurse: [],
   ausgeblendeteThemen: [],
+  gelesen: [],
+  tagesrunde: {},
   hinweise: true,
   takt: 'standard',
   wischen: true,
