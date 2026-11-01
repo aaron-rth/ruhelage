@@ -5,6 +5,9 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   base: '/ruhelage/',
   plugins: [react()],
+  define: {
+    __BUILD__: JSON.stringify(`${new Date().toISOString().slice(0, 16).replace('T', ' ')}${process.env.GITHUB_SHA ? ` · ${process.env.GITHUB_SHA.slice(0, 7)}` : ''}`),
+  },
   build: {
     rollupOptions: {
       output: {

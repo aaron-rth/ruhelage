@@ -30,7 +30,7 @@ inhalte/
       …
 ```
 
-`inhalte/_beispiel/` ist ein vollständiges, gültiges Beispiel. Am besten kopieren und anpassen.
+`inhalte/_beispiel/` ist ein vollständiges, gültiges Beispiel. Es ist zugleich das Beispiel-Fach der Einführung (`"beispiel": true`). Zum Kopieren gut geeignet, aber im neuen Kurs `"beispiel"` weglassen.
 
 ## kurs.json
 

@@ -8,13 +8,16 @@ import { Icon } from './Icon';
 /** „K1 · LF“ → „K1“ */
 const stufeVon = (klasse: string) => klasse.split('·')[0].trim();
 
+export { stufeVon };
+
 export function FachHinzu({ onZu, onAnfrage }: { onZu: () => void; onAnfrage: () => void }) {
   const { laufend, fertig } = useMeineKurse();
-  const stufen = [...new Set(KURSE.map((k) => stufeVon(k.klasse)))].sort();
+  const echte = KURSE.filter((k) => !k.beispiel);
+  const stufen = [...new Set(echte.map((k) => stufeVon(k.klasse)))].sort();
   const [stufe, setStufe] = useState<string>('alle');
   const vorhanden = new Set(laufend.map((k) => k.id));
   const istFertig = new Set(fertig.map((k) => k.id));
-  const angebot = KURSE.filter((k) => !vorhanden.has(k.id) && (stufe === 'alle' || stufeVon(k.klasse) === stufe));
+  const angebot = echte.filter((k) => !vorhanden.has(k.id) && (stufe === 'alle' || stufeVon(k.klasse) === stufe));
 
   return (
     <Dialog titel="Fach hinzufügen" onSchliessen={onZu}>

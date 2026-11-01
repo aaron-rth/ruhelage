@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { useStore, STANDARD_EINSTELLUNGEN } from '../store/store';
-import { aktiverKurs, fuegeKursHinzu, klausurDatumVon, meineKurse, setzeKlausurDatum, setzeKursFertig, setzeThemaAusgeblendet, wechsleKurs } from './kurs';
+import { aktiverKurs, BEISPIEL_KURS, fuegeKursHinzu, starteMitKursen, klausurDatumVon, meineKurse, setzeKlausurDatum, setzeKursFertig, setzeThemaAusgeblendet, wechsleKurs } from './kurs';
 
 const e = () => useStore.getState().einstellungen;
 
@@ -42,5 +42,16 @@ describe('Meine Fächer', () => {
     expect(klausurDatumVon(e(), 'schwingungen')).toBe('2026-11-06');
     setzeKlausurDatum('beispiel-deutsch', '');
     expect(e().klausurDatum).toBe('');
+  });
+
+  it('Beispiel-Fach verschwindet samt Übungsstand beim ersten echten Fach', () => {
+    const b = BEISPIEL_KURS()!;
+    starteMitKursen([b.id]);
+    expect(e().kurs).toBe(b.id);
+    expect(meineKurse(e()).laufend.map((k) => k.id)).toEqual([b.id]);
+    useStore.setState((s) => ({ karten: { ...s.karten, [b.themen[0].karten[0].id]: { fach: 1, faellig: '2026-11-01', zuletzt: '2026-11-01', wiederholungen: 1 } as never } }));
+    fuegeKursHinzu('schwingungen');
+    expect(meineKurse(e()).laufend.map((k) => k.id)).toEqual(['schwingungen']);
+    expect(useStore.getState().karten[b.themen[0].karten[0].id]).toBeUndefined();
   });
 });

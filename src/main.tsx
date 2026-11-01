@@ -9,6 +9,9 @@ import './styles/app.css';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { App } from './App';
+import { fehlerMitschreiben } from './lib/fehler';
+
+fehlerMitschreiben();
 
 // Als Homescreen-App immer bei „Heute“ starten – iOS merkt sich sonst die Seite, auf der die App
 // zum Homescreen hinzugefügt wurde (z. B. die Formelsammlung). Neuladen innerhalb der App bleibt, wo es ist.

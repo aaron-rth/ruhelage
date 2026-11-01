@@ -1,5 +1,6 @@
-// Profil: Konto und Schnellzugriff auf Statistik, Einstellungen und Einführung.
+// Profil: Konto und Schnellzugriff auf Statistik, Einstellungen, Einführung und Hilfe.
 import { Link } from 'react-router-dom';
+import { oeffneHilfe } from '../components/Hilfe';
 import { starteTour } from '../components/Tour';
 import { Icon } from '../components/Icon';
 import { KontoKarte } from '../components/Konto';
@@ -41,6 +42,11 @@ export function Profil() {
           <Icon name="info" size={22} />
           <strong>Einführung</strong>
           <span className="sehr-leise klein">zeigt dir in der App, wo was ist</span>
+        </button>
+        <button type="button" className="kurs-weg" onClick={() => oeffneHilfe()}>
+          <Icon name="funke" size={22} />
+          <strong>Hilfe &amp; Feedback</strong>
+          <span className="sehr-leise klein">Fehler melden, Idee oder Frage schicken</span>
         </button>
       </div>
     </div>

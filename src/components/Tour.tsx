@@ -5,6 +5,7 @@ import { createPortal } from 'react-dom';
 import { useNavigate } from 'react-router-dom';
 import { create } from 'zustand';
 import { useIstHandy } from '../lib/geraet';
+import { aktiverKurs } from '../lib/kurs';
 import { useStore } from '../store/store';
 import { Md } from './Basis';
 import { Icon } from './Icon';
@@ -19,49 +20,41 @@ interface Schritt {
   text: string;
 }
 
-const NAV = (bereich: string) => ({ handy: `.mobil-nav [data-tour="${bereich}"]`, laptop: `.nav-bereich[data-tour="${bereich}"]` });
-
 const SCHRITTE: Schritt[] = [
   {
     pfad: '/',
     titel: 'Willkommen bei Ruhelage',
-    text: 'Deine Lern-App für die Schule. Gerechnet und geschrieben wird im Heft – die App prüft, hilft in kleinen Schritten und merkt sich, was noch nicht sitzt. Ich zeig dir kurz, wo was ist.',
+    text: 'Gerechnet und geschrieben wird im Heft – die App prüft, hilft in kleinen Schritten und merkt sich, was noch nicht sitzt. Fünf kurze Stationen, dann kann es losgehen.',
+  },
+  {
+    pfad: '/',
+    ziel: { handy: '.mobil-fach[data-tour="fachwahl"]', laptop: '.fach-umschalter[data-tour="fachwahl"]' },
+    titel: 'Dein Fach',
+    text: 'Hier siehst du, in welchem Fach du gerade bist. Ein Tipp darauf wechselt das Fach oder fügt neue hinzu.',
   },
   {
     pfad: '/',
     ziel: { handy: '[data-tour="runde"]', laptop: '[data-tour="runde"]' },
     titel: 'Deine Tagesrunde',
-    text: 'Etwa 20 Minuten, gemischt aus fälligen Karteikarten und Aufgaben aus deinen schwächsten Themen. Wenn du nicht weißt, womit du anfangen sollst: hier.',
-  },
-  {
-    pfad: '/',
-    ziel: { handy: '[data-tour="gezielt"]', laptop: '[data-tour="gezielt"]' },
-    titel: 'Gezielt üben',
-    text: 'Karteikarten, Übungen oder Rechentrainer – gemischt oder für ein Thema. Dazu Probeklausur, Nochmal-Stapel und Spielwiese.',
-  },
-  {
-    pfad: '/faecher',
-    ziel: NAV('/faecher'),
-    titel: 'Fächer',
-    text: 'Hier wählst du dein Fach und siehst, was noch zu tun ist.',
-  },
-  {
-    pfad: '/faecher',
-    ziel: { handy: '[data-tour="kurs"]', laptop: '[data-tour="kurs"]' },
-    titel: 'Lernpfad, Lernplan, Formeln',
-    text: 'Der **Lernpfad** zeigt alle Themen, der **Lernplan** verteilt sie bis zur Klausur, die **Formelsammlung** hat alles zum Nachschlagen.',
+    text: 'Etwa 20 Minuten: fällige Karteikarten und Aufgaben aus deinen schwächsten Themen. Wenn du nicht weißt, womit du anfangen sollst – hier.',
   },
   {
     pfad: '/pfad',
     ziel: { handy: '.knoten .status-wahl', laptop: '.knoten .status-wahl' },
-    titel: 'Schätz dich selbst ein',
-    text: 'Bei jedem Thema: ✓ kann ich · ~ so halb · ✗ kann ich nicht. Danach richten sich Tagesrunde und Lernplan.',
+    titel: 'Lernpfad: schätz dich ein',
+    text: 'Bei jedem Thema: ✓ kann ich · ~ so halb · ✗ kann ich nicht. Themen, die du noch nicht hattest, kommen erst in die Tagesrunde, wenn du sie anfängst.',
   },
   {
-    pfad: '/profil',
-    ziel: NAV('/profil'),
-    titel: 'Profil',
-    text: 'Konto (optional, zum Synchronisieren), Statistik und Einstellungen. Diese Einführung findest du hier jederzeit wieder.',
+    pfad: '/',
+    ziel: { handy: '[data-tour="gezielt"]', laptop: '.nav [data-tour="/ueben"]' },
+    titel: 'Gezielt üben',
+    text: 'Karteikarten, Übungen und – je nach Fach – Rechentrainer oder Probeklausur. Gemischt oder für ein Thema.',
+  },
+  {
+    pfad: '/',
+    ziel: { handy: '.mobil-nav [data-tour="/profil"]', laptop: '[data-tour="leiste-icons"]' },
+    titel: 'Statistik, Konto & Hilfe',
+    text: 'Statistik, Konto zum Synchronisieren, Einstellungen – und **Hilfe & Feedback**, falls etwas nicht klappt. Diese Einführung findest du in den Einstellungen wieder.',
   },
 ];
 
@@ -80,7 +73,6 @@ interface Rahmen {
 
 export function Tour() {
   const schritt = useTour((s) => s.schritt);
-  const gesehen = useStore((s) => s.gesehen);
   const hinweisGesehen = useStore((s) => s.hinweisGesehen);
   const navigate = useNavigate();
   const handy = useIstHandy();
@@ -89,13 +81,6 @@ export function Tour() {
   const [bereit, setBereit] = useState(false);
   const karte = useRef<HTMLDivElement>(null);
   const [kartePos, setKartePos] = useState<{ top?: number; bottom?: number; left: number; width: number } | null>(null);
-
-  // beim allerersten Öffnen automatisch starten
-  useEffect(() => {
-    if (!gesehen.includes(EINFUEHRUNG) && useTour.getState().schritt === null) starteTour();
-    // nur beim Start prüfen
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const s = schritt !== null ? SCHRITTE[schritt] : null;
   const selektor = s?.ziel ? (handy ? s.ziel.handy : s.ziel.laptop) : undefined;
@@ -111,7 +96,8 @@ export function Tour() {
     if (i < 0) return;
     if (i >= SCHRITTE.length) {
       beenden();
-      navigate('/');
+      // mit dem Beispiel-Fach: gleich das echte Fach aussuchen
+      navigate(aktiverKurs().beispiel ? '/faecher?hinzu=1' : '/');
       return;
     }
     useTour.setState({ schritt: i });
@@ -268,7 +254,7 @@ export function Tour() {
               </button>
             )}
             <button type="button" className="btn primaer klein" onClick={() => gehe(schritt + 1)} autoFocus>
-              {letzter ? 'Fertig' : 'Weiter'} <Icon name="rechts" size={16} />
+              {letzter ? (aktiverKurs().beispiel ? 'Mein Fach wählen' : 'Fertig') : 'Weiter'} <Icon name="rechts" size={16} />
             </button>
           </div>
         </div>
