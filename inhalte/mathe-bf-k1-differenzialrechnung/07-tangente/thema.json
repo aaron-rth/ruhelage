@@ -394,5 +394,76 @@
       "name": "Steigungswinkel",
       "tex": "\\tan(\\alpha) = f'(a)"
     }
+  ],
+  "rechenaufgaben": [
+    {
+      "id": "mdiff-r-tangente",
+      "titel": "Tangentengleichung",
+      "schwierigkeit": 2,
+      "quelle": "eigene Aufgabe",
+      "bedingung": "2*a*x0 + b != 0 && c - a*x0^2 != 0",
+      "werte": {
+        "a": {
+          "aus": [
+            -3,
+            -2,
+            2,
+            3
+          ]
+        },
+        "b": {
+          "von": -4,
+          "bis": 4,
+          "ohne": [
+            0
+          ]
+        },
+        "c": {
+          "von": -5,
+          "bis": 5,
+          "ohne": [
+            0
+          ]
+        },
+        "x0": [
+          -3,
+          3
+        ]
+      },
+      "berechnet": {
+        "m": "2*a*x0 + b",
+        "y0": "a*x0^2 + b*x0 + c",
+        "n": "y0 - m*x0"
+      },
+      "kontext": "Gegeben ist $f(x) = {a}x^2 {+b}x {+c}$. Gesucht ist die Tangente $t(x) = mx + n$ an den Graphen im Punkt $P({x0} \\mid f({x0}))$.",
+      "teile": [
+        {
+          "frage": "Berechne die Steigung $m$ der Tangente.",
+          "ergebnis": "m",
+          "hilfen": [
+            "Die Tangentensteigung ist die Ableitung an der Stelle: $m = f'({x0})$.",
+            "$f'(x) = {2*a}x {+b}$",
+            "$m = {2*a} \\cdot ({x0}) {+b}$"
+          ],
+          "loesung": "$f'(x) = {2*a}x {+b}$, also $m = f'({x0}) = {m}$."
+        },
+        {
+          "frage": "Berechne den y-Achsenabschnitt $n$ der Tangente.",
+          "ergebnis": "n",
+          "hilfen": [
+            "Der Punkt $P$ liegt auf der Tangente: $f({x0}) = m \\cdot {x0} + n$.",
+            "$f({x0}) = {y0}$ und $m = {m}$",
+            "$n = {y0} - ({m}) \\cdot ({x0})$"
+          ],
+          "loesung": "$f({x0}) = {y0}$. Aus ${y0} = {m} \\cdot ({x0}) + n$ folgt $n = {n}$, also $t(x) = {m}x {+n}$.",
+          "typischeFehler": [
+            {
+              "ergebnis": "c",
+              "hinweis": "Der y-Achsenabschnitt der Tangente ist nicht der von $f$ – setze den Punkt $P$ in $t(x) = mx + n$ ein."
+            }
+          ]
+        }
+      ]
+    }
   ]
 }

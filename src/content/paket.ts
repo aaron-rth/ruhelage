@@ -1,6 +1,8 @@
 // Inhaltspakete aus dem Ordner inhalte/ (JSON + Markdown) prüfen und in einen Kurs umwandeln.
 // Reine Funktionen ohne Vite-Abhängigkeit – dieselbe Prüfung läuft im Test (CI) und beim Laden.
+import { EINHEITEN } from '../lib/einheiten';
 import { OPERATOREN } from './operatoren';
+import { alsGenerator, pruefeRechenaufgabe, type RechenaufgabeJson } from './rechenaufgaben';
 import type { Formel, Karte, KartenTyp, Kurs, Status, Thema, Uebung } from './types';
 
 export interface ThemaDateien {
@@ -225,6 +227,34 @@ export function baueKurs(p: PaketDateien): PaketErgebnis {
       tp.text(x, 'name', `formeln[${j}]`);
       tp.text(x, 'tex', `formeln[${j}]`);
     });
+    const rechen = t.rechenaufgaben === undefined ? [] : tp.liste(t, 'rechenaufgaben', '', 0);
+    rechen.forEach((x, j) => {
+      const pf = `rechenaufgaben[${j}]`;
+      tp.id(x, pf, ids);
+      tp.text(x, 'titel', pf);
+      tp.text(x, 'kontext', pf);
+      if (x.schwierigkeit !== undefined && ![1, 2, 3].includes(x.schwierigkeit as number)) tp.melde(pf, '„schwierigkeit“ muss 1, 2 oder 3 sein');
+      if (!istObj(x.werte) || !Object.keys(x.werte).length) tp.melde(pf, '„werte“ fehlt, z. B. {"a": [1, 5]}');
+      else
+        for (const [k, b] of Object.entries(x.werte)) {
+          const ok =
+            (Array.isArray(b) && b.length === 2 && b.every(Number.isInteger) && b[0] <= b[1]) ||
+            (istObj(b) && Array.isArray(b.aus) && b.aus.length > 0 && b.aus.every((z) => typeof z === 'number')) ||
+            (istObj(b) && typeof b.von === 'number' && typeof b.bis === 'number' && b.von <= b.bis);
+          if (!ok) tp.melde(`${pf}.werte.${k}`, 'erlaubt: [min, max] (ganze Zahlen), {"von", "bis", "schritt", "ohne"} oder {"aus": [...]}');
+        }
+      const teile = tp.liste(x, 'teile', pf, 1);
+      teile.forEach((y, i) => {
+        const pt = `${pf}.teile[${i}]`;
+        tp.text(y, 'frage', pt);
+        tp.text(y, 'ergebnis', pt);
+        tp.text(y, 'loesung', pt);
+        tp.texte(y, 'hilfen', pt, 3);
+        if (Array.isArray(y.hilfen) && y.hilfen.length !== 3) tp.melde(pt, 'genau drei Hilfen (Ansatz, Zwischenschritt, fast fertig)');
+        if (y.einheit !== undefined && !EINHEITEN.some((e) => e.key === y.einheit)) tp.melde(pt, `unbekannte Einheit „${String(y.einheit)}“ (leer lassen für ohne Einheit)`);
+      });
+      if (!tp.fehler.length) for (const f of pruefeRechenaufgabe(x as unknown as RechenaufgabeJson)) tp.melde(pf, f);
+    });
     if (!karten.length && !uebungen.length) tp.melde('', 'ein Thema braucht mindestens eine Karteikarte oder Übung');
     for (const b of fehlendeBilder([t, td.erklaerung], td.bilder)) tp.melde('', `Bild „bilder/${b}“ nicht gefunden`);
     fehler.push(...tp.fehler);
@@ -245,7 +275,7 @@ export function baueKurs(p: PaketDateien): PaketErgebnis {
       quelleErklaerung: typeof roh.t.quelleErklaerung === 'string' ? roh.t.quelleErklaerung : '',
       karten: (roh.t.karten as Karte[] | undefined) ?? [],
       uebungen: (roh.t.uebungen as Uebung[] | undefined) ?? [],
-      generatoren: [],
+      generatoren: ((roh.t.rechenaufgaben as RechenaufgabeJson[] | undefined) ?? []).map(alsGenerator),
       formeln: (roh.t.formeln as Formel[] | undefined) ?? [],
     });
   });

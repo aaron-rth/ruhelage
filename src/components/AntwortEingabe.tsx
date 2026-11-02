@@ -131,7 +131,8 @@ export function AntwortEingabe({ antwort, wert, onChange, onEnter, status, gespe
             { key: 'rad', anzeige: 'rad' },
             { key: '°', anzeige: '° (Grad)' },
           ];
-    const zeigeMenue = einheiten.length > 1 || einheiten[0]?.key !== '';
+    // ohne Einheit (z. B. Mathe): kein Menü
+    const zeigeMenue = !(antwort.art === 'zahl' && antwort.einheit === '') && (einheiten.length > 1 || einheiten[0]?.key !== '');
     const text = wert.text;
     const z = text.trim() ? zerlege(text) : null;
 

@@ -374,5 +374,70 @@
       "name": "Wendestelle (hinreichend)",
       "tex": "f''(x_0) = 0 \\;\\wedge\\; f'''(x_0) \\neq 0"
     }
+  ],
+  "rechenaufgaben": [
+    {
+      "id": "mdiff-r-extremstellen",
+      "titel": "Extrem- und Wendestellen",
+      "schwierigkeit": 2,
+      "quelle": "eigene Aufgabe",
+      "werte": {
+        "m": {
+          "von": -2,
+          "bis": 2,
+          "ohne": [
+            0
+          ]
+        },
+        "d": [
+          1,
+          3
+        ]
+      },
+      "bedingung": "m*m != d*d",
+      "berechnet": {
+        "b": "-3*m",
+        "c": "3*(m^2 - d^2)"
+      },
+      "kontext": "Gegeben ist $f(x) = x^3 {+b}x^2 {+c}x$.",
+      "teile": [
+        {
+          "frage": "Bestimme die x-Koordinate des Hochpunkts.",
+          "ergebnis": "m - d",
+          "hilfen": [
+            "Notwendige Bedingung: $f'(x) = 0$.",
+            "$f'(x) = 3x^2 {+2*b}x {+c} = 0$, geteilt durch 3: $x^2 {+2*b/3}x {+c/3} = 0$",
+            "Lösungen: $x_1 = {m-d}$ und $x_2 = {m+d}$. Prüfe mit $f''(x) = 6x {+2*b}$, wo $f'' < 0$ ist."
+          ],
+          "loesung": "$f'(x) = 3x^2 {+2*b}x {+c} = 0 \\iff x = {m-d}$ oder $x = {m+d}$. $f''({m-d}) = {-6*d} < 0$ ⇒ Hochpunkt bei $x = {m-d}$.",
+          "typischeFehler": [
+            {
+              "ergebnis": "m + d",
+              "hinweis": "Das ist die Stelle des Tiefpunkts: dort ist $f'' > 0$."
+            }
+          ]
+        },
+        {
+          "frage": "Bestimme die x-Koordinate des Tiefpunkts.",
+          "ergebnis": "m + d",
+          "hilfen": [
+            "Gleiche Kandidaten wie beim Hochpunkt: $f'(x) = 0$.",
+            "$x_1 = {m-d}$, $x_2 = {m+d}$",
+            "$f''({m+d}) = {6*d}$ – größer oder kleiner als 0?"
+          ],
+          "loesung": "$f''({m+d}) = {6*d} > 0$ ⇒ Tiefpunkt bei $x = {m+d}$."
+        },
+        {
+          "frage": "Bestimme die Wendestelle.",
+          "ergebnis": "m",
+          "hilfen": [
+            "Notwendige Bedingung: $f''(x) = 0$.",
+            "$f''(x) = 6x {+2*b}$",
+            "$6x {+2*b} = 0$, und $f'''(x) = 6 \\neq 0$"
+          ],
+          "loesung": "$f''(x) = 6x {+2*b} = 0 \\iff x = {m}$; $f''' = 6 \\neq 0$ ⇒ Wendestelle $x = {m}$ – genau in der Mitte zwischen den Extremstellen."
+        }
+      ]
+    }
   ]
 }
