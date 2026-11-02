@@ -1,0 +1,392 @@
+{
+  "id": "mdiff-monotonie",
+  "titel": "Monotonie und Krümmung",
+  "untertitel": "Monotoniesatz, Vorzeichentabelle, Links- und Rechtskurve",
+  "abhaengig": [
+    "mdiff-grafisch",
+    "mdiff-regeln"
+  ],
+  "quelleErklaerung": "eigene Zusammenfassung; abgeglichen mit Bildungsplan BW 2016 Mathematik, Lehrerfortbildung BW (Überblick Basisfach), serlo.org und Wikibooks „Mathe für Nicht-Freaks“",
+  "karten": [
+    {
+      "id": "mdiff-monotonie-k1",
+      "typ": "begriff",
+      "vorne": "Definition: $f$ ist auf $I$ streng monoton wachsend",
+      "hinten": "Für alle $x_1, x_2 \\in I$ mit $x_1 < x_2$ gilt $f(x_1) < f(x_2)$.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-monotonie-k2",
+      "typ": "formel",
+      "vorne": "Monotoniesatz",
+      "hinten": "Ist $f'(x) > 0$ für alle $x \\in I$, dann ist $f$ auf $I$ streng monoton wachsend. Ist $f'(x) < 0$ für alle $x \\in I$, dann ist $f$ streng monoton fallend.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-monotonie-k3",
+      "typ": "warum",
+      "vorne": "Warum gilt die Umkehrung des Monotoniesatzes nicht?",
+      "hinten": "Gegenbeispiel $f(x) = x^3$: streng monoton wachsend auf ganz $\\mathbb{R}$, aber $f'(0) = 0$, nicht $> 0$.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-monotonie-k4",
+      "typ": "begriff",
+      "vorne": "Was bedeutet linksgekrümmt anschaulich?",
+      "hinten": "Fährt man von links nach rechts auf dem Graphen, muss man nach links lenken. Der Graph ist nach oben offen (∪), die Steigung nimmt zu.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-monotonie-k5",
+      "typ": "formel",
+      "vorne": "Krümmungskriterium mit $f''$",
+      "hinten": "$f''(x) > 0$ auf $I$ ⇒ Linkskurve; $f''(x) < 0$ auf $I$ ⇒ Rechtskurve.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-monotonie-k6",
+      "typ": "warum",
+      "vorne": "Warum bedeutet $f''(x) > 0$ eine Linkskurve?",
+      "hinten": "$f'' > 0$ heißt, $f'$ ist streng monoton wachsend. Die Steigungen werden von links nach rechts immer größer, der Graph biegt sich nach links (oben).",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-monotonie-k7",
+      "typ": "herleitung",
+      "vorne": "Monotonie von $f(x) = x^3 - 6x^2 + 9x + 1$",
+      "hinten": "$f'(x) = 3(x - 1)(x - 3)$. Testwerte: $f'(0) > 0$, $f'(2) < 0$, $f'(4) > 0$. Wachsend auf $(-\\infty; 1]$ und $[3; \\infty)$, fallend auf $[1; 3]$.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-monotonie-k8",
+      "typ": "fehler",
+      "vorne": "Typischer Fehler: Testwerte in $f$ statt in $f'$ einsetzen",
+      "hinten": "Ob $f$ steigt, verrät das **Vorzeichen von $f'$**. Der Funktionswert $f(x)$ sagt nur, ob der Graph über oder unter der x-Achse liegt.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-monotonie-k9",
+      "typ": "begriff",
+      "vorne": "Wozu dienen die Nullstellen von $f'$ bei der Monotonieuntersuchung?",
+      "hinten": "Nur dort kann $f'$ (bei ganzrationalen Funktionen) das Vorzeichen wechseln. Sie zerlegen die x-Achse in Intervalle, auf denen das Vorzeichen von $f'$ gleich bleibt.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-monotonie-k10",
+      "typ": "wasPassiert",
+      "vorne": "„Der Wasserstand steigt, aber immer langsamer.“ Was gilt für $W'$ und $W''$?",
+      "hinten": "$W'(t) > 0$ (steigt) und $W''(t) < 0$ (Steigung nimmt ab, Rechtskurve).",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-monotonie-k11",
+      "typ": "wasPassiert",
+      "vorne": "Graph fällt und ist linksgekrümmt. Wie verläuft er?",
+      "hinten": "Er fällt immer schwächer, wird also nach rechts hin flacher.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-monotonie-k12",
+      "typ": "begriff",
+      "vorne": "Darf man Randstellen zu Monotonieintervallen dazunehmen?",
+      "hinten": "Ja. Bei $f'(x) = 3(x - 1)(x - 3)$ ist $f$ z. B. auf $[1; 3]$ streng monoton fallend, obwohl $f'(1) = f'(3) = 0$ ist.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-monotonie-k13",
+      "typ": "herleitung",
+      "vorne": "Krümmung von $f(x) = x^3 - 6x^2 + 9x + 1$",
+      "hinten": "$f''(x) = 6x - 12$, Nullstelle $x = 2$. Für $x < 2$: $f'' < 0$, Rechtskurve. Für $x > 2$: $f'' > 0$, Linkskurve.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-monotonie-k14",
+      "typ": "begriff",
+      "vorne": "Welche Krümmung hat eine nach oben geöffnete Parabel?",
+      "hinten": "Überall linksgekrümmt, denn $f(x) = ax^2 + bx + c$ mit $a > 0$ hat $f''(x) = 2a > 0$.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    }
+  ],
+  "uebungen": [
+    {
+      "id": "mdiff-monotonie-u1",
+      "typ": "mc",
+      "frage": "Auf welchem Intervall ist $f(x) = x^3 - 3x$ streng monoton fallend?",
+      "quelle": "eigene Aufgabe",
+      "optionen": [
+        {
+          "text": "$[-1; 1]$",
+          "warum": "$f'(x) = 3x^2 - 3 = 3(x - 1)(x + 1)$ ist dort negativ (z. B. $f'(0) = -3$).",
+          "richtig": true
+        },
+        {
+          "text": "$(-\\infty; -1]$",
+          "warum": "Dort ist z. B. $f'(-2) = 9 > 0$, $f$ steigt."
+        },
+        {
+          "text": "$[-\\sqrt{3}; \\sqrt{3}]$",
+          "warum": "Das sind die Nullstellen von $f$, nicht von $f'$."
+        },
+        {
+          "text": "$[0; \\infty)$",
+          "warum": "Für $x > 1$ ist $f'(x) > 0$."
+        }
+      ]
+    },
+    {
+      "id": "mdiff-monotonie-u2",
+      "typ": "zuordnen",
+      "frage": "Ordne jeder Beschreibung die passende Kombination zu.",
+      "quelle": "eigene Aufgabe",
+      "paare": [
+        {
+          "links": "steigt immer stärker",
+          "rechts": "$f' > 0$ und $f'' > 0$"
+        },
+        {
+          "links": "steigt immer schwächer",
+          "rechts": "$f' > 0$ und $f'' < 0$"
+        },
+        {
+          "links": "fällt immer stärker",
+          "rechts": "$f' < 0$ und $f'' < 0$"
+        },
+        {
+          "links": "fällt immer schwächer",
+          "rechts": "$f' < 0$ und $f'' > 0$"
+        }
+      ]
+    },
+    {
+      "id": "mdiff-monotonie-u3",
+      "typ": "klassifizieren",
+      "frage": "Linkskurve oder Rechtskurve?",
+      "quelle": "eigene Aufgabe",
+      "kategorien": [
+        "Linkskurve",
+        "Rechtskurve"
+      ],
+      "items": [
+        {
+          "text": "$f''(x) = 4$ für alle $x$",
+          "kategorie": 0,
+          "warum": "$f'' > 0$"
+        },
+        {
+          "text": "Graph von $f(x) = -x^2$",
+          "kategorie": 1,
+          "warum": "$f''(x) = -2 < 0$"
+        },
+        {
+          "text": "$f'$ ist streng monoton fallend",
+          "kategorie": 1,
+          "warum": "Die Steigungen nehmen ab."
+        },
+        {
+          "text": "Graph wie ∪",
+          "kategorie": 0,
+          "warum": "nach oben offen"
+        },
+        {
+          "text": "$f(x) = x^3$ für $x > 0$",
+          "kategorie": 0,
+          "warum": "$f''(x) = 6x > 0$ für $x > 0$"
+        },
+        {
+          "text": "„Die Kosten steigen, aber immer langsamer.“",
+          "kategorie": 1,
+          "warum": "Steigung nimmt ab"
+        }
+      ]
+    },
+    {
+      "id": "mdiff-monotonie-u4",
+      "typ": "luecke",
+      "frage": "Ergänze die Monotonieuntersuchung von $f(x) = x^3 - 6x^2 + 9x + 1$.",
+      "quelle": "eigene Aufgabe",
+      "text": "$f'(x) = 3(x - 1)(x - 3)$ hat die Nullstellen 1 und 3. Testwert: $f'(2) = $ [[0]]. Also ist $f$ auf $[1; 3]$ streng monoton [[1]]. Wegen $f''(x) = 6x - 12$ ist der Graph für $x > 2$ eine [[2]].",
+      "luecken": [
+        {
+          "optionen": [
+            "$-3$",
+            "$3$",
+            "$0$"
+          ],
+          "richtig": 0
+        },
+        {
+          "optionen": [
+            "fallend",
+            "wachsend"
+          ],
+          "richtig": 0
+        },
+        {
+          "optionen": [
+            "Linkskurve",
+            "Rechtskurve"
+          ],
+          "richtig": 0
+        }
+      ]
+    },
+    {
+      "id": "mdiff-monotonie-u5",
+      "typ": "fehler",
+      "frage": "Wo steckt der Fehler? Untersucht wird die Monotonie von $f(x) = x^2 - 4x + 1$.",
+      "quelle": "eigene Aufgabe",
+      "schritte": [
+        "$f'(x) = 2x - 4$",
+        "$f'(x) = 0 \\iff x = 2$",
+        "Testwert: $f(0) = 1 > 0$, also ist $f$ für $x < 2$ wachsend",
+        "Testwert: $f(3) = -2 < 0$, also ist $f$ für $x > 2$ fallend"
+      ],
+      "fehler": 2,
+      "erklaerung": "Die Testwerte gehören in $f'$, nicht in $f$: $f'(0) = -4 < 0$, also ist $f$ für $x \\leq 2$ fallend; $f'(3) = 2 > 0$, also wachsend für $x \\geq 2$."
+    },
+    {
+      "id": "mdiff-monotonie-u6",
+      "typ": "reihenfolge",
+      "frage": "Bringe die Schritte der Monotonieuntersuchung in die richtige Reihenfolge.",
+      "quelle": "eigene Aufgabe",
+      "schritte": [
+        "Erste Ableitung $f'$ bestimmen",
+        "Nullstellen von $f'$ berechnen",
+        "x-Achse in Intervalle zwischen den Nullstellen einteilen",
+        "In jedem Intervall einen Testwert in $f'$ einsetzen",
+        "Aus den Vorzeichen die Monotonie ablesen und mit Intervallen angeben"
+      ]
+    },
+    {
+      "id": "mdiff-monotonie-s1",
+      "typ": "schreiben",
+      "operator": "begruenden",
+      "frage": "Begründen Sie, dass $f(x) = x^3 + x$ auf ganz $\\mathbb{R}$ streng monoton wachsend ist. Begründen Sie außerdem an einem Beispiel, dass aus „$f$ ist streng monoton wachsend“ nicht folgt, dass $f'(x) > 0$ für alle $x$ gilt.",
+      "quelle": "eigene Aufgabe (Operatoren nach IQB-Grundstock Mathematik)",
+      "umfang": "ca. 5–7 Sätze",
+      "erwartung": [
+        "$f'(x) = 3x^2 + 1$. Da $x^2 \\geq 0$, ist $3x^2 + 1 \\geq 1 > 0$ für alle $x \\in \\mathbb{R}$.",
+        "Nach dem Monotoniesatz ist $f$ damit auf ganz $\\mathbb{R}$ streng monoton wachsend.",
+        "Gegenbeispiel zur Umkehrung: $g(x) = x^3$. Für $x_1 < x_2$ gilt $x_1^3 < x_2^3$, also ist $g$ streng monoton wachsend.",
+        "Aber $g'(x) = 3x^2$ und $g'(0) = 0$. Es gilt also nicht $g'(x) > 0$ für alle $x$. Die Umkehrung des Monotoniesatzes ist falsch."
+      ],
+      "kriterien": [
+        {
+          "name": "Ableitung und Abschätzung",
+          "beschreibung": "$f'(x) > 0$ für alle $x$ sauber begründet (nicht nur an Beispielen)",
+          "punkte": 2
+        },
+        {
+          "name": "Monotoniesatz",
+          "beschreibung": "korrekt angewendet",
+          "punkte": 1
+        },
+        {
+          "name": "Gegenbeispiel",
+          "beschreibung": "passendes Gegenbeispiel mit Nachweis der Monotonie",
+          "punkte": 2
+        },
+        {
+          "name": "Ableitungswert",
+          "beschreibung": "Stelle mit $f'(x) = 0$ angegeben",
+          "punkte": 1
+        },
+        {
+          "name": "Argumentation",
+          "beschreibung": "logischer Aufbau, Fachsprache",
+          "punkte": 1
+        }
+      ]
+    },
+    {
+      "id": "mdiff-monotonie-s2",
+      "typ": "schreiben",
+      "operator": "untersuchen",
+      "frage": "Untersuchen Sie $g(x) = -x^3 + 3x^2 + 9x - 2$ rechnerisch auf Monotonie und Krümmung. Erläutern Sie dabei jeden Schritt Ihres Vorgehens und geben Sie die Ergebnisse mit Intervallen an.",
+      "quelle": "eigene Aufgabe (Operatoren nach IQB-Grundstock Mathematik)",
+      "umfang": "Rechnung mit erläuternden Sätzen",
+      "erwartung": [
+        "$g'(x) = -3x^2 + 6x + 9 = -3(x - 3)(x + 1)$; Nullstellen $x = -1$ und $x = 3$.",
+        "Testwerte: $g'(-2) = -15 < 0$, $g'(0) = 9 > 0$, $g'(4) = -15 < 0$.",
+        "Monotonie: streng monoton fallend auf $(-\\infty; -1]$ und $[3; \\infty)$, streng monoton wachsend auf $[-1; 3]$ (Monotoniesatz).",
+        "$g''(x) = -6x + 6$; Nullstelle $x = 1$. $g''(0) = 6 > 0$, $g''(2) = -6 < 0$.",
+        "Krümmung: Linkskurve für $x < 1$, Rechtskurve für $x > 1$.",
+        "Erläuterung der Schritte: Nullstellen von $g'$ bzw. $g''$ als mögliche Vorzeichenwechselstellen, Testwerte im jeweiligen Intervall, Schluss mit Monotoniesatz bzw. Krümmungskriterium."
+      ],
+      "kriterien": [
+        {
+          "name": "Ableitungen",
+          "beschreibung": "$g'$ und $g''$ richtig",
+          "punkte": 2
+        },
+        {
+          "name": "Monotonie",
+          "beschreibung": "Nullstellen, Testwerte und Intervalle korrekt",
+          "punkte": 3
+        },
+        {
+          "name": "Krümmung",
+          "beschreibung": "Nullstelle, Testwerte, Links-/Rechtskurve korrekt",
+          "punkte": 2
+        },
+        {
+          "name": "Erläuterung",
+          "beschreibung": "Vorgehen nachvollziehbar mit Bezug auf Monotoniesatz und Krümmungskriterium erläutert",
+          "punkte": 2
+        },
+        {
+          "name": "Darstellung",
+          "beschreibung": "Intervallschreibweise, Vorzeichentabelle o. Ä.",
+          "punkte": 1
+        }
+      ]
+    },
+    {
+      "id": "mdiff-monotonie-s3",
+      "typ": "schreiben",
+      "operator": "interpretieren",
+      "frage": "Der Wasserstand eines Sees (in cm) wird im Verlauf eines Tages durch eine Funktion $W$ beschrieben ($t$ in Stunden nach Mitternacht). Es gilt: $W'(t) > 0$ und $W''(t) < 0$ für $2 < t < 8$; $W'(8) = 0$; $W'(t) < 0$ für $8 < t < 15$; $W''(t) > 0$ für $11 < t < 15$. Interpretieren Sie diese Angaben im Sachzusammenhang und skizzieren Sie in Worten einen möglichen Verlauf des Graphen.",
+      "quelle": "eigene Aufgabe (Operatoren nach IQB-Grundstock Mathematik)",
+      "umfang": "ca. 5–7 Sätze",
+      "erwartung": [
+        "Zwischen 2 und 8 Uhr steigt der Wasserstand ($W' > 0$), aber immer langsamer ($W'' < 0$, Rechtskurve).",
+        "Um 8 Uhr steigt er momentan nicht ($W'(8) = 0$). Weil er vorher steigt und danach fällt, ist der Wasserstand um 8 Uhr (lokal) am höchsten.",
+        "Zwischen 8 und 15 Uhr sinkt der Wasserstand ($W' < 0$).",
+        "Zwischen 11 und 15 Uhr sinkt er immer langsamer ($W'' > 0$, Linkskurve). Das Absinken war also um etwa 11 Uhr am stärksten.",
+        "Verlauf: Rechtskurve ansteigend bis zum Hochpunkt bei $t = 8$, danach fallend, ab etwa $t = 11$ als Linkskurve flacher werdend."
+      ],
+      "kriterien": [
+        {
+          "name": "Monotonie",
+          "beschreibung": "Steigen/Fallen in beiden Zeiträumen korrekt gedeutet",
+          "punkte": 2
+        },
+        {
+          "name": "Krümmung",
+          "beschreibung": "„immer langsamer“ bzw. „stärkstes Absinken“ aus $W''$ abgeleitet",
+          "punkte": 3
+        },
+        {
+          "name": "Hochpunkt",
+          "beschreibung": "$W'(8) = 0$ mit Vorzeichenwechsel als höchster Wasserstand gedeutet",
+          "punkte": 2
+        },
+        {
+          "name": "Sprache",
+          "beschreibung": "Alltagssprache statt bloßer Formeln, Einheiten/Uhrzeiten",
+          "punkte": 1
+        }
+      ]
+    }
+  ],
+  "formeln": [
+    {
+      "name": "Monotoniesatz",
+      "tex": "f'(x) > 0 \\text{ auf } I \\Rightarrow f \\text{ streng monoton wachsend auf } I"
+    },
+    {
+      "name": "Krümmung",
+      "tex": "f''(x) > 0 \\Rightarrow \\text{Linkskurve}, \\quad f''(x) < 0 \\Rightarrow \\text{Rechtskurve}"
+    }
+  ]
+}

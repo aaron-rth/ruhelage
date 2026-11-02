@@ -3,7 +3,7 @@
 export interface Operator {
   name: string;
   /** Anforderungsbereich */
-  afb: 'I' | 'II' | 'III' | 'II–III';
+  afb: 'I' | 'I–II' | 'II' | 'III' | 'II–III';
   /** was der Operator verlangt */
   bedeutung: string;
   /** woran man eine gute Antwort erkennt */
@@ -126,6 +126,46 @@ export const OPERATOREN: Record<string, Operator> = {
     tipp: 'Erst beschreiben, was man sieht, dann fachlich erklären, warum es so ist.',
   },
 };
+
+// Mathematik (und andere rechnende Fächer)
+Object.assign(OPERATOREN, {
+  angeben: {
+    name: 'Angeben',
+    afb: 'I',
+    bedeutung: 'Ein Ergebnis, einen Wert oder eine Eigenschaft ohne Begründung und ohne Rechenweg nennen.',
+    tipp: 'Kurz und eindeutig – eine Rechnung wird nicht verlangt.',
+  },
+  berechnen: {
+    name: 'Berechnen',
+    afb: 'I–II',
+    bedeutung: 'Ein Ergebnis von einem Ansatz ausgehend durch Rechnung gewinnen.',
+    tipp: 'Ansatz hinschreiben, Rechenschritte nachvollziehbar zeigen, Ergebnis mit Einheit.',
+  },
+  bestimmen: {
+    name: 'Bestimmen',
+    afb: 'II',
+    bedeutung: 'Einen Lösungsweg darstellen und das Ergebnis formulieren. Die Mittel (Rechnung, Graph, Überlegung) sind frei wählbar.',
+    tipp: 'Weg erkennbar machen (z. B. notwendige und hinreichende Bedingung), Ergebnis als Antwortsatz.',
+  },
+  untersuchen: {
+    name: 'Untersuchen',
+    afb: 'II',
+    bedeutung: 'Einen Sachverhalt nach vorgegebenen oder fachlich üblichen Kriterien prüfen, z. B. auf Monotonie, Extrema oder Symmetrie.',
+    tipp: 'Jedes Kriterium einzeln abarbeiten und das Ergebnis jeweils klar festhalten (z. B. mit Intervallen).',
+  },
+  zeigen: {
+    name: 'Zeigen / Nachweisen',
+    afb: 'II–III',
+    bedeutung: 'Eine Aussage mit gültigen Rechnungen oder Schlussfolgerungen bestätigen.',
+    tipp: 'Von dem ausgehen, was gegeben ist – nicht vom Ergebnis. Am Ende ausdrücklich festhalten, dass die Aussage gilt.',
+  },
+  skizzieren: {
+    name: 'Skizzieren',
+    afb: 'I–II',
+    bedeutung: 'Die wesentlichen Eigenschaften eines Graphen oder Sachverhalts übersichtlich grafisch darstellen – ohne exakte Genauigkeit.',
+    tipp: 'Achsen beschriften, besondere Punkte (Nullstellen, Extrema, Wendepunkte) markieren, Verlauf qualitativ richtig.',
+  },
+} satisfies Record<string, Operator>);
 
 export function operatorVon(key: string): Operator | undefined {
   return OPERATOREN[key];

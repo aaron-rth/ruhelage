@@ -1,0 +1,357 @@
+{
+  "id": "mdiff-geraden",
+  "titel": "Vorwissen: Geraden und Steigung",
+  "untertitel": "Steigung, Geradengleichung, Steigungswinkel",
+  "quelleErklaerung": "eigene Zusammenfassung; abgeglichen mit Bildungsplan BW 2016 Mathematik, Lehrerfortbildung BW (Überblick Basisfach), serlo.org und Wikibooks „Mathe für Nicht-Freaks“",
+  "karten": [
+    {
+      "id": "mdiff-geraden-k1",
+      "typ": "begriff",
+      "vorne": "Was geben $m$ und $c$ in $y = mx + c$ an?",
+      "hinten": "$m$ ist die Steigung (1 nach rechts → $m$ nach oben), $c$ ist der y-Achsenabschnitt, also der Schnittpunkt $(0 \\mid c)$ mit der y-Achse.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-geraden-k2",
+      "typ": "formel",
+      "vorne": "Steigung durch zwei Punkte $P(x_1 \\mid y_1)$ und $Q(x_2 \\mid y_2)$",
+      "hinten": "$m = \\dfrac{y_2 - y_1}{x_2 - x_1}$ (Höhenunterschied durch Breitenunterschied)",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-geraden-k3",
+      "typ": "wasPassiert",
+      "vorne": "Was bedeutet $m = -3$ anschaulich?",
+      "hinten": "Geht man 1 Einheit nach rechts, geht die Gerade 3 Einheiten nach unten. Die Gerade fällt.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-geraden-k4",
+      "typ": "begriff",
+      "vorne": "Wie sieht eine Gerade mit $m = 0$ aus?",
+      "hinten": "Waagerecht, parallel zur x-Achse: $y = c$.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-geraden-k5",
+      "typ": "warum",
+      "vorne": "Warum ist $x = 2$ keine Funktion?",
+      "hinten": "Zum x-Wert 2 gehören unendlich viele y-Werte. Eine Funktion ordnet jedem x aber genau ein y zu.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-geraden-k6",
+      "typ": "formel",
+      "vorne": "Punkt-Steigungs-Form einer Geraden",
+      "hinten": "$y = m(x - x_0) + y_0$, wenn die Gerade durch $(x_0 \\mid y_0)$ geht und die Steigung $m$ hat.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)",
+      "mehr": "Ausmultiplizieren ergibt wieder die Form $y = mx + c$. Später heißt genau diese Form Tangentengleichung, mit $m = f'(a)$ und $(x_0 \\mid y_0) = (a \\mid f(a))$."
+    },
+    {
+      "id": "mdiff-geraden-k7",
+      "typ": "herleitung",
+      "vorne": "Gerade durch $A(2 \\mid 1)$ mit $m = 3$ (über $c$)",
+      "hinten": "$1 = 3 \\cdot 2 + c \\Rightarrow c = -5$, also $y = 3x - 5$.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-geraden-k8",
+      "typ": "herleitung",
+      "vorne": "Gerade durch $P(0 \\mid 4)$ und $Q(2 \\mid 0)$",
+      "hinten": "$m = \\frac{0 - 4}{2 - 0} = -2$, $c = 4$ (Punkt auf der y-Achse), also $y = -2x + 4$.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-geraden-k9",
+      "typ": "begriff",
+      "vorne": "Wann sind zwei Geraden parallel?",
+      "hinten": "Wenn sie dieselbe Steigung $m$ haben (und verschiedene y-Achsenabschnitte, sonst sind sie identisch).",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-geraden-k10",
+      "typ": "formel",
+      "vorne": "Zusammenhang zwischen Steigung und Steigungswinkel",
+      "hinten": "$\\tan(\\alpha) = m$, also $\\alpha = \\tan^{-1}(m)$. Beispiel: $m = 1 \\Rightarrow \\alpha = 45°$.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-geraden-k11",
+      "typ": "fehler",
+      "vorne": "Typischer Fehler: $m = \\frac{x_2 - x_1}{y_2 - y_1}$",
+      "hinten": "Falsch herum! Oben steht der **Höhen**unterschied (y), unten der **Breiten**unterschied (x).",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-geraden-k12",
+      "typ": "fehler",
+      "vorne": "Typischer Fehler beim Steigungsdreieck: oben $y_2 - y_1$, unten $x_1 - x_2$",
+      "hinten": "Die Reihenfolge muss oben und unten gleich sein. Sonst stimmt das Vorzeichen von $m$ nicht.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-geraden-k13",
+      "typ": "wasPassiert",
+      "vorne": "Wie zeichnet man $y = \\frac{2}{3}x - 1$ ohne Wertetabelle?",
+      "hinten": "Bei $(0 \\mid -1)$ starten, dann 3 nach rechts und 2 nach oben. Die beiden Punkte verbinden.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-geraden-k14",
+      "typ": "warum",
+      "vorne": "Warum ist die Steigung einer Geraden überall gleich?",
+      "hinten": "Weil jedes Steigungsdreieck an einer Geraden ähnlich ist: Das Verhältnis Höhe zu Breite bleibt gleich. Bei Kurven ist das nicht so. Genau deshalb braucht man die Ableitung.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    }
+  ],
+  "uebungen": [
+    {
+      "id": "mdiff-geraden-u1",
+      "typ": "mc",
+      "frage": "Welche Gerade geht durch $P(-1 \\mid 5)$ und $Q(3 \\mid -3)$?",
+      "quelle": "eigene Aufgabe",
+      "optionen": [
+        {
+          "text": "$y = -2x + 3$",
+          "warum": "Steigung $\\frac{-3-5}{3+1} = -2$, und $5 = 2 + c$ ergibt $c = 3$.",
+          "richtig": true
+        },
+        {
+          "text": "$y = 2x + 7$",
+          "warum": "Das Vorzeichen der Steigung ist falsch: Von P nach Q geht es nach unten."
+        },
+        {
+          "text": "$y = -\\frac{1}{2}x + 4{,}5$",
+          "warum": "Hier wurde $\\frac{\\Delta x}{\\Delta y}$ statt $\\frac{\\Delta y}{\\Delta x}$ gerechnet."
+        },
+        {
+          "text": "$y = -2x + 5$",
+          "warum": "$c$ ist nicht der y-Wert von P, weil P nicht auf der y-Achse liegt."
+        }
+      ]
+    },
+    {
+      "id": "mdiff-geraden-u2",
+      "typ": "zuordnen",
+      "frage": "Ordne jeder Beschreibung die passende Gerade zu.",
+      "quelle": "eigene Aufgabe",
+      "paare": [
+        {
+          "links": "steigt, schneidet die y-Achse bei −1",
+          "rechts": "$y = 3x - 1$"
+        },
+        {
+          "links": "fällt, geht durch den Ursprung",
+          "rechts": "$y = -0{,}5x$"
+        },
+        {
+          "links": "waagerecht",
+          "rechts": "$y = 4$"
+        },
+        {
+          "links": "parallel zu $y = 3x + 7$, durch $(0 \\mid 2)$",
+          "rechts": "$y = 3x + 2$"
+        },
+        {
+          "links": "Steigungswinkel 45°",
+          "rechts": "$y = x - 3$"
+        }
+      ]
+    },
+    {
+      "id": "mdiff-geraden-u3",
+      "typ": "luecke",
+      "frage": "Ergänze die Rechnung: Gerade mit $m = 0{,}5$ durch $A(4 \\mid 1)$.",
+      "quelle": "eigene Aufgabe",
+      "text": "Einsetzen: $1 = 0{,}5 \\cdot 4 + c$, also $1 = $ [[0]] $+ c$. Damit ist $c = $ [[1]]. Die Gerade lautet $y = 0{,}5x$ [[2]].",
+      "luecken": [
+        {
+          "optionen": [
+            "2",
+            "4",
+            "0,5"
+          ],
+          "richtig": 0
+        },
+        {
+          "optionen": [
+            "−1",
+            "3",
+            "1"
+          ],
+          "richtig": 0
+        },
+        {
+          "optionen": [
+            "$- 1$",
+            "$+ 1$",
+            "$+ 3$"
+          ],
+          "richtig": 0
+        }
+      ]
+    },
+    {
+      "id": "mdiff-geraden-u4",
+      "typ": "fehler",
+      "frage": "Wo steckt der Fehler? Gesucht ist die Gerade durch $A(2 \\mid 7)$ und $B(5 \\mid 1)$.",
+      "quelle": "eigene Aufgabe",
+      "schritte": [
+        "$m = \\frac{1 - 7}{5 - 2}$",
+        "$m = \\frac{-6}{3} = -2$",
+        "Einsetzen von A: $7 = -2 \\cdot 2 + c$",
+        "$c = 7 - 4 = 3$",
+        "$y = -2x + 3$"
+      ],
+      "fehler": 3,
+      "erklaerung": "Aus $7 = -4 + c$ folgt $c = 7 + 4 = 11$, also $y = -2x + 11$. Probe mit B: $-10 + 11 = 1$ ✓."
+    },
+    {
+      "id": "mdiff-geraden-u5",
+      "typ": "klassifizieren",
+      "frage": "Steigt, fällt oder ist die Gerade waagerecht?",
+      "quelle": "eigene Aufgabe",
+      "kategorien": [
+        "steigt",
+        "fällt",
+        "waagerecht"
+      ],
+      "items": [
+        {
+          "text": "$y = 0{,}1x - 8$",
+          "kategorie": 0,
+          "warum": "$m = 0{,}1 > 0$"
+        },
+        {
+          "text": "$y = -x + 100$",
+          "kategorie": 1,
+          "warum": "$m = -1 < 0$"
+        },
+        {
+          "text": "$y = -7$",
+          "kategorie": 2,
+          "warum": "$m = 0$"
+        },
+        {
+          "text": "durch $(1 \\mid 4)$ und $(3 \\mid 2)$",
+          "kategorie": 1,
+          "warum": "$m = \\frac{2-4}{3-1} = -1$"
+        },
+        {
+          "text": "durch $(-2 \\mid 3)$ und $(5 \\mid 3)$",
+          "kategorie": 2,
+          "warum": "gleiche y-Werte, also $m = 0$"
+        },
+        {
+          "text": "Steigungswinkel 30°",
+          "kategorie": 0,
+          "warum": "$m = \\tan(30°) \\approx 0{,}58 > 0$"
+        }
+      ]
+    },
+    {
+      "id": "mdiff-geraden-u6",
+      "typ": "reihenfolge",
+      "frage": "Bringe die Schritte zum Aufstellen einer Geraden durch zwei Punkte in die richtige Reihenfolge.",
+      "quelle": "eigene Aufgabe",
+      "schritte": [
+        "Steigung $m$ mit dem Differenzenquotienten aus beiden Punkten berechnen",
+        "$m$ und die Koordinaten eines Punktes in $y = mx + c$ einsetzen",
+        "Die Gleichung nach $c$ auflösen",
+        "Geradengleichung $y = mx + c$ angeben",
+        "Probe mit dem zweiten Punkt"
+      ]
+    },
+    {
+      "id": "mdiff-geraden-s1",
+      "typ": "schreiben",
+      "operator": "begruenden",
+      "frage": "Begründen Sie rechnerisch, dass die Punkte $A(-2 \\mid -1)$, $B(1 \\mid 5)$ und $C(3 \\mid 9)$ auf einer gemeinsamen Geraden liegen, und geben Sie deren Gleichung an.",
+      "quelle": "eigene Aufgabe (Operatoren nach IQB-Grundstock Mathematik)",
+      "umfang": "Rechnung mit kurzem Antwortsatz",
+      "erwartung": [
+        "Steigung zwischen A und B: $m_{AB} = \\frac{5-(-1)}{1-(-2)} = \\frac{6}{3} = 2$",
+        "Steigung zwischen B und C: $m_{BC} = \\frac{9-5}{3-1} = 2$",
+        "Gleiche Steigung und gemeinsamer Punkt B: Die drei Punkte liegen auf einer Geraden.",
+        "Gleichung: $5 = 2 \\cdot 1 + c \\Rightarrow c = 3$, also $y = 2x + 3$.",
+        "Probe mit A und C: $2 \\cdot (-2) + 3 = -1$ ✓, $2 \\cdot 3 + 3 = 9$ ✓"
+      ],
+      "kriterien": [
+        {
+          "name": "Steigungen",
+          "beschreibung": "Beide Steigungen richtig berechnet",
+          "punkte": 2
+        },
+        {
+          "name": "Begründung",
+          "beschreibung": "Argument: gleiche Steigung **und** gemeinsamer Punkt (nur gleiche Steigung reicht nicht, das wären auch parallele Geraden)",
+          "punkte": 2
+        },
+        {
+          "name": "Geradengleichung",
+          "beschreibung": "$c$ richtig bestimmt, Gleichung angegeben",
+          "punkte": 1
+        },
+        {
+          "name": "Darstellung",
+          "beschreibung": "Rechenweg nachvollziehbar, Probe oder Antwortsatz",
+          "punkte": 1
+        }
+      ]
+    },
+    {
+      "id": "mdiff-geraden-s2",
+      "typ": "schreiben",
+      "operator": "interpretieren",
+      "frage": "Ein Taxiunternehmen berechnet den Fahrpreis mit $K(x) = 2{,}5x + 4$ ($x$ in km, $K(x)$ in Euro). Interpretieren Sie die Zahlen 2,5 und 4 im Sachzusammenhang und bestimmen Sie, wie weit man für 29 Euro fahren kann.",
+      "quelle": "eigene Aufgabe (Operatoren nach IQB-Grundstock Mathematik)",
+      "umfang": "3–5 Sätze und Rechnung",
+      "erwartung": [
+        "$m = 2{,}5$: Jeder gefahrene Kilometer kostet 2,50 Euro zusätzlich (Änderungsrate in Euro pro km).",
+        "$c = 4$: Grundgebühr von 4 Euro, die schon bei 0 km anfällt.",
+        "$2{,}5x + 4 = 29 \\Rightarrow 2{,}5x = 25 \\Rightarrow x = 10$",
+        "Antwort: Für 29 Euro kann man 10 km fahren."
+      ],
+      "kriterien": [
+        {
+          "name": "Steigung gedeutet",
+          "beschreibung": "2,5 als Preis pro Kilometer mit Einheit erkannt",
+          "punkte": 2
+        },
+        {
+          "name": "Achsenabschnitt gedeutet",
+          "beschreibung": "4 als Grundgebühr bei 0 km erkannt",
+          "punkte": 2
+        },
+        {
+          "name": "Rechnung",
+          "beschreibung": "Gleichung aufgestellt und richtig gelöst",
+          "punkte": 2
+        },
+        {
+          "name": "Antwortsatz",
+          "beschreibung": "Ergebnis mit Einheit im Sachzusammenhang",
+          "punkte": 1
+        }
+      ]
+    }
+  ],
+  "formeln": [
+    {
+      "name": "Steigung durch zwei Punkte",
+      "tex": "m = \\frac{y_2 - y_1}{x_2 - x_1}"
+    },
+    {
+      "name": "Geradengleichung",
+      "tex": "y = m x + c"
+    },
+    {
+      "name": "Punkt-Steigungs-Form",
+      "tex": "y = m (x - x_0) + y_0"
+    },
+    {
+      "name": "Steigungswinkel",
+      "tex": "\\tan(\\alpha) = m"
+    }
+  ]
+}

@@ -124,7 +124,8 @@ genau diesen Kriterien korrigiert. Je genauer Erwartung und Kriterien sind, dest
 
 Erlaubte Operatoren: `nennen`, `beschreiben`, `darstellen`, `zusammenfassen`, `erklaeren`, `erlaeutern`,
 `begruenden`, `vergleichen`, `analysieren`, `charakterisieren`, `einordnen`, `interpretieren`, `eroertern`,
-`diskutieren`, `beurteilen`, `bewerten`, `stellung-nehmen`, `ableiten`, `deuten`.
+`diskutieren`, `beurteilen`, `bewerten`, `stellung-nehmen`, `ableiten` (= folgern, nicht „ableiten“ in Mathe), `deuten`,
+für Mathematik zusätzlich `angeben`, `berechnen`, `bestimmen`, `untersuchen`, `zeigen`, `skizzieren`.
 Fehlt einer, im Pull Request notieren.
 
 Schreibaufgaben erscheinen im Thema unter „Übungen“, aber nicht in den gemischten Runden, weil sie zu lange dauern.

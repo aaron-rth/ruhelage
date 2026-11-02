@@ -1,0 +1,350 @@
+{
+  "id": "mdiff-grafisch",
+  "titel": "Grafisches Ableiten",
+  "untertitel": "Vom Graphen von f zum Graphen von f′ und zurück",
+  "abhaengig": [
+    "mdiff-aenderungsrate",
+    "mdiff-grundfunktionen"
+  ],
+  "quelleErklaerung": "eigene Zusammenfassung; abgeglichen mit Bildungsplan BW 2016 Mathematik, Lehrerfortbildung BW (Überblick Basisfach), serlo.org und Wikibooks „Mathe für Nicht-Freaks“",
+  "karten": [
+    {
+      "id": "mdiff-grafisch-k1",
+      "typ": "begriff",
+      "vorne": "Was gibt die Ableitungsfunktion $f'$ an?",
+      "hinten": "Zu jeder Stelle $x$ die Steigung des Graphen von $f$ an dieser Stelle (Tangentensteigung).",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-grafisch-k2",
+      "typ": "wasPassiert",
+      "vorne": "$f$ steigt auf einem Intervall. Was gilt für den Graphen von $f'$?",
+      "hinten": "Er verläuft dort oberhalb der x-Achse ($f'(x) > 0$).",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-grafisch-k3",
+      "typ": "wasPassiert",
+      "vorne": "Der Graph von $f$ hat bei $x = 2$ eine waagerechte Tangente. Was gilt für $f'$?",
+      "hinten": "$f'(2) = 0$, der Graph von $f'$ hat bei $x = 2$ eine Nullstelle.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-grafisch-k4",
+      "typ": "begriff",
+      "vorne": "Woran erkennt man am Graphen von $f'$ einen Hochpunkt von $f$?",
+      "hinten": "An einer Nullstelle von $f'$, bei der $f'$ von positiv nach negativ wechselt (Graph von $f'$ schneidet die x-Achse von oben nach unten).",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-grafisch-k5",
+      "typ": "begriff",
+      "vorne": "Woran erkennt man am Graphen von $f'$ einen Sattelpunkt von $f$?",
+      "hinten": "An einer Nullstelle von $f'$ ohne Vorzeichenwechsel: Der Graph von $f'$ berührt die x-Achse nur.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-grafisch-k6",
+      "typ": "wasPassiert",
+      "vorne": "An einer Stelle ist $f$ am steilsten. Was hat $f'$ dort?",
+      "hinten": "Einen Hochpunkt (bei größter positiver Steigung) bzw. einen Tiefpunkt (bei stärkstem Gefälle). Diese Stelle ist eine Wendestelle von $f$.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-grafisch-k7",
+      "typ": "warum",
+      "vorne": "Warum haben $f(x) = x^2$ und $g(x) = x^2 + 5$ dieselbe Ableitungsfunktion?",
+      "hinten": "Der Graph von $g$ ist nur nach oben verschoben. An jeder Stelle sind beide Graphen gleich steil, also gilt $f'(x) = g'(x)$.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-grafisch-k8",
+      "typ": "warum",
+      "vorne": "Warum kann man aus dem Graphen von $f'$ nicht ablesen, wie hoch der Graph von $f$ liegt?",
+      "hinten": "$f'$ enthält nur Steigungen. Alle Graphen, die durch Verschieben in y-Richtung auseinander hervorgehen, haben dieselben Steigungen.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-grafisch-k9",
+      "typ": "begriff",
+      "vorne": "Grad von $f'$, wenn $f$ ganzrational vom Grad $n$ ist",
+      "hinten": "Grad $n - 1$. Parabel → Gerade, kubische Funktion → Parabel.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-grafisch-k10",
+      "typ": "fehler",
+      "vorne": "Typischer Fehler: „$f$ hat einen Hochpunkt, also hat $f'$ dort auch einen Hochpunkt.“",
+      "hinten": "Falsch! Im Hochpunkt von $f$ ist die Steigung null, also hat $f'$ dort eine **Nullstelle**. Hochpunkte von $f'$ gehören zu Wendestellen von $f$.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-grafisch-k11",
+      "typ": "fehler",
+      "vorne": "Typischer Fehler: „Wo $f$ positiv ist, ist auch $f'$ positiv.“",
+      "hinten": "Das Vorzeichen von $f'$ hängt davon ab, ob $f$ **steigt**, nicht davon, ob $f$ über der x-Achse liegt.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-grafisch-k12",
+      "typ": "wasPassiert",
+      "vorne": "Wie liest man $f'(a)$ an einem Graphen ab?",
+      "hinten": "Tangente im Punkt $(a \\mid f(a))$ anlegen, ein Steigungsdreieck einzeichnen und $\\frac{\\text{Höhe}}{\\text{Breite}}$ berechnen.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-grafisch-k13",
+      "typ": "wasPassiert",
+      "vorne": "Der Graph von $f$ ist eine Gerade mit Steigung $-2$. Wie sieht der Graph von $f'$ aus?",
+      "hinten": "Eine waagerechte Gerade bei $y = -2$, denn die Steigung ist überall gleich.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-grafisch-k14",
+      "typ": "begriff",
+      "vorne": "$f'$ ist für $x < 1$ negativ und für $x > 1$ positiv. Was folgt für $f$?",
+      "hinten": "$f$ fällt bis $x = 1$ und steigt danach. Bei $x = 1$ hat $f$ einen Tiefpunkt.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    }
+  ],
+  "uebungen": [
+    {
+      "id": "mdiff-grafisch-u1",
+      "typ": "zuordnen",
+      "frage": "Ordne jeder Eigenschaft des Graphen von $f$ die passende Eigenschaft des Graphen von $f'$ zu.",
+      "quelle": "eigene Aufgabe",
+      "paare": [
+        {
+          "links": "$f$ fällt",
+          "rechts": "$f'$ liegt unterhalb der x-Achse"
+        },
+        {
+          "links": "Tiefpunkt von $f$",
+          "rechts": "$f'$ schneidet die x-Achse von unten nach oben"
+        },
+        {
+          "links": "Sattelpunkt von $f$",
+          "rechts": "$f'$ berührt die x-Achse"
+        },
+        {
+          "links": "stärkster Anstieg von $f$",
+          "rechts": "Hochpunkt von $f'$"
+        },
+        {
+          "links": "$f$ ist eine Parabel",
+          "rechts": "$f'$ ist eine Gerade"
+        }
+      ]
+    },
+    {
+      "id": "mdiff-grafisch-u2",
+      "typ": "mc",
+      "frage": "Der Graph von $f$ hat einen Hochpunkt bei $x = -2$, einen Tiefpunkt bei $x = 3$ und steigt sonst nur für $x > 3$ und $x < -2$. Welche Aussage über $f'$ ist richtig?",
+      "quelle": "eigene Aufgabe",
+      "optionen": [
+        {
+          "text": "$f'(x) < 0$ für $-2 < x < 3$",
+          "warum": "Zwischen Hoch- und Tiefpunkt fällt $f$, also ist die Steigung negativ.",
+          "richtig": true
+        },
+        {
+          "text": "$f'$ hat bei $x = -2$ einen Hochpunkt",
+          "warum": "Im Hochpunkt von $f$ ist die Steigung null. $f'$ hat dort eine Nullstelle, keinen Hochpunkt."
+        },
+        {
+          "text": "$f'(0) > 0$",
+          "warum": "Bei $x = 0$ liegt man zwischen Hoch- und Tiefpunkt, dort fällt $f$."
+        },
+        {
+          "text": "$f'$ hat genau eine Nullstelle",
+          "warum": "Beide Extremstellen sind Nullstellen von $f'$, es sind also mindestens zwei."
+        }
+      ]
+    },
+    {
+      "id": "mdiff-grafisch-u3",
+      "typ": "klassifizieren",
+      "frage": "Zum Bild im Abschnitt „Beispiel“ ($f$ blau, $f'$ orange): wahr oder falsch?",
+      "quelle": "eigene Aufgabe",
+      "kategorien": [
+        "wahr",
+        "falsch"
+      ],
+      "items": [
+        {
+          "text": "$f'(-2) > 0$",
+          "kategorie": 0,
+          "warum": "Bei $x = -2$ steigt $f$."
+        },
+        {
+          "text": "$f'(0) = 0$",
+          "kategorie": 1,
+          "warum": "Bei 0 fällt $f$ am steilsten, $f'(0) = -1$."
+        },
+        {
+          "text": "$f'$ hat bei $x = 0$ einen Tiefpunkt",
+          "kategorie": 0,
+          "warum": "Dort ist die Steigung von $f$ am kleinsten."
+        },
+        {
+          "text": "Weil $f(-1) > 0$ ist, ist auch $f'(-1) > 0$",
+          "kategorie": 1,
+          "warum": "Bei $x = -1$ hat $f$ einen Hochpunkt, also ist $f'(-1) = 0$."
+        },
+        {
+          "text": "Auf $(-1; 1)$ ist $f'$ negativ",
+          "kategorie": 0,
+          "warum": "Dort fällt $f$."
+        },
+        {
+          "text": "$f'(2) = f(2)$",
+          "kategorie": 1,
+          "warum": "$f'(2) = 3$, aber $f(2) = \\frac{2}{3}$. Funktionswert und Steigung sind verschiedene Dinge."
+        }
+      ]
+    },
+    {
+      "id": "mdiff-grafisch-u4",
+      "typ": "luecke",
+      "frage": "Ergänze die Begründung.",
+      "quelle": "eigene Aufgabe",
+      "text": "Der Graph von $f'$ schneidet bei $x = 4$ die x-Achse und wechselt dabei von positiven zu negativen Werten. Also [[0]] $f$ links von 4 und [[1]] rechts von 4. Bei $x = 4$ hat der Graph von $f$ einen [[2]].",
+      "luecken": [
+        {
+          "optionen": [
+            "steigt",
+            "fällt"
+          ],
+          "richtig": 0
+        },
+        {
+          "optionen": [
+            "fällt",
+            "steigt"
+          ],
+          "richtig": 0
+        },
+        {
+          "optionen": [
+            "Hochpunkt",
+            "Tiefpunkt",
+            "Sattelpunkt"
+          ],
+          "richtig": 0
+        }
+      ]
+    },
+    {
+      "id": "mdiff-grafisch-u5",
+      "typ": "fehler",
+      "frage": "Wo steckt der Fehler? Aufgabe: „Begründen Sie, ob der Graph von $g$ der Graph der Ableitung von $f$ sein kann.“ $f$ hat bei $x = 0$ einen Sattelpunkt und steigt sonst überall.",
+      "quelle": "eigene Aufgabe",
+      "schritte": [
+        "Bei $x = 0$ hat $f$ eine waagerechte Tangente, also muss $f'(0) = 0$ sein.",
+        "Da $f$ sonst überall steigt, ist $f'(x) > 0$ für $x \\neq 0$.",
+        "Ein Sattelpunkt ist ein Extrempunkt, also muss $f'$ bei 0 das Vorzeichen wechseln.",
+        "Der Graph von $f'$ muss bei 0 die x-Achse von oben berühren."
+      ],
+      "fehler": 2,
+      "erklaerung": "Ein Sattelpunkt ist **kein** Extrempunkt. $f'$ wechselt dort das Vorzeichen nicht, der Graph von $f'$ berührt die x-Achse nur (Schritt 4 ist richtig)."
+    },
+    {
+      "id": "mdiff-grafisch-u6",
+      "typ": "reihenfolge",
+      "frage": "Bringe die Schritte beim grafischen Ableiten in eine sinnvolle Reihenfolge.",
+      "quelle": "eigene Aufgabe",
+      "schritte": [
+        "Stellen mit waagerechter Tangente markieren (Nullstellen von $f'$)",
+        "Bereiche bestimmen, in denen $f$ steigt bzw. fällt (Vorzeichen von $f'$)",
+        "Stellen mit größter bzw. kleinster Steigung suchen (Extrempunkte von $f'$)",
+        "An einzelnen Stellen Steigungen mit Steigungsdreiecken schätzen",
+        "Alle Informationen zu einem glatten Graphen von $f'$ verbinden"
+      ]
+    },
+    {
+      "id": "mdiff-grafisch-s1",
+      "typ": "schreiben",
+      "operator": "begruenden",
+      "frage": "Die Abbildung zeigt den Graphen der Ableitungsfunktion $f'$ einer Funktion $f$. Entscheiden Sie, ob die Aussagen wahr oder falsch sind, und begründen Sie jeweils mithilfe des Graphen. (a) $f$ hat bei $x = -2$ einen Hochpunkt. (b) $f$ hat bei $x = 3$ einen Tiefpunkt. (c) $f$ ist für $x > -2$ monoton fallend. (d) $f(0) < f(-1)$.",
+      "quelle": "eigene Aufgabe (Operatoren nach IQB-Grundstock Mathematik)",
+      "umfang": "je Teilaufgabe 1–2 Sätze",
+      "material": "![Graph von f′: Nullstelle mit Vorzeichenwechsel bei x = −2, Berührstelle bei x = 3](bilder/ableitungsgraph-aufgabe.svg)",
+      "erwartung": [
+        "(a) Wahr: $f'(-2) = 0$ und $f'$ wechselt bei $-2$ das Vorzeichen von $+$ nach $-$. Also steigt $f$ vorher und fällt danach.",
+        "(b) Falsch: $f'(3) = 0$, aber der Graph von $f'$ berührt die x-Achse nur und bleibt negativ. Ohne Vorzeichenwechsel ist das kein Extrempunkt, sondern ein Sattelpunkt.",
+        "(c) Wahr: Für $x > -2$ ist $f'(x) \\leq 0$ und nur bei $x = 3$ gleich null. Also fällt $f$ dort (sogar streng).",
+        "(d) Wahr: Zwischen $-1$ und $0$ ist $f'$ negativ, $f$ fällt dort, also ist $f(0) < f(-1)$."
+      ],
+      "kriterien": [
+        {
+          "name": "(a)",
+          "beschreibung": "richtige Entscheidung mit Vorzeichenwechsel-Argument",
+          "punkte": 2
+        },
+        {
+          "name": "(b)",
+          "beschreibung": "richtig als falsch erkannt, Sattelpunkt / fehlender VZW begründet",
+          "punkte": 2
+        },
+        {
+          "name": "(c)",
+          "beschreibung": "Vorzeichen von $f'$ auf dem Intervall als Begründung genutzt",
+          "punkte": 2
+        },
+        {
+          "name": "(d)",
+          "beschreibung": "Argument über das Fallen von $f$ (nicht über Funktionswerte von $f'$)",
+          "punkte": 2
+        },
+        {
+          "name": "Fachsprache",
+          "beschreibung": "Begriffe Vorzeichenwechsel, Nullstelle von $f'$, steigt/fällt korrekt verwendet",
+          "punkte": 1
+        }
+      ]
+    },
+    {
+      "id": "mdiff-grafisch-s2",
+      "typ": "schreiben",
+      "operator": "erlaeutern",
+      "frage": "Die Abbildung zeigt den Graphen einer Funktion $f$. Erläutern Sie Schritt für Schritt, wie der Graph der Ableitungsfunktion $f'$ aussieht: Nullstellen, Vorzeichen, Extremstellen von $f'$ und Symmetrie. Beschreiben Sie anschließend den Verlauf von $f'$ für $x \\to \\pm\\infty$.",
+      "quelle": "eigene Aufgabe (Operatoren nach IQB-Grundstock Mathematik)",
+      "umfang": "ca. 8–10 Sätze",
+      "material": "![Graph von f: Tiefpunkte bei x = −2 und x = 2, Hochpunkt im Ursprung](bilder/graph-f-aufgabe.svg)",
+      "erwartung": [
+        "Waagerechte Tangenten bei $x = -2$, $x = 0$ und $x = 2$ (zwei Tiefpunkte, ein Hochpunkt): $f'$ hat dort Nullstellen.",
+        "Vorzeichen: $f$ fällt für $x < -2$ ($f' < 0$), steigt auf $(-2; 0)$ ($f' > 0$), fällt auf $(0; 2)$ ($f' < 0$), steigt für $x > 2$ ($f' > 0$).",
+        "Die stärksten Anstiege bzw. Gefälle zwischen den Extrempunkten liegen bei etwa $x \\approx -1{,}2$ und $x \\approx 1{,}2$ (Wendestellen). Dort hat $f'$ einen Hochpunkt bzw. einen Tiefpunkt.",
+        "Der Graph von $f$ ist symmetrisch zur y-Achse. Links ist er an jeder Stelle genauso steil wie rechts, nur mit umgekehrtem Vorzeichen. Darum ist der Graph von $f'$ punktsymmetrisch zum Ursprung.",
+        "Für $x \\to \\infty$ wird $f$ immer steiler, also $f'(x) \\to \\infty$. Für $x \\to -\\infty$ fällt $f$ immer steiler, also $f'(x) \\to -\\infty$. Das passt zu einer Funktion dritten Grades."
+      ],
+      "kriterien": [
+        {
+          "name": "Nullstellen",
+          "beschreibung": "alle drei Nullstellen von $f'$ aus waagerechten Tangenten erschlossen",
+          "punkte": 2
+        },
+        {
+          "name": "Vorzeichen",
+          "beschreibung": "Vorzeichenbereiche korrekt aus Steigen/Fallen begründet",
+          "punkte": 2
+        },
+        {
+          "name": "Extremstellen von f′",
+          "beschreibung": "Zusammenhang mit den steilsten Stellen von $f$ erläutert",
+          "punkte": 2
+        },
+        {
+          "name": "Symmetrie und Randverhalten",
+          "beschreibung": "Punktsymmetrie und Verhalten für $x \\to \\pm\\infty$ begründet",
+          "punkte": 2
+        },
+        {
+          "name": "Darstellung",
+          "beschreibung": "schlüssige Schrittfolge, Fachsprache",
+          "punkte": 1
+        }
+      ]
+    }
+  ]
+}

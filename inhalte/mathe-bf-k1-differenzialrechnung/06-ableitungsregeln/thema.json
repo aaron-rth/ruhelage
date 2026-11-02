@@ -1,0 +1,377 @@
+{
+  "id": "mdiff-regeln",
+  "titel": "Ableitungsregeln und höhere Ableitungen",
+  "untertitel": "Potenz-, Faktor-, Summenregel, sin, cos, f′′",
+  "abhaengig": [
+    "mdiff-aenderungsrate",
+    "mdiff-terme"
+  ],
+  "quelleErklaerung": "eigene Zusammenfassung; abgeglichen mit Bildungsplan BW 2016 Mathematik, Lehrerfortbildung BW (Überblick Basisfach), serlo.org und Wikibooks „Mathe für Nicht-Freaks“",
+  "karten": [
+    {
+      "id": "mdiff-regeln-k1",
+      "typ": "formel",
+      "vorne": "Potenzregel",
+      "hinten": "$f(x) = x^r \\Rightarrow f'(x) = r \\cdot x^{r-1}$ für $r \\neq 0$",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-regeln-k2",
+      "typ": "formel",
+      "vorne": "Faktorregel",
+      "hinten": "$f(x) = c \\cdot g(x) \\Rightarrow f'(x) = c \\cdot g'(x)$. Der konstante Faktor bleibt stehen.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-regeln-k3",
+      "typ": "formel",
+      "vorne": "Summenregel",
+      "hinten": "$f(x) = g(x) + h(x) \\Rightarrow f'(x) = g'(x) + h'(x)$. Summandenweise ableiten.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-regeln-k4",
+      "typ": "warum",
+      "vorne": "Warum ist die Ableitung einer Konstanten null?",
+      "hinten": "Der Graph von $f(x) = c$ ist eine waagerechte Gerade. Ihre Steigung ist überall 0.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-regeln-k5",
+      "typ": "formel",
+      "vorne": "Ableitung von $\\sqrt{x}$",
+      "hinten": "$\\frac{1}{2\\sqrt{x}}$, denn $\\sqrt{x} = x^{\\frac12}$ und $\\frac12 x^{-\\frac12} = \\frac{1}{2\\sqrt{x}}$",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-regeln-k6",
+      "typ": "formel",
+      "vorne": "Ableitung von $\\frac{1}{x}$",
+      "hinten": "$-\\frac{1}{x^2}$, denn $\\frac1x = x^{-1}$ und $-1 \\cdot x^{-2} = -\\frac{1}{x^2}$",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-regeln-k7",
+      "typ": "formel",
+      "vorne": "Ableitungen von $\\sin$ und $\\cos$",
+      "hinten": "$(\\sin x)' = \\cos x$, $(\\cos x)' = -\\sin x$",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-regeln-k8",
+      "typ": "herleitung",
+      "vorne": "Leite $g(x) = 4\\sqrt{x} - \\frac{3}{x}$ ab.",
+      "hinten": "Umformen: $4x^{\\frac12} - 3x^{-1}$. Ableiten: $2x^{-\\frac12} + 3x^{-2} = \\frac{2}{\\sqrt{x}} + \\frac{3}{x^2}$.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-regeln-k9",
+      "typ": "herleitung",
+      "vorne": "Leite $f(x) = \\frac{5}{x^3}$ ab.",
+      "hinten": "$f(x) = 5x^{-3} \\Rightarrow f'(x) = -15x^{-4} = -\\frac{15}{x^4}$",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-regeln-k10",
+      "typ": "fehler",
+      "vorne": "Typischer Fehler: $(x^2 \\cdot x^3)' = 2x \\cdot 3x^2$",
+      "hinten": "Produkte darf man nicht faktorweise ableiten. Erst zusammenfassen: $x^5$, also $5x^4$ (nicht $6x^3$).",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-regeln-k11",
+      "typ": "fehler",
+      "vorne": "Typischer Fehler: $\\left(\\frac{1}{x^2}\\right)' = \\frac{1}{2x}$",
+      "hinten": "Erst als Potenz schreiben: $x^{-2}$. Dann $-2x^{-3} = -\\frac{2}{x^3}$.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-regeln-k12",
+      "typ": "begriff",
+      "vorne": "Was ist die zweite Ableitung $f''$?",
+      "hinten": "Die Ableitung der Ableitung. Sie beschreibt, wie sich die Steigung von $f$ ändert (Krümmung).",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-regeln-k13",
+      "typ": "begriff",
+      "vorne": "Was ist eine ganzrationale Funktion vom Grad $n$?",
+      "hinten": "Eine Summe von Termen $a \\cdot x^k$ mit natürlichen Hochzahlen $k$. Die höchste vorkommende Hochzahl ist der Grad $n$. Beispiel: $-3x^7 + 2x^3 + 1$ hat Grad 7.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-regeln-k14",
+      "typ": "wasPassiert",
+      "vorne": "Was passiert mit dem Grad einer ganzrationalen Funktion beim Ableiten?",
+      "hinten": "Er sinkt jeweils um 1. Die $n$-te Ableitung ist konstant, alle weiteren sind null.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-regeln-k15",
+      "typ": "herleitung",
+      "vorne": "Alle Ableitungen von $f(x) = 2x^3 - 5x^2 + x$",
+      "hinten": "$f'(x) = 6x^2 - 10x + 1$, $f''(x) = 12x - 10$, $f'''(x) = 12$, $f^{(4)}(x) = 0$",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-regeln-k16",
+      "typ": "wasPassiert",
+      "vorne": "Was ist die vierte Ableitung von $\\sin(x)$?",
+      "hinten": "Wieder $\\sin(x)$: $\\sin \\to \\cos \\to -\\sin \\to -\\cos \\to \\sin$.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    }
+  ],
+  "uebungen": [
+    {
+      "id": "mdiff-regeln-u1",
+      "typ": "mc",
+      "frage": "Welche Ableitung hat $f(x) = 6\\sqrt{x} + \\frac{2}{x}$?",
+      "quelle": "eigene Aufgabe",
+      "optionen": [
+        {
+          "text": "$f'(x) = \\frac{3}{\\sqrt{x}} - \\frac{2}{x^2}$",
+          "warum": "$6 \\cdot \\frac12 x^{-\\frac12} = 3x^{-\\frac12}$ und $2 \\cdot (-1)x^{-2} = -2x^{-2}$.",
+          "richtig": true
+        },
+        {
+          "text": "$f'(x) = \\frac{6}{2\\sqrt{x}} + \\frac{2}{x^2}$",
+          "warum": "Das Vorzeichen beim zweiten Summanden fehlt: $(x^{-1})' = -x^{-2}$."
+        },
+        {
+          "text": "$f'(x) = 3\\sqrt{x} - 2$",
+          "warum": "$\\sqrt{x}$ wurde nicht als Potenz $x^{\\frac12}$ abgeleitet, und $\\frac{2}{x}$ ist keine lineare Funktion."
+        },
+        {
+          "text": "$f'(x) = 3x^{\\frac12} - 2x^{-1}$",
+          "warum": "Die Hochzahlen wurden nach vorne geholt, aber nicht um 1 verringert."
+        }
+      ]
+    },
+    {
+      "id": "mdiff-regeln-u2",
+      "typ": "zuordnen",
+      "frage": "Ordne jeder Funktion ihre Ableitung zu.",
+      "quelle": "eigene Aufgabe",
+      "paare": [
+        {
+          "links": "$f(x) = x^4 - 2x$",
+          "rechts": "$f'(x) = 4x^3 - 2$"
+        },
+        {
+          "links": "$f(x) = 3\\cos(x)$",
+          "rechts": "$f'(x) = -3\\sin(x)$"
+        },
+        {
+          "links": "$f(x) = \\frac{1}{x}$",
+          "rechts": "$f'(x) = -\\frac{1}{x^2}$"
+        },
+        {
+          "links": "$f(x) = \\sqrt[3]{x}$",
+          "rechts": "$f'(x) = \\frac{1}{3}x^{-\\frac23}$"
+        },
+        {
+          "links": "$f(x) = (x - 1)^2$",
+          "rechts": "$f'(x) = 2x - 2$"
+        },
+        {
+          "links": "$f(x) = 7$",
+          "rechts": "$f'(x) = 0$"
+        }
+      ]
+    },
+    {
+      "id": "mdiff-regeln-u3",
+      "typ": "klassifizieren",
+      "frage": "Kann man direkt mit Potenz-, Faktor- und Summenregel ableiten oder muss man den Term vorher umformen?",
+      "quelle": "eigene Aufgabe",
+      "kategorien": [
+        "direkt ableitbar",
+        "erst umformen"
+      ],
+      "items": [
+        {
+          "text": "$4x^3 - 2x + 1$",
+          "kategorie": 0,
+          "warum": "Summe von Potenzen mit Faktoren"
+        },
+        {
+          "text": "$\\frac{2}{x^5}$",
+          "kategorie": 1,
+          "warum": "erst $2x^{-5}$ schreiben"
+        },
+        {
+          "text": "$x^2 (x + 4)$",
+          "kategorie": 1,
+          "warum": "erst ausmultiplizieren: $x^3 + 4x^2$"
+        },
+        {
+          "text": "$-\\frac12 x^6 + 3$",
+          "kategorie": 0,
+          "warum": "Faktor $-\\frac12$ bleibt stehen"
+        },
+        {
+          "text": "$\\sqrt{x}$",
+          "kategorie": 1,
+          "warum": "erst $x^{\\frac12}$ schreiben"
+        },
+        {
+          "text": "$5\\sin(x) - x$",
+          "kategorie": 0,
+          "warum": "Ableitung von $\\sin$ ist bekannt"
+        }
+      ]
+    },
+    {
+      "id": "mdiff-regeln-u4",
+      "typ": "luecke",
+      "frage": "Ergänze die Ableitungen von $f(x) = 2x^5 - 3x^2 + 7x - 4$.",
+      "quelle": "eigene Aufgabe",
+      "text": "$f'(x) = $ [[0]] $- 6x + 7$, $f''(x) = 40x^3 $ [[1]], $f'''(x) = $ [[2]].",
+      "luecken": [
+        {
+          "optionen": [
+            "$10x^4$",
+            "$2x^4$",
+            "$10x^5$"
+          ],
+          "richtig": 0
+        },
+        {
+          "optionen": [
+            "$- 6$",
+            "$+ 7$",
+            "$- 6x$"
+          ],
+          "richtig": 0
+        },
+        {
+          "optionen": [
+            "$120x^2$",
+            "$40x^2$",
+            "$120x^3$"
+          ],
+          "richtig": 0
+        }
+      ]
+    },
+    {
+      "id": "mdiff-regeln-u5",
+      "typ": "fehler",
+      "frage": "Wo steckt der Fehler? Abgeleitet wird $f(x) = \\frac{x^4 - 3x}{x}$.",
+      "quelle": "eigene Aufgabe",
+      "schritte": [
+        "Für $x \\neq 0$: $f(x) = \\frac{x^4}{x} - \\frac{3x}{x}$",
+        "$f(x) = x^3 - 3x$",
+        "$f'(x) = 3x^2 - 3$"
+      ],
+      "fehler": 1,
+      "erklaerung": "$\\frac{3x}{x} = 3$, nicht $3x$. Also $f(x) = x^3 - 3$ und $f'(x) = 3x^2$."
+    },
+    {
+      "id": "mdiff-regeln-u6",
+      "typ": "reihenfolge",
+      "frage": "Bringe die Funktionen in die Reihenfolge $f$, $f'$, $f''$, $f'''$ für $f(x) = \\sin(x)$.",
+      "quelle": "eigene Aufgabe",
+      "schritte": [
+        "$\\sin(x)$",
+        "$\\cos(x)$",
+        "$-\\sin(x)$",
+        "$-\\cos(x)$"
+      ]
+    },
+    {
+      "id": "mdiff-regeln-s1",
+      "typ": "schreiben",
+      "operator": "erlaeutern",
+      "frage": "Beim Ableiten sind folgende Fehler entstanden. Erläutern Sie jeweils, welcher Fehler gemacht wurde, und korrigieren Sie die Ableitung. (A) $f(x) = x^2 \\cdot x^4$, $f'(x) = 2x \\cdot 4x^3 = 8x^4$. (B) $f(x) = \\frac{1}{x^3}$, $f'(x) = \\frac{1}{3x^2}$. (C) $f(x) = 3\\sqrt{x}$, $f'(x) = \\frac{3}{2}\\sqrt{x}$. (D) $f(x) = 2\\cos(x) + 5$, $f'(x) = 2\\sin(x) + 5$.",
+      "quelle": "eigene Aufgabe (Operatoren nach IQB-Grundstock Mathematik)",
+      "umfang": "je Fehler 1–2 Sätze und die korrigierte Ableitung",
+      "erwartung": [
+        "(A) Ein Produkt wurde faktorweise abgeleitet, dafür gibt es keine solche Regel. Erst zusammenfassen: $f(x) = x^6$, also $f'(x) = 6x^5$.",
+        "(B) Der Bruch wurde nicht als Potenz geschrieben, stattdessen wurde der Nenner „abgeleitet“. Richtig: $f(x) = x^{-3}$, $f'(x) = -3x^{-4} = -\\frac{3}{x^4}$.",
+        "(C) Die Hochzahl wurde nach vorne geholt, aber nicht um 1 verringert. Richtig: $3x^{\\frac12} \\to \\frac32 x^{-\\frac12} = \\frac{3}{2\\sqrt{x}}$.",
+        "(D) Zwei Fehler: $(\\cos x)' = -\\sin x$ (Minuszeichen fehlt), und die Konstante 5 fällt beim Ableiten weg. Richtig: $f'(x) = -2\\sin(x)$."
+      ],
+      "kriterien": [
+        {
+          "name": "Fehler benannt",
+          "beschreibung": "Für jede der vier Ableitungen den Fehler mit der passenden Regel erläutert (je 1 Punkt)",
+          "punkte": 4
+        },
+        {
+          "name": "Korrektur",
+          "beschreibung": "Je richtige Ableitung (je 1 Punkt)",
+          "punkte": 4
+        },
+        {
+          "name": "Fachsprache",
+          "beschreibung": "Regeln korrekt benannt (Potenz-, Faktor-, Summenregel, Konstante)",
+          "punkte": 1
+        }
+      ]
+    },
+    {
+      "id": "mdiff-regeln-s2",
+      "typ": "schreiben",
+      "operator": "begruenden",
+      "frage": "Begründen Sie allgemein, warum die $n$-te Ableitung einer ganzrationalen Funktion vom Grad $n$ eine Konstante ist. Bestimmen Sie für $f(x) = 2x^3 - 5x^2 + x$ alle Ableitungen bis zur vierten und bestätigen Sie damit Ihre Begründung.",
+      "quelle": "eigene Aufgabe (Operatoren nach IQB-Grundstock Mathematik)",
+      "umfang": "ca. 4–6 Sätze und Rechnung",
+      "erwartung": [
+        "Nach der Potenzregel wird aus $a x^k$ der Term $a k x^{k-1}$: Jede Hochzahl sinkt um 1, Konstanten fallen weg.",
+        "Der Summand mit der höchsten Hochzahl $n$ bestimmt den Grad. Nach jedem Ableiten ist der Grad also um 1 kleiner.",
+        "Nach $n$ Ableitungen ist vom höchsten Summanden nur die Zahl $a \\cdot n \\cdot (n-1) \\cdots 1$ übrig, alle anderen Summanden sind schon weggefallen. Die $n$-te Ableitung ist also konstant (und nicht null, weil $a \\neq 0$).",
+        "Beispiel: $f'(x) = 6x^2 - 10x + 1$, $f''(x) = 12x - 10$, $f'''(x) = 12$, $f^{(4)}(x) = 0$.",
+        "Grad 3: Die dritte Ableitung ist die Konstante 12 (= $2 \\cdot 3 \\cdot 2 \\cdot 1$), die vierte ist 0. Das bestätigt die Begründung."
+      ],
+      "kriterien": [
+        {
+          "name": "Allgemeine Begründung",
+          "beschreibung": "Argument über die Potenzregel und das Sinken des Grades",
+          "punkte": 3
+        },
+        {
+          "name": "Ableitungen",
+          "beschreibung": "alle vier Ableitungen richtig (je 0,5 Punkte)",
+          "punkte": 2
+        },
+        {
+          "name": "Bestätigung",
+          "beschreibung": "Zusammenhang Beispiel ↔ allgemeine Aussage hergestellt",
+          "punkte": 1
+        },
+        {
+          "name": "Darstellung",
+          "beschreibung": "mathematisch saubere Notation",
+          "punkte": 1
+        }
+      ]
+    }
+  ],
+  "formeln": [
+    {
+      "name": "Potenzregel",
+      "tex": "f(x) = x^r \\Rightarrow f'(x) = r \\cdot x^{r-1}"
+    },
+    {
+      "name": "Faktorregel",
+      "tex": "f(x) = c \\cdot g(x) \\Rightarrow f'(x) = c \\cdot g'(x)"
+    },
+    {
+      "name": "Summenregel",
+      "tex": "f(x) = g(x) + h(x) \\Rightarrow f'(x) = g'(x) + h'(x)"
+    },
+    {
+      "name": "Wurzel",
+      "tex": "(\\sqrt{x})' = \\frac{1}{2\\sqrt{x}}"
+    },
+    {
+      "name": "Kehrwert",
+      "tex": "\\left(\\frac{1}{x}\\right)' = -\\frac{1}{x^2}"
+    },
+    {
+      "name": "Sinus und Kosinus",
+      "tex": "(\\sin x)' = \\cos x, \\quad (\\cos x)' = -\\sin x"
+    }
+  ]
+}
