@@ -1,0 +1,405 @@
+{
+  "id": "mdiff-kettenregel",
+  "titel": "Lineare Verkettung und lineare Kettenregel",
+  "untertitel": "Innere und äußere Funktion, f′(x) = m · u′(mx + c)",
+  "abhaengig": [
+    "mdiff-regeln"
+  ],
+  "quelleErklaerung": "eigene Zusammenfassung; abgeglichen mit Bildungsplan BW 2016 Mathematik, Lehrerfortbildung BW (Überblick Basisfach), serlo.org und Wikibooks „Mathe für Nicht-Freaks“",
+  "karten": [
+    {
+      "id": "mdiff-kettenregel-k1",
+      "typ": "begriff",
+      "vorne": "Was ist eine Verkettung von Funktionen?",
+      "hinten": "Zwei Funktionen werden nacheinander ausgeführt: $f(x) = u(v(x))$. Erst wird die innere Funktion $v$ berechnet, dann auf das Ergebnis die äußere Funktion $u$ angewendet.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-kettenregel-k2",
+      "typ": "begriff",
+      "vorne": "Was ist eine lineare Verkettung?",
+      "hinten": "Eine Verkettung $f(x) = u(mx + c)$, deren innere Funktion linear ist.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-kettenregel-k3",
+      "typ": "formel",
+      "vorne": "Lineare Kettenregel",
+      "hinten": "$f(x) = u(mx + c) \\Rightarrow f'(x) = m \\cdot u'(mx + c)$",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-kettenregel-k4",
+      "typ": "begriff",
+      "vorne": "Innere und äußere Funktion von $f(x) = \\sqrt{4x + 1}$",
+      "hinten": "Innere Funktion $v(x) = 4x + 1$, äußere Funktion $u(z) = \\sqrt{z}$.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-kettenregel-k5",
+      "typ": "herleitung",
+      "vorne": "Leite $f(x) = (3x - 2)^4$ ab.",
+      "hinten": "$f'(x) = 3 \\cdot 4(3x - 2)^3 = 12(3x - 2)^3$",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-kettenregel-k6",
+      "typ": "herleitung",
+      "vorne": "Leite $f(x) = \\sin(2x + 1)$ ab.",
+      "hinten": "$f'(x) = 2\\cos(2x + 1)$",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-kettenregel-k7",
+      "typ": "herleitung",
+      "vorne": "Leite $f(x) = \\sqrt{1 - 2x}$ ab.",
+      "hinten": "$m = -2$, $u'(z) = \\frac{1}{2\\sqrt{z}}$: $f'(x) = -2 \\cdot \\frac{1}{2\\sqrt{1 - 2x}} = -\\frac{1}{\\sqrt{1 - 2x}}$",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-kettenregel-k8",
+      "typ": "herleitung",
+      "vorne": "Leite $f(x) = \\frac{4}{5x - 1}$ ab.",
+      "hinten": "$f(x) = 4(5x - 1)^{-1}$, also $f'(x) = 5 \\cdot (-4)(5x - 1)^{-2} = -\\frac{20}{(5x - 1)^2}$",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-kettenregel-k9",
+      "typ": "fehler",
+      "vorne": "Typischer Fehler: $\\big((5 - 2x)^3\\big)' = 6(5 - 2x)^2$",
+      "hinten": "Die innere Ableitung ist $-2$, nicht $2$. Richtig: $-6(5 - 2x)^2$.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-kettenregel-k10",
+      "typ": "fehler",
+      "vorne": "Typischer Fehler: $\\big(\\cos(4x)\\big)' = -\\sin(4x)$",
+      "hinten": "Der Faktor $m = 4$ fehlt: $-4\\sin(4x)$.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-kettenregel-k11",
+      "typ": "fehler",
+      "vorne": "Typischer Fehler: $\\big((2x + 1)^3\\big)' = 3(2x + 1)^2$",
+      "hinten": "Die innere Ableitung 2 fehlt: $6(2x + 1)^2$.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-kettenregel-k12",
+      "typ": "warum",
+      "vorne": "Warum steht in der linearen Kettenregel der Faktor $m$?",
+      "hinten": "Der Graph von $u(mx + c)$ ist gegenüber dem von $u$ in x-Richtung mit Faktor $\\frac1m$ gestreckt (bei $m > 1$ gestaucht). Steigungsdreiecke werden $m$-mal schmaler bei gleicher Höhe, also $m$-mal so steil.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-kettenregel-k13",
+      "typ": "warum",
+      "vorne": "Warum darf man $\\sin(x^2)$ nicht mit der linearen Kettenregel ableiten?",
+      "hinten": "Die innere Funktion $x^2$ ist nicht linear. Die lineare Kettenregel gilt nur für innere Funktionen $mx + c$.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-kettenregel-k14",
+      "typ": "begriff",
+      "vorne": "Was ist bei $f(x) = (x + 7)^5$ die innere Ableitung?",
+      "hinten": "$m = 1$, also einfach $f'(x) = 5(x + 7)^4$.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-kettenregel-k15",
+      "typ": "herleitung",
+      "vorne": "Leite $f(x) = -3\\cos(\\pi x)$ ab.",
+      "hinten": "$f'(x) = -3 \\cdot \\pi \\cdot (-\\sin(\\pi x)) = 3\\pi\\sin(\\pi x)$",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    }
+  ],
+  "uebungen": [
+    {
+      "id": "mdiff-kettenregel-u1",
+      "typ": "mc",
+      "frage": "Welche Ableitung hat $f(x) = (4 - 3x)^5$?",
+      "quelle": "eigene Aufgabe",
+      "optionen": [
+        {
+          "text": "$f'(x) = -15(4 - 3x)^4$",
+          "warum": "Äußere Ableitung $5(4 - 3x)^4$ mal innere Ableitung $-3$.",
+          "richtig": true
+        },
+        {
+          "text": "$f'(x) = 15(4 - 3x)^4$",
+          "warum": "Das Minus der inneren Ableitung $-3$ fehlt."
+        },
+        {
+          "text": "$f'(x) = 5(4 - 3x)^4$",
+          "warum": "Die innere Ableitung wurde vergessen."
+        },
+        {
+          "text": "$f'(x) = 5(-3)^4$",
+          "warum": "Die innere Funktion muss in der Klammer stehen bleiben, nur außen wird abgeleitet."
+        }
+      ]
+    },
+    {
+      "id": "mdiff-kettenregel-u2",
+      "typ": "zuordnen",
+      "frage": "Ordne jeder Funktion ihre Ableitung zu.",
+      "quelle": "eigene Aufgabe",
+      "paare": [
+        {
+          "links": "$f(x) = (2x + 5)^3$",
+          "rechts": "$f'(x) = 6(2x + 5)^2$"
+        },
+        {
+          "links": "$f(x) = \\cos(3x)$",
+          "rechts": "$f'(x) = -3\\sin(3x)$"
+        },
+        {
+          "links": "$f(x) = \\sqrt{6x - 1}$",
+          "rechts": "$f'(x) = \\frac{3}{\\sqrt{6x - 1}}$"
+        },
+        {
+          "links": "$f(x) = \\frac{1}{2 - x}$",
+          "rechts": "$f'(x) = \\frac{1}{(2 - x)^2}$"
+        },
+        {
+          "links": "$f(x) = \\sin(0{,}5x - 1)$",
+          "rechts": "$f'(x) = 0{,}5\\cos(0{,}5x - 1)$"
+        }
+      ]
+    },
+    {
+      "id": "mdiff-kettenregel-u3",
+      "typ": "klassifizieren",
+      "frage": "Lineare Verkettung oder nicht?",
+      "quelle": "eigene Aufgabe",
+      "kategorien": [
+        "lineare Verkettung",
+        "keine lineare Verkettung"
+      ],
+      "items": [
+        {
+          "text": "$(2x + 1)^3$",
+          "kategorie": 0,
+          "warum": "innere Funktion $2x + 1$ ist linear"
+        },
+        {
+          "text": "$\\sin(x^2)$",
+          "kategorie": 1,
+          "warum": "innere Funktion $x^2$ ist nicht linear"
+        },
+        {
+          "text": "$\\sqrt{4 - x}$",
+          "kategorie": 0,
+          "warum": "innere Funktion $4 - x$ mit $m = -1$"
+        },
+        {
+          "text": "$(x^2 + 1)^3$",
+          "kategorie": 1,
+          "warum": "innere Funktion $x^2 + 1$ ist nicht linear"
+        },
+        {
+          "text": "$\\cos(3x)$",
+          "kategorie": 0,
+          "warum": "innere Funktion $3x$ (mit $c = 0$)"
+        },
+        {
+          "text": "$x^2 \\cdot \\sin(x)$",
+          "kategorie": 1,
+          "warum": "ein Produkt, keine Verkettung (→ Produktregel)"
+        }
+      ]
+    },
+    {
+      "id": "mdiff-kettenregel-u4",
+      "typ": "luecke",
+      "frage": "Ergänze die Ableitung von $f(x) = \\sqrt{1 - 2x}$.",
+      "quelle": "eigene Aufgabe",
+      "text": "Die innere Funktion ist $v(x) = 1 - 2x$ mit $m = $ [[0]]. Die äußere Funktion ist $u(z) = \\sqrt{z}$ mit $u'(z) = $ [[1]]. Also ist $f'(x) = $ [[2]].",
+      "luecken": [
+        {
+          "optionen": [
+            "$-2$",
+            "$2$",
+            "$1$"
+          ],
+          "richtig": 0
+        },
+        {
+          "optionen": [
+            "$\\frac{1}{2\\sqrt{z}}$",
+            "$2\\sqrt{z}$",
+            "$\\frac{1}{\\sqrt{z}}$"
+          ],
+          "richtig": 0
+        },
+        {
+          "optionen": [
+            "$-\\frac{1}{\\sqrt{1 - 2x}}$",
+            "$\\frac{1}{2\\sqrt{1 - 2x}}$",
+            "$-2\\sqrt{1 - 2x}$"
+          ],
+          "richtig": 0
+        }
+      ]
+    },
+    {
+      "id": "mdiff-kettenregel-u5",
+      "typ": "fehler",
+      "frage": "Wo steckt der Fehler? Abgeleitet wird $f(x) = \\frac{3}{(2x - 1)^2}$.",
+      "quelle": "eigene Aufgabe",
+      "schritte": [
+        "$f(x) = 3(2x - 1)^{-2}$",
+        "Äußere Ableitung: $3 \\cdot (-2)(2x - 1)^{-3} = -6(2x - 1)^{-3}$",
+        "Innere Ableitung: $m = 2$",
+        "$f'(x) = -6(2x - 1)^{-3} + 2$",
+        "$f'(x) = -\\frac{6}{(2x - 1)^3} + 2$"
+      ],
+      "fehler": 3,
+      "erklaerung": "Die innere Ableitung wird **multipliziert**, nicht addiert: $f'(x) = 2 \\cdot (-6)(2x - 1)^{-3} = -\\frac{12}{(2x - 1)^3}$."
+    },
+    {
+      "id": "mdiff-kettenregel-u6",
+      "typ": "reihenfolge",
+      "frage": "Bringe die Schritte beim Ableiten mit der linearen Kettenregel in die richtige Reihenfolge.",
+      "quelle": "eigene Aufgabe",
+      "schritte": [
+        "Innere Funktion $mx + c$ und äußere Funktion $u$ erkennen",
+        "Wurzeln und Brüche als Potenzen schreiben",
+        "Äußere Funktion ableiten, die innere dabei unverändert lassen",
+        "Mit der inneren Ableitung $m$ multiplizieren",
+        "Ergebnis vereinfachen"
+      ]
+    },
+    {
+      "id": "mdiff-kettenregel-s1",
+      "typ": "schreiben",
+      "operator": "erlaeutern",
+      "frage": "Erläutern Sie die lineare Kettenregel am Beispiel $f(x) = \\cos(3x + 2)$. Gehen Sie dabei auf innere und äußere Funktion ein und erklären Sie anschaulich am Graphen, warum beim Ableiten der Faktor 3 entsteht.",
+      "quelle": "eigene Aufgabe (Operatoren nach IQB-Grundstock Mathematik)",
+      "umfang": "ca. 6–8 Sätze",
+      "erwartung": [
+        "Innere Funktion $v(x) = 3x + 2$ (linear, $m = 3$), äußere Funktion $u(z) = \\cos(z)$, $f(x) = u(v(x))$.",
+        "Regel: $f'(x) = m \\cdot u'(mx + c)$, also $f'(x) = 3 \\cdot (-\\sin(3x + 2)) = -3\\sin(3x + 2)$.",
+        "Grafisch: Der Graph von $f$ entsteht aus dem Kosinusgraphen durch Stauchung in x-Richtung mit Faktor $\\frac13$ (Periode $\\frac{2\\pi}{3}$) und eine Verschiebung.",
+        "Durch die Stauchung werden alle Steigungsdreiecke dreimal so schmal bei gleicher Höhe, also ist der Graph an entsprechenden Stellen dreimal so steil.",
+        "Die Verschiebung ändert die Steigungen nicht, sie beeinflusst nur, an welcher Stelle sie auftreten. Das wird durch $u'(3x + 2)$ berücksichtigt."
+      ],
+      "kriterien": [
+        {
+          "name": "Innere/äußere Funktion",
+          "beschreibung": "beide korrekt benannt",
+          "punkte": 2
+        },
+        {
+          "name": "Ableitung",
+          "beschreibung": "korrekt mit Vorzeichen",
+          "punkte": 2
+        },
+        {
+          "name": "Anschauliche Erklärung",
+          "beschreibung": "Stauchung → steilere Steigungsdreiecke, Faktor 3 erklärt",
+          "punkte": 3
+        },
+        {
+          "name": "Verschiebung",
+          "beschreibung": "erläutert, dass die Verschiebung die Steigungswerte nicht ändert",
+          "punkte": 1
+        },
+        {
+          "name": "Darstellung",
+          "beschreibung": "zusammenhängender Text, Fachsprache",
+          "punkte": 1
+        }
+      ]
+    },
+    {
+      "id": "mdiff-kettenregel-s2",
+      "typ": "schreiben",
+      "operator": "interpretieren",
+      "frage": "Eine quadratische Eisplatte schmilzt. Ihre Seitenlänge beträgt $s(t) = 20 - 0{,}5t$ (in cm, $t$ in Minuten, $0 \\leq t \\leq 40$). Für den Flächeninhalt gilt $A(t) = (20 - 0{,}5t)^2$. Bestimmen Sie $A'(t)$ mit der linearen Kettenregel, berechnen Sie $A'(10)$ und interpretieren Sie den Wert. Bestimmen Sie außerdem, wann die Fläche momentan um $5\\,\\text{cm}^2$ pro Minute abnimmt.",
+      "quelle": "eigene Aufgabe (Operatoren nach IQB-Grundstock Mathematik)",
+      "umfang": "Rechnung und 3–4 Sätze",
+      "erwartung": [
+        "$A'(t) = 2(20 - 0{,}5t) \\cdot (-0{,}5) = -(20 - 0{,}5t) = 0{,}5t - 20$",
+        "$A'(10) = 5 - 20 = -15$",
+        "Interpretation: Nach 10 Minuten nimmt der Flächeninhalt momentan um $15\\,\\text{cm}^2$ pro Minute ab.",
+        "Ansatz: $A'(t) = -5 \\iff 0{,}5t - 20 = -5 \\iff t = 30$",
+        "Nach 30 Minuten nimmt die Fläche nur noch um $5\\,\\text{cm}^2$ pro Minute ab. Je kleiner die Platte, desto langsamer schrumpft ihre Fläche, obwohl die Seitenlänge gleichmäßig abnimmt."
+      ],
+      "kriterien": [
+        {
+          "name": "Ableitung",
+          "beschreibung": "Kettenregel korrekt angewendet (innere Ableitung $-0{,}5$)",
+          "punkte": 3
+        },
+        {
+          "name": "Wert",
+          "beschreibung": "$A'(10) = -15$",
+          "punkte": 1
+        },
+        {
+          "name": "Interpretation",
+          "beschreibung": "als momentane Abnahmerate mit Einheit cm² pro Minute gedeutet",
+          "punkte": 2
+        },
+        {
+          "name": "Ansatz und Lösung",
+          "beschreibung": "$A'(t) = -5$ richtig angesetzt und gelöst",
+          "punkte": 2
+        },
+        {
+          "name": "Antwortsätze",
+          "beschreibung": "Ergebnisse im Sachzusammenhang formuliert",
+          "punkte": 1
+        }
+      ]
+    },
+    {
+      "id": "mdiff-kettenregel-s3",
+      "typ": "schreiben",
+      "operator": "vergleichen",
+      "frage": "Vergleichen Sie zwei Wege, die Funktion $f(x) = (2x + 3)^2$ abzuleiten: (1) erst ausmultiplizieren, dann mit Summen-, Faktor- und Potenzregel ableiten; (2) mit der linearen Kettenregel. Beurteilen Sie, welcher Weg sich bei $g(x) = (2x + 3)^7$ eignet.",
+      "quelle": "eigene Aufgabe (Operatoren nach IQB-Grundstock Mathematik)",
+      "umfang": "Rechnung und ca. 4 Sätze",
+      "erwartung": [
+        "Weg 1: $f(x) = 4x^2 + 12x + 9$, also $f'(x) = 8x + 12$.",
+        "Weg 2: $f'(x) = 2 \\cdot 2(2x + 3) = 4(2x + 3) = 8x + 12$.",
+        "Gemeinsamkeit: Beide Wege führen zum gleichen Ergebnis (Kontrollmöglichkeit).",
+        "Unterschied: Weg 1 braucht eine binomische Formel und ist fehleranfällig, wenn das gemischte Glied vergessen wird. Weg 2 ist kürzer.",
+        "Bei $g$ wäre Ausmultiplizieren sehr aufwendig (7 Faktoren). Die Kettenregel liefert direkt $g'(x) = 14(2x + 3)^6$."
+      ],
+      "kriterien": [
+        {
+          "name": "Weg 1",
+          "beschreibung": "korrekt ausmultipliziert und abgeleitet",
+          "punkte": 2
+        },
+        {
+          "name": "Weg 2",
+          "beschreibung": "korrekt mit Kettenregel",
+          "punkte": 2
+        },
+        {
+          "name": "Vergleich",
+          "beschreibung": "Gemeinsamkeit und Unterschiede (Aufwand, Fehlerquellen) benannt",
+          "punkte": 2
+        },
+        {
+          "name": "Urteil zu g",
+          "beschreibung": "begründete Wahl und richtige Ableitung von $g$",
+          "punkte": 2
+        }
+      ]
+    }
+  ],
+  "formeln": [
+    {
+      "name": "Lineare Verkettung",
+      "tex": "f(x) = u(mx + c)"
+    },
+    {
+      "name": "Lineare Kettenregel",
+      "tex": "f'(x) = m \\cdot u'(mx + c)"
+    }
+  ]
+}

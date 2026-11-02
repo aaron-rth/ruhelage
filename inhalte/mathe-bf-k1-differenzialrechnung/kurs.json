@@ -1,0 +1,18 @@
+{
+  "id": "mathe-bf-k1-differenzialrechnung",
+  "fach": "Mathematik",
+  "klasse": "K1 · BF",
+  "titel": "Grundlagen der Differenzialrechnung",
+  "pfad": [
+    ["mdiff-geraden", "mdiff-terme"],
+    ["mdiff-grundfunktionen"],
+    ["mdiff-aenderungsrate"],
+    ["mdiff-grafisch", "mdiff-regeln"],
+    ["mdiff-tangente", "mdiff-kettenregel"],
+    ["mdiff-produktregel"],
+    ["mdiff-monotonie"],
+    ["mdiff-extrem"],
+    ["mdiff-sachsituationen"]
+  ],
+  "entwurf": true
+}

@@ -1,0 +1,348 @@
+{
+  "id": "mdiff-grundfunktionen",
+  "titel": "Vorwissen: Grundfunktionen und Transformationen",
+  "untertitel": "Graphen kennen, verschieben, strecken, Term ablesen",
+  "quelleErklaerung": "eigene Zusammenfassung; abgeglichen mit Bildungsplan BW 2016 Mathematik, Lehrerfortbildung BW (Überblick Basisfach), serlo.org und Wikibooks „Mathe für Nicht-Freaks“",
+  "karten": [
+    {
+      "id": "mdiff-grundfunktionen-k1",
+      "typ": "begriff",
+      "vorne": "Welche Symmetrie hat der Graph von $f(x) = x^n$?",
+      "hinten": "Gerades $n$: achsensymmetrisch zur y-Achse. Ungerades $n$: punktsymmetrisch zum Ursprung.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-grundfunktionen-k2",
+      "typ": "begriff",
+      "vorne": "Merkmale des Graphen von $f(x) = \\sqrt{x}$",
+      "hinten": "Nur für $x \\geq 0$ definiert, beginnt in $(0 \\mid 0)$, steigt immer, wird dabei immer flacher, geht durch $(1 \\mid 1)$ und $(4 \\mid 2)$.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-grundfunktionen-k3",
+      "typ": "begriff",
+      "vorne": "Merkmale des Graphen von $f(x) = \\frac{1}{x}$",
+      "hinten": "Zwei Äste im 1. und 3. Quadranten, punktsymmetrisch zum Ursprung, für $x = 0$ nicht definiert. Die Äste nähern sich den Koordinatenachsen.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-grundfunktionen-k4",
+      "typ": "begriff",
+      "vorne": "Periode, Wertebereich und Startwert von $\\sin$ und $\\cos$",
+      "hinten": "Periode $2\\pi$, Werte zwischen $-1$ und $1$. $\\sin(0) = 0$, $\\cos(0) = 1$.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-grundfunktionen-k5",
+      "typ": "wasPassiert",
+      "vorne": "Was bewirkt $+d$ in $g(x) = f(x) + d$?",
+      "hinten": "Verschiebung des Graphen um $d$ in y-Richtung (nach oben, wenn $d > 0$).",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-grundfunktionen-k6",
+      "typ": "wasPassiert",
+      "vorne": "Was bewirkt $(x - c)$ in $g(x) = f(x - c)$?",
+      "hinten": "Verschiebung um $c$ nach **rechts**. $f(x+3)$ bedeutet also 3 nach links.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-grundfunktionen-k7",
+      "typ": "fehler",
+      "vorne": "Typischer Fehler: $(x + 2)^2$ ist die Normalparabel um 2 nach rechts verschoben.",
+      "hinten": "Falsch, sie ist um 2 nach **links** verschoben. Der Scheitel liegt bei $x = -2$, denn dort wird die Klammer null.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-grundfunktionen-k8",
+      "typ": "wasPassiert",
+      "vorne": "Was bewirkt der Faktor $a$ in $g(x) = a \\cdot f(x)$?",
+      "hinten": "Streckung in y-Richtung mit dem Faktor $a$ (bei $0 < a < 1$ eine Stauchung). Ist $a < 0$, wird der Graph zusätzlich an der x-Achse gespiegelt.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-grundfunktionen-k9",
+      "typ": "wasPassiert",
+      "vorne": "Was bewirkt $b$ in $g(x) = \\sin(bx)$?",
+      "hinten": "Streckung in x-Richtung mit Faktor $\\frac{1}{b}$. Die Periode wird $\\frac{2\\pi}{b}$, z. B. bei $\\sin(2x)$ nur noch $\\pi$.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-grundfunktionen-k10",
+      "typ": "formel",
+      "vorne": "Scheitelpunktform einer Parabel",
+      "hinten": "$f(x) = a(x - x_S)^2 + y_S$ mit Scheitel $S(x_S \\mid y_S)$",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-grundfunktionen-k11",
+      "typ": "herleitung",
+      "vorne": "Parabel mit Scheitel $(2 \\mid -1)$ durch $(0 \\mid 3)$",
+      "hinten": "Ansatz $f(x) = a(x-2)^2 - 1$. Einsetzen: $3 = 4a - 1 \\Rightarrow a = 1$, also $f(x) = (x-2)^2 - 1$.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-grundfunktionen-k12",
+      "typ": "warum",
+      "vorne": "Warum muss der Taschenrechner bei $\\sin(2)$ auf RAD stehen?",
+      "hinten": "Weil in der Analysis x-Werte als Bogenmaß gemessen werden. Im Gradmaß (DEG) bekommt man für $\\sin(2)$ einen völlig anderen Wert.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-grundfunktionen-k13",
+      "typ": "wasPassiert",
+      "vorne": "Wie entsteht der Graph von $g(x) = -x^2 + 4$ aus der Normalparabel?",
+      "hinten": "Spiegelung an der x-Achse (nach unten offen), dann 4 nach oben. Scheitel $(0 \\mid 4)$, Nullstellen bei $x = \\pm 2$.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    }
+  ],
+  "uebungen": [
+    {
+      "id": "mdiff-grundfunktionen-u1",
+      "typ": "zuordnen",
+      "frage": "Ordne jeder Beschreibung die passende Funktion zu.",
+      "quelle": "eigene Aufgabe",
+      "paare": [
+        {
+          "links": "nur für $x \\geq 0$ definiert, startet im Ursprung",
+          "rechts": "$f(x) = \\sqrt{x}$"
+        },
+        {
+          "links": "Welle, die bei $(0 \\mid 1)$ startet",
+          "rechts": "$f(x) = \\cos(x)$"
+        },
+        {
+          "links": "punktsymmetrisch, waagerecht im Ursprung",
+          "rechts": "$f(x) = x^3$"
+        },
+        {
+          "links": "zwei Äste, beide oberhalb der x-Achse",
+          "rechts": "$f(x) = \\frac{1}{x^2}$"
+        },
+        {
+          "links": "nach unten offene Parabel mit Scheitel $(1 \\mid 3)$",
+          "rechts": "$f(x) = -2(x-1)^2 + 3$"
+        }
+      ]
+    },
+    {
+      "id": "mdiff-grundfunktionen-u2",
+      "typ": "mc",
+      "frage": "Wie geht der Graph von $g(x) = (x+3)^2 - 2$ aus der Normalparabel hervor?",
+      "quelle": "eigene Aufgabe",
+      "optionen": [
+        {
+          "text": "3 nach links und 2 nach unten",
+          "warum": "$(x+3)$ verschiebt nach links, $-2$ nach unten. Scheitel $(-3 \\mid -2)$.",
+          "richtig": true
+        },
+        {
+          "text": "3 nach rechts und 2 nach unten",
+          "warum": "$(x+3)$ wird bei $x = -3$ null, also liegt der Scheitel links."
+        },
+        {
+          "text": "3 nach links und 2 nach oben",
+          "warum": "$-2$ verschiebt nach unten, nicht nach oben."
+        },
+        {
+          "text": "Streckung mit Faktor 3",
+          "warum": "Die 3 steht in der Klammer als Summand, nicht als Faktor."
+        }
+      ]
+    },
+    {
+      "id": "mdiff-grundfunktionen-u3",
+      "typ": "klassifizieren",
+      "frage": "Achsensymmetrisch zur y-Achse oder punktsymmetrisch zum Ursprung?",
+      "quelle": "eigene Aufgabe",
+      "kategorien": [
+        "achsensymmetrisch zur y-Achse",
+        "punktsymmetrisch zum Ursprung"
+      ],
+      "items": [
+        {
+          "text": "$f(x) = x^4$",
+          "kategorie": 0,
+          "warum": "gerade Hochzahl"
+        },
+        {
+          "text": "$f(x) = x^3$",
+          "kategorie": 1,
+          "warum": "ungerade Hochzahl"
+        },
+        {
+          "text": "$f(x) = \\cos(x)$",
+          "kategorie": 0,
+          "warum": "$\\cos(-x) = \\cos(x)$"
+        },
+        {
+          "text": "$f(x) = \\sin(x)$",
+          "kategorie": 1,
+          "warum": "$\\sin(-x) = -\\sin(x)$"
+        },
+        {
+          "text": "$f(x) = \\frac{1}{x}$",
+          "kategorie": 1,
+          "warum": "$\\frac{1}{x} = x^{-1}$, ungerade Hochzahl"
+        },
+        {
+          "text": "$f(x) = x^2 - 5$",
+          "kategorie": 0,
+          "warum": "nur gerade Hochzahlen (die Zahl $-5$ zählt als $x^0$)"
+        }
+      ]
+    },
+    {
+      "id": "mdiff-grundfunktionen-u4",
+      "typ": "luecke",
+      "frage": "Ergänze die Beschreibung von $g(x) = 3\\sin(2x) + 1$.",
+      "quelle": "eigene Aufgabe",
+      "text": "Die Amplitude ist [[0]], die Periode ist [[1]] und der Graph ist um [[2]] nach oben verschoben.",
+      "luecken": [
+        {
+          "optionen": [
+            "3",
+            "2",
+            "1"
+          ],
+          "richtig": 0
+        },
+        {
+          "optionen": [
+            "$\\pi$",
+            "$2\\pi$",
+            "$4\\pi$"
+          ],
+          "richtig": 0
+        },
+        {
+          "optionen": [
+            "1",
+            "2",
+            "3"
+          ],
+          "richtig": 0
+        }
+      ]
+    },
+    {
+      "id": "mdiff-grundfunktionen-u5",
+      "typ": "fehler",
+      "frage": "Wo steckt der Fehler? Gesucht ist der Term einer Parabel mit Scheitel $S(-1 \\mid 2)$ durch $P(1 \\mid 10)$.",
+      "quelle": "eigene Aufgabe",
+      "schritte": [
+        "Ansatz in Scheitelpunktform: $f(x) = a(x - 1)^2 + 2$",
+        "Punkt P einsetzen: $10 = a \\cdot 0^2 + 2$",
+        "Das ergibt $10 = 2$, also keine Lösung"
+      ],
+      "fehler": 0,
+      "erklaerung": "Der Scheitel liegt bei $x = -1$, also lautet der Ansatz $f(x) = a(x + 1)^2 + 2$. Mit P: $10 = 4a + 2 \\Rightarrow a = 2$, also $f(x) = 2(x+1)^2 + 2$."
+    },
+    {
+      "id": "mdiff-grundfunktionen-u6",
+      "typ": "reihenfolge",
+      "frage": "In welcher Reihenfolge gehst du vor, um einen Funktionsterm zu einem Parabelgraphen anzugeben?",
+      "quelle": "eigene Aufgabe",
+      "schritte": [
+        "Grundfunktion erkennen (hier: Parabel)",
+        "Scheitel ablesen",
+        "Ansatz $f(x) = a(x - x_S)^2 + y_S$ aufschreiben",
+        "Einen weiteren Punkt ablesen und einsetzen",
+        "Nach $a$ auflösen und den Term angeben"
+      ]
+    },
+    {
+      "id": "mdiff-grundfunktionen-s1",
+      "typ": "schreiben",
+      "operator": "beschreiben",
+      "frage": "Beschreiben Sie, wie der Graph von $g$ mit $g(x) = -(x+2)^3 + 1$ aus dem Graphen von $f$ mit $f(x) = x^3$ hervorgeht. Geben Sie an, in welchen Punkt der Ursprung übergeht, und ob $g$ steigt oder fällt.",
+      "quelle": "eigene Aufgabe (Operatoren nach IQB-Grundstock Mathematik)",
+      "umfang": "ca. 4–5 Sätze",
+      "erwartung": [
+        "Das Minus vor der Klammer spiegelt den Graphen an der x-Achse.",
+        "$(x+2)$ verschiebt den Graphen um 2 nach links.",
+        "$+1$ verschiebt den Graphen um 1 nach oben.",
+        "Der Ursprung $(0 \\mid 0)$ geht in $(-2 \\mid 1)$ über (Symmetriezentrum).",
+        "Durch die Spiegelung verläuft der Graph von links oben nach rechts unten, $g$ fällt also."
+      ],
+      "kriterien": [
+        {
+          "name": "Spiegelung",
+          "beschreibung": "Spiegelung an der x-Achse richtig erkannt",
+          "punkte": 1
+        },
+        {
+          "name": "Verschiebungen",
+          "beschreibung": "Beide Verschiebungen mit richtiger Richtung",
+          "punkte": 2
+        },
+        {
+          "name": "Punkt",
+          "beschreibung": "$(-2 \\mid 1)$ angegeben",
+          "punkte": 1
+        },
+        {
+          "name": "Verlauf",
+          "beschreibung": "Fallender Verlauf begründet",
+          "punkte": 1
+        },
+        {
+          "name": "Fachsprache",
+          "beschreibung": "Begriffe wie Spiegelung, Verschiebung, x- bzw. y-Richtung korrekt",
+          "punkte": 1
+        }
+      ]
+    },
+    {
+      "id": "mdiff-grundfunktionen-s2",
+      "typ": "schreiben",
+      "operator": "begruenden",
+      "frage": "Eine nach unten geöffnete Parabel hat den Scheitel $S(3 \\mid 5)$ und schneidet die y-Achse bei $-4$. Geben Sie einen Funktionsterm an und begründen Sie, warum sie zwei Nullstellen hat.",
+      "quelle": "eigene Aufgabe (Operatoren nach IQB-Grundstock Mathematik)",
+      "umfang": "Rechnung und 2–3 Sätze",
+      "erwartung": [
+        "Ansatz: $f(x) = a(x-3)^2 + 5$",
+        "y-Achsenabschnitt: $f(0) = 9a + 5 = -4 \\Rightarrow a = -1$, also $f(x) = -(x-3)^2 + 5$",
+        "$a = -1 < 0$ bestätigt: nach unten offen",
+        "Begründung: Der Scheitel liegt oberhalb der x-Achse und die Parabel ist nach unten offen, also schneidet sie die x-Achse zweimal.",
+        "Rechnerisch: $(x-3)^2 = 5 \\Rightarrow x = 3 \\pm \\sqrt{5}$, also $x_1 \\approx 0{,}76$ und $x_2 \\approx 5{,}24$"
+      ],
+      "kriterien": [
+        {
+          "name": "Ansatz",
+          "beschreibung": "Scheitelpunktform mit richtigem Scheitel",
+          "punkte": 1
+        },
+        {
+          "name": "Streckfaktor",
+          "beschreibung": "$a = -1$ richtig bestimmt",
+          "punkte": 2
+        },
+        {
+          "name": "Begründung",
+          "beschreibung": "Argument über Lage des Scheitels und Öffnung (oder Rechnung)",
+          "punkte": 2
+        },
+        {
+          "name": "Darstellung",
+          "beschreibung": "nachvollziehbare Schritte",
+          "punkte": 1
+        }
+      ]
+    }
+  ],
+  "formeln": [
+    {
+      "name": "Allgemeine Transformation",
+      "tex": "g(x) = a \\cdot f\\big(b(x - c)\\big) + d"
+    },
+    {
+      "name": "Scheitelpunktform",
+      "tex": "f(x) = a(x - x_S)^2 + y_S"
+    },
+    {
+      "name": "Periode von sin(bx)",
+      "tex": "p = \\frac{2\\pi}{b}"
+    }
+  ]
+}

@@ -1,0 +1,360 @@
+{
+  "id": "mdiff-aenderungsrate",
+  "titel": "Mittlere und momentane Änderungsrate",
+  "untertitel": "Differenzenquotient, Sekante, Ableitung an einer Stelle",
+  "abhaengig": [
+    "mdiff-geraden",
+    "mdiff-terme"
+  ],
+  "quelleErklaerung": "eigene Zusammenfassung; abgeglichen mit Bildungsplan BW 2016 Mathematik, Lehrerfortbildung BW (Überblick Basisfach), serlo.org und Wikibooks „Mathe für Nicht-Freaks“",
+  "karten": [
+    {
+      "id": "mdiff-aenderungsrate-k1",
+      "typ": "begriff",
+      "vorne": "Was ist der Differenzenquotient?",
+      "hinten": "Der Term $\\frac{f(b) - f(a)}{b - a}$. Er gibt die mittlere Änderungsrate von $f$ auf $[a; b]$ an.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-aenderungsrate-k2",
+      "typ": "begriff",
+      "vorne": "Grafische Bedeutung der mittleren Änderungsrate",
+      "hinten": "Steigung der Sekante durch die Punkte $(a \\mid f(a))$ und $(b \\mid f(b))$.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-aenderungsrate-k3",
+      "typ": "begriff",
+      "vorne": "Grafische Bedeutung von $f'(a)$",
+      "hinten": "Steigung der Tangente an den Graphen von $f$ im Punkt $(a \\mid f(a))$, kurz: Steigung des Graphen an der Stelle $a$.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-aenderungsrate-k4",
+      "typ": "formel",
+      "vorne": "Definition der Ableitung an der Stelle $a$",
+      "hinten": "$f'(a) = \\lim\\limits_{x \\to a} \\dfrac{f(x) - f(a)}{x - a}$",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)",
+      "mehr": "Man sagt auch Differenzialquotient. Gleichwertig ist $\\lim\\limits_{h \\to 0} \\frac{f(a+h) - f(a)}{h}$."
+    },
+    {
+      "id": "mdiff-aenderungsrate-k5",
+      "typ": "wasPassiert",
+      "vorne": "Was passiert mit der Sekante, wenn $x \\to a$ geht?",
+      "hinten": "Der zweite Schnittpunkt rückt immer näher an $P(a \\mid f(a))$. Die Sekante dreht sich und wird zur Tangente in P.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-aenderungsrate-k6",
+      "typ": "begriff",
+      "vorne": "Welche Einheit hat eine Änderungsrate?",
+      "hinten": "Einheit der Funktionswerte durch Einheit der x-Werte, z. B. Höhe in m und Zeit in s ergibt m/s. Mittlere und momentane Änderungsrate haben dieselbe Einheit.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-aenderungsrate-k7",
+      "typ": "warum",
+      "vorne": "Warum darf man im Differenzenquotienten nicht sofort $x = a$ einsetzen?",
+      "hinten": "Weil dann $\\frac{0}{0}$ entsteht, das ist nicht definiert. Erst den Faktor $(x - a)$ kürzen, dann den Grenzwert bilden.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-aenderungsrate-k8",
+      "typ": "herleitung",
+      "vorne": "Berechne $f'(3)$ für $f(x) = x^2$ mit dem Grenzwert",
+      "hinten": "$\\frac{x^2 - 9}{x - 3} = \\frac{(x-3)(x+3)}{x-3} = x + 3 \\to 6$ für $x \\to 3$. Also $f'(3) = 6$.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-aenderungsrate-k9",
+      "typ": "herleitung",
+      "vorne": "Mittlere Änderungsrate von $f(x) = x^3$ auf $[1; 3]$",
+      "hinten": "$\\frac{27 - 1}{3 - 1} = \\frac{26}{2} = 13$",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-aenderungsrate-k10",
+      "typ": "begriff",
+      "vorne": "Was heißt „$f$ ist an der Stelle $a$ differenzierbar“?",
+      "hinten": "Der Grenzwert des Differenzenquotienten für $x \\to a$ existiert. Anschaulich: Der Graph ist dort glatt (kein Knick, kein Sprung).",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-aenderungsrate-k11",
+      "typ": "begriff",
+      "vorne": "Nenne eine Funktion, die an einer Stelle nicht differenzierbar ist.",
+      "hinten": "$f(x) = |x|$ an der Stelle 0. Von links ist die Steigung $-1$, von rechts $+1$, der Graph hat einen Knick.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-aenderungsrate-k12",
+      "typ": "fehler",
+      "vorne": "Typischer Fehler: „Die mittlere Geschwindigkeit ist der Mittelwert aus Anfangs- und Endgeschwindigkeit.“",
+      "hinten": "Die mittlere Änderungsrate ist $\\frac{\\text{Gesamtänderung}}{\\text{Intervallbreite}}$, also z. B. zurückgelegte Strecke durch Zeit. Mit dem Mittelwert zweier Geschwindigkeiten hat das im Allgemeinen nichts zu tun.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-aenderungsrate-k13",
+      "typ": "wasPassiert",
+      "vorne": "Was bedeutet $f'(a) < 0$ für den Graphen?",
+      "hinten": "Der Graph fällt an der Stelle $a$. Die Tangente hat negative Steigung.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-aenderungsrate-k14",
+      "typ": "begriff",
+      "vorne": "Mittlere oder momentane Änderungsrate: die Anzeige eines Tachos?",
+      "hinten": "Momentane Änderungsrate: die Geschwindigkeit in genau diesem Augenblick.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    }
+  ],
+  "uebungen": [
+    {
+      "id": "mdiff-aenderungsrate-u1",
+      "typ": "mc",
+      "frage": "Eine Drohne hat die Höhe $h(t) = t^2 + 2t$ (t in s, h in m). Wie groß ist die mittlere Steiggeschwindigkeit im Intervall $[1; 3]$?",
+      "quelle": "eigene Aufgabe",
+      "optionen": [
+        {
+          "text": "$6\\,\\frac{\\text{m}}{\\text{s}}$",
+          "warum": "$\\frac{h(3) - h(1)}{3 - 1} = \\frac{15 - 3}{2} = 6$",
+          "richtig": true
+        },
+        {
+          "text": "$12\\,\\frac{\\text{m}}{\\text{s}}$",
+          "warum": "Das ist nur die Höhenänderung $h(3) - h(1)$. Es fehlt das Teilen durch die Zeitspanne 2 s."
+        },
+        {
+          "text": "$5\\,\\frac{\\text{m}}{\\text{s}}$",
+          "warum": "Das ist $\\frac{h(3)}{3}$. Gesucht ist aber die Änderung zwischen $t = 1$ und $t = 3$."
+        },
+        {
+          "text": "$9\\,\\frac{\\text{m}}{\\text{s}}$",
+          "warum": "Der Mittelwert von $h(1)$ und $h(3)$ ist keine Änderungsrate."
+        }
+      ]
+    },
+    {
+      "id": "mdiff-aenderungsrate-u2",
+      "typ": "zuordnen",
+      "frage": "Ordne die Begriffe einander zu.",
+      "quelle": "eigene Aufgabe",
+      "paare": [
+        {
+          "links": "Differenzenquotient",
+          "rechts": "mittlere Änderungsrate"
+        },
+        {
+          "links": "Grenzwert des Differenzenquotienten",
+          "rechts": "momentane Änderungsrate $f'(a)$"
+        },
+        {
+          "links": "Sekantensteigung",
+          "rechts": "Steigung der Geraden durch zwei Kurvenpunkte"
+        },
+        {
+          "links": "Tangentensteigung",
+          "rechts": "Steigung des Graphen in einem Punkt"
+        },
+        {
+          "links": "differenzierbar",
+          "rechts": "Grenzwert existiert, Graph ohne Knick"
+        }
+      ]
+    },
+    {
+      "id": "mdiff-aenderungsrate-u3",
+      "typ": "luecke",
+      "frage": "Ergänze die Berechnung von $f'(2)$ für $f(x) = x^2 + 2x$ (es ist $f(2) = 8$).",
+      "quelle": "eigene Aufgabe",
+      "text": "$\\frac{f(x) - 8}{x - 2} = \\frac{x^2 + 2x - 8}{x - 2} = \\frac{(x - 2)(x + 4)}{x - 2} = $ [[0]]. Für $x \\to 2$ folgt $f'(2) = $ [[1]]. Grafisch ist das die Steigung der [[2]] im Punkt $(2 \\mid 8)$.",
+      "luecken": [
+        {
+          "optionen": [
+            "$x + 4$",
+            "$x - 4$",
+            "$x + 2$"
+          ],
+          "richtig": 0
+        },
+        {
+          "optionen": [
+            "6",
+            "8",
+            "4"
+          ],
+          "richtig": 0
+        },
+        {
+          "optionen": [
+            "Tangente",
+            "Sekante",
+            "x-Achse"
+          ],
+          "richtig": 0
+        }
+      ]
+    },
+    {
+      "id": "mdiff-aenderungsrate-u4",
+      "typ": "klassifizieren",
+      "frage": "Mittlere oder momentane Änderungsrate?",
+      "quelle": "eigene Aufgabe",
+      "kategorien": [
+        "mittlere Änderungsrate",
+        "momentane Änderungsrate"
+      ],
+      "items": [
+        {
+          "text": "Durchschnittsgeschwindigkeit auf der Fahrt von Stuttgart nach Ulm",
+          "kategorie": 0,
+          "warum": "bezieht sich auf einen Zeitraum"
+        },
+        {
+          "text": "Anzeige des Tachos um 14:03 Uhr",
+          "kategorie": 1,
+          "warum": "bezieht sich auf einen Zeitpunkt"
+        },
+        {
+          "text": "Steigung der Sekante durch zwei Punkte",
+          "kategorie": 0,
+          "warum": "zwei Punkte, also ein Intervall"
+        },
+        {
+          "text": "$f'(5)$",
+          "kategorie": 1,
+          "warum": "Ableitung an einer Stelle"
+        },
+        {
+          "text": "„Im Jahr 2025 stieg die Einwohnerzahl um durchschnittlich 50 pro Monat.“",
+          "kategorie": 0,
+          "warum": "Durchschnitt über ein Jahr"
+        },
+        {
+          "text": "„Genau um 12 Uhr fällt die Temperatur mit 0,5 °C pro Minute.“",
+          "kategorie": 1,
+          "warum": "Änderung in einem Augenblick"
+        }
+      ]
+    },
+    {
+      "id": "mdiff-aenderungsrate-u5",
+      "typ": "fehler",
+      "frage": "Wo steckt der Fehler? Gesucht ist die mittlere Änderungsrate von $f(x) = 10 - x^2$ auf $[1; 4]$.",
+      "quelle": "eigene Aufgabe",
+      "schritte": [
+        "$f(4) = 10 - 16 = -6$",
+        "$f(1) = 10 - 1 = 9$",
+        "$\\frac{f(4) - f(1)}{4 - 1} = \\frac{-6 - 9}{3}$",
+        "$= \\frac{-15}{3} = 5$"
+      ],
+      "fehler": 3,
+      "erklaerung": "$\\frac{-15}{3} = -5$. Das negative Vorzeichen ist wichtig: Die Funktionswerte nehmen im Mittel um 5 pro Einheit **ab**."
+    },
+    {
+      "id": "mdiff-aenderungsrate-u6",
+      "typ": "reihenfolge",
+      "frage": "Bringe die Schritte zur Berechnung von $f'(a)$ über den Grenzwert in die richtige Reihenfolge.",
+      "quelle": "eigene Aufgabe",
+      "schritte": [
+        "$f(a)$ berechnen",
+        "Differenzenquotienten $\\frac{f(x) - f(a)}{x - a}$ aufstellen",
+        "Zähler umformen, sodass der Faktor $(x - a)$ sichtbar wird",
+        "$(x - a)$ kürzen",
+        "$x = a$ einsetzen (Grenzwert bilden)"
+      ]
+    },
+    {
+      "id": "mdiff-aenderungsrate-s1",
+      "typ": "schreiben",
+      "operator": "erlaeutern",
+      "frage": "Eine Drohne steigt senkrecht auf. Ihre Höhe wird durch $h(t) = t^2 + 2t$ beschrieben ($t$ in s, $h(t)$ in m). Erläutern Sie am Beispiel dieser Funktion den Unterschied zwischen der mittleren Steiggeschwindigkeit im Intervall $[2; 4]$ und der momentanen Steiggeschwindigkeit zum Zeitpunkt $t = 2$. Berechnen Sie beide Werte und gehen Sie auf die grafische Bedeutung ein.",
+      "quelle": "eigene Aufgabe (Operatoren nach IQB-Grundstock Mathematik)",
+      "umfang": "Rechnung und ca. 6–8 Sätze",
+      "erwartung": [
+        "Mittlere Steiggeschwindigkeit: $\\frac{h(4) - h(2)}{4 - 2} = \\frac{24 - 8}{2} = 8\\,\\frac{\\text{m}}{\\text{s}}$. Sie gibt an, wie viele Meter die Drohne zwischen 2 s und 4 s durchschnittlich pro Sekunde steigt.",
+        "Grafisch ist das die Steigung der Sekante durch $(2 \\mid 8)$ und $(4 \\mid 24)$.",
+        "Momentane Steiggeschwindigkeit: $h'(2) = \\lim\\limits_{t \\to 2} \\frac{t^2 + 2t - 8}{t - 2} = \\lim\\limits_{t \\to 2} (t + 4) = 6\\,\\frac{\\text{m}}{\\text{s}}$.",
+        "Grafisch ist das die Steigung der Tangente im Punkt $(2 \\mid 8)$.",
+        "Unterschied: mittlere Rate über ein Zeitintervall, momentane Rate in einem Zeitpunkt. Die Drohne wird schneller, darum ist die momentane Geschwindigkeit bei 2 s kleiner als der Durchschnitt auf $[2; 4]$."
+      ],
+      "kriterien": [
+        {
+          "name": "Mittlere Rate",
+          "beschreibung": "Differenzenquotient richtig aufgestellt und berechnet, mit Einheit",
+          "punkte": 2
+        },
+        {
+          "name": "Momentane Rate",
+          "beschreibung": "Grenzwert korrekt berechnet (Faktorisieren und Kürzen)",
+          "punkte": 3
+        },
+        {
+          "name": "Grafische Deutung",
+          "beschreibung": "Sekante und Tangente richtig zugeordnet",
+          "punkte": 2
+        },
+        {
+          "name": "Erläuterung",
+          "beschreibung": "Unterschied Intervall/Zeitpunkt klar erläutert, Bezug auf den Sachzusammenhang",
+          "punkte": 2
+        },
+        {
+          "name": "Darstellung",
+          "beschreibung": "Fachsprache und saubere Notation (lim, Einheiten)",
+          "punkte": 1
+        }
+      ]
+    },
+    {
+      "id": "mdiff-aenderungsrate-s2",
+      "typ": "schreiben",
+      "operator": "interpretieren",
+      "frage": "Ein heißer Tee kühlt ab. $T(t)$ ist seine Temperatur in °C, $t$ die Zeit in Minuten. Es gilt $T(4) = 60$, $\\frac{T(10) - T(4)}{10 - 4} = -1{,}5$ und $T'(4) = -2$. Interpretieren Sie die drei Angaben im Sachzusammenhang.",
+      "quelle": "eigene Aufgabe (Operatoren nach IQB-Grundstock Mathematik)",
+      "umfang": "ca. 4–6 Sätze",
+      "erwartung": [
+        "$T(4) = 60$: Vier Minuten nach Beobachtungsbeginn hat der Tee eine Temperatur von 60 °C.",
+        "$\\frac{T(10) - T(4)}{6} = -1{,}5$: Zwischen der 4. und der 10. Minute sinkt die Temperatur im Durchschnitt um 1,5 °C pro Minute (insgesamt um 9 °C auf 51 °C).",
+        "$T'(4) = -2$: Genau zum Zeitpunkt 4 min nimmt die Temperatur momentan mit 2 °C pro Minute ab.",
+        "Vergleich: Am Anfang des Intervalls kühlt der Tee schneller ab als im Durchschnitt. Das passt dazu, dass das Abkühlen mit der Zeit langsamer wird."
+      ],
+      "kriterien": [
+        {
+          "name": "Funktionswert",
+          "beschreibung": "$T(4)$ als Temperatur zu einem Zeitpunkt gedeutet",
+          "punkte": 1
+        },
+        {
+          "name": "Mittlere Änderungsrate",
+          "beschreibung": "als durchschnittliche Abnahme pro Minute im Intervall gedeutet, Vorzeichen beachtet",
+          "punkte": 2
+        },
+        {
+          "name": "Ableitung",
+          "beschreibung": "als momentane Abnahmerate zum Zeitpunkt 4 gedeutet",
+          "punkte": 2
+        },
+        {
+          "name": "Einheiten und Sprache",
+          "beschreibung": "Einheiten (°C, °C pro Minute) und Begriffe „nimmt ab“ statt „ist −2“",
+          "punkte": 1
+        }
+      ]
+    }
+  ],
+  "formeln": [
+    {
+      "name": "Mittlere Änderungsrate auf [a; b]",
+      "tex": "\\frac{f(b) - f(a)}{b - a}"
+    },
+    {
+      "name": "Ableitung an der Stelle a",
+      "tex": "f'(a) = \\lim_{x \\to a} \\frac{f(x) - f(a)}{x - a}"
+    },
+    {
+      "name": "Ableitung (h-Schreibweise)",
+      "tex": "f'(a) = \\lim_{h \\to 0} \\frac{f(a+h) - f(a)}{h}"
+    }
+  ]
+}

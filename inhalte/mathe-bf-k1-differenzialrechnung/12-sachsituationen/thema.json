@@ -1,0 +1,384 @@
+{
+  "id": "mdiff-sachsituationen",
+  "titel": "Differenzialrechnung in Sachsituationen",
+  "untertitel": "Alltagssprache übersetzen, Bestand und Änderungsrate, Randwerte",
+  "abhaengig": [
+    "mdiff-extrem",
+    "mdiff-aenderungsrate"
+  ],
+  "quelleErklaerung": "eigene Zusammenfassung; abgeglichen mit Bildungsplan BW 2016 Mathematik, Lehrerfortbildung BW (Überblick Basisfach), serlo.org und Wikibooks „Mathe für Nicht-Freaks“",
+  "karten": [
+    {
+      "id": "mdiff-sachsituationen-k1",
+      "typ": "begriff",
+      "vorne": "Was beschreibt $f(t)$, was $f'(t)$ in einer Sachaufgabe?",
+      "hinten": "$f(t)$: Bestand zum Zeitpunkt $t$. $f'(t)$: momentane Änderungsrate, also wie schnell der Bestand gerade zu- oder abnimmt (Einheit pro Zeiteinheit).",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-sachsituationen-k2",
+      "typ": "begriff",
+      "vorne": "Übersetze: „Die Zunahme wird immer geringer.“",
+      "hinten": "$f'(t) > 0$ und $f''(t) < 0$ (steigt, Rechtskurve).",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-sachsituationen-k3",
+      "typ": "begriff",
+      "vorne": "Übersetze: „Wann nimmt der Bestand am stärksten zu?“",
+      "hinten": "Gesucht ist das Maximum von $f'$: Wendestelle von $f$ mit $f''(t) = 0$ (und VZW bzw. $f''' \\neq 0$), außerdem die Randwerte von $f'$ prüfen.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-sachsituationen-k4",
+      "typ": "begriff",
+      "vorne": "Übersetze: „Wann ist der Bestand am größten?“",
+      "hinten": "Globales Maximum von $f$: $f'(t) = 0$ lösen, Art prüfen und mit den Randwerten $f(a)$, $f(b)$ vergleichen.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-sachsituationen-k5",
+      "typ": "fehler",
+      "vorne": "Typischer Fehler: Für „am stärksten zunehmen“ wird $f'(t) = 0$ gelöst.",
+      "hinten": "$f'(t) = 0$ liefert Stellen, an denen der Bestand gar nicht zunimmt. Für die stärkste Zunahme muss $f'$ maximal sein, also $f''(t) = 0$.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-sachsituationen-k6",
+      "typ": "warum",
+      "vorne": "Warum muss man in Sachaufgaben die Randwerte prüfen?",
+      "hinten": "Der Definitionsbereich ist eingeschränkt. Das größte bzw. kleinste $f$ (oder $f'$) kann am Rand liegen, wo die Ableitung nicht null ist.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-sachsituationen-k7",
+      "typ": "begriff",
+      "vorne": "Was ist ein Randextremum?",
+      "hinten": "Ein größter oder kleinster Funktionswert am Rand des Definitionsbereichs, z. B. $f(b)$ bei $f$ auf $[a; b]$.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-sachsituationen-k8",
+      "typ": "wasPassiert",
+      "vorne": "$f(5) = 200$ (Besucher, $t$ in h). Wie lautet ein passender Satz?",
+      "hinten": "Fünf Stunden nach Beobachtungsbeginn sind 200 Besucher da.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-sachsituationen-k9",
+      "typ": "wasPassiert",
+      "vorne": "$f'(5) = -30$ (Besucher, $t$ in h). Wie lautet ein passender Satz?",
+      "hinten": "Fünf Stunden nach Beobachtungsbeginn nimmt die Besucherzahl momentan um 30 pro Stunde ab.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-sachsituationen-k10",
+      "typ": "wasPassiert",
+      "vorne": "$\\frac{f(6) - f(2)}{4} = 12$ (Besucher, $t$ in h). Wie lautet ein passender Satz?",
+      "hinten": "Zwischen der 2. und der 6. Stunde nimmt die Besucherzahl im Durchschnitt um 12 pro Stunde zu.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-sachsituationen-k11",
+      "typ": "herleitung",
+      "vorne": "Freibad $f(t) = -t^3 + 9t^2 + 20$, $0 \\leq t \\leq 8$: meiste Gäste?",
+      "hinten": "$f'(t) = -3t(t - 6) = 0$, $t = 6$, $f''(6) < 0$, $f(6) = 128$; Ränder $f(0) = 20$, $f(8) = 84$. Bei $t = 6$ (15 Uhr) sind die meisten Gäste da, 128.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-sachsituationen-k12",
+      "typ": "herleitung",
+      "vorne": "Freibad: Wann nimmt die Gästezahl am stärksten zu?",
+      "hinten": "$f''(t) = -6t + 18 = 0$, $t = 3$, $f'(3) = 27$; Randwerte $f'(0) = 0$, $f'(8) = -48$. Um 12 Uhr, mit 27 Gästen pro Stunde.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-sachsituationen-k13",
+      "typ": "begriff",
+      "vorne": "Übersetze: „Der Bestand bleibt zwischen $t = 2$ und $t = 4$ gleich.“",
+      "hinten": "$f(t) = k$ für $2 \\leq t \\leq 4$, also $f'(t) = 0$ dort.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-sachsituationen-k14",
+      "typ": "fehler",
+      "vorne": "Typischer Fehler: Antwort „$t = 6$“",
+      "hinten": "Die Antwort muss in den Sachzusammenhang zurück: Uhrzeit bzw. Zeitangabe, Wert und Einheit nennen.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    }
+  ],
+  "uebungen": [
+    {
+      "id": "mdiff-sachsituationen-u1",
+      "typ": "mc",
+      "frage": "Eine Funktion $W$ beschreibt den Wasserstand eines Flusses ($t$ in Tagen). Welcher Ansatz passt zu „Wann steigt das Wasser am schnellsten?“",
+      "quelle": "eigene Aufgabe",
+      "optionen": [
+        {
+          "text": "$W''(t) = 0$ lösen und mit den Randwerten von $W'$ vergleichen",
+          "warum": "Gesucht ist das Maximum der Steiggeschwindigkeit $W'$.",
+          "richtig": true
+        },
+        {
+          "text": "$W'(t) = 0$ lösen",
+          "warum": "Damit findet man Stellen, an denen das Wasser gerade gar nicht steigt (höchster bzw. niedrigster Stand)."
+        },
+        {
+          "text": "$W(t) = 0$ lösen",
+          "warum": "Das wäre ein Wasserstand von null."
+        },
+        {
+          "text": "Den größten Funktionswert von $W$ suchen",
+          "warum": "Das ist der höchste Wasserstand, nicht der schnellste Anstieg."
+        }
+      ]
+    },
+    {
+      "id": "mdiff-sachsituationen-u2",
+      "typ": "zuordnen",
+      "frage": "Ordne jeder Aussage die mathematische Formulierung zu ($f$: Anzahl der Besucher, $t$ in Stunden).",
+      "quelle": "eigene Aufgabe",
+      "paare": [
+        {
+          "links": "Nach 3 Stunden sind 80 Besucher da.",
+          "rechts": "$f(3) = 80$"
+        },
+        {
+          "links": "Nach 3 Stunden kommen pro Stunde 80 Besucher dazu.",
+          "rechts": "$f'(3) = 80$"
+        },
+        {
+          "links": "Die Besucherzahl steigt, aber immer langsamer.",
+          "rechts": "$f' > 0$ und $f'' < 0$"
+        },
+        {
+          "links": "Nach 3 Stunden nimmt die Zahl am stärksten ab.",
+          "rechts": "$t = 3$ ist Minimumstelle von $f'$"
+        },
+        {
+          "links": "Von Stunde 1 bis 3 kommen im Schnitt 20 pro Stunde dazu.",
+          "rechts": "$\\frac{f(3) - f(1)}{2} = 20$"
+        },
+        {
+          "links": "Nach 3 Stunden sind die meisten Besucher da.",
+          "rechts": "$f(3)$ ist das globale Maximum von $f$"
+        }
+      ]
+    },
+    {
+      "id": "mdiff-sachsituationen-u3",
+      "typ": "klassifizieren",
+      "frage": "Geht es um den Bestand ($f$) oder um die Änderungsrate ($f'$)?",
+      "quelle": "eigene Aufgabe",
+      "kategorien": [
+        "Bestand $f$",
+        "Änderungsrate $f'$"
+      ],
+      "items": [
+        {
+          "text": "Um 10 Uhr ist der See 3,2 m tief.",
+          "kategorie": 0,
+          "warum": "Wert der Größe selbst"
+        },
+        {
+          "text": "Um 10 Uhr steigt der Pegel um 2 cm pro Stunde.",
+          "kategorie": 1,
+          "warum": "Änderung pro Zeit"
+        },
+        {
+          "text": "Das Konto hat nach 5 Monaten den höchsten Stand.",
+          "kategorie": 0,
+          "warum": "Maximum des Bestands"
+        },
+        {
+          "text": "Die Pflanze wächst nach 3 Wochen am schnellsten.",
+          "kategorie": 1,
+          "warum": "Maximum der Wachstumsgeschwindigkeit"
+        },
+        {
+          "text": "Die Temperatur sinkt gerade um 0,5 °C pro Minute.",
+          "kategorie": 1,
+          "warum": "momentane Änderungsrate"
+        },
+        {
+          "text": "Im Saal sind 240 Personen.",
+          "kategorie": 0,
+          "warum": "Anzahl, keine Rate"
+        }
+      ]
+    },
+    {
+      "id": "mdiff-sachsituationen-u4",
+      "typ": "luecke",
+      "frage": "Ergänze die Rechnung zum Freibad-Beispiel $f(t) = -t^3 + 9t^2 + 20$, $0 \\leq t \\leq 8$.",
+      "quelle": "eigene Aufgabe",
+      "text": "Die meisten Gäste: $f'(t) = -3t(t - 6) = 0$ liefert im Inneren $t = $ [[0]] mit $f = 128$. Am Rand gilt $f(8) = $ [[1]]. Die stärkste Abnahme liegt bei $t = $ [[2]], weil $f'$ dort am kleinsten ist.",
+      "luecken": [
+        {
+          "optionen": [
+            "6",
+            "3",
+            "0"
+          ],
+          "richtig": 0
+        },
+        {
+          "optionen": [
+            "84",
+            "128",
+            "20"
+          ],
+          "richtig": 0
+        },
+        {
+          "optionen": [
+            "8",
+            "6",
+            "3"
+          ],
+          "richtig": 0
+        }
+      ]
+    },
+    {
+      "id": "mdiff-sachsituationen-u5",
+      "typ": "fehler",
+      "frage": "Wo steckt der Fehler? Aufgabe: „Wann nehmen die Badegäste am stärksten zu?“ mit $f(t) = -t^3 + 9t^2 + 20$, $0 \\leq t \\leq 8$.",
+      "quelle": "eigene Aufgabe",
+      "schritte": [
+        "Gesucht ist das Maximum von $f'$.",
+        "$f'(t) = -3t^2 + 18t$",
+        "$f'(t) = 0 \\Rightarrow t = 0$ oder $t = 6$",
+        "Am stärksten nehmen die Badegäste also bei $t = 6$ (15 Uhr) zu."
+      ],
+      "fehler": 2,
+      "erklaerung": "Für das Maximum von $f'$ muss man $f''(t) = 0$ lösen (Ableitung von $f'$): $-6t + 18 = 0$, also $t = 3$. Bei $t = 6$ nimmt die Gästezahl gar nicht zu, dort sind die meisten Gäste da."
+    },
+    {
+      "id": "mdiff-sachsituationen-u6",
+      "typ": "reihenfolge",
+      "frage": "Bringe die Schritte beim Lösen einer Sachaufgabe in eine sinnvolle Reihenfolge.",
+      "quelle": "eigene Aufgabe",
+      "schritte": [
+        "Frage in eine mathematische Bedingung übersetzen (z. B. Maximum von $f'$)",
+        "Benötigte Ableitungen bestimmen",
+        "Gleichung lösen und Art des Extremums prüfen",
+        "Randwerte des Definitionsbereichs vergleichen",
+        "Antwortsatz mit Zeitangabe, Wert und Einheit formulieren"
+      ]
+    },
+    {
+      "id": "mdiff-sachsituationen-s1",
+      "typ": "schreiben",
+      "operator": "begruenden",
+      "frage": "Die Temperatur in einem Gewächshaus wird für $0 \\leq t \\leq 10$ durch $T(t) = -0{,}05t^3 + 0{,}6t^2 + 12$ beschrieben ($t$ in Stunden nach 8 Uhr, $T(t)$ in °C). (a) Bestimmen Sie, wann die Temperatur am höchsten und wann am niedrigsten ist. (b) Bestimmen Sie den Zeitpunkt des stärksten Temperaturanstiegs. (c) Begründen Sie, dass die Temperatur um 18 Uhr am schnellsten sinkt.",
+      "quelle": "eigene Aufgabe (Operatoren nach IQB-Grundstock Mathematik)",
+      "umfang": "Rechnung mit Antwortsätzen",
+      "erwartung": [
+        "$T'(t) = -0{,}15t^2 + 1{,}2t = -0{,}15t(t - 8)$, $T''(t) = -0{,}3t + 1{,}2$.",
+        "(a) $T'(t) = 0$: $t = 0$ (Rand) oder $t = 8$; $T''(8) = -1{,}2 < 0$ ⇒ lokales Maximum, $T(8) = 24{,}8$. Randwerte: $T(0) = 12$, $T(10) = 22$. Höchste Temperatur 24,8 °C um 16 Uhr, niedrigste 12 °C um 8 Uhr (Randminimum).",
+        "(b) $T''(t) = 0 \\iff t = 4$; $T'''(t) = -0{,}3 < 0$ ⇒ Maximum von $T'$. $T'(4) = 2{,}4$; Randwerte $T'(0) = 0$, $T'(10) = -3$. Stärkster Anstieg um 12 Uhr mit 2,4 °C pro Stunde.",
+        "(c) $T'$ hat im Inneren nur ein Maximum (bei $t = 4$) und ist danach streng monoton fallend ($T'' < 0$ für $t > 4$). Das Minimum von $T'$ liegt daher am rechten Rand: $T'(10) = -3$. Um 18 Uhr sinkt die Temperatur am schnellsten, um 3 °C pro Stunde."
+      ],
+      "kriterien": [
+        {
+          "name": "Ableitungen",
+          "beschreibung": "$T'$ und $T''$ korrekt",
+          "punkte": 1
+        },
+        {
+          "name": "Höchste/niedrigste Temperatur",
+          "beschreibung": "Kandidaten aus $T' = 0$, Art geprüft, Randwerte verglichen",
+          "punkte": 3
+        },
+        {
+          "name": "Stärkster Anstieg",
+          "beschreibung": "Maximum von $T'$ über $T'' = 0$ und Randvergleich",
+          "punkte": 3
+        },
+        {
+          "name": "Begründung (c)",
+          "beschreibung": "Monotonie von $T'$ bzw. Randminimum schlüssig begründet",
+          "punkte": 2
+        },
+        {
+          "name": "Antwortsätze",
+          "beschreibung": "Uhrzeiten, Werte und Einheiten",
+          "punkte": 1
+        }
+      ]
+    },
+    {
+      "id": "mdiff-sachsituationen-s2",
+      "typ": "schreiben",
+      "operator": "interpretieren",
+      "frage": "Für das Gewächshaus aus der vorigen Aufgabe gilt $T(t) = -0{,}05t^3 + 0{,}6t^2 + 12$ ($t$ in h nach 8 Uhr, $T$ in °C). Interpretieren Sie im Sachzusammenhang: (1) $T'(9) = -1{,}35$, (2) $\\frac{T(8) - T(0)}{8} = 1{,}6$, (3) die Gleichung $T(t) = 20$. Formulieren Sie zu (3) eine passende Frage, ohne sie zu lösen.",
+      "quelle": "eigene Aufgabe (Operatoren nach IQB-Grundstock Mathematik)",
+      "umfang": "je Teil 1–2 Sätze",
+      "erwartung": [
+        "(1) Um 17 Uhr sinkt die Temperatur momentan um 1,35 °C pro Stunde.",
+        "(2) Zwischen 8 Uhr und 16 Uhr steigt die Temperatur im Durchschnitt um 1,6 °C pro Stunde (insgesamt von 12 °C auf 24,8 °C).",
+        "(3) Frage: „Zu welchen Uhrzeiten beträgt die Temperatur im Gewächshaus genau 20 °C?“ Gesucht sind Zeitpunkte, nicht eine Änderungsrate."
+      ],
+      "kriterien": [
+        {
+          "name": "(1)",
+          "beschreibung": "momentane Abnahme mit Uhrzeit und Einheit °C pro Stunde",
+          "punkte": 2
+        },
+        {
+          "name": "(2)",
+          "beschreibung": "mittlere Änderungsrate über den Zeitraum mit Einheit",
+          "punkte": 2
+        },
+        {
+          "name": "(3)",
+          "beschreibung": "sinnvolle Frage nach Zeitpunkten mit Temperatur 20 °C",
+          "punkte": 2
+        },
+        {
+          "name": "Sprache",
+          "beschreibung": "Bestand und Änderungsrate sprachlich sauber unterschieden (\"beträgt\" vs. \"steigt um\")",
+          "punkte": 1
+        }
+      ]
+    },
+    {
+      "id": "mdiff-sachsituationen-s3",
+      "typ": "schreiben",
+      "operator": "darstellen",
+      "frage": "Die Funktion $h$ beschreibt die Höhe einer Sonnenblume (in cm) in Abhängigkeit von der Zeit $t$ (in Wochen nach dem Einpflanzen). Stellen Sie die folgenden Aussagen mithilfe von $h$, $h'$ oder $h''$ dar: (a) Nach vier Wochen ist die Pflanze 35 cm hoch. (b) In den ersten sechs Wochen wächst sie um 60 cm. (c) Nach acht Wochen wächst sie am schnellsten. (d) Nach zehn Wochen wächst sie 12 cm pro Woche. (e) Ab der zwölften Woche wächst sie zwar noch, aber immer langsamer.",
+      "quelle": "eigene Aufgabe (Operatoren nach IQB-Grundstock Mathematik)",
+      "umfang": "je Aussage eine mathematische Formulierung",
+      "erwartung": [
+        "(a) $h(4) = 35$",
+        "(b) $h(6) - h(0) = 60$",
+        "(c) $h'$ hat bei $t = 8$ sein Maximum; d. h. $t = 8$ ist Wendestelle von $h$ mit $h''(8) = 0$ und Vorzeichenwechsel von $h''$ von $+$ nach $-$.",
+        "(d) $h'(10) = 12$",
+        "(e) $h'(t) > 0$ und $h''(t) < 0$ für $t \\geq 12$"
+      ],
+      "kriterien": [
+        {
+          "name": "(a) und (d)",
+          "beschreibung": "Bestand bzw. Änderungsrate richtig zugeordnet (je 1 Punkt)",
+          "punkte": 2
+        },
+        {
+          "name": "(b)",
+          "beschreibung": "Differenz der Funktionswerte (nicht mittlere Rate)",
+          "punkte": 1
+        },
+        {
+          "name": "(c)",
+          "beschreibung": "Maximum von $h'$ bzw. Wendestelle von $h$ erkannt",
+          "punkte": 2
+        },
+        {
+          "name": "(e)",
+          "beschreibung": "beide Bedingungen $h' > 0$ und $h'' < 0$",
+          "punkte": 2
+        }
+      ]
+    }
+  ]
+}

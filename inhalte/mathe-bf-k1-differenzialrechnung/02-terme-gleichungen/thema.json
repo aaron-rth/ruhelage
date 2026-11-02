@@ -1,0 +1,360 @@
+{
+  "id": "mdiff-terme",
+  "titel": "Vorwissen: Terme und Gleichungen",
+  "untertitel": "Potenzen, binomische Formeln, Lösungsverfahren",
+  "quelleErklaerung": "eigene Zusammenfassung; abgeglichen mit Bildungsplan BW 2016 Mathematik, Lehrerfortbildung BW (Überblick Basisfach), serlo.org und Wikibooks „Mathe für Nicht-Freaks“",
+  "karten": [
+    {
+      "id": "mdiff-terme-k1",
+      "typ": "wasPassiert",
+      "vorne": "Was ist der Unterschied zwischen $(-3)^2$ und $-3^2$?",
+      "hinten": "$(-3)^2 = 9$, aber $-3^2 = -9$. Ohne Klammer wird zuerst potenziert, dann das Minus angewendet.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-terme-k2",
+      "typ": "formel",
+      "vorne": "$\\sqrt{x}$ als Potenz",
+      "hinten": "$\\sqrt{x} = x^{\\frac{1}{2}}$",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-terme-k3",
+      "typ": "formel",
+      "vorne": "$\\frac{1}{x^n}$ als Potenz",
+      "hinten": "$\\frac{1}{x^n} = x^{-n}$, z. B. $\\frac{5}{x^2} = 5x^{-2}$",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-terme-k4",
+      "typ": "formel",
+      "vorne": "$\\frac{1}{\\sqrt{x}}$ als Potenz",
+      "hinten": "$x^{-\\frac{1}{2}}$",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-terme-k5",
+      "typ": "formel",
+      "vorne": "Die drei binomischen Formeln",
+      "hinten": "$(a+b)^2 = a^2 + 2ab + b^2$; $(a-b)^2 = a^2 - 2ab + b^2$; $(a+b)(a-b) = a^2 - b^2$",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-terme-k6",
+      "typ": "fehler",
+      "vorne": "Typischer Fehler: $(x+5)^2 = x^2 + 25$",
+      "hinten": "Das gemischte Glied fehlt: $(x+5)^2 = x^2 + 10x + 25$.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-terme-k7",
+      "typ": "formel",
+      "vorne": "Mitternachtsformel für $ax^2 + bx + c = 0$",
+      "hinten": "$x_{1,2} = \\dfrac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)",
+      "mehr": "Ist $b^2 - 4ac < 0$, gibt es keine Lösung; ist es $0$, gibt es genau eine Lösung."
+    },
+    {
+      "id": "mdiff-terme-k8",
+      "typ": "begriff",
+      "vorne": "Satz vom Nullprodukt",
+      "hinten": "Ein Produkt ist genau dann null, wenn mindestens einer der Faktoren null ist. Beispiel: $(x-2)(x+7) = 0 \\Rightarrow x = 2$ oder $x = -7$.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-terme-k9",
+      "typ": "warum",
+      "vorne": "Warum darf man bei $x^3 = 4x$ nicht durch $x$ teilen?",
+      "hinten": "Weil $x = 0$ eine Lösung ist und man durch null nicht teilen darf. Man verliert sie. Richtig: $x^3 - 4x = 0 \\Rightarrow x(x^2 - 4) = 0 \\Rightarrow x \\in \\{-2; 0; 2\\}$.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-terme-k10",
+      "typ": "begriff",
+      "vorne": "Wann hilft Substitution?",
+      "hinten": "Bei Gleichungen mit nur $x^4$, $x^2$ und einer Zahl (biquadratisch). Mit $z = x^2$ entsteht eine quadratische Gleichung in $z$.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-terme-k11",
+      "typ": "herleitung",
+      "vorne": "Löse $x^4 - 10x^2 + 9 = 0$",
+      "hinten": "$z = x^2$: $z^2 - 10z + 9 = 0 \\Rightarrow z = 1$ oder $z = 9$. Also $x = \\pm 1$ oder $x = \\pm 3$.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-terme-k12",
+      "typ": "fehler",
+      "vorne": "Typischer Fehler bei Substitution: Man gibt $z = 1$ und $z = 9$ als Lösungen an.",
+      "hinten": "Die Rücksubstitution fehlt! Gesucht ist $x$, nicht $z$. Aus $z = x^2$ folgen jeweils zwei x-Werte (falls $z > 0$).",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-terme-k13",
+      "typ": "herleitung",
+      "vorne": "Löse $2x^2 - 8x = 0$",
+      "hinten": "Ausklammern: $2x(x - 4) = 0 \\Rightarrow x = 0$ oder $x = 4$.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-terme-k14",
+      "typ": "warum",
+      "vorne": "Warum muss man in der Differenzialrechnung oft Gleichungen lösen?",
+      "hinten": "Weil Extremstellen, Wendestellen oder Punkte mit vorgegebener Steigung über Gleichungen wie $f'(x) = 0$ oder $f'(x) = m$ gefunden werden.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    }
+  ],
+  "uebungen": [
+    {
+      "id": "mdiff-terme-u1",
+      "typ": "zuordnen",
+      "frage": "Ordne jeder Gleichung das geschickteste Lösungsverfahren zu.",
+      "quelle": "eigene Aufgabe",
+      "paare": [
+        {
+          "links": "$(x+3)(2x-1) = 0$",
+          "rechts": "Satz vom Nullprodukt"
+        },
+        {
+          "links": "$x^3 + 6x^2 = 0$",
+          "rechts": "$x$ ausklammern"
+        },
+        {
+          "links": "$x^4 - 13x^2 + 36 = 0$",
+          "rechts": "Substitution $z = x^2$"
+        },
+        {
+          "links": "$2x^2 + 3x - 5 = 0$",
+          "rechts": "Mitternachtsformel"
+        },
+        {
+          "links": "$5x - 2 = 3x + 8$",
+          "rechts": "Äquivalenzumformung"
+        }
+      ]
+    },
+    {
+      "id": "mdiff-terme-u2",
+      "typ": "mc",
+      "frage": "Welche Lösungsmenge hat $x^3 - 16x = 0$?",
+      "quelle": "eigene Aufgabe",
+      "optionen": [
+        {
+          "text": "$\\{-4; 0; 4\\}$",
+          "warum": "$x(x^2-16) = 0$ ergibt $x = 0$ oder $x = \\pm 4$.",
+          "richtig": true
+        },
+        {
+          "text": "$\\{-4; 4\\}$",
+          "warum": "Hier wurde durch $x$ geteilt und $x = 0$ ging verloren."
+        },
+        {
+          "text": "$\\{4\\}$",
+          "warum": "Die negative Lösung von $x^2 = 16$ fehlt, ebenso $x = 0$."
+        },
+        {
+          "text": "$\\{0; 16\\}$",
+          "warum": "Aus $x^2 = 16$ folgt $x = \\pm 4$, nicht $x = 16$."
+        }
+      ]
+    },
+    {
+      "id": "mdiff-terme-u3",
+      "typ": "klassifizieren",
+      "frage": "Gleich $x^{-2}$ oder nicht?",
+      "quelle": "eigene Aufgabe",
+      "kategorien": [
+        "gleich $x^{-2}$",
+        "nicht gleich $x^{-2}$"
+      ],
+      "items": [
+        {
+          "text": "$\\frac{1}{x^2}$",
+          "kategorie": 0,
+          "warum": "Definition der negativen Hochzahl"
+        },
+        {
+          "text": "$\\frac{1}{x \\cdot x}$",
+          "kategorie": 0,
+          "warum": "$x \\cdot x = x^2$"
+        },
+        {
+          "text": "$-x^2$",
+          "kategorie": 1,
+          "warum": "Das ist das Negative von $x^2$, keine negative Hochzahl."
+        },
+        {
+          "text": "$\\frac{1}{2x}$",
+          "kategorie": 1,
+          "warum": "Das ist $\\frac{1}{2}x^{-1}$."
+        },
+        {
+          "text": "$(x^{-1})^2$",
+          "kategorie": 0,
+          "warum": "$(-1) \\cdot 2 = -2$"
+        },
+        {
+          "text": "$\\sqrt{x^{-4}}$",
+          "kategorie": 0,
+          "warum": "$(x^{-4})^{\\frac12} = x^{-2}$ (für $x \\neq 0$)"
+        }
+      ]
+    },
+    {
+      "id": "mdiff-terme-u4",
+      "typ": "fehler",
+      "frage": "Wo steckt der Fehler? Gelöst wird $x^4 - 3x^2 - 4 = 0$.",
+      "quelle": "eigene Aufgabe",
+      "schritte": [
+        "Substitution $z = x^2$: $z^2 - 3z - 4 = 0$",
+        "Mitternachtsformel: $z = \\frac{3 \\pm \\sqrt{9 + 16}}{2} = \\frac{3 \\pm 5}{2}$",
+        "$z_1 = 4$, $z_2 = -1$",
+        "Rücksubstitution: $x^2 = 4 \\Rightarrow x = \\pm 2$; $x^2 = -1 \\Rightarrow x = \\pm 1$",
+        "Lösungsmenge $\\{-2; -1; 1; 2\\}$"
+      ],
+      "fehler": 3,
+      "erklaerung": "$x^2 = -1$ hat keine Lösung, weil ein Quadrat nie negativ ist. Richtig ist $L = \\{-2; 2\\}$."
+    },
+    {
+      "id": "mdiff-terme-u5",
+      "typ": "luecke",
+      "frage": "Ergänze: Lösen von $3x^2 - 3x - 18 = 0$ mit der Mitternachtsformel.",
+      "quelle": "eigene Aufgabe",
+      "text": "Es ist $a = 3$, $b = $ [[0]] und $c = -18$. Unter der Wurzel steht $9 + $ [[1]] $= 225$. Damit ist $x_{1,2} = \\frac{3 \\pm 15}{6}$, also $x_1 = 3$ und $x_2 = $ [[2]].",
+      "luecken": [
+        {
+          "optionen": [
+            "$-3$",
+            "$3$",
+            "$-18$"
+          ],
+          "richtig": 0
+        },
+        {
+          "optionen": [
+            "$216$",
+            "$-216$",
+            "$72$"
+          ],
+          "richtig": 0
+        },
+        {
+          "optionen": [
+            "$-2$",
+            "$2$",
+            "$-3$"
+          ],
+          "richtig": 0
+        }
+      ]
+    },
+    {
+      "id": "mdiff-terme-u6",
+      "typ": "reihenfolge",
+      "frage": "Bringe die Schritte beim Lösen von $x^4 - 5x^2 + 4 = 0$ in die richtige Reihenfolge.",
+      "quelle": "eigene Aufgabe",
+      "schritte": [
+        "$z = x^2$ setzen",
+        "Quadratische Gleichung $z^2 - 5z + 4 = 0$ aufschreiben",
+        "Mit der Mitternachtsformel $z_1 = 1$ und $z_2 = 4$ bestimmen",
+        "Rücksubstitution: $x^2 = 1$ und $x^2 = 4$",
+        "Lösungsmenge $\\{-2; -1; 1; 2\\}$ angeben"
+      ]
+    },
+    {
+      "id": "mdiff-terme-s1",
+      "typ": "schreiben",
+      "operator": "erlaeutern",
+      "frage": "Erläutern Sie für jede der vier Gleichungen, welches Lösungsverfahren sich eignet, und lösen Sie sie: (a) $2x^4 - 18x^2 = 0$, (b) $x^4 - 10x^2 + 9 = 0$, (c) $(x-1)(x+5) = 0$, (d) $x^2 + 4x - 5 = 0$.",
+      "quelle": "eigene Aufgabe (Operatoren nach IQB-Grundstock Mathematik)",
+      "umfang": "kurze Begründung und Rechnung je Teilaufgabe",
+      "erwartung": [
+        "(a) Kein Glied ohne $x$: $2x^2$ ausklammern, $2x^2(x^2 - 9) = 0$, also $x = 0$ oder $x = \\pm 3$.",
+        "(b) Biquadratisch: Substitution $z = x^2$, $z^2 - 10z + 9 = 0$, $z = 1$ oder $z = 9$, also $x = \\pm 1$ oder $x = \\pm 3$.",
+        "(c) Produkt gleich null: Satz vom Nullprodukt, $x = 1$ oder $x = -5$.",
+        "(d) Quadratische Gleichung: Mitternachts- oder pq-Formel, $x = -2 \\pm \\sqrt{4 + 5} = -2 \\pm 3$, also $x = 1$ oder $x = -5$.",
+        "Beobachtung: (c) und (d) haben dieselben Lösungen, weil $(x-1)(x+5) = x^2 + 4x - 5$ ist. Die faktorisierte Form spart Rechnung."
+      ],
+      "kriterien": [
+        {
+          "name": "Verfahrenswahl",
+          "beschreibung": "Für jede Gleichung ein passendes Verfahren genannt und am Aufbau der Gleichung begründet",
+          "punkte": 4
+        },
+        {
+          "name": "Lösungen",
+          "beschreibung": "Je Gleichung alle Lösungen richtig (je 1 Punkt)",
+          "punkte": 4
+        },
+        {
+          "name": "Zusammenhang (c)/(d)",
+          "beschreibung": "Erkannt, dass beide Gleichungen gleich sind",
+          "punkte": 1
+        },
+        {
+          "name": "Darstellung",
+          "beschreibung": "Saubere Schreibweise, Lösungsmengen angegeben",
+          "punkte": 1
+        }
+      ]
+    },
+    {
+      "id": "mdiff-terme-s2",
+      "typ": "schreiben",
+      "operator": "begruenden",
+      "frage": "Ein Mitschüler löst $x^3 = 4x$ so: „Ich teile durch $x$ und erhalte $x^2 = 4$, also $x = 2$.“ Begründen Sie, welche Fehler er macht, und geben Sie die richtige Lösungsmenge an.",
+      "quelle": "eigene Aufgabe (Operatoren nach IQB-Grundstock Mathematik)",
+      "umfang": "ca. 4–6 Sätze mit Rechnung",
+      "erwartung": [
+        "Fehler 1: Durch $x$ zu teilen ist nur für $x \\neq 0$ erlaubt. Dabei geht die Lösung $x = 0$ verloren.",
+        "Fehler 2: $x^2 = 4$ hat zwei Lösungen, $x = 2$ und $x = -2$.",
+        "Richtiger Weg: $x^3 - 4x = 0 \\Rightarrow x(x^2 - 4) = 0 \\Rightarrow x = 0$ oder $x^2 = 4$.",
+        "Lösungsmenge $L = \\{-2; 0; 2\\}$; Probe z. B. mit $-2$: $(-2)^3 = -8 = 4 \\cdot (-2)$ ✓"
+      ],
+      "kriterien": [
+        {
+          "name": "Fehler 1 erkannt",
+          "beschreibung": "Teilen durch $x$ als Ursache für den Verlust von $x = 0$ begründet",
+          "punkte": 2
+        },
+        {
+          "name": "Fehler 2 erkannt",
+          "beschreibung": "Fehlende negative Lösung benannt",
+          "punkte": 1
+        },
+        {
+          "name": "Richtige Lösung",
+          "beschreibung": "Ausklammern und Nullprodukt, vollständige Lösungsmenge",
+          "punkte": 2
+        },
+        {
+          "name": "Darstellung",
+          "beschreibung": "Begründung in ganzen Sätzen, Fachbegriffe",
+          "punkte": 1
+        }
+      ]
+    }
+  ],
+  "formeln": [
+    {
+      "name": "Mitternachtsformel",
+      "tex": "x_{1,2} = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}"
+    },
+    {
+      "name": "pq-Formel",
+      "tex": "x_{1,2} = -\\frac{p}{2} \\pm \\sqrt{\\left(\\frac{p}{2}\\right)^2 - q}"
+    },
+    {
+      "name": "Wurzel als Potenz",
+      "tex": "\\sqrt{x} = x^{\\frac{1}{2}}"
+    },
+    {
+      "name": "Bruch als Potenz",
+      "tex": "\\frac{1}{x^n} = x^{-n}"
+    },
+    {
+      "name": "1. binomische Formel",
+      "tex": "(a+b)^2 = a^2 + 2ab + b^2"
+    }
+  ]
+}

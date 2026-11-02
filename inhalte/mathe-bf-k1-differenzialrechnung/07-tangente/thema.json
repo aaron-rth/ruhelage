@@ -1,0 +1,398 @@
+{
+  "id": "mdiff-tangente",
+  "titel": "Tangentengleichung und Steigungswinkel",
+  "untertitel": "Tangente aufstellen, Punkte mit vorgegebener Steigung",
+  "abhaengig": [
+    "mdiff-regeln",
+    "mdiff-geraden"
+  ],
+  "quelleErklaerung": "eigene Zusammenfassung; abgeglichen mit Bildungsplan BW 2016 Mathematik, Lehrerfortbildung BW (Überblick Basisfach), serlo.org und Wikibooks „Mathe für Nicht-Freaks“",
+  "karten": [
+    {
+      "id": "mdiff-tangente-k1",
+      "typ": "begriff",
+      "vorne": "Was ist die Tangente an den Graphen von $f$ im Punkt $P(a \\mid f(a))$?",
+      "hinten": "Die Gerade durch $P$ mit der Steigung $f'(a)$.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-tangente-k2",
+      "typ": "formel",
+      "vorne": "Allgemeine Tangentengleichung",
+      "hinten": "$y = f'(a)(x - a) + f(a)$",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-tangente-k3",
+      "typ": "herleitung",
+      "vorne": "Tangente an $f(x) = x^2 - 4x$ im Punkt $P(1 \\mid f(1))$",
+      "hinten": "$f(1) = -3$, $f'(x) = 2x - 4$, $f'(1) = -2$. Also $y = -2(x - 1) - 3 = -2x - 1$.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-tangente-k4",
+      "typ": "fehler",
+      "vorne": "Typischer Fehler: In der Tangentengleichung $f(a)$ als Steigung verwenden",
+      "hinten": "$f(a)$ ist der y-Wert des Berührpunkts, die Steigung ist $f'(a)$.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-tangente-k5",
+      "typ": "begriff",
+      "vorne": "Ansatz: An welchen Stellen hat der Graph eine waagerechte Tangente?",
+      "hinten": "$f'(x) = 0$ lösen.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-tangente-k6",
+      "typ": "begriff",
+      "vorne": "Ansatz: Wo ist die Tangente parallel zur Geraden $y = -2x + 5$?",
+      "hinten": "$f'(x) = -2$ lösen, denn parallele Geraden haben dieselbe Steigung.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-tangente-k7",
+      "typ": "formel",
+      "vorne": "Steigungswinkel an der Stelle $a$",
+      "hinten": "$\\tan(\\alpha) = f'(a)$, also $\\alpha = \\tan^{-1}(f'(a))$",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-tangente-k8",
+      "typ": "herleitung",
+      "vorne": "Steigungswinkel von $f(x) = x^2$ an der Stelle $x = 0{,}5$",
+      "hinten": "$f'(0{,}5) = 1$, also $\\alpha = \\tan^{-1}(1) = 45°$.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-tangente-k9",
+      "typ": "fehler",
+      "vorne": "Typischer Fehler: Bei „Bestimmen Sie die Punkte mit waagerechter Tangente“ nur die x-Werte angeben",
+      "hinten": "Ein Punkt hat zwei Koordinaten. Die y-Werte mit $f$ berechnen (nicht mit $f'$, da wäre das Ergebnis immer 0).",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-tangente-k10",
+      "typ": "warum",
+      "vorne": "Warum kann eine Tangente den Graphen schneiden?",
+      "hinten": "Die Tangente hat nur im Berührpunkt dieselbe Steigung wie der Graph. Weiter weg kann der Graph wieder auf die Gerade treffen, z. B. bei kubischen Funktionen.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-tangente-k11",
+      "typ": "begriff",
+      "vorne": "Beispiel: Tangente, die den Graphen im Berührpunkt durchsetzt",
+      "hinten": "Die x-Achse ($y = 0$) ist Tangente an $y = x^3$ im Ursprung. Links davon liegt der Graph unterhalb, rechts oberhalb.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-tangente-k12",
+      "typ": "wasPassiert",
+      "vorne": "Wie berechnet man den Schnittpunkt einer Tangente mit der x-Achse?",
+      "hinten": "Tangentengleichung gleich null setzen: $f'(a)(x - a) + f(a) = 0$ und nach $x$ auflösen (geht nur, wenn $f'(a) \\neq 0$).",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-tangente-k13",
+      "typ": "begriff",
+      "vorne": "Was bedeutet „lineare Approximation“ durch die Tangente?",
+      "hinten": "In der Nähe des Berührpunkts liegen Tangente und Graph sehr dicht beieinander. Man kann Funktionswerte dort näherungsweise mit der einfachen Geradengleichung berechnen.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-tangente-k14",
+      "typ": "herleitung",
+      "vorne": "Punkte von $f(x) = x^3 - 3x + 1$ mit waagerechter Tangente",
+      "hinten": "$3x^2 - 3 = 0 \\Rightarrow x = \\pm 1$. $f(1) = -1$, $f(-1) = 3$. Punkte $(1 \\mid -1)$ und $(-1 \\mid 3)$.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    }
+  ],
+  "uebungen": [
+    {
+      "id": "mdiff-tangente-u1",
+      "typ": "mc",
+      "frage": "Welche Gleichung hat die Tangente an den Graphen von $f(x) = x^2 - 4x$ im Punkt $P(3 \\mid f(3))$?",
+      "quelle": "eigene Aufgabe",
+      "optionen": [
+        {
+          "text": "$y = 2x - 9$",
+          "warum": "$f(3) = -3$, $f'(3) = 2$; $y = 2(x - 3) - 3 = 2x - 9$.",
+          "richtig": true
+        },
+        {
+          "text": "$y = -3x + 6$",
+          "warum": "Hier wurde $f(3) = -3$ als Steigung genommen."
+        },
+        {
+          "text": "$y = 2x - 3$",
+          "warum": "$c$ ist nicht $f(3)$, weil P nicht auf der y-Achse liegt."
+        },
+        {
+          "text": "$y = 2x + 3$",
+          "warum": "Beim Einsetzen ging ein Vorzeichen verloren: $-3 = 6 + c$ ergibt $c = -9$."
+        }
+      ]
+    },
+    {
+      "id": "mdiff-tangente-u2",
+      "typ": "zuordnen",
+      "frage": "Ordne jeder Aufgabenstellung den passenden Ansatz zu.",
+      "quelle": "eigene Aufgabe",
+      "paare": [
+        {
+          "links": "Punkte mit waagerechter Tangente",
+          "rechts": "$f'(x) = 0$"
+        },
+        {
+          "links": "Tangente parallel zu $y = 3x + 1$",
+          "rechts": "$f'(x) = 3$"
+        },
+        {
+          "links": "Steigungswinkel 45°",
+          "rechts": "$f'(x) = 1$"
+        },
+        {
+          "links": "Tangente im Punkt $P(a \\mid f(a))$",
+          "rechts": "$y = f'(a)(x - a) + f(a)$"
+        },
+        {
+          "links": "Schnittpunkt der Tangente $t$ mit der x-Achse",
+          "rechts": "$t(x) = 0$"
+        }
+      ]
+    },
+    {
+      "id": "mdiff-tangente-u3",
+      "typ": "luecke",
+      "frage": "Ergänze: Tangente an $f(x) = x^3 - 3x + 1$ im Punkt $P(2 \\mid f(2))$.",
+      "quelle": "eigene Aufgabe",
+      "text": "Es ist $f(2) = $ [[0]] und $f'(x) = 3x^2 - 3$, also $f'(2) = $ [[1]]. Die Tangente lautet $y = 9(x - 2) + 3 = $ [[2]].",
+      "luecken": [
+        {
+          "optionen": [
+            "3",
+            "9",
+            "−1"
+          ],
+          "richtig": 0
+        },
+        {
+          "optionen": [
+            "9",
+            "3",
+            "12"
+          ],
+          "richtig": 0
+        },
+        {
+          "optionen": [
+            "$9x - 15$",
+            "$9x + 3$",
+            "$9x - 21$"
+          ],
+          "richtig": 0
+        }
+      ]
+    },
+    {
+      "id": "mdiff-tangente-u4",
+      "typ": "fehler",
+      "frage": "Wo steckt der Fehler? Tangente an $f(x) = 0{,}5x^2 + x$ in $P(2 \\mid f(2))$.",
+      "quelle": "eigene Aufgabe",
+      "schritte": [
+        "$f(2) = 0{,}5 \\cdot 4 + 2 = 4$",
+        "$f'(x) = x + 1$",
+        "Steigung $m = f(2) = 4$",
+        "$y = 4(x - 2) + 4 = 4x - 4$"
+      ],
+      "fehler": 2,
+      "erklaerung": "Die Steigung ist $f'(2) = 3$, nicht $f(2)$. Richtig: $y = 3(x - 2) + 4 = 3x - 2$."
+    },
+    {
+      "id": "mdiff-tangente-u5",
+      "typ": "klassifizieren",
+      "frage": "Wahr oder falsch?",
+      "quelle": "eigene Aufgabe",
+      "kategorien": [
+        "wahr",
+        "falsch"
+      ],
+      "items": [
+        {
+          "text": "Eine Tangente hat mit dem Graphen immer genau einen gemeinsamen Punkt.",
+          "kategorie": 1,
+          "warum": "Gegenbeispiel: Die Tangente an $x^3 - 3x + 1$ bei $x = 2$ trifft den Graphen auch bei $x = -4$."
+        },
+        {
+          "text": "Eine Tangente kann den Graphen im Berührpunkt durchsetzen.",
+          "kategorie": 0,
+          "warum": "Beispiel: $y = 0$ an $y = x^3$ im Ursprung."
+        },
+        {
+          "text": "Zwei verschiedene Tangenten an denselben Graphen können parallel sein.",
+          "kategorie": 0,
+          "warum": "Bei $x^3 - 3x + 1$ haben die Tangenten bei $x = 2$ und $x = -2$ beide die Steigung 9."
+        },
+        {
+          "text": "Im Hochpunkt eines Graphen ist die Tangente waagerecht.",
+          "kategorie": 0,
+          "warum": "Dort ist $f'(x) = 0$ (bei differenzierbaren Funktionen)."
+        },
+        {
+          "text": "Die Tangente in $P(a \\mid f(a))$ hat die Steigung $f(a)$.",
+          "kategorie": 1,
+          "warum": "Die Steigung ist $f'(a)$."
+        },
+        {
+          "text": "Ist $f'(a) = 1$, beträgt der Steigungswinkel 45°.",
+          "kategorie": 0,
+          "warum": "$\\tan(45°) = 1$"
+        }
+      ]
+    },
+    {
+      "id": "mdiff-tangente-u6",
+      "typ": "reihenfolge",
+      "frage": "Bringe die Schritte zum Aufstellen der Tangente in $P(a \\mid f(a))$ in die richtige Reihenfolge.",
+      "quelle": "eigene Aufgabe",
+      "schritte": [
+        "$f(a)$ berechnen (y-Wert des Berührpunkts)",
+        "Ableitung $f'(x)$ bestimmen",
+        "$f'(a)$ berechnen (Steigung)",
+        "In $y = f'(a)(x - a) + f(a)$ einsetzen",
+        "Klammer auflösen und in die Form $y = mx + c$ bringen"
+      ]
+    },
+    {
+      "id": "mdiff-tangente-s1",
+      "typ": "schreiben",
+      "operator": "begruenden",
+      "frage": "Gegeben ist $f(x) = x^3 - 3x + 1$. (a) Bestimmen Sie die Gleichung der Tangente $t$ im Punkt $P(2 \\mid f(2))$. (b) Begründen Sie, dass es genau einen weiteren Punkt des Graphen gibt, in dem die Tangente parallel zu $t$ verläuft, und geben Sie die Gleichung dieser Tangente an.",
+      "quelle": "eigene Aufgabe (Operatoren nach IQB-Grundstock Mathematik)",
+      "umfang": "Rechnung mit Begründungssätzen",
+      "erwartung": [
+        "(a) $f(2) = 3$, $f'(x) = 3x^2 - 3$, $f'(2) = 9$; $t: y = 9(x - 2) + 3 = 9x - 15$.",
+        "(b) Parallel heißt gleiche Steigung: Ansatz $f'(x) = 9 \\iff 3x^2 = 12 \\iff x^2 = 4 \\iff x = \\pm 2$.",
+        "Die quadratische Gleichung hat genau zwei Lösungen. Eine davon ist $x = 2$ (Punkt P), also gibt es genau einen weiteren Punkt, bei $x = -2$.",
+        "$f(-2) = -8 + 6 + 1 = -1$, Punkt $Q(-2 \\mid -1)$.",
+        "Tangente in Q: $y = 9(x + 2) - 1 = 9x + 17$."
+      ],
+      "kriterien": [
+        {
+          "name": "Tangente t",
+          "beschreibung": "$f(2)$, $f'(2)$ und Gleichung richtig",
+          "punkte": 3
+        },
+        {
+          "name": "Ansatz",
+          "beschreibung": "Parallelität als $f'(x) = 9$ formuliert",
+          "punkte": 1
+        },
+        {
+          "name": "Begründung",
+          "beschreibung": "Argument, dass die Gleichung genau zwei Lösungen hat und eine davon P ist",
+          "punkte": 2
+        },
+        {
+          "name": "Zweite Tangente",
+          "beschreibung": "Punkt Q und Tangentengleichung richtig",
+          "punkte": 2
+        },
+        {
+          "name": "Darstellung",
+          "beschreibung": "Antwortsätze, sauberer Rechenweg",
+          "punkte": 1
+        }
+      ]
+    },
+    {
+      "id": "mdiff-tangente-s2",
+      "typ": "schreiben",
+      "operator": "beurteilen",
+      "frage": "Beurteilen Sie die Aussage „Eine Tangente berührt den Graphen nur in einem Punkt und schneidet ihn nirgends“ am Beispiel der Tangente $t: y = 9x - 15$ an den Graphen von $f(x) = x^3 - 3x + 1$. Untersuchen Sie dazu rechnerisch, welche gemeinsamen Punkte $t$ und der Graph haben.",
+      "quelle": "eigene Aufgabe (Operatoren nach IQB-Grundstock Mathematik)",
+      "umfang": "Rechnung und 3–4 Sätze Urteil",
+      "erwartung": [
+        "Gleichsetzen: $x^3 - 3x + 1 = 9x - 15 \\iff x^3 - 12x + 16 = 0$.",
+        "Da $x = 2$ (Berührstelle) eine Lösung sein muss, kann man $(x - 2)$ abspalten; es gilt $x^3 - 12x + 16 = (x - 2)^2 (x + 4)$ (Probe durch Ausmultiplizieren).",
+        "Lösungen: $x = 2$ (doppelt, Berührpunkt) und $x = -4$.",
+        "$f(-4) = -64 + 12 + 1 = -51 = 9 \\cdot (-4) - 15$ ✓, also gemeinsamer Punkt $(-4 \\mid -51)$.",
+        "Urteil: Die Aussage ist falsch. Die Tangente berührt den Graphen in $P(2 \\mid 3)$, schneidet ihn aber zusätzlich in $(-4 \\mid -51)$. „Tangente“ ist eine lokale Eigenschaft im Berührpunkt."
+      ],
+      "kriterien": [
+        {
+          "name": "Ansatz",
+          "beschreibung": "Gleichsetzen und Gleichung $x^3 - 12x + 16 = 0$",
+          "punkte": 2
+        },
+        {
+          "name": "Lösung",
+          "beschreibung": "Faktorisierung bzw. Lösungen $2$ und $-4$ begründet (z. B. Probe durch Ausmultiplizieren)",
+          "punkte": 3
+        },
+        {
+          "name": "Schnittpunkt",
+          "beschreibung": "$(-4 \\mid -51)$ angegeben",
+          "punkte": 1
+        },
+        {
+          "name": "Urteil",
+          "beschreibung": "klares, begründetes Urteil mit Bezug auf den Begriff Tangente",
+          "punkte": 2
+        },
+        {
+          "name": "Darstellung",
+          "beschreibung": "Fachsprache: berühren vs. schneiden",
+          "punkte": 1
+        }
+      ]
+    },
+    {
+      "id": "mdiff-tangente-s3",
+      "typ": "schreiben",
+      "operator": "interpretieren",
+      "frage": "Das Profil eines Hügels wird für $0 \\leq x \\leq 20$ durch $h(x) = -0{,}05x^2 + x$ beschrieben ($x$ waagerechte Entfernung vom Startpunkt in m, $h(x)$ Höhe in m). Berechnen Sie $h'(4)$ und den zugehörigen Steigungswinkel, bestimmen Sie die Stelle mit waagerechter Tangente und interpretieren Sie alle Ergebnisse im Sachzusammenhang.",
+      "quelle": "eigene Aufgabe (Operatoren nach IQB-Grundstock Mathematik)",
+      "umfang": "Rechnung und ca. 4 Sätze",
+      "erwartung": [
+        "$h'(x) = -0{,}1x + 1$, also $h'(4) = 0{,}6$.",
+        "Interpretation: 4 m vom Start entfernt steigt der Hang mit 60 % an, d. h. pro Meter waagerecht 0,6 m nach oben.",
+        "Steigungswinkel: $\\alpha = \\tan^{-1}(0{,}6) \\approx 31°$.",
+        "Waagerechte Tangente: $-0{,}1x + 1 = 0 \\iff x = 10$; $h(10) = -5 + 10 = 5$.",
+        "Interpretation: Nach 10 m waagerechter Strecke ist der Gipfel in 5 m Höhe erreicht, dort ist der Hügel flach. Danach geht es bergab ($h'(x) < 0$ für $x > 10$)."
+      ],
+      "kriterien": [
+        {
+          "name": "Ableitung",
+          "beschreibung": "$h'(x)$ und $h'(4)$ richtig",
+          "punkte": 2
+        },
+        {
+          "name": "Steigungswinkel",
+          "beschreibung": "Ansatz $\\tan(\\alpha) = h'(4)$ und Ergebnis",
+          "punkte": 2
+        },
+        {
+          "name": "Waagerechte Tangente",
+          "beschreibung": "Ansatz $h'(x) = 0$, Stelle und Höhe",
+          "punkte": 2
+        },
+        {
+          "name": "Interpretation",
+          "beschreibung": "alle Ergebnisse mit Einheiten im Sachzusammenhang gedeutet (Steigung in %, Gipfel)",
+          "punkte": 3
+        }
+      ]
+    }
+  ],
+  "formeln": [
+    {
+      "name": "Allgemeine Tangentengleichung",
+      "tex": "y = f'(a)\\,(x - a) + f(a)"
+    },
+    {
+      "name": "Steigungswinkel",
+      "tex": "\\tan(\\alpha) = f'(a)"
+    }
+  ]
+}

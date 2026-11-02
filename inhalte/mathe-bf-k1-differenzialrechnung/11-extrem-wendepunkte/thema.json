@@ -1,0 +1,378 @@
+{
+  "id": "mdiff-extrem",
+  "titel": "Extrem- und Wendepunkte",
+  "untertitel": "Notwendige und hinreichende Bedingungen, Sattelpunkt, global/lokal",
+  "abhaengig": [
+    "mdiff-monotonie"
+  ],
+  "quelleErklaerung": "eigene Zusammenfassung; abgeglichen mit Bildungsplan BW 2016 Mathematik, Lehrerfortbildung BW (Überblick Basisfach), serlo.org und Wikibooks „Mathe für Nicht-Freaks“",
+  "karten": [
+    {
+      "id": "mdiff-extrem-k1",
+      "typ": "begriff",
+      "vorne": "Was ist ein Hochpunkt?",
+      "hinten": "Ein Punkt $H(x_0 \\mid f(x_0))$, in dessen Umgebung kein Funktionswert größer ist als $f(x_0)$. $x_0$ heißt Maximumstelle, $f(x_0)$ lokales Maximum.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-extrem-k2",
+      "typ": "begriff",
+      "vorne": "Unterschied lokales und globales Maximum",
+      "hinten": "Lokal: größter Wert in einer Umgebung. Global: größter Wert auf der ganzen Definitionsmenge. Ein globales Maximum kann auch am Rand liegen.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-extrem-k3",
+      "typ": "formel",
+      "vorne": "Notwendige Bedingung für eine (innere) Extremstelle",
+      "hinten": "$f'(x_0) = 0$",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-extrem-k4",
+      "typ": "warum",
+      "vorne": "Warum reicht $f'(x_0) = 0$ nicht für eine Extremstelle?",
+      "hinten": "Auch ein Sattelpunkt hat eine waagerechte Tangente. Beispiel: $f(x) = x^3$, $f'(0) = 0$, aber $f$ steigt links und rechts von 0.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-extrem-k5",
+      "typ": "formel",
+      "vorne": "$f''$-Kriterium für Extremstellen",
+      "hinten": "$f'(x_0) = 0$ und $f''(x_0) < 0$ ⇒ Maximum; $f'(x_0) = 0$ und $f''(x_0) > 0$ ⇒ Minimum.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-extrem-k6",
+      "typ": "formel",
+      "vorne": "Vorzeichenwechsel-Kriterium",
+      "hinten": "$f'(x_0) = 0$ und VZW von $f'$ von $+$ nach $-$ ⇒ Maximum; von $-$ nach $+$ ⇒ Minimum; kein VZW ⇒ keine Extremstelle.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-extrem-k7",
+      "typ": "fehler",
+      "vorne": "Typischer Fehler: „$f''(x_0) = 0$, also liegt keine Extremstelle vor.“",
+      "hinten": "Bei $f''(x_0) = 0$ macht das $f''$-Kriterium **keine** Aussage. Beispiel $x^4$: $f''(0) = 0$, aber Minimum. Dann den Vorzeichenwechsel von $f'$ prüfen.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-extrem-k8",
+      "typ": "formel",
+      "vorne": "Hinreichende Bedingung für eine Wendestelle",
+      "hinten": "$f''(x_0) = 0$ und $f'''(x_0) \\neq 0$, oder $f''$ wechselt bei $x_0$ das Vorzeichen.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-extrem-k9",
+      "typ": "begriff",
+      "vorne": "Was ist ein Sattelpunkt?",
+      "hinten": "Ein Wendepunkt mit waagerechter Tangente: $f'(x_0) = 0$, $f''(x_0) = 0$, $f'''(x_0) \\neq 0$.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-extrem-k10",
+      "typ": "herleitung",
+      "vorne": "Extrempunkte von $f(x) = x^3 - 6x^2 + 9x + 1$",
+      "hinten": "$f'(x) = 3(x - 1)(x - 3) = 0 \\Rightarrow x = 1, 3$. $f''(1) = -6 < 0$: $H(1 \\mid 5)$. $f''(3) = 6 > 0$: $T(3 \\mid 1)$.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-extrem-k11",
+      "typ": "herleitung",
+      "vorne": "Wendepunkt von $f(x) = x^3 - 6x^2 + 9x + 1$",
+      "hinten": "$f''(x) = 6x - 12 = 0 \\Rightarrow x = 2$, $f'''(2) = 6 \\neq 0$, $f(2) = 3$: $W(2 \\mid 3)$.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-extrem-k12",
+      "typ": "fehler",
+      "vorne": "Typischer Fehler: y-Koordinate des Hochpunkts mit $f'$ berechnen",
+      "hinten": "$f'(x_0) = 0$, das wäre immer 0. Die Höhe des Punktes liefert $f(x_0)$.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-extrem-k13",
+      "typ": "warum",
+      "vorne": "Warum ist eine Wendestelle von $f$ eine Extremstelle von $f'$?",
+      "hinten": "An der Wendestelle wechselt die Krümmung, d. h. $f'$ hört auf zu wachsen und beginnt zu fallen (oder umgekehrt). Die Steigung ist dort am größten oder kleinsten.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-extrem-k14",
+      "typ": "warum",
+      "vorne": "Warum hat jede ganzrationale Funktion dritten Grades genau eine Wendestelle?",
+      "hinten": "$f''$ ist dann linear und nicht konstant, hat also genau eine Nullstelle, an der das Vorzeichen wechselt.",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    },
+    {
+      "id": "mdiff-extrem-k15",
+      "typ": "begriff",
+      "vorne": "Was muss man bei Funktionen auf einem Intervall $[a; b]$ zusätzlich prüfen?",
+      "hinten": "Die Randwerte $f(a)$ und $f(b)$. Sie können größer bzw. kleiner sein als die lokalen Extrema (Randextrema).",
+      "quelle": "eigene Karte (abgeglichen mit Bildungsplan BW 2016 und serlo.org)"
+    }
+  ],
+  "uebungen": [
+    {
+      "id": "mdiff-extrem-u1",
+      "typ": "mc",
+      "frage": "Welche Extrempunkte hat der Graph von $g(x) = x^3 - 12x$?",
+      "quelle": "eigene Aufgabe",
+      "optionen": [
+        {
+          "text": "$H(-2 \\mid 16)$ und $T(2 \\mid -16)$",
+          "warum": "$g'(x) = 3x^2 - 12 = 0 \\Rightarrow x = \\pm 2$; $g''(-2) = -12 < 0$, $g''(2) = 12 > 0$.",
+          "richtig": true
+        },
+        {
+          "text": "$H(2 \\mid -16)$ und $T(-2 \\mid 16)$",
+          "warum": "Hoch- und Tiefpunkt vertauscht: $g''(2) > 0$ bedeutet Minimum."
+        },
+        {
+          "text": "$H(-2 \\mid 0)$ und $T(2 \\mid 0)$",
+          "warum": "Die y-Werte wurden mit $g'$ statt mit $g$ berechnet."
+        },
+        {
+          "text": "$T(0 \\mid 0)$",
+          "warum": "$x = 0$ ist die Nullstelle von $g''$, also die Wendestelle, keine Extremstelle."
+        }
+      ]
+    },
+    {
+      "id": "mdiff-extrem-u2",
+      "typ": "zuordnen",
+      "frage": "Ordne jeder Bedingung ihre Bedeutung zu.",
+      "quelle": "eigene Aufgabe",
+      "paare": [
+        {
+          "links": "$f'(x_0) = 0$",
+          "rechts": "notwendige Bedingung für eine Extremstelle"
+        },
+        {
+          "links": "$f'(x_0) = 0$ und $f''(x_0) > 0$",
+          "rechts": "Minimumstelle"
+        },
+        {
+          "links": "$f''(x_0) = 0$",
+          "rechts": "notwendige Bedingung für eine Wendestelle"
+        },
+        {
+          "links": "$f''(x_0) = 0$ und $f'''(x_0) \\neq 0$",
+          "rechts": "Wendestelle"
+        },
+        {
+          "links": "$f'(x_0) = f''(x_0) = 0$, $f'''(x_0) \\neq 0$",
+          "rechts": "Sattelstelle"
+        }
+      ]
+    },
+    {
+      "id": "mdiff-extrem-u3",
+      "typ": "klassifizieren",
+      "frage": "Was liegt an der Stelle $x_0$ vor?",
+      "quelle": "eigene Aufgabe",
+      "kategorien": [
+        "Maximumstelle",
+        "Minimumstelle",
+        "Sattelstelle",
+        "noch keine Entscheidung möglich"
+      ],
+      "items": [
+        {
+          "text": "$f'(2) = 0$, $f''(2) = -3$",
+          "kategorie": 0,
+          "warum": "$f'' < 0$, Rechtskurve"
+        },
+        {
+          "text": "$f'(-1) = 0$, $f''(-1) = 4$",
+          "kategorie": 1,
+          "warum": "$f'' > 0$, Linkskurve"
+        },
+        {
+          "text": "$f'(0) = 0$, $f''(0) = 0$, $f'''(0) = 6$",
+          "kategorie": 2,
+          "warum": "Wendestelle mit waagerechter Tangente"
+        },
+        {
+          "text": "$f'(1) = 0$, $f''(1) = 0$",
+          "kategorie": 3,
+          "warum": "$f''$-Kriterium versagt, VZW von $f'$ oder $f'''$ prüfen"
+        },
+        {
+          "text": "$f'(3) = 0$, $f'$ wechselt von $+$ nach $-$",
+          "kategorie": 0,
+          "warum": "VZW-Kriterium"
+        },
+        {
+          "text": "$f'(5) = 0$, $f'$ wechselt von $-$ nach $+$",
+          "kategorie": 1,
+          "warum": "VZW-Kriterium"
+        }
+      ]
+    },
+    {
+      "id": "mdiff-extrem-u4",
+      "typ": "luecke",
+      "frage": "Ergänze die Berechnung für $f(x) = x^3 - 6x^2 + 9x + 1$.",
+      "quelle": "eigene Aufgabe",
+      "text": "$f'(x) = 0$ liefert $x = 1$ und $x = 3$. Wegen $f''(1) = -6 < 0$ ist $x = 1$ eine [[0]]. Der zugehörige Punkt ist [[1]]. Die Wendestelle liegt bei $x = $ [[2]].",
+      "luecken": [
+        {
+          "optionen": [
+            "Maximumstelle",
+            "Minimumstelle",
+            "Wendestelle"
+          ],
+          "richtig": 0
+        },
+        {
+          "optionen": [
+            "$H(1 \\mid 5)$",
+            "$H(1 \\mid 0)$",
+            "$H(1 \\mid -6)$"
+          ],
+          "richtig": 0
+        },
+        {
+          "optionen": [
+            "2",
+            "1",
+            "3"
+          ],
+          "richtig": 0
+        }
+      ]
+    },
+    {
+      "id": "mdiff-extrem-u5",
+      "typ": "fehler",
+      "frage": "Wo steckt der Fehler? Untersucht wird $f(x) = x^4$ auf Extremstellen.",
+      "quelle": "eigene Aufgabe",
+      "schritte": [
+        "$f'(x) = 4x^3$, $f''(x) = 12x^2$",
+        "$f'(x) = 0 \\iff x = 0$",
+        "$f''(0) = 0$",
+        "Also hat $f$ bei $x = 0$ keine Extremstelle."
+      ],
+      "fehler": 3,
+      "erklaerung": "Aus $f''(0) = 0$ folgt nichts. VZW-Kriterium: $f'(x) = 4x^3$ ist für $x < 0$ negativ und für $x > 0$ positiv, also liegt bei 0 eine Minimumstelle vor, $T(0 \\mid 0)$."
+    },
+    {
+      "id": "mdiff-extrem-u6",
+      "typ": "reihenfolge",
+      "frage": "Bringe die Schritte zur Bestimmung der Extrempunkte in die richtige Reihenfolge.",
+      "quelle": "eigene Aufgabe",
+      "schritte": [
+        "$f'$ und $f''$ bestimmen",
+        "Notwendige Bedingung: $f'(x) = 0$ lösen",
+        "Lösungen in $f''$ einsetzen (hinreichende Bedingung)",
+        "Art entscheiden: $f'' < 0$ Maximum, $f'' > 0$ Minimum",
+        "y-Koordinaten mit $f$ berechnen und Punkte angeben"
+      ]
+    },
+    {
+      "id": "mdiff-extrem-s1",
+      "typ": "schreiben",
+      "operator": "begruenden",
+      "frage": "Gegeben ist $f(x) = \\frac14 x^4 - 2x^2$. Bestimmen Sie die Koordinaten aller Extrem- und Wendepunkte des Graphen und begründen Sie jeweils mit einer hinreichenden Bedingung, um welche Art von Punkt es sich handelt.",
+      "quelle": "eigene Aufgabe (Operatoren nach IQB-Grundstock Mathematik)",
+      "umfang": "vollständige Rechnung mit Begründungen",
+      "erwartung": [
+        "Ableitungen: $f'(x) = x^3 - 4x$, $f''(x) = 3x^2 - 4$, $f'''(x) = 6x$.",
+        "Notwendig: $x^3 - 4x = x(x - 2)(x + 2) = 0 \\Rightarrow x \\in \\{-2; 0; 2\\}$.",
+        "$f''(0) = -4 < 0$ ⇒ Maximumstelle, $H(0 \\mid 0)$.",
+        "$f''(\\pm 2) = 8 > 0$ ⇒ Minimumstellen, $T_1(-2 \\mid -4)$ und $T_2(2 \\mid -4)$.",
+        "Wendestellen: $3x^2 - 4 = 0 \\Rightarrow x = \\pm\\frac{2}{\\sqrt{3}} \\approx \\pm 1{,}15$; $f'''(\\pm\\frac{2}{\\sqrt3}) \\neq 0$ ⇒ Wendestellen.",
+        "$f\\left(\\pm\\frac{2}{\\sqrt3}\\right) = \\frac14 \\cdot \\frac{16}{9} - 2 \\cdot \\frac43 = -\\frac{20}{9} \\approx -2{,}22$; $W_{1,2}\\left(\\pm\\frac{2}{\\sqrt3} \\mid -\\frac{20}{9}\\right)$.",
+        "Kontrolle: Der Graph ist symmetrisch zur y-Achse (nur gerade Hochzahlen), die Punkte liegen symmetrisch."
+      ],
+      "kriterien": [
+        {
+          "name": "Ableitungen",
+          "beschreibung": "$f'$, $f''$, $f'''$ richtig",
+          "punkte": 2
+        },
+        {
+          "name": "Extremstellen",
+          "beschreibung": "notwendige Bedingung korrekt gelöst (Ausklammern)",
+          "punkte": 2
+        },
+        {
+          "name": "Art der Extrema",
+          "beschreibung": "hinreichende Bedingung angewendet, Hoch-/Tiefpunkte mit Koordinaten",
+          "punkte": 3
+        },
+        {
+          "name": "Wendepunkte",
+          "beschreibung": "Stellen, hinreichende Bedingung und Koordinaten",
+          "punkte": 3
+        },
+        {
+          "name": "Darstellung",
+          "beschreibung": "Bedingungen ausdrücklich benannt, saubere Notation",
+          "punkte": 1
+        }
+      ]
+    },
+    {
+      "id": "mdiff-extrem-s2",
+      "typ": "schreiben",
+      "operator": "beurteilen",
+      "frage": "Beurteilen Sie, ob die folgenden Aussagen wahr oder falsch sind, und begründen Sie Ihr Urteil jeweils mit einem Beispiel oder einem allgemeinen Argument. (1) Ist $f'(x_0) = 0$, dann hat $f$ bei $x_0$ eine Extremstelle. (2) Auch wenn $f'(x_0) = 0$ und $f''(x_0) = 0$ gilt, kann bei $x_0$ eine Extremstelle liegen. (3) Jede ganzrationale Funktion dritten Grades hat genau eine Wendestelle. (4) Ein Hochpunkt gehört immer zum größten Funktionswert überhaupt.",
+      "quelle": "eigene Aufgabe (Operatoren nach IQB-Grundstock Mathematik)",
+      "umfang": "je Aussage 2–3 Sätze",
+      "erwartung": [
+        "(1) Falsch: $f(x) = x^3$ hat $f'(0) = 0$, aber $f'$ wechselt das Vorzeichen nicht; bei 0 liegt ein Sattelpunkt.",
+        "(2) Wahr: $f(x) = x^4$ hat $f'(0) = f''(0) = 0$, aber $f'$ wechselt von $-$ nach $+$, also Minimum bei 0.",
+        "(3) Wahr: $f(x) = ax^3 + bx^2 + cx + d$ mit $a \\neq 0$ hat $f''(x) = 6ax + 2b$, also genau eine Nullstelle $x_0 = -\\frac{b}{3a}$ mit $f'''(x_0) = 6a \\neq 0$.",
+        "(4) Falsch: Ein Hochpunkt ist nur ein lokales Maximum. Beispiel $f(x) = x^3 - 3x$: $H(-1 \\mid 2)$, aber $f(3) = 18 > 2$. Auf einem Intervall kann außerdem ein Randwert größer sein."
+      ],
+      "kriterien": [
+        {
+          "name": "Aussage 1",
+          "beschreibung": "richtiges Urteil mit Gegenbeispiel",
+          "punkte": 2
+        },
+        {
+          "name": "Aussage 2",
+          "beschreibung": "richtiges Urteil mit Beispiel und VZW-Argument",
+          "punkte": 2
+        },
+        {
+          "name": "Aussage 3",
+          "beschreibung": "allgemeine Begründung über $f''$",
+          "punkte": 2
+        },
+        {
+          "name": "Aussage 4",
+          "beschreibung": "Unterschied lokal/global mit Beispiel",
+          "punkte": 2
+        },
+        {
+          "name": "Urteilsformulierung",
+          "beschreibung": "klare Urteile, Fachbegriffe (notwendig/hinreichend)",
+          "punkte": 1
+        }
+      ]
+    }
+  ],
+  "formeln": [
+    {
+      "name": "Notwendige Bedingung Extremstelle",
+      "tex": "f'(x_0) = 0"
+    },
+    {
+      "name": "Maximumstelle (hinreichend)",
+      "tex": "f'(x_0) = 0 \\;\\wedge\\; f''(x_0) < 0"
+    },
+    {
+      "name": "Minimumstelle (hinreichend)",
+      "tex": "f'(x_0) = 0 \\;\\wedge\\; f''(x_0) > 0"
+    },
+    {
+      "name": "Wendestelle (hinreichend)",
+      "tex": "f''(x_0) = 0 \\;\\wedge\\; f'''(x_0) \\neq 0"
+    }
+  ]
+}
