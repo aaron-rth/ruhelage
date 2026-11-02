@@ -373,5 +373,67 @@
       "name": "Sinus und Kosinus",
       "tex": "(\\sin x)' = \\cos x, \\quad (\\cos x)' = -\\sin x"
     }
+  ],
+  "rechenaufgaben": [
+    {
+      "id": "mdiff-r-ableitung-stelle",
+      "titel": "Ableitung an einer Stelle",
+      "schwierigkeit": 1,
+      "quelle": "eigene Aufgabe",
+      "bedingung": "3*a*x0^2 + 2*b*x0 + c != 0 && 6*a*x0 + 2*b != 0",
+      "werte": {
+        "a": [
+          2,
+          4
+        ],
+        "b": {
+          "von": -4,
+          "bis": 4,
+          "ohne": [
+            0
+          ]
+        },
+        "c": {
+          "von": -5,
+          "bis": 5,
+          "ohne": [
+            0
+          ]
+        },
+        "x0": [
+          -2,
+          2
+        ]
+      },
+      "kontext": "Gegeben ist $f(x) = {a}x^3 {+b}x^2 {+c}x$.",
+      "teile": [
+        {
+          "frage": "Berechne $f'({x0})$.",
+          "ergebnis": "3*a*x0^2 + 2*b*x0 + c",
+          "hilfen": [
+            "Leite zuerst ab: Potenzregel $(x^n)' = n \\cdot x^{n-1}$, dazu Faktor- und Summenregel.",
+            "$f'(x) = {3*a}x^2 {+2*b}x {+c}$",
+            "$f'({x0}) = {3*a} \\cdot ({x0})^2 {+2*b} \\cdot ({x0}) {+c}$"
+          ],
+          "loesung": "$f'(x) = {3*a}x^2 {+2*b}x {+c}$, also $f'({x0}) = {3*a*x0^2 + 2*b*x0 + c}$.",
+          "typischeFehler": [
+            {
+              "ergebnis": "a*x0^2 + b*x0 + c",
+              "hinweis": "Beim Ableiten wird der Exponent als Faktor nach vorne gezogen – z. B. $(x^3)' = 3x^2$."
+            }
+          ]
+        },
+        {
+          "frage": "Berechne $f''({x0})$.",
+          "ergebnis": "6*a*x0 + 2*b",
+          "hilfen": [
+            "Leite $f'$ noch einmal ab.",
+            "$f''(x) = {6*a}x {+2*b}$",
+            "$f''({x0}) = {6*a} \\cdot ({x0}) {+2*b}$"
+          ],
+          "loesung": "$f''(x) = {6*a}x {+2*b}$, also $f''({x0}) = {6*a*x0 + 2*b}$."
+        }
+      ]
+    }
   ]
 }

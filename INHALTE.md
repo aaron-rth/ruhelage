@@ -130,6 +130,54 @@ Fehlt einer, im Pull Request notieren.
 
 Schreibaufgaben erscheinen im Thema unter „Übungen“, aber nicht in den gemischten Runden, weil sie zu lange dauern.
 
+### Rechenaufgaben (Rechentrainer)
+
+Für Fächer mit Rechnen (Mathe, Physik, Chemie …). Jede Runde bekommt neue Zufallszahlen. Es gibt drei
+gestufte Hilfen und einen Lösungsweg. Geprüft wird nur eine **Zahl**, kein Term. Frag also nach einer
+Steigung, Stelle, einem Funktionswert oder einem Koeffizienten, nicht nach „f'(x) = …“.
+
+```json
+"rechenaufgaben": [
+  {
+    "id": "…-r1",
+    "titel": "Tangentensteigung",
+    "schwierigkeit": 2,
+    "quelle": "eigene Aufgabe",
+    "werte": { "a": [2, 5], "b": { "von": -4, "bis": 4, "ohne": [0] }, "x0": { "aus": [-2, -1, 1, 2] } },
+    "berechnet": { "m": "2*a*x0 + b" },
+    "bedingung": "m != 0",
+    "kontext": "Gegeben ist $f(x) = {a}x^2 {+b}x$.",
+    "teile": [
+      {
+        "frage": "Berechne die Steigung an der Stelle $x_0 = {x0}$.",
+        "ergebnis": "m",
+        "einheit": "",
+        "hilfen": ["Gesucht ist $f'({x0})$.", "$f'(x) = {2*a}x {+b}$", "$f'({x0}) = {2*a} \\cdot ({x0}) {+b}$"],
+        "loesung": "$f'(x) = {2*a}x {+b}$, also $f'({x0}) = {m}$.",
+        "typischeFehler": [{ "ergebnis": "a*x0^2 + b*x0", "hinweis": "Das ist $f({x0})$, nicht die Steigung." }]
+      }
+    ]
+  }
+]
+```
+
+- **werte:** Zufallszahlen. `[min, max]` sind ganze Zahlen, `{"von", "bis", "schritt", "ohne"}` erlaubt Kommazahlen und Ausnahmen, `{"aus": [...]}` wählt aus einer Liste.
+- **berechnet** (optional): Hilfswerte, die der Reihe nach ausgerechnet werden.
+- **bedingung** (optional): Es wird neu gewürfelt, bis sie gilt (`!=`, `==`, `<`, `>`, `&&`, `||`).
+  **Ergebnisse dürfen nicht 0 sein**, solche Fälle mit der Bedingung ausschließen.
+- **Platzhalter in Texten:** `{a}` oder `{2*a*x0}` setzt den Wert ein. `{+b}` schreibt das Vorzeichen immer mit, das braucht man für „x^2 {+b}x“.
+  In `$…$` erscheint das Komma automatisch richtig. TeX-Klammern wie `\\frac{1}{2}` bleiben unberührt. Für Exponenten `x^{{n}}` schreiben.
+  Achte darauf, dass keine „1x“ oder „+0“ entstehen. Dafür gibt es `ohne` bzw. die Wahl der Bereiche.
+- **Formeln:** `+ - * / ^`, Klammern, `sqrt`, `abs`, `sin`, `cos`, `tan`, `asin`, `acos`, `atan`, `ln`, `log`, `exp`, `min`, `max`,
+  `runde(x, n)`, `grad(x)`, `rad(x)`, `pi`, `e`. Winkelfunktionen rechnen im Bogenmaß.
+- **einheit:** leer für ohne Einheit, sonst ein Schlüssel aus `src/lib/einheiten.ts` (z. B. `m`, `s`, `m/s`). **toleranz:** relativ, Standard 0,01.
+- **hilfen:** genau drei: Ansatz, Zwischenschritt, fast fertig.
+- **typischeFehler** (optional): bekannte Fehler mit gezieltem Hinweis. Ist ein Fehlerwert zufällig richtig, wird er in dieser Runde weggelassen.
+- **klausur: true** (optional): Die Aufgabe darf in der Probeklausur vorkommen.
+
+`npm run check:inhalte` rechnet jede Rechenaufgabe mit 200 Zufallsbelegungen durch und meldet unbekannte
+Variablen, Division durch 0, Ergebnisse gleich 0 und Ähnliches.
+
 ## erklaerung.md
 
 „Kurz erklärt“ des Themas, in Markdown. Gliederung mit `## Überschriften`, denn die Abschnitte werden für

@@ -11,6 +11,7 @@ import type {
   ZuordnenUebung,
 } from '../../content/types';
 import { uebKey } from '../../lib/fortschritt';
+import { klartext } from '../../lib/klartext';
 import { erzeugeRng } from '../../lib/rng';
 import { useStore } from '../../store/store';
 import { useLernaktivitaet } from '../../store/ui';
@@ -314,11 +315,13 @@ function Luecke({ u, seed, geprueft, onPruefen }: KProps<LueckeUebung>) {
                 </option>
                 {ordnungen[k].map((oi) => (
                   <option key={oi} value={oi}>
-                    {l.optionen[oi]}
+                    {klartext(l.optionen[oi])}
                   </option>
                 ))}
               </select>
-              {fertig && w !== l.richtig && <span className="luecke-loesung">{l.optionen[l.richtig]}</span>}
+              {fertig && w !== l.richtig && <span className="luecke-loesung">
+                  <Md text={l.optionen[l.richtig]} inline />
+                </span>}
             </span>
           );
         })}
@@ -388,7 +391,7 @@ function Zuordnen({ u, seed, geprueft, onPruefen }: KProps<ZuordnenUebung>) {
                   </option>
                   {ordnung.map((oi) => (
                     <option key={oi} value={oi}>
-                      {u.paare[oi].rechts.replace(/\$/g, '')}
+                      {klartext(u.paare[oi].rechts)}
                     </option>
                   ))}
                 </select>
@@ -439,7 +442,7 @@ function Klassifizieren({ u, seed, geprueft, onPruefen }: KProps<KlassifizierenU
                     disabled={fertig}
                     onClick={() => setWerte((alt) => alt.map((x, j) => (j === i ? ki : x)))}
                   >
-                    {k}
+                    <Md text={k} inline />
                   </button>
                 ))}
               </div>
