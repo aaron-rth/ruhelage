@@ -266,7 +266,7 @@
     {
       "id": "mdiff-tangente-s1",
       "typ": "schreiben",
-      "operator": "begruenden",
+      "operator": "bestimmen",
       "frage": "Gegeben ist $f(x) = x^3 - 3x + 1$. (a) Bestimmen Sie die Gleichung der Tangente $t$ im Punkt $P(2 \\mid f(2))$. (b) Begründen Sie, dass es genau einen weiteren Punkt des Graphen gibt, in dem die Tangente parallel zu $t$ verläuft, und geben Sie die Gleichung dieser Tangente an.",
       "quelle": "eigene Aufgabe (Operatoren nach IQB-Grundstock Mathematik)",
       "umfang": "Rechnung mit Begründungssätzen",

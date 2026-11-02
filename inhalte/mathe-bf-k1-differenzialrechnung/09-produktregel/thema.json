@@ -295,7 +295,7 @@
     {
       "id": "mdiff-produktregel-s2",
       "typ": "schreiben",
-      "operator": "begruenden",
+      "operator": "bestimmen",
       "frage": "Gegeben ist $h(x) = (x + 2)(x - 1)^2$. (a) Geben Sie die Nullstellen von $h$ an. (b) Bestimmen Sie $h'(x)$ mit der Produktregel und geben Sie das Ergebnis in faktorisierter Form an. (c) Bestimmen Sie alle Punkte mit waagerechter Tangente. (d) Begründen Sie, dass der Graph von $h$ die x-Achse bei $x = 1$ berührt und nicht schneidet. (e) Bestimmen Sie die Tangente im Punkt $P(0 \\mid h(0))$.",
       "quelle": "eigene Aufgabe (Operatoren nach IQB-Grundstock Mathematik)",
       "umfang": "Rechnung mit Begründungssätzen",

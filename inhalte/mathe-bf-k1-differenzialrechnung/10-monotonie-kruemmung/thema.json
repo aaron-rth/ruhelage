@@ -301,7 +301,7 @@
     {
       "id": "mdiff-monotonie-s2",
       "typ": "schreiben",
-      "operator": "erlaeutern",
+      "operator": "untersuchen",
       "frage": "Untersuchen Sie $g(x) = -x^3 + 3x^2 + 9x - 2$ rechnerisch auf Monotonie und Krümmung. Erläutern Sie dabei jeden Schritt Ihres Vorgehens und geben Sie die Ergebnisse mit Intervallen an.",
       "quelle": "eigene Aufgabe (Operatoren nach IQB-Grundstock Mathematik)",
       "umfang": "Rechnung mit erläuternden Sätzen",

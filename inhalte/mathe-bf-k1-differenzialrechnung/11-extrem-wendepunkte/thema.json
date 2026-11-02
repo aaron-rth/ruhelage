@@ -274,7 +274,7 @@
     {
       "id": "mdiff-extrem-s1",
       "typ": "schreiben",
-      "operator": "begruenden",
+      "operator": "bestimmen",
       "frage": "Gegeben ist $f(x) = \\frac14 x^4 - 2x^2$. Bestimmen Sie die Koordinaten aller Extrem- und Wendepunkte des Graphen und begründen Sie jeweils mit einer hinreichenden Bedingung, um welche Art von Punkt es sich handelt.",
       "quelle": "eigene Aufgabe (Operatoren nach IQB-Grundstock Mathematik)",
       "umfang": "vollständige Rechnung mit Begründungen",

@@ -4513,3 +4513,8 @@ a.fach-zeile.bald:hover {
 .tour-fuss .btn {
   white-space: nowrap;
 }
+/* Bilder in Erklärungen (Inhaltspakete) nie breiter als der Text */
+.prosa img {
+  max-width: 100%;
+  height: auto;
+}

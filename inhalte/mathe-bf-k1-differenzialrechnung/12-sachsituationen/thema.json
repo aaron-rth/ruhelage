@@ -270,7 +270,7 @@
     {
       "id": "mdiff-sachsituationen-s1",
       "typ": "schreiben",
-      "operator": "begruenden",
+      "operator": "bestimmen",
       "frage": "Die Temperatur in einem Gewächshaus wird für $0 \\leq t \\leq 10$ durch $T(t) = -0{,}05t^3 + 0{,}6t^2 + 12$ beschrieben ($t$ in Stunden nach 8 Uhr, $T(t)$ in °C). (a) Bestimmen Sie, wann die Temperatur am höchsten und wann am niedrigsten ist. (b) Bestimmen Sie den Zeitpunkt des stärksten Temperaturanstiegs. (c) Begründen Sie, dass die Temperatur um 18 Uhr am schnellsten sinkt.",
       "quelle": "eigene Aufgabe (Operatoren nach IQB-Grundstock Mathematik)",
       "umfang": "Rechnung mit Antwortsätzen",
