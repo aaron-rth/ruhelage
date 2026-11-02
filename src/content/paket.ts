@@ -276,6 +276,7 @@ export function baueKurs(p: PaketDateien): PaketErgebnis {
       themen,
       pfad,
       entwurf: k.entwurf === true,
+      beispiel: k.beispiel === true,
     },
     fehler: [],
   };

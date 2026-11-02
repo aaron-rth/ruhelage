@@ -5,3 +5,6 @@
  * Leer = Anfragen sind noch nicht eingerichtet; die Seite erklärt das dann.
  */
 export const ANFRAGE_EMAIL = 'aaron.raith@student.englisches-institut.eu';
+
+/** Adresse für „Hilfe & Feedback“ (Fehler melden, Ideen, Fragen) */
+export const SUPPORT_EMAIL = ANFRAGE_EMAIL;

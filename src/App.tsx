@@ -2,6 +2,11 @@ import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { HashRouter, Link, NavLink, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { Lader, Logo } from './components/Basis';
 import { Tour } from './components/Tour';
+import { FachUmschalter } from './components/FachUmschalter';
+import { Fehlergrenze } from './components/Fehlergrenze';
+import { HilfeDialog, oeffneHilfe } from './components/Hilfe';
+import { Willkommen } from './components/Willkommen';
+import { Ueben } from './pages/Ueben';
 import { Icon } from './components/Icon';
 import { Statistik } from './components/Statistik';
 import { beiOnline, kontoStarten, syncPlanen, syncSofort } from './lib/cloud';
@@ -16,7 +21,7 @@ import { Lernpfad } from './pages/Lernpfad';
 import { Nochmal } from './pages/Nochmal';
 import { ThemaSeite } from './pages/Thema';
 import type { Kurs } from './content/types';
-import { hatFormeln, hatProbeklausur, hatSpielwiese, useAktiverKurs, useMeineKurse, wechsleKurs } from './lib/kurs';
+import { hatFormeln, hatProbeklausur, hatSpielwiese, useAktiverKurs } from './lib/kurs';
 import { knopfKlick } from './lib/feedback';
 import { useLaufend } from './store/laufend';
 import { streak, useStore } from './store/store';
@@ -47,6 +52,7 @@ const BEREICHE: { id: Bereich; to: string; label: string; icon: string; unter: U
       { to: '/', label: 'Heute', icon: 'heute', passt: (p) => p === '/' },
       { to: '/aktuell', label: 'Angefangen', icon: 'pause', passt: (p) => p === '/aktuell' },
       { to: '/nochmal', label: 'Nochmal', icon: 'nochmal', passt: (p) => p === '/nochmal' },
+      { to: '/ueben', label: 'Üben', icon: 'stift', passt: (p) => p === '/ueben' },
       { to: '/klausur', label: 'Probeklausur', icon: 'klausur', passt: (p) => p === '/klausur', nurWenn: hatProbeklausur },
       { to: '/spielwiese', label: 'Spielwiese', icon: 'welle', passt: (p) => p === '/spielwiese', nurWenn: hatSpielwiese },
     ],
@@ -74,6 +80,16 @@ const BEREICHE: { id: Bereich; to: string; label: string; icon: string; unter: U
       { to: '/einstellungen', label: 'Einstellungen', icon: 'einstellungen', passt: (p) => p === '/einstellungen' },
     ],
   },
+];
+
+/** Laptop: eine schlichte Liste statt Gruppen mit Unterpunkten */
+const NAV: (Unterpunkt & { nurMitZahl?: boolean })[] = [
+  { to: '/', label: 'Heute', icon: 'heute', passt: (p) => p === '/' },
+  { to: '/pfad', label: 'Lernpfad', icon: 'pfad', passt: (p) => p === '/pfad' || p.startsWith('/thema') },
+  { to: '/ueben', label: 'Üben', icon: 'stift', passt: (p) => p === '/ueben' || p === '/klausur' || p === '/spielwiese' },
+  { to: '/nochmal', label: 'Nochmal', icon: 'nochmal', passt: (p) => p === '/nochmal' },
+  { to: '/formeln', label: 'Formeln', icon: 'formel', passt: (p) => p === '/formeln', nurWenn: hatFormeln },
+  { to: '/aktuell', label: 'Angefangen', icon: 'pause', passt: (p) => p === '/aktuell', nurMitZahl: true },
 ];
 
 function bereichVon(pfad: string, suche: string): Bereich {
@@ -184,35 +200,45 @@ function NachOben() {
   return null;
 }
 
-function SeitenleisteFuss() {
+function SeitenleisteFuss({ tabIndex }: { tabIndex?: number }) {
   const tage = useStore((s) => s.tage);
   const e = useStore((s) => s.einstellungen);
+  const { pathname } = useLocation();
   const h = heute();
   const s = streak(tage, h);
   const rest = tageZwischen(h, e.klausurDatum);
+  const icons = [
+    { to: '/statistik', icon: 'kalender', label: 'Statistik' },
+    { to: '/profil', icon: 'ziel', label: 'Profil & Konto' },
+    { to: '/einstellungen', icon: 'einstellungen', label: 'Einstellungen' },
+  ];
   return (
-    <Link to="/statistik" className="seitenleiste-fuss" title="Statistik öffnen">
-      {e.countdown && rest >= 0 && (
-        <div className="zeile" style={{ gap: 8 }}>
-          <Icon name="kalender" size={16} />
+    <div className="seitenleiste-fuss-box">
+      <Link to="/statistik" className="seitenleiste-fuss" title="Statistik öffnen" tabIndex={tabIndex}>
+        <span className="zeile" style={{ gap: 8 }}>
+          <Icon name="welle" size={16} />
           <span>
-            {rest === 0 ? (
-              <strong>Heute ist Klausur</strong>
-            ) : (
-              <>
-                noch <strong>{rest}</strong> {rest === 1 ? 'Tag' : 'Tage'} bis zur Klausur
-              </>
-            )}
+            <strong>{s}</strong> {s === 1 ? 'Tag' : 'Tage'} in Folge
           </span>
-        </div>
-      )}
-      <div className="zeile" style={{ gap: 8 }}>
-        <Icon name="welle" size={16} />
-        <span>
-          <strong>{s}</strong> {s === 1 ? 'Tag' : 'Tage'} in Folge
         </span>
+        {e.countdown && rest >= 0 && (
+          <span className="zeile sehr-leise" style={{ gap: 8 }}>
+            <Icon name="kalender" size={16} />
+            <span>{rest === 0 ? 'Heute ist Klausur' : `noch ${rest} ${rest === 1 ? 'Tag' : 'Tage'} bis zur Klausur`}</span>
+          </span>
+        )}
+      </Link>
+      <div className="leiste-icons" data-tour="leiste-icons">
+        {icons.map((x) => (
+          <Link key={x.to} to={x.to} className={`btn geist symbol-knopf${pathname === x.to ? ' an' : ''}`} title={x.label} aria-label={x.label} aria-current={pathname === x.to ? 'page' : undefined} tabIndex={tabIndex}>
+            <Icon name={x.icon} size={19} />
+          </Link>
+        ))}
+        <button type="button" className="btn geist symbol-knopf" onClick={() => oeffneHilfe()} title="Hilfe & Feedback" aria-label="Hilfe & Feedback" tabIndex={tabIndex}>
+          <Icon name="info" size={19} />
+        </button>
       </div>
-    </Link>
+    </div>
   );
 }
 
@@ -254,7 +280,6 @@ function useCloud() {
 
 function Rahmen() {
   const kurs = useAktiverKurs();
-  const meine = useMeineKurse();
   useLernzeit();
   useCloud();
   useKnopfKlick();
@@ -281,53 +306,21 @@ function Rahmen() {
             <Icon name="seitenleiste" size={22} />
           </button>
         </div>
-        <div className="fach-wahl">
-          <Link to="/faecher" className="fach-zeile an" tabIndex={fokus ? -1 : 0}>
-            <Icon name={kurs.fach === 'Physik' ? 'welle' : 'buch'} size={18} />
-            <span>
-              <strong>
-                {kurs.fach} <span className="chip klein-chip">{kurs.klasse}</span>
-              </strong>
-              <span className="sehr-leise klein">{kurs.titel}</span>
-            </span>
-          </Link>
-          {meine.laufend.filter((k) => k.id !== kurs.id).map((k) => (
-            <Link key={k.id} to="/faecher" className="fach-zeile" tabIndex={fokus ? -1 : 0} onClick={() => wechsleKurs(k.id)}>
-              <Icon name={k.fach === 'Physik' ? 'welle' : 'buch'} size={18} />
-              <span>
-                <strong>
-                  {k.fach} <span className="chip klein-chip">{k.klasse}</span>
-                </strong>
-                <span className="sehr-leise klein">{k.titel}</span>
-              </span>
-            </Link>
-          ))}
-          <Link to="/faecher?hinzu=1" className="fach-zeile bald" tabIndex={fokus ? -1 : 0}>
-            <Icon name="plus" size={18} />
-            <span className="klein">Fach hinzufügen</span>
-          </Link>
-        </div>
+        <FachUmschalter tabIndex={fokus ? -1 : 0} />
         <nav className="nav" aria-label="Hauptnavigation">
-          {BEREICHE.map((b) => (
-            <div key={b.id} className={`nav-gruppe${bereich === b.id ? ' aktiv' : ''}`}>
-              <Link to={b.to} className="nav-bereich" data-tour={b.to} tabIndex={fokus ? -1 : 0}>
-                {b.label}
+          {NAV.filter((u) => (!u.nurWenn || u.nurWenn(kurs)) && (!u.nurMitZahl || zahl(u.to) > 0 || u.passt(pathname, search))).map((u) => {
+            const aktiv = u.passt(pathname, search);
+            const n = zahl(u.to);
+            return (
+              <Link key={u.to} to={u.to} data-tour={u.to} className={aktiv ? 'aktiv' : undefined} aria-current={aktiv ? 'page' : undefined} tabIndex={fokus ? -1 : 0}>
+                <Icon name={u.icon} size={20} />
+                {u.label}
+                {n > 0 && <span className={`badge${u.to === '/aktuell' ? ' akzent' : ''}`}>{n}</span>}
               </Link>
-              {b.unter.filter((u) => !u.nurWenn || u.nurWenn(kurs)).map((u) => {
-                const aktiv = u.passt(pathname, search);
-                const n = zahl(u.to);
-                return (
-                  <Link key={u.to} to={u.to} className={aktiv ? 'aktiv' : undefined} aria-current={aktiv ? 'page' : undefined} tabIndex={fokus ? -1 : 0}>
-                    <Icon name={u.icon} size={19} />
-                    {u.label}
-                    {n > 0 && <span className={`badge${u.to === '/aktuell' ? ' akzent' : ''}`}>{n}</span>}
-                  </Link>
-                );
-              })}
-            </div>
-          ))}
+            );
+          })}
         </nav>
-        <SeitenleisteFuss />
+        <SeitenleisteFuss tabIndex={fokus ? -1 : 0} />
       </aside>
 
       {fokus && <FokusLeiste onAus={() => setFokus(false)} />}
@@ -336,7 +329,7 @@ function Rahmen() {
         <NavLink to="/" aria-label="Startseite" style={{ color: 'var(--text)' }}>
           <Logo klein />
         </NavLink>
-        <Link to="/faecher" className="mobil-fach" title={`${kurs.fach} · ${kurs.klasse}`}>
+        <Link to="/faecher" className="mobil-fach" data-tour="fachwahl" title={`${kurs.fach} · ${kurs.klasse}`}>
           {kurs.fach} · {kurs.klasse}
         </Link>
         <button type="button" className="mobil-serie" onClick={() => navigate('/statistik')} aria-label={`${serie} Tage in Folge – Statistik öffnen`}>
@@ -353,6 +346,7 @@ function Rahmen() {
         }}
       >
         <Suspense fallback={<Lader />}>
+          <Fehlergrenze key={pathname}>
           <div className="seiten-wechsel" key={pathname}>
             <Routes>
               <Route path="/" element={<Heute />} />
@@ -363,6 +357,7 @@ function Rahmen() {
               <Route path="/thema/:id/:tab" element={<ThemaSeite />} />
               <Route path="/spielwiese" element={<Spielwiese />} />
               <Route path="/nochmal" element={<Nochmal />} />
+              <Route path="/ueben" element={<Ueben />} />
               <Route path="/klausur" element={<Klausur />} />
               <Route path="/formeln" element={<Formeln />} />
               <Route path="/profil" element={<Profil />} />
@@ -371,6 +366,7 @@ function Rahmen() {
               <Route path="*" element={<Heute />} />
             </Routes>
           </div>
+          </Fehlergrenze>
         </Suspense>
       </main>
 
@@ -386,6 +382,8 @@ function Rahmen() {
         ))}
       </nav>
       <Tour />
+      <Willkommen />
+      <HilfeDialog />
       {statistik && <Statistik />}
     </div>
   );

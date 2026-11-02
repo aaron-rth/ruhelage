@@ -3,6 +3,7 @@ import { useMemo } from 'react';
 import { KURSE, kursMitId } from '../content/kurse';
 import type { Kurs } from '../content/types';
 import { useStore, type Einstellungen } from '../store/store';
+import { genKey, uebKey } from './fortschritt';
 
 /** Kurs ohne ausgeblendete Themen – damit rechnen Tagesrunde, Lernplan, Übungsmixe usw. */
 function ohneAusgeblendete(k: Kurs, aus: string[]): Kurs {
@@ -54,6 +55,9 @@ function setze(f: (e: Einstellungen) => Partial<Einstellungen>, extraZeit: strin
 /** Meine Fächer: hinzugefügte (und der aktive), aufgeteilt in laufend und fertig */
 export function meineKurse(e: Einstellungen): { laufend: Kurs[]; fertig: Kurs[] } {
   const ids = new Set([...(e.meineKurse ?? []), e.kurs]);
+  // Standard-Fach neuer Geräte nicht doppelt neben dem Beispiel-Fach zeigen
+  const beispiel = KURSE.find((k) => k.beispiel && k.id === e.kurs);
+  if (beispiel && (e.meineKurse ?? []).length <= 1) return { laufend: [beispiel], fertig: [] };
   const fertig = new Set(e.fertigeKurse ?? []);
   const alle = KURSE.filter((k) => ids.has(k.id));
   return { laufend: alle.filter((k) => !fertig.has(k.id)), fertig: alle.filter((k) => fertig.has(k.id)) };
@@ -64,10 +68,44 @@ export function useMeineKurse() {
   return useMemo(() => meineKurse(e), [e]);
 }
 
+export const BEISPIEL_KURS = () => KURSE.find((k) => k.beispiel);
+
+/** Fortschritt eines Kurses auf diesem Gerät löschen (für das Beispiel-Fach) */
+function vergissKurs(k: Kurs) {
+  const themen = new Set(k.themen.map((t) => t.id));
+  const karten = new Set(k.themen.flatMap((t) => t.karten.map((x) => x.id)));
+  const keys = new Set(k.themen.flatMap((t) => [...t.uebungen.map((u) => uebKey(u.id)), ...t.generatoren.map((g) => genKey(g.id))]));
+  useStore.setState((s) => ({
+    themen: Object.fromEntries(Object.entries(s.themen).filter(([id]) => !themen.has(id))),
+    karten: Object.fromEntries(Object.entries(s.karten).filter(([id]) => !karten.has(id))),
+    ergebnisse: Object.fromEntries(Object.entries(s.ergebnisse).filter(([id]) => !keys.has(id))),
+    nochmal: s.nochmal.filter((n) => !themen.has(n.themaId)),
+  }));
+}
+
+/** Beim ersten echten Fach verschwindet das Beispiel-Fach samt seinem Übungsstand */
+function beispielAufraeumen(behalten: string[]) {
+  const b = BEISPIEL_KURS();
+  if (!b || behalten.includes(b.id)) return;
+  const e = useStore.getState().einstellungen;
+  if (!(e.meineKurse ?? []).includes(b.id) && e.kurs !== b.id) return;
+  setze((x) => ({ meineKurse: (x.meineKurse ?? []).filter((id) => id !== b.id) }));
+  vergissKurs(b);
+}
+
 /** Kurs zu „Meine Fächer“ hinzufügen und gleich öffnen */
 export function fuegeKursHinzu(id: string) {
   setze((e) => ({ meineKurse: [...new Set([...(e.meineKurse ?? []), e.kurs, id])], fertigeKurse: (e.fertigeKurse ?? []).filter((x) => x !== id) }));
   wechsleKurs(id);
+  if (!KURSE.find((k) => k.id === id)?.beispiel) beispielAufraeumen([]);
+}
+
+/** Erster Start: genau diese Fächer (oder nur das Beispiel-Fach) */
+export function starteMitKursen(ids: string[]) {
+  if (!ids.length) return;
+  setze(() => ({ meineKurse: ids, fertigeKurse: [] }));
+  wechsleKurs(ids[0]);
+  if (!ids.some((id) => KURSE.find((k) => k.id === id)?.beispiel)) beispielAufraeumen(ids);
 }
 
 /** Kurs als fertig markieren (ausblenden) oder zurückholen. Beim Ausblenden des aktiven Kurses wird gewechselt. */

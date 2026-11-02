@@ -80,6 +80,60 @@ function ModusWahl({ modus, onZu }: { modus: Modus; onZu: () => void }) {
   );
 }
 
+/** Kacheln „Gezielt üben“ – auf „Heute“ und auf der Seite „Üben“ */
+export function GezieltUeben() {
+  const kurs = useAktiverKurs();
+  const daten = useStore();
+  const [modus, setModus] = useState<Modus | null>(null);
+  // Rechentrainer, Probeklausur und Spielwiese gibt es nur, wo der Kurs sie hat
+  const mitRechnen = hatRechnen(kurs);
+  const mitKlausur = hatProbeklausur(kurs);
+  const physik = hatSpielwiese(kurs);
+  return (
+    <>
+    <div className="modus-kacheln">
+      {(Object.keys(MODUS) as Modus[]).filter((k) => k !== 'rechnen' || mitRechnen).map((k) => (
+        <button key={k} type="button" className="modus-kachel" onClick={() => setModus(k)}>
+          <span className="modus-icon">
+            <Icon name={MODUS[k].icon} size={22} />
+          </span>
+          <strong>{MODUS[k].titel}</strong>
+          <span className="sehr-leise klein">{MODUS[k].text}</span>
+        </button>
+      ))}
+      {mitKlausur && (
+        <Link to="/klausur" className="modus-kachel">
+          <span className="modus-icon">
+            <Icon name="klausur" size={22} />
+          </span>
+          <strong>Probeklausur</strong>
+          <span className="sehr-leise klein">Ohne Hilfen, mit Timer</span>
+        </Link>
+      )}
+      <Link to="/nochmal" className="modus-kachel">
+        <span className="modus-icon">
+          <Icon name="nochmal" size={22} />
+        </span>
+        <strong>
+          Nochmal {daten.nochmal.length > 0 && <span className="badge akzent">{daten.nochmal.length}</span>}
+        </strong>
+        <span className="sehr-leise klein">Was danebenging</span>
+      </Link>
+      {physik && (
+        <Link to="/spielwiese" className="modus-kachel">
+          <span className="modus-icon">
+            <Icon name="welle" size={22} />
+          </span>
+          <strong>Spielwiese</strong>
+          <span className="sehr-leise klein">Pendel und Graphen ausprobieren</span>
+        </Link>
+      )}
+    </div>
+      {modus && <ModusWahl modus={modus} onZu={() => setModus(null)} />}
+    </>
+  );
+}
+
 function gruss(): string {
   const h = new Date().getHours();
   if (h < 11) return 'Guten Morgen';
@@ -93,7 +147,6 @@ export function Heute() {
   const h = heute();
   const navigate = useNavigate();
   const [seed, setSeed] = useState(neuerSeed);
-  const [modus, setModus] = useState<Modus | null>(null);
   const stand = useSitzungsStand('heute', true);
   const misch = [stand, useSitzungsStand('mix-karten'), useSitzungsStand('mix-uebungen'), useSitzungsStand('mix-rechnen')];
   const laufIndex = misch.findIndex((x) => x && !x.pausiert);
@@ -109,10 +162,6 @@ export function Heute() {
   const e = daten.einstellungen;
   const minuten = Math.floor(tag.sekunden / 60);
   const rest = tageZwischen(h, e.klausurDatum);
-  // Rechentrainer, Probeklausur und Spielwiese gibt es nur, wo der Kurs sie hat
-  const mitRechnen = hatRechnen(kurs);
-  const mitKlausur = hatProbeklausur(kurs);
-  const physik = hatSpielwiese(kurs);
   const s = streak(daten.tage, h);
 
   const starte = () => starteSitzung('heute', plan.items, { art: 'heute', titel: 'Heute-Runde', pfad: '/' });
@@ -288,46 +337,8 @@ export function Heute() {
 
       <section className="ueben-bereich" data-tour="gezielt">
         <h2 className="abschnitt-titel">Gezielt üben</h2>
-        <div className="modus-kacheln">
-          {(Object.keys(MODUS) as Modus[]).filter((k) => k !== 'rechnen' || mitRechnen).map((k) => (
-            <button key={k} type="button" className="modus-kachel" onClick={() => setModus(k)}>
-              <span className="modus-icon">
-                <Icon name={MODUS[k].icon} size={22} />
-              </span>
-              <strong>{MODUS[k].titel}</strong>
-              <span className="sehr-leise klein">{MODUS[k].text}</span>
-            </button>
-          ))}
-          {mitKlausur && (
-            <Link to="/klausur" className="modus-kachel">
-              <span className="modus-icon">
-                <Icon name="klausur" size={22} />
-              </span>
-              <strong>Probeklausur</strong>
-              <span className="sehr-leise klein">Ohne Hilfen, mit Timer</span>
-            </Link>
-          )}
-          <Link to="/nochmal" className="modus-kachel">
-            <span className="modus-icon">
-              <Icon name="nochmal" size={22} />
-            </span>
-            <strong>
-              Nochmal {daten.nochmal.length > 0 && <span className="badge akzent">{daten.nochmal.length}</span>}
-            </strong>
-            <span className="sehr-leise klein">Was danebenging</span>
-          </Link>
-          {physik && (
-            <Link to="/spielwiese" className="modus-kachel">
-              <span className="modus-icon">
-                <Icon name="welle" size={22} />
-              </span>
-              <strong>Spielwiese</strong>
-              <span className="sehr-leise klein">Pendel und Graphen ausprobieren</span>
-            </Link>
-          )}
-        </div>
+        <GezieltUeben />
       </section>
-      {modus && <ModusWahl modus={modus} onZu={() => setModus(null)} />}
     </div>
   );
 }

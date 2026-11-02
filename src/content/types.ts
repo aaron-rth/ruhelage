@@ -228,4 +228,6 @@ export interface Kurs {
   pfad: string[][];
   /** nur in der Entwicklungsansicht sichtbar (Inhaltspakete in Arbeit) */
   entwurf?: boolean;
+  /** Beispiel-Fach für die Einführung – nicht in „Fach hinzufügen“, verschwindet beim ersten echten Fach */
+  beispiel?: boolean;
 }
