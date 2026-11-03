@@ -346,5 +346,150 @@
         }
       ]
     }
+  ],
+  "rechenaufgaben": [
+    {
+      "id": "mdiff-r-tangente-ablesen",
+      "titel": "Steigung an der Tangente ablesen",
+      "schwierigkeit": 1,
+      "quelle": "eigene Aufgabe",
+      "werte": {
+        "ax": [
+          -3,
+          2
+        ],
+        "d": [
+          2,
+          4
+        ],
+        "m": {
+          "von": -3,
+          "bis": 3,
+          "ohne": [
+            0
+          ]
+        },
+        "ay": [
+          -4,
+          4
+        ],
+        "dd": {
+          "aus": [
+            2,
+            3,
+            4,
+            5
+          ]
+        }
+      },
+      "berechnet": {
+        "bx": "ax + d",
+        "by": "ay + m*d"
+      },
+      "kontext": "An den Graphen einer Funktion $f$ wurde an der Stelle $a$ die Tangente gezeichnet. Sie verläuft durch die Gitterpunkte $A({ax} \\mid {ay})$ und $B({bx} \\mid {by})$.",
+      "teile": [
+        {
+          "frage": "Welchen Wert hat $f'(a)$?",
+          "ergebnis": "m",
+          "hilfen": [
+            "$f'(a)$ ist die Steigung der Tangente.",
+            "Steigungsdreieck von $A$ nach $B$: Breite ${d}$, Höhe ${m*d}$.",
+            "$f'(a) = \\frac{{m*d}}{{d}}$"
+          ],
+          "loesung": "$f'(a) = \\frac{{by} - ({ay})}{{bx} - ({ax})} = \\frac{{m*d}}{{d}} = {m}$",
+          "typischeFehler": [
+            {
+              "ergebnis": "1/m",
+              "hinweis": "Höhe durch Breite, nicht umgekehrt."
+            }
+          ]
+        },
+        {
+          "frage": "Die Funktion $g$ entsteht aus $f$ durch Verschieben um ${dd}$ nach oben: $g(x) = f(x) + {dd}$. Welchen Wert hat $g'(a)$?",
+          "ergebnis": "m",
+          "hilfen": [
+            "Wie ändern sich die Steigungen, wenn man einen Graphen nach oben verschiebt?",
+            "Beim Verschieben in y-Richtung bleibt jede Tangente gleich steil.",
+            "Die Konstante ${dd}$ hat die Ableitung 0."
+          ],
+          "loesung": "Die Konstante fällt beim Ableiten weg: $g'(a) = f'(a) = {m}$",
+          "typischeFehler": [
+            {
+              "ergebnis": "m + dd",
+              "hinweis": "Verschieben nach oben ändert die Steigung nicht, die Ableitung der Konstanten ist 0."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mdiff-r-ableitungsgerade",
+      "titel": "Vom Graphen von f′ auf f schließen",
+      "schwierigkeit": 2,
+      "quelle": "eigene Aufgabe",
+      "werte": {
+        "s": {
+          "aus": [
+            -3,
+            -2,
+            -0.5,
+            0.5,
+            2,
+            3
+          ]
+        },
+        "n": {
+          "von": -4,
+          "bis": 4,
+          "ohne": [
+            0
+          ]
+        },
+        "x2": [
+          -4,
+          4
+        ]
+      },
+      "bedingung": "x2 != n",
+      "kontext": "Der Graph der Ableitung $f'$ einer Funktion $f$ ist eine Gerade mit der Steigung ${s}$, die die x-Achse bei $x = {n}$ schneidet.",
+      "teile": [
+        {
+          "frage": "An welcher Stelle hat der Graph von $f$ eine waagerechte Tangente?",
+          "ergebnis": "n",
+          "hilfen": [
+            "Waagerechte Tangente bedeutet $f'(x) = 0$.",
+            "Gesucht ist also die Nullstelle von $f'$.",
+            "Wo schneidet der Graph von $f'$ die x-Achse?"
+          ],
+          "loesung": "$f'({n}) = 0$, also hat der Graph von $f$ bei $x = {n}$ eine waagerechte Tangente. Weil $f'$ dort das Vorzeichen wechselt, ist es ein Extrempunkt."
+        },
+        {
+          "frage": "Welche Steigung hat der Graph von $f$ an der Stelle $x = {x2}$?",
+          "ergebnis": "s*(x2 - n)",
+          "hilfen": [
+            "Gesucht ist $f'({x2})$, also ein Funktionswert der Geraden.",
+            "Gleichung der Geraden: $f'(x) = {s}(x {+-n})$",
+            "$f'({x2}) = {s} \\cdot ({x2} {+-n})$"
+          ],
+          "loesung": "$f'({x2}) = {s} \\cdot ({x2-n}) = {s*(x2-n)}$",
+          "typischeFehler": [
+            {
+              "ergebnis": "s*x2",
+              "hinweis": "Die Gerade geht nicht durch den Ursprung, sondern durch $({n} \\mid 0)$."
+            }
+          ]
+        },
+        {
+          "frage": "Gib $f''({n})$ an. Liegt bei $x = {n}$ ein Hoch- oder ein Tiefpunkt?",
+          "ergebnis": "s",
+          "hilfen": [
+            "$f''$ ist die Ableitung von $f'$, also die Steigung der Geraden.",
+            "Die Gerade hat überall dieselbe Steigung.",
+            "$f'' < 0$: Hochpunkt, $f'' > 0$: Tiefpunkt."
+          ],
+          "loesung": "$f''({n}) = {s}$. Bei positivem Wert liegt ein Tiefpunkt vor, bei negativem ein Hochpunkt."
+        }
+      ]
+    }
   ]
 }

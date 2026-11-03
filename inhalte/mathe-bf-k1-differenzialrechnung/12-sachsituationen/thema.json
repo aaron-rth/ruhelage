@@ -380,5 +380,186 @@
         }
       ]
     }
+  ],
+  "rechenaufgaben": [
+    {
+      "id": "mdiff-r-besucher",
+      "titel": "Besucherzahl: Maximum und stärkste Zunahme",
+      "schwierigkeit": 3,
+      "quelle": "eigene Aufgabe",
+      "werte": {
+        "j": {
+          "aus": [
+            2,
+            3,
+            4
+          ]
+        },
+        "d": {
+          "von": 10,
+          "bis": 40,
+          "schritt": 5
+        }
+      },
+      "berechnet": {
+        "k": "3*j",
+        "T": "3*j",
+        "tmax": "2*j",
+        "fmax": "4*j^3 + d",
+        "tz": "j",
+        "rz": "3*j^2"
+      },
+      "kontext": "Die Anzahl der Besucher einer Ausstellung wird für $0 \\leq t \\leq {T}$ durch $f(t) = -t^3 {+k}t^2 {+d}$ beschrieben ($t$ in Stunden nach Öffnung).",
+      "teile": [
+        {
+          "frage": "Nach wie vielen Stunden sind die meisten Besucher da?",
+          "ergebnis": "tmax",
+          "hilfen": [
+            "Maximum von $f$: $f'(t) = 0$ lösen, dann mit den Randwerten vergleichen.",
+            "$f'(t) = -3t^2 {+2*k}t = -3t(t {+-2*j})$",
+            "Kandidaten: $t = 0$ (Rand) und $t = {2*j}$. Vergleiche mit $f(0) = f({T}) = {d}$."
+          ],
+          "loesung": "$f'(t) = 0$ für $t = {2*j}$ mit $f''({2*j}) = {-6*j} < 0$. Die Randwerte $f(0) = f({T}) = {d}$ sind kleiner. Nach ${2*j}$ Stunden sind die meisten Besucher da.",
+          "typischeFehler": [
+            {
+              "ergebnis": "j",
+              "hinweis": "Dort nimmt die Zahl am stärksten zu. Gesucht ist das Maximum von $f$, also $f'(t) = 0$."
+            }
+          ]
+        },
+        {
+          "frage": "Wie viele Besucher sind dann da?",
+          "ergebnis": "fmax",
+          "hilfen": [
+            "Setze den Zeitpunkt in $f$ ein.",
+            "$f({2*j}) = -{8*j^3} {+k} \\cdot {4*j^2} {+d}$",
+            "$f({2*j}) = -{8*j^3} {+12*j^3} {+d}$"
+          ],
+          "loesung": "$f({2*j}) = {fmax}$ Besucher.",
+          "typischeFehler": [
+            {
+              "ergebnis": "0",
+              "hinweis": "Das ist $f'({2*j})$. Die Anzahl liefert $f$."
+            }
+          ]
+        },
+        {
+          "frage": "Nach wie vielen Stunden nimmt die Besucherzahl am stärksten zu?",
+          "ergebnis": "tz",
+          "hilfen": [
+            "Gesucht ist das Maximum von $f'$, also $f''(t) = 0$.",
+            "$f''(t) = -6t {+2*k}$",
+            "$-6t {+2*k} = 0$; $f'''(t) = -6 < 0$ bestätigt das Maximum von $f'$. Prüfe auch die Randwerte von $f'$."
+          ],
+          "loesung": "$t = {j}$ mit $f'({j}) = {3*j^2}$. Die Randwerte $f'(0) = 0$ und $f'({T}) = {-9*j^2}$ sind kleiner.",
+          "typischeFehler": [
+            {
+              "ergebnis": "tmax",
+              "hinweis": "Bei $t = {2*j}$ ist $f'(t) = 0$: Dort nimmt die Zahl gar nicht zu."
+            }
+          ]
+        },
+        {
+          "frage": "Um wie viele Besucher pro Stunde nimmt die Zahl zu diesem Zeitpunkt zu?",
+          "ergebnis": "rz",
+          "hilfen": [
+            "Gesucht ist $f'({j})$.",
+            "$f'(t) = -3t^2 {+2*k}t$",
+            "$f'({j}) = -3 \\cdot {j^2} {+2*k} \\cdot {j}$"
+          ],
+          "loesung": "$f'({j}) = {3*j^2}$ Besucher pro Stunde.",
+          "typischeFehler": [
+            {
+              "ergebnis": "-j^3 + k*j^2 + d",
+              "hinweis": "Das ist die Besucherzahl $f({j})$, nicht die Zunahme pro Stunde."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mdiff-r-becken",
+      "titel": "Wasserbecken: Bestand und Zuflussrate",
+      "schwierigkeit": 2,
+      "quelle": "eigene Aufgabe",
+      "werte": {
+        "p": {
+          "aus": [
+            1.5,
+            2,
+            2.5,
+            3
+          ]
+        },
+        "q": [
+          2,
+          6
+        ],
+        "t0": [
+          2,
+          8
+        ]
+      },
+      "berechnet": {
+        "r": "2*p*t0 + q",
+        "V0": "p*t0^2 + q*t0"
+      },
+      "kontext": "Das Wasservolumen in einem Becken wird durch $V(t) = {p}t^2 {+q}t$ beschrieben ($t$ in Minuten, $V(t)$ in m³).",
+      "teile": [
+        {
+          "frage": "Nach wie vielen Minuten strömt das Wasser mit ${r}$ m³ pro Minute zu?",
+          "ergebnis": "t0",
+          "hilfen": [
+            "Die Zuflussrate ist $V'(t)$. Ansatz: $V'(t) = {r}$.",
+            "$V'(t) = {2*p}t {+q}$",
+            "${2*p}t {+q} = {r} \\iff {2*p}t = {r-q}$"
+          ],
+          "loesung": "$t = \\frac{{r-q}}{{2*p}} = {t0}$ Minuten",
+          "typischeFehler": [
+            {
+              "ergebnis": "r/(2*p)",
+              "hinweis": "Du hast ${q}$ nicht abgezogen."
+            },
+            {
+              "ergebnis": "(r - q)/p",
+              "hinweis": "Die Ableitung von $t^2$ ist $2t$, der Faktor 2 fehlt."
+            }
+          ]
+        },
+        {
+          "frage": "Wie viel Wasser ist dann im Becken?",
+          "ergebnis": "V0",
+          "einheit": "m^3",
+          "hilfen": [
+            "Gesucht ist der Bestand $V({t0})$.",
+            "$V({t0}) = {p} \\cdot {t0^2} {+q} \\cdot {t0}$",
+            "$V({t0}) = {p*t0^2} {+q*t0}$"
+          ],
+          "loesung": "$V({t0}) = {V0}$ m³",
+          "typischeFehler": [
+            {
+              "ergebnis": "r",
+              "hinweis": "Das ist die Zuflussrate $V'({t0})$, nicht das Volumen."
+            }
+          ]
+        },
+        {
+          "frage": "Wie groß ist die mittlere Zuflussrate in den ersten ${t0}$ Minuten (in m³ pro Minute)?",
+          "ergebnis": "V0/t0",
+          "hilfen": [
+            "Mittlere Änderungsrate: $\\frac{V({t0}) - V(0)}{{t0}}$ (Zeitspanne von 0 bis {t0} Minuten).",
+            "$V(0) = 0$",
+            "$\\frac{{V0}}{{t0}}$"
+          ],
+          "loesung": "$\\frac{V({t0}) - V(0)}{{t0}} = \\frac{{V0}}{{t0}} = {V0/t0}$ m³ pro Minute",
+          "typischeFehler": [
+            {
+              "ergebnis": "r",
+              "hinweis": "Das ist die momentane Rate am Ende, nicht die mittlere."
+            }
+          ]
+        }
+      ]
+    }
   ]
 }

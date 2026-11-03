@@ -356,5 +356,203 @@
       "name": "Ableitung (h-Schreibweise)",
       "tex": "f'(a) = \\lim_{h \\to 0} \\frac{f(a+h) - f(a)}{h}"
     }
+  ],
+  "rechenaufgaben": [
+    {
+      "id": "mdiff-r-mittlere-rate",
+      "titel": "Mittlere Änderungsrate",
+      "schwierigkeit": 1,
+      "quelle": "eigene Aufgabe",
+      "werte": {
+        "a": {
+          "aus": [
+            -3,
+            -2,
+            2,
+            3,
+            0.5
+          ]
+        },
+        "b": {
+          "von": -5,
+          "bis": 5,
+          "ohne": [
+            0,
+            1,
+            -1
+          ]
+        },
+        "x1": [
+          -3,
+          2
+        ],
+        "d": [
+          1,
+          3
+        ]
+      },
+      "berechnet": {
+        "x2": "x1 + d",
+        "f1": "a*x1^2 + b*x1",
+        "f2": "a*x2^2 + b*x2",
+        "r": "(f2 - f1)/d"
+      },
+      "bedingung": "r != 0",
+      "kontext": "Gegeben ist $f(x) = {a}x^2 {+b}x$.",
+      "teile": [
+        {
+          "frage": "Berechne die mittlere Änderungsrate von $f$ auf dem Intervall $[{x1}; {x2}]$.",
+          "ergebnis": "r",
+          "hilfen": [
+            "Differenzenquotient: $\\frac{f(x_2) - f(x_1)}{x_2 - x_1}$.",
+            "$f({x2}) = {f2}$ und $f({x1}) = {f1}$",
+            "$\\frac{{f2} - ({f1})}{{x2} - ({x1})}$"
+          ],
+          "loesung": "$\\frac{f({x2}) - f({x1})}{{x2} - ({x1})} = \\frac{{f2} - ({f1})}{{d}} = {r}$",
+          "typischeFehler": [
+            {
+              "ergebnis": "f2 - f1",
+              "hinweis": "Das ist nur die Änderung der Funktionswerte. Teile noch durch die Intervallbreite ${d}$."
+            },
+            {
+              "ergebnis": "(f2 + f1)/2",
+              "hinweis": "Das ist der Mittelwert der Funktionswerte, keine Änderungsrate."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mdiff-r-grenzwert",
+      "titel": "Ableitung über den Grenzwert",
+      "schwierigkeit": 2,
+      "quelle": "eigene Aufgabe",
+      "werte": {
+        "a": {
+          "aus": [
+            2,
+            3,
+            -2,
+            0.5
+          ]
+        },
+        "c": {
+          "von": -5,
+          "bis": 5,
+          "ohne": [
+            0
+          ]
+        },
+        "x0": {
+          "von": -3,
+          "bis": 3,
+          "ohne": [
+            0
+          ]
+        }
+      },
+      "berechnet": {
+        "m": "2*a*x0"
+      },
+      "kontext": "Gegeben ist $f(x) = {a}x^2 {+c}$.",
+      "teile": [
+        {
+          "frage": "Berechne $f'({x0})$ mit dem Grenzwert des Differenzenquotienten.",
+          "ergebnis": "m",
+          "hilfen": [
+            "$f'({x0}) = \\lim\\limits_{x \\to {x0}} \\frac{f(x) - f({x0})}{x {+-x0}}$",
+            "Zähler: ${a}x^2 {+c} - ({a*x0^2 + c}) = {a}(x^2 - {x0^2}) = {a}(x {+-x0})(x {+x0})$",
+            "Kürzen ergibt ${a}(x {+x0})$. Jetzt $x = {x0}$ einsetzen."
+          ],
+          "loesung": "$\\frac{{a}(x {+-x0})(x {+x0})}{x {+-x0}} = {a}(x {+x0}) \\to {a} \\cdot {2*x0} = {m}$ für $x \\to {x0}$.",
+          "typischeFehler": [
+            {
+              "ergebnis": "a*x0",
+              "hinweis": "In $(x {+x0})$ wird $x = {x0}$ eingesetzt, das ergibt ${2*x0}$, nicht ${x0}$."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mdiff-r-drohne",
+      "titel": "Mittlere und momentane Geschwindigkeit",
+      "schwierigkeit": 2,
+      "quelle": "eigene Aufgabe",
+      "werte": {
+        "p": {
+          "aus": [
+            1.5,
+            2,
+            2.5,
+            3
+          ]
+        },
+        "q": [
+          2,
+          5
+        ],
+        "t1": [
+          1,
+          3
+        ],
+        "d": [
+          1,
+          4
+        ],
+        "t0": [
+          1,
+          6
+        ]
+      },
+      "berechnet": {
+        "t2": "t1 + d",
+        "h1": "p*t1^2 + q*t1",
+        "h2": "p*t2^2 + q*t2",
+        "v": "(h2 - h1)/d",
+        "w": "2*p*t0 + q"
+      },
+      "kontext": "Eine Drohne steigt senkrecht. Ihre Höhe ist $h(t) = {p}t^2 {+q}t$ ($t$ in s, $h$ in m).",
+      "teile": [
+        {
+          "frage": "Berechne die mittlere Steiggeschwindigkeit im Zeitraum $[{t1}; {t2}]$.",
+          "ergebnis": "v",
+          "einheit": "m/s",
+          "hilfen": [
+            "Mittlere Geschwindigkeit $= \\frac{h(t_2) - h(t_1)}{t_2 - t_1}$.",
+            "$h({t2}) = {h2}$ und $h({t1}) = {h1}$",
+            "$\\frac{{h2} - {h1}}{{d}}$"
+          ],
+          "loesung": "$\\frac{h({t2}) - h({t1})}{{d}} = \\frac{{h2} - {h1}}{{d}} = {v}\\,\\frac{\\text{m}}{\\text{s}}$",
+          "typischeFehler": [
+            {
+              "ergebnis": "v*d",
+              "hinweis": "Das ist nur der Höhenunterschied in m. Teile noch durch die Zeitspanne ${d}$ s."
+            }
+          ]
+        },
+        {
+          "frage": "Berechne die momentane Steiggeschwindigkeit zum Zeitpunkt $t = {t0}$ s.",
+          "ergebnis": "w",
+          "einheit": "m/s",
+          "hilfen": [
+            "Die momentane Geschwindigkeit ist $h'({t0})$.",
+            "$h'(t) = {2*p}t {+q}$",
+            "$h'({t0}) = {2*p} \\cdot {t0} {+q}$"
+          ],
+          "loesung": "$h'(t) = {2*p}t {+q}$, also $h'({t0}) = {w}\\,\\frac{\\text{m}}{\\text{s}}$.",
+          "typischeFehler": [
+            {
+              "ergebnis": "p*t0^2 + q*t0",
+              "hinweis": "Das ist die Höhe $h({t0})$ in m, nicht die Geschwindigkeit."
+            },
+            {
+              "ergebnis": "p*t0 + q",
+              "hinweis": "Das ist die mittlere Geschwindigkeit von 0 bis {t0} s, nicht die momentane."
+            }
+          ]
+        }
+      ]
+    }
   ]
 }

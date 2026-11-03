@@ -344,5 +344,177 @@
       "name": "Periode von sin(bx)",
       "tex": "p = \\frac{2\\pi}{b}"
     }
+  ],
+  "rechenaufgaben": [
+    {
+      "id": "mdiff-r-scheitelpunktform",
+      "titel": "Parabel aus Scheitel und Punkt",
+      "schwierigkeit": 2,
+      "quelle": "eigene Aufgabe",
+      "werte": {
+        "a": {
+          "aus": [
+            -2,
+            -1,
+            -0.5,
+            0.5,
+            2,
+            3
+          ]
+        },
+        "xs": {
+          "von": -3,
+          "bis": 3,
+          "ohne": [
+            0
+          ]
+        },
+        "ys": {
+          "von": -4,
+          "bis": 4,
+          "ohne": [
+            0
+          ]
+        },
+        "h": {
+          "aus": [
+            -2,
+            -1,
+            1,
+            2,
+            3
+          ]
+        }
+      },
+      "berechnet": {
+        "xp": "xs + h",
+        "yp": "ys + a*h^2",
+        "f0": "a*xs^2 + ys"
+      },
+      "bedingung": "f0 != 0",
+      "kontext": "Eine Parabel hat den Scheitel $S({xs} \\mid {ys})$ und geht durch den Punkt $P({xp} \\mid {yp})$.",
+      "teile": [
+        {
+          "frage": "Bestimme den Streckfaktor $a$ in der Scheitelpunktform $f(x) = a(x - x_S)^2 + y_S$.",
+          "ergebnis": "a",
+          "hilfen": [
+            "Scheitel einsetzen: $f(x) = a(x {+-xs})^2 {+ys}$.",
+            "Punkt $P$ einsetzen: ${yp} = a \\cdot ({xp} {+-xs})^2 {+ys}$",
+            "${yp-ys} = a \\cdot {h^2}$"
+          ],
+          "loesung": "${yp} = a \\cdot {h^2} {+ys} \\Rightarrow a = \\frac{{yp-ys}}{{h^2}} = {a}$",
+          "typischeFehler": [
+            {
+              "ergebnis": "(yp-ys)/h",
+              "hinweis": "Die Klammer $(x - x_S)$ wird quadriert: Teile durch ${h^2}$."
+            }
+          ]
+        },
+        {
+          "frage": "Berechne den y-Achsenabschnitt $f(0)$ der Parabel.",
+          "ergebnis": "f0",
+          "hilfen": [
+            "Setze $x = 0$ in die Scheitelpunktform (mit dem eben bestimmten $a$) ein.",
+            "$f(0) = {a} \\cdot (0 {+-xs})^2 {+ys}$",
+            "$f(0) = {a} \\cdot {xs^2} {+ys}$"
+          ],
+          "loesung": "$f(0) = {a} \\cdot {xs^2} {+ys} = {f0}$",
+          "typischeFehler": [
+            {
+              "ergebnis": "ys",
+              "hinweis": "Der Scheitel liegt nicht auf der y-Achse, deshalb ist $f(0)$ nicht $y_S$."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mdiff-r-sinus-parameter",
+      "titel": "Parameter der Sinusfunktion",
+      "schwierigkeit": 1,
+      "quelle": "eigene Aufgabe",
+      "werte": {
+        "a": {
+          "aus": [
+            2,
+            3,
+            4,
+            -2,
+            -3
+          ]
+        },
+        "b": {
+          "aus": [
+            2,
+            3,
+            4,
+            0.5
+          ]
+        },
+        "d": {
+          "von": -3,
+          "bis": 3,
+          "ohne": [
+            0
+          ]
+        }
+      },
+      "berechnet": {
+        "hoch": "abs(a) + d",
+        "tief": "d - abs(a)"
+      },
+      "bedingung": "hoch != 0 && tief != 0",
+      "kontext": "Gegeben ist $g(x) = {a}\\sin({b}x) {+d}$.",
+      "teile": [
+        {
+          "frage": "Berechne die Periode $p$ von $g$ (auf zwei Nachkommastellen).",
+          "ergebnis": "2*pi/b",
+          "hilfen": [
+            "Die Periode von $\\sin(bx)$ ist $p = \\frac{2\\pi}{b}$.",
+            "Hier ist $b = {b}$.",
+            "$p = \\frac{2\\pi}{{b}}$"
+          ],
+          "loesung": "$p = \\frac{2\\pi}{{b}} \\approx {runde(2*pi/b, 2)}$",
+          "typischeFehler": [
+            {
+              "ergebnis": "2*pi*b",
+              "hinweis": "Umgekehrt: Je größer $b$, desto **kürzer** die Periode, $p = \\frac{2\\pi}{b}$."
+            }
+          ]
+        },
+        {
+          "frage": "Welchen größten Funktionswert nimmt $g$ an?",
+          "ergebnis": "hoch",
+          "hilfen": [
+            "$\\sin$ schwankt zwischen $-1$ und $1$.",
+            "${a}\\sin({b}x)$ schwankt zwischen ${-abs(a)}$ und ${abs(a)}$.",
+            "Dazu kommt die Verschiebung um ${d}$ in y-Richtung."
+          ],
+          "loesung": "Größter Wert: ${abs(a)} {+d} = {hoch}$",
+          "typischeFehler": [
+            {
+              "ergebnis": "a + d",
+              "hinweis": "Ein negativer Faktor spiegelt nur. Die Amplitude ist $|a| = {abs(a)}$."
+            }
+          ]
+        },
+        {
+          "frage": "Welchen kleinsten Funktionswert nimmt $g$ an?",
+          "ergebnis": "tief",
+          "hilfen": [
+            "Der kleinste Wert von $\\sin$ ist $-1$.",
+            "${a}\\sin({b}x)$ wird höchstens ${-abs(a)}$ klein.",
+            "Verschiebung um ${d}$ dazurechnen."
+          ],
+          "loesung": "Kleinster Wert: ${-abs(a)} {+d} = {tief}$",
+          "typischeFehler": [
+            {
+              "ergebnis": "d - a",
+              "hinweis": "Ein negativer Faktor spiegelt nur. Die Amplitude ist $|a| = {abs(a)}$."
+            }
+          ]
+        }
+      ]
+    }
   ]
 }
