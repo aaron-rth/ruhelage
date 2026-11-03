@@ -340,5 +340,179 @@
       "name": "Produktregel",
       "tex": "f(x) = u(x) \\cdot v(x) \\Rightarrow f'(x) = u'(x) \\cdot v(x) + u(x) \\cdot v'(x)"
     }
+  ],
+  "rechenaufgaben": [
+    {
+      "id": "mdiff-r-produktregel-polynom",
+      "titel": "Produktregel mit Kettenregel",
+      "schwierigkeit": 2,
+      "quelle": "eigene Aufgabe",
+      "werte": {
+        "a": {
+          "aus": [
+            2,
+            3,
+            -2
+          ]
+        },
+        "b": {
+          "von": -3,
+          "bis": 3,
+          "ohne": [
+            0
+          ]
+        },
+        "c": {
+          "aus": [
+            2,
+            -2,
+            3
+          ]
+        },
+        "d": {
+          "von": -3,
+          "bis": 3,
+          "ohne": [
+            0
+          ]
+        },
+        "x0": [
+          -2,
+          2
+        ]
+      },
+      "berechnet": {
+        "u": "a*x0 + b",
+        "v": "c*x0 + d",
+        "r": "a*v^2 + 2*c*u*v"
+      },
+      "bedingung": "r != 0 && v != 0",
+      "kontext": "Gegeben ist $f(x) = ({a}x {+b})({c}x {+d})^2$.",
+      "teile": [
+        {
+          "frage": "Berechne $f'({x0})$.",
+          "ergebnis": "r",
+          "hilfen": [
+            "Produktregel mit $u(x) = {a}x {+b}$ und $v(x) = ({c}x {+d})^2$.",
+            "$u'(x) = {a}$ und $v'(x) = 2 \\cdot {c}({c}x {+d}) = {2*c}({c}x {+d})$",
+            "$f'({x0}) = {a} \\cdot ({v})^2 + ({u}) \\cdot {2*c} \\cdot ({v})$"
+          ],
+          "loesung": "$f'(x) = {a}({c}x {+d})^2 {+2*c}({a}x {+b})({c}x {+d})$, also $f'({x0}) = {r}$.",
+          "typischeFehler": [
+            {
+              "ergebnis": "a*2*c*v",
+              "hinweis": "Das ist $u' \\cdot v'$. Die Produktregel lautet $u'v + uv'$."
+            },
+            {
+              "ergebnis": "a*v^2 + 2*u*v",
+              "hinweis": "Bei $v'$ fehlt die innere Ableitung ${c}$."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mdiff-r-produktregel-sinus",
+      "titel": "Produktregel mit Sinus",
+      "schwierigkeit": 1,
+      "quelle": "eigene Aufgabe",
+      "werte": {
+        "a": {
+          "aus": [
+            2,
+            3,
+            -2,
+            4
+          ]
+        },
+        "b": {
+          "von": -4,
+          "bis": 4,
+          "ohne": [
+            0
+          ]
+        }
+      },
+      "kontext": "Gegeben ist $f(x) = ({a}x {+b})\\sin(x)$.",
+      "teile": [
+        {
+          "frage": "Berechne $f'(0)$.",
+          "ergebnis": "b",
+          "hilfen": [
+            "Produktregel mit $u = {a}x {+b}$ und $v = \\sin(x)$.",
+            "$f'(x) = {a}\\sin(x) + ({a}x {+b})\\cos(x)$",
+            "$\\sin(0) = 0$ und $\\cos(0) = 1$"
+          ],
+          "loesung": "$f'(0) = {a} \\cdot 0 + ({b}) \\cdot 1 = {b}$",
+          "typischeFehler": [
+            {
+              "ergebnis": "a",
+              "hinweis": "Das wäre $u' \\cdot v'$ an der Stelle 0. Die Produktregel lautet $u'v + uv'$."
+            }
+          ]
+        },
+        {
+          "frage": "Berechne $f'(\\pi)$ (auf zwei Nachkommastellen).",
+          "ergebnis": "-(a*pi + b)",
+          "hilfen": [
+            "Gleiche Ableitung: $f'(x) = {a}\\sin(x) + ({a}x {+b})\\cos(x)$.",
+            "$\\sin(\\pi) = 0$ und $\\cos(\\pi) = -1$",
+            "$f'(\\pi) = ({a}\\pi {+b}) \\cdot (-1)$"
+          ],
+          "loesung": "$f'(\\pi) = -({a}\\pi {+b}) \\approx {runde(-(a*pi + b), 2)}$",
+          "typischeFehler": [
+            {
+              "ergebnis": "-a",
+              "hinweis": "Das ist $u' \\cdot v'$. Die Produktregel lautet $u'v + uv'$."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mdiff-r-produktregel-waagerecht",
+      "titel": "Waagerechte Tangente mit Produktregel",
+      "schwierigkeit": 3,
+      "quelle": "eigene Aufgabe",
+      "werte": {
+        "p": {
+          "von": -4,
+          "bis": 4,
+          "ohne": [
+            0
+          ]
+        },
+        "q": {
+          "von": -4,
+          "bis": 4,
+          "ohne": [
+            0
+          ]
+        }
+      },
+      "berechnet": {
+        "w": "(2*p + q)/3"
+      },
+      "bedingung": "p != q && abs(w) > 0.3",
+      "kontext": "Gegeben ist $h(x) = (x {+-p})(x {+-q})^2$.",
+      "teile": [
+        {
+          "frage": "Bei $x = {q}$ hat der Graph eine waagerechte Tangente. Bestimme die **andere** Stelle mit waagerechter Tangente (auf zwei Nachkommastellen).",
+          "ergebnis": "w",
+          "hilfen": [
+            "Produktregel mit $u = x {+-p}$ und $v = (x {+-q})^2$, $v' = 2(x {+-q})$.",
+            "$h'(x) = (x {+-q})^2 + 2(x {+-p})(x {+-q}) = (x {+-q})\\big((x {+-q}) + 2(x {+-p})\\big)$",
+            "$h'(x) = (x {+-q})(3x {+-q-2*p})$. Setze den zweiten Faktor gleich null."
+          ],
+          "loesung": "$3x {+-q-2*p} = 0 \\iff x = \\frac{{2*p+q}}{3} \\approx {runde(w, 2)}$",
+          "typischeFehler": [
+            {
+              "ergebnis": "p",
+              "hinweis": "Das ist eine Nullstelle von $h$, keine Stelle mit waagerechter Tangente."
+            }
+          ]
+        }
+      ]
+    }
   ]
 }

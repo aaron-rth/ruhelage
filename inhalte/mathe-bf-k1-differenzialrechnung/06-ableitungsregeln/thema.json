@@ -390,14 +390,18 @@
           "von": -4,
           "bis": 4,
           "ohne": [
-            0
+            0,
+            1,
+            -1
           ]
         },
         "c": {
           "von": -5,
           "bis": 5,
           "ohne": [
-            0
+            0,
+            1,
+            -1
           ]
         },
         "x0": [
@@ -432,6 +436,137 @@
             "$f''({x0}) = {6*a} \\cdot ({x0}) {+2*b}$"
           ],
           "loesung": "$f''(x) = {6*a}x {+2*b}$, also $f''({x0}) = {6*a*x0 + 2*b}$."
+        }
+      ]
+    },
+    {
+      "id": "mdiff-r-wurzel-bruch",
+      "titel": "Ableiten mit Wurzel und Bruch",
+      "schwierigkeit": 2,
+      "quelle": "eigene Aufgabe",
+      "werte": {
+        "a": {
+          "aus": [
+            4,
+            6,
+            8,
+            10
+          ]
+        },
+        "b": [
+          2,
+          6
+        ],
+        "x0": {
+          "aus": [
+            1,
+            4,
+            9
+          ]
+        }
+      },
+      "kontext": "Gegeben ist $f(x) = {a}\\sqrt{x} - \\frac{{b}}{x}$ für $x > 0$.",
+      "teile": [
+        {
+          "frage": "Berechne $f'({x0})$.",
+          "ergebnis": "a/(2*sqrt(x0)) + b/x0^2",
+          "hilfen": [
+            "Schreibe als Potenzen: $f(x) = {a}x^{\\frac12} - {b}x^{-1}$.",
+            "$f'(x) = {a/2}x^{-\\frac12} + {b}x^{-2} = \\frac{{a/2}}{\\sqrt{x}} + \\frac{{b}}{x^2}$",
+            "$f'({x0}) = \\frac{{a/2}}{\\sqrt{{x0}}} + \\frac{{b}}{{x0^2}}$"
+          ],
+          "loesung": "$f'({x0}) = \\frac{{a/2}}{{sqrt(x0)}} + \\frac{{b}}{{x0^2}} = {a/(2*sqrt(x0)) + b/x0^2}$",
+          "typischeFehler": [
+            {
+              "ergebnis": "a/(2*sqrt(x0)) - b/x0^2",
+              "hinweis": "$(x^{-1})' = -x^{-2}$. Zusammen mit dem Minus vor dem Bruch wird daraus ein Plus."
+            },
+            {
+              "ergebnis": "a*sqrt(x0)/2 + b/x0^2",
+              "hinweis": "Bei $x^{\\frac12}$ wird die Hochzahl um 1 kleiner: $x^{-\\frac12} = \\frac{1}{\\sqrt{x}}$."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mdiff-r-sinus-kosinus",
+      "titel": "Sinus und Kosinus ableiten",
+      "schwierigkeit": 1,
+      "quelle": "eigene Aufgabe",
+      "werte": {
+        "a": {
+          "aus": [
+            -4,
+            -3,
+            -2,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        "b": {
+          "aus": [
+            -4,
+            -3,
+            -2,
+            2,
+            3,
+            4,
+            5
+          ]
+        }
+      },
+      "kontext": "Gegeben ist $f(x) = {a}\\sin(x) {+b}\\cos(x)$.",
+      "teile": [
+        {
+          "frage": "Berechne $f'(0)$.",
+          "ergebnis": "a",
+          "hilfen": [
+            "$(\\sin x)' = \\cos x$ und $(\\cos x)' = -\\sin x$.",
+            "$f'(x) = {a}\\cos(x) {+-b}\\sin(x)$",
+            "$\\cos(0) = 1$ und $\\sin(0) = 0$"
+          ],
+          "loesung": "$f'(0) = {a} \\cdot 1 {+-b} \\cdot 0 = {a}$",
+          "typischeFehler": [
+            {
+              "ergebnis": "b",
+              "hinweis": "Das ist $f(0)$, nicht $f'(0)$. Erst ableiten, dann einsetzen."
+            }
+          ]
+        },
+        {
+          "frage": "Berechne $f''(0)$.",
+          "ergebnis": "-b",
+          "hilfen": [
+            "Leite $f'(x) = {a}\\cos(x) {+-b}\\sin(x)$ noch einmal ab.",
+            "$f''(x) = {-a}\\sin(x) {+-b}\\cos(x)$",
+            "Setze $x = 0$ ein: $\\sin(0) = 0$, $\\cos(0) = 1$."
+          ],
+          "loesung": "$f''(0) = {-a} \\cdot 0 {+-b} \\cdot 1 = {-b}$",
+          "typischeFehler": [
+            {
+              "ergebnis": "b",
+              "hinweis": "Vorzeichen: $(\\cos x)'' = -\\cos x$."
+            }
+          ]
+        },
+        {
+          "frage": "Berechne $f'(\\pi)$.",
+          "ergebnis": "-a",
+          "hilfen": [
+            "Setze $x = \\pi$ in $f'(x) = {a}\\cos(x) {+-b}\\sin(x)$ ein.",
+            "$\\cos(\\pi) = -1$ und $\\sin(\\pi) = 0$",
+            "$f'(\\pi) = {a} \\cdot (-1) {+-b} \\cdot 0$"
+          ],
+          "loesung": "$f'(\\pi) = {-a}$",
+          "typischeFehler": [
+            {
+              "ergebnis": "a",
+              "hinweis": "Prüfe $\\cos(\\pi) = -1$. Der Taschenrechner muss dafür auf Bogenmaß (RAD) stehen."
+            }
+          ]
         }
       ]
     }

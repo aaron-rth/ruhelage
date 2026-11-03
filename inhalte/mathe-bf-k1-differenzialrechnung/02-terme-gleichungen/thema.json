@@ -356,5 +356,188 @@
       "name": "1. binomische Formel",
       "tex": "(a+b)^2 = a^2 + 2ab + b^2"
     }
+  ],
+  "rechenaufgaben": [
+    {
+      "id": "mdiff-r-quadratische-gleichung",
+      "titel": "Quadratische Gleichung",
+      "schwierigkeit": 1,
+      "quelle": "eigene Aufgabe",
+      "werte": {
+        "a": {
+          "aus": [
+            2,
+            3,
+            -2,
+            -3
+          ]
+        },
+        "x1": {
+          "von": -5,
+          "bis": 4,
+          "ohne": [
+            0
+          ]
+        },
+        "d": [
+          1,
+          6
+        ]
+      },
+      "berechnet": {
+        "x2": "x1 + d",
+        "b": "-a*(x1 + x2)",
+        "c": "a*x1*x2"
+      },
+      "bedingung": "x2 != 0 && b != 0",
+      "kontext": "Löse die Gleichung ${a}x^2 {+b}x {+c} = 0$.",
+      "teile": [
+        {
+          "frage": "Wie lautet die **größere** Lösung?",
+          "ergebnis": "x2",
+          "hilfen": [
+            "Mitternachtsformel mit $a = {a}$, $b = {b}$ und $c = {c}$.",
+            "Unter der Wurzel: $b^2 - 4ac = {b^2 - 4*a*c}$, also $\\sqrt{{b^2 - 4*a*c}} = {abs(a)*d}$",
+            "$x_{1,2} = \\frac{{-b} \\pm {abs(a)*d}}{{2*a}}$"
+          ],
+          "loesung": "$x_{1,2} = \\frac{{-b} \\pm {abs(a)*d}}{{2*a}}$ ergibt $x_1 = {x1}$ und $x_2 = {x2}$. Die größere Lösung ist ${x2}$.",
+          "typischeFehler": [
+            {
+              "ergebnis": "-x1",
+              "hinweis": "Vorzeichenfehler: In der Formel steht $-b$, also ${-b}$."
+            },
+            {
+              "ergebnis": "x1",
+              "hinweis": "Das ist die kleinere der beiden Lösungen."
+            }
+          ]
+        },
+        {
+          "frage": "Wie lautet die **kleinere** Lösung?",
+          "ergebnis": "x1",
+          "hilfen": [
+            "Gleiche Rechnung wie eben, jetzt mit dem anderen Vorzeichen vor der Wurzel.",
+            "$x_{1,2} = \\frac{{-b} \\pm {abs(a)*d}}{{2*a}}$",
+            "Probe: Deine Lösung in ${a}x^2 {+b}x {+c}$ eingesetzt muss 0 ergeben."
+          ],
+          "loesung": "Die kleinere Lösung ist $x_1 = {x1}$.",
+          "typischeFehler": [
+            {
+              "ergebnis": "-x2",
+              "hinweis": "Vorzeichenfehler: In der Formel steht $-b$, also ${-b}$."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mdiff-r-substitution",
+      "titel": "Biquadratische Gleichung",
+      "schwierigkeit": 2,
+      "quelle": "eigene Aufgabe",
+      "werte": {
+        "r": {
+          "aus": [
+            1,
+            2,
+            3
+          ]
+        },
+        "k": [
+          1,
+          3
+        ]
+      },
+      "berechnet": {
+        "s": "r + k",
+        "b": "-(r^2 + s^2)",
+        "c": "r^2*s^2"
+      },
+      "kontext": "Löse die Gleichung $x^4 {+b}x^2 {+c} = 0$.",
+      "teile": [
+        {
+          "frage": "Wie lautet die **größte** Lösung?",
+          "ergebnis": "s",
+          "hilfen": [
+            "Substituiere $z = x^2$.",
+            "$z^2 {+b}z {+c} = 0$ hat die Lösungen $z_1 = {r^2}$ und $z_2 = {s^2}$.",
+            "Rücksubstitution: $x^2 = {s^2}$"
+          ],
+          "loesung": "$z = {r^2}$ oder $z = {s^2}$. Aus $x^2 = {s^2}$ folgt $x = \\pm {s}$. Die größte Lösung ist ${s}$.",
+          "typischeFehler": [
+            {
+              "ergebnis": "s^2",
+              "hinweis": "Das ist $z$. Gesucht ist $x$: Die Rücksubstitution $x^2 = z$ fehlt."
+            }
+          ]
+        },
+        {
+          "frage": "Wie lautet die **kleinste** Lösung?",
+          "ergebnis": "-s",
+          "hilfen": [
+            "Jede positive Lösung $z$ liefert zwei Lösungen für $x$.",
+            "Aus $x^2 = {s^2}$ folgt $x = {s}$ oder $x = {-s}$.",
+            "Vergleiche alle vier Lösungen $\\pm {r}$ und $\\pm {s}$."
+          ],
+          "loesung": "$L = \\{{-s}; {-r}; {r}; {s}\\}$, die kleinste Lösung ist ${-s}$.",
+          "typischeFehler": [
+            {
+              "ergebnis": "-s^2",
+              "hinweis": "Das ist (mit Minus) ein Wert für $z$. Die Rücksubstitution $x^2 = z$ fehlt."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mdiff-r-ausklammern",
+      "titel": "Ausklammern und Nullprodukt",
+      "schwierigkeit": 1,
+      "quelle": "eigene Aufgabe",
+      "werte": {
+        "a": {
+          "aus": [
+            2,
+            3,
+            4,
+            -2,
+            -3
+          ]
+        },
+        "k": {
+          "von": -5,
+          "bis": 5,
+          "ohne": [
+            0
+          ]
+        }
+      },
+      "berechnet": {
+        "b": "-a*k"
+      },
+      "kontext": "Löse die Gleichung ${a}x^3 {+b}x^2 = 0$.",
+      "teile": [
+        {
+          "frage": "Eine Lösung ist $x = 0$. Wie lautet die andere?",
+          "ergebnis": "k",
+          "hilfen": [
+            "Klammere die höchste gemeinsame Potenz von $x$ aus.",
+            "$x^2({a}x {+b}) = 0$",
+            "Satz vom Nullprodukt: $x^2 = 0$ oder ${a}x {+b} = 0$."
+          ],
+          "loesung": "$x^2({a}x {+b}) = 0 \\Rightarrow x = 0$ oder $x = {k}$.",
+          "typischeFehler": [
+            {
+              "ergebnis": "-k",
+              "hinweis": "Vorzeichenfehler beim Auflösen von ${a}x {+b} = 0$."
+            },
+            {
+              "ergebnis": "-b",
+              "hinweis": "Beim Auflösen fehlt das Teilen durch ${a}$."
+            }
+          ]
+        }
+      ]
+    }
   ]
 }

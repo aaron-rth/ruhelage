@@ -401,5 +401,190 @@
       "name": "Lineare Kettenregel",
       "tex": "f'(x) = m \\cdot u'(mx + c)"
     }
+  ],
+  "rechenaufgaben": [
+    {
+      "id": "mdiff-r-kettenregel-potenz",
+      "titel": "Lineare Kettenregel: Potenz",
+      "schwierigkeit": 1,
+      "quelle": "eigene Aufgabe",
+      "werte": {
+        "n": {
+          "aus": [
+            3,
+            4
+          ]
+        },
+        "m": {
+          "aus": [
+            -3,
+            -2,
+            2,
+            3
+          ]
+        },
+        "c": {
+          "von": -3,
+          "bis": 3,
+          "ohne": [
+            0
+          ]
+        },
+        "x0": [
+          -1,
+          1
+        ]
+      },
+      "berechnet": {
+        "z": "m*x0 + c",
+        "r": "n*m*z^(n-1)"
+      },
+      "bedingung": "z != 0",
+      "kontext": "Gegeben ist $f(x) = ({m}x {+c})^{{n}}$.",
+      "teile": [
+        {
+          "frage": "Berechne $f'({x0})$.",
+          "ergebnis": "r",
+          "hilfen": [
+            "Lineare Kettenregel: $f'(x) = m \\cdot u'(mx + c)$, innere Ableitung ${m}$.",
+            "$f'(x) = {m} \\cdot {n}({m}x {+c})^{{n-1}} = {n*m}({m}x {+c})^{{n-1}}$",
+            "$f'({x0}) = {n*m} \\cdot ({z})^{{n-1}}$"
+          ],
+          "loesung": "$f'(x) = {n*m}({m}x {+c})^{{n-1}}$, also $f'({x0}) = {n*m} \\cdot ({z})^{{n-1}} = {r}$.",
+          "typischeFehler": [
+            {
+              "ergebnis": "n*z^(n-1)",
+              "hinweis": "Die innere Ableitung ${m}$ fehlt."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mdiff-r-kettenregel-sinus",
+      "titel": "Lineare Kettenregel: Sinus und Kosinus",
+      "schwierigkeit": 2,
+      "quelle": "eigene Aufgabe",
+      "werte": {
+        "a": {
+          "aus": [
+            2,
+            3,
+            -2,
+            5
+          ]
+        },
+        "b": {
+          "aus": [
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        "k": {
+          "von": -2,
+          "bis": 2,
+          "ohne": [
+            0
+          ]
+        }
+      },
+      "berechnet": {
+        "c": "-b*k"
+      },
+      "kontext": "Gegeben sind $f(x) = {a}\\sin({b}x {+c})$ und $g(x) = {a}\\cos({b}x {+c})$.",
+      "teile": [
+        {
+          "frage": "Berechne $f'({k})$.",
+          "ergebnis": "a*b",
+          "hilfen": [
+            "Äußere Ableitung: $(\\sin)' = \\cos$. Innere Ableitung: ${b}$.",
+            "$f'(x) = {a*b}\\cos({b}x {+c})$",
+            "An der Stelle ${k}$ ist ${b} \\cdot ({k}) {+c} = 0$, und $\\cos(0) = 1$."
+          ],
+          "loesung": "$f'({k}) = {a*b}\\cos(0) = {a*b}$",
+          "typischeFehler": [
+            {
+              "ergebnis": "a",
+              "hinweis": "Die innere Ableitung ${b}$ fehlt."
+            }
+          ]
+        },
+        {
+          "frage": "Berechne $g''({k})$.",
+          "ergebnis": "-a*b^2",
+          "hilfen": [
+            "Zweimal ableiten, bei jedem Ableiten kommt der Faktor ${b}$ dazu.",
+            "$g'(x) = {-a*b}\\sin({b}x {+c})$ und $g''(x) = {-a*b^2}\\cos({b}x {+c})$",
+            "$\\cos(0) = 1$"
+          ],
+          "loesung": "$g''({k}) = {-a*b^2}\\cos(0) = {-a*b^2}$",
+          "typischeFehler": [
+            {
+              "ergebnis": "-a*b",
+              "hinweis": "Beim zweiten Ableiten kommt die innere Ableitung ${b}$ noch einmal als Faktor dazu."
+            },
+            {
+              "ergebnis": "a*b^2",
+              "hinweis": "Vorzeichen: $(\\cos)' = -\\sin$ und $(\\sin)' = \\cos$, zusammen $(\\cos)'' = -\\cos$."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mdiff-r-kettenregel-wurzel",
+      "titel": "Lineare Kettenregel: Wurzel",
+      "schwierigkeit": 2,
+      "quelle": "eigene Aufgabe",
+      "werte": {
+        "q": {
+          "aus": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        "m": {
+          "aus": [
+            -3,
+            -2,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        "x0": [
+          -2,
+          3
+        ]
+      },
+      "berechnet": {
+        "c": "q^2 - m*x0"
+      },
+      "bedingung": "c != 0",
+      "kontext": "Gegeben ist $f(x) = \\sqrt{{m}x {+c}}$.",
+      "teile": [
+        {
+          "frage": "Berechne $f'({x0})$.",
+          "ergebnis": "m/(2*q)",
+          "hilfen": [
+            "Äußere Funktion $\\sqrt{z}$ mit $(\\sqrt{z})' = \\frac{1}{2\\sqrt{z}}$, innere Ableitung ${m}$.",
+            "$f'(x) = \\frac{{m}}{2\\sqrt{{m}x {+c}}}$",
+            "$f'({x0}) = \\frac{{m}}{2\\sqrt{{q^2}}}$"
+          ],
+          "loesung": "$f'({x0}) = \\frac{{m}}{2 \\cdot {q}} = {m/(2*q)}$",
+          "typischeFehler": [
+            {
+              "ergebnis": "1/(2*q)",
+              "hinweis": "Die innere Ableitung ${m}$ fehlt."
+            }
+          ]
+        }
+      ]
+    }
   ]
 }

@@ -438,6 +438,153 @@
           "loesung": "$f''(x) = 6x {+2*b} = 0 \\iff x = {m}$; $f''' = 6 \\neq 0$ ⇒ Wendestelle $x = {m}$ – genau in der Mitte zwischen den Extremstellen."
         }
       ]
+    },
+    {
+      "id": "mdiff-r-extrempunkte-y",
+      "titel": "Koordinaten der Extrempunkte",
+      "schwierigkeit": 2,
+      "quelle": "eigene Aufgabe",
+      "werte": {
+        "s": {
+          "aus": [
+            1,
+            2,
+            3
+          ]
+        },
+        "d": {
+          "von": -6,
+          "bis": 6,
+          "ohne": [
+            0
+          ]
+        }
+      },
+      "berechnet": {
+        "yh": "2*s^3 + d",
+        "yt": "-2*s^3 + d"
+      },
+      "bedingung": "yh != 0 && yt != 0",
+      "kontext": "Gegeben ist $f(x) = -x^3 {+3*s^2}x {+d}$.",
+      "teile": [
+        {
+          "frage": "Berechne die y-Koordinate des Hochpunkts.",
+          "ergebnis": "yh",
+          "hilfen": [
+            "$f'(x) = -3x^2 {+3*s^2} = 0$ liefert die Kandidaten.",
+            "$x = \\pm {s}$. Mit $f''(x) = -6x$ ist $f''({s}) < 0$: Hochpunkt bei $x = {s}$.",
+            "$f({s}) = -{s^3} {+3*s^3} {+d}$"
+          ],
+          "loesung": "$f({s}) = {yh}$, also $H({s} \\mid {yh})$.",
+          "typischeFehler": [
+            {
+              "ergebnis": "0",
+              "hinweis": "Das ist $f'({s})$. Die y-Koordinate berechnest du mit $f$."
+            },
+            {
+              "ergebnis": "yt",
+              "hinweis": "Das ist der Tiefpunkt: Bei $x = {-s}$ ist $f'' > 0$."
+            }
+          ]
+        },
+        {
+          "frage": "Berechne die y-Koordinate des Tiefpunkts.",
+          "ergebnis": "yt",
+          "hilfen": [
+            "Der zweite Kandidat ist $x = {-s}$.",
+            "$f''({-s}) = {6*s} > 0$: Tiefpunkt.",
+            "$f({-s}) = {s^3} {+-3*s^3} {+d}$"
+          ],
+          "loesung": "$f({-s}) = {yt}$, also $T({-s} \\mid {yt})$.",
+          "typischeFehler": [
+            {
+              "ergebnis": "0",
+              "hinweis": "Das ist $f'({-s})$. Die y-Koordinate berechnest du mit $f$."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mdiff-r-wendepunkt",
+      "titel": "Wendepunkt und Wendetangente",
+      "schwierigkeit": 2,
+      "quelle": "eigene Aufgabe",
+      "werte": {
+        "w": {
+          "von": -3,
+          "bis": 3,
+          "ohne": [
+            0
+          ]
+        },
+        "c": {
+          "von": -6,
+          "bis": 6,
+          "ohne": [
+            0,
+            1,
+            -1
+          ]
+        }
+      },
+      "berechnet": {
+        "b": "-3*w",
+        "sw": "c - 3*w^2",
+        "yw": "-2*w^3 + c*w"
+      },
+      "bedingung": "sw != 0 && yw != 0",
+      "kontext": "Gegeben ist $f(x) = x^3 {+b}x^2 {+c}x$.",
+      "teile": [
+        {
+          "frage": "Bestimme die Wendestelle.",
+          "ergebnis": "w",
+          "hilfen": [
+            "Notwendige Bedingung: $f''(x) = 0$.",
+            "$f''(x) = 6x {+2*b}$",
+            "$6x {+2*b} = 0$; $f'''(x) = 6 \\neq 0$ bestätigt die Wendestelle."
+          ],
+          "loesung": "$f''(x) = 6x {+2*b} = 0 \\iff x = {w}$, und $f''' = 6 \\neq 0$.",
+          "typischeFehler": [
+            {
+              "ergebnis": "-w",
+              "hinweis": "Vorzeichenfehler beim Auflösen von $6x {+2*b} = 0$."
+            }
+          ]
+        },
+        {
+          "frage": "Berechne die Steigung des Graphen im Wendepunkt.",
+          "ergebnis": "sw",
+          "hilfen": [
+            "Gesucht ist $f'({w})$.",
+            "$f'(x) = 3x^2 {+2*b}x {+c}$",
+            "$f'({w}) = 3 \\cdot ({w})^2 {+2*b} \\cdot ({w}) {+c}$"
+          ],
+          "loesung": "$f'({w}) = {sw}$",
+          "typischeFehler": [
+            {
+              "ergebnis": "yw",
+              "hinweis": "Das ist $f({w})$, die Höhe. Die Steigung ist $f'({w})$."
+            }
+          ]
+        },
+        {
+          "frage": "Berechne die y-Koordinate des Wendepunkts.",
+          "ergebnis": "yw",
+          "hilfen": [
+            "$f$ an der Wendestelle auswerten.",
+            "$f({w}) = ({w})^3 {+b} \\cdot ({w})^2 {+c} \\cdot ({w})$",
+            "$f({w}) = {w^3} {+b*w^2} {+c*w}$"
+          ],
+          "loesung": "$f({w}) = {yw}$, also $W({w} \\mid {yw})$.",
+          "typischeFehler": [
+            {
+              "ergebnis": "sw",
+              "hinweis": "Das ist die Steigung $f'({w})$, nicht die Höhe."
+            }
+          ]
+        }
+      ]
     }
   ]
 }

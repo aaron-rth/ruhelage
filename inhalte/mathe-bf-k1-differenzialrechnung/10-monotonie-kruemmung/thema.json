@@ -388,5 +388,145 @@
       "name": "Krümmung",
       "tex": "f''(x) > 0 \\Rightarrow \\text{Linkskurve}, \\quad f''(x) < 0 \\Rightarrow \\text{Rechtskurve}"
     }
+  ],
+  "rechenaufgaben": [
+    {
+      "id": "mdiff-r-monotonie-kubisch",
+      "titel": "Monotonie- und Krümmungsintervalle",
+      "schwierigkeit": 2,
+      "quelle": "eigene Aufgabe",
+      "werte": {
+        "x1": {
+          "von": -4,
+          "bis": 2,
+          "ohne": [
+            0
+          ]
+        },
+        "d": [
+          1,
+          5
+        ],
+        "e": {
+          "von": -5,
+          "bis": 5,
+          "ohne": [
+            0
+          ]
+        }
+      },
+      "berechnet": {
+        "x2": "x1 + d",
+        "b": "-1.5*(x1 + x2)",
+        "c": "3*x1*x2",
+        "w": "(x1 + x2)/2"
+      },
+      "bedingung": "x2 != 0 && b != 0",
+      "kontext": "Gegeben ist $f(x) = x^3 {+b}x^2 {+c}x {+e}$.",
+      "teile": [
+        {
+          "frage": "$f$ ist auf einem Intervall $[x_1; x_2]$ streng monoton fallend. Bestimme $x_1$.",
+          "ergebnis": "x1",
+          "hilfen": [
+            "Bestimme die Nullstellen von $f'$.",
+            "$f'(x) = 3x^2 {+2*b}x {+c}$. Teile durch 3 und löse die quadratische Gleichung.",
+            "Die Nullstellen von $f'$ sind die Ränder. Ein Testwert zwischen ihnen zeigt, dass $f'$ dort negativ ist."
+          ],
+          "loesung": "$f'(x) = 3(x {+-x1})(x {+-x2})$. Testwert: $f'({w}) < 0$, also fällt $f$ auf $[{x1}; {x2}]$, d. h. $x_1 = {x1}$.",
+          "typischeFehler": [
+            {
+              "ergebnis": "x2",
+              "hinweis": "Das ist der rechte Rand des Intervalls."
+            }
+          ]
+        },
+        {
+          "frage": "Bestimme den rechten Rand $x_2$ dieses Intervalls.",
+          "ergebnis": "x2",
+          "hilfen": [
+            "Die Ränder sind die Nullstellen von $f'$.",
+            "$f'(x) = 3x^2 {+2*b}x {+c} = 0$",
+            "Die größere Nullstelle ist der rechte Rand."
+          ],
+          "loesung": "$f'(x) = 3(x {+-x1})(x {+-x2})$, also $x_2 = {x2}$.",
+          "typischeFehler": [
+            {
+              "ergebnis": "x1",
+              "hinweis": "Das ist der linke Rand des Intervalls."
+            }
+          ]
+        },
+        {
+          "frage": "Ab welcher Stelle ist der Graph von $f$ linksgekrümmt?",
+          "ergebnis": "w",
+          "hilfen": [
+            "Linkskurve: $f''(x) > 0$.",
+            "$f''(x) = 6x {+2*b}$",
+            "$6x {+2*b} > 0 \\iff x > \\ldots$"
+          ],
+          "loesung": "$f''(x) = 6x {+2*b} > 0 \\iff x > {w}$"
+        }
+      ]
+    },
+    {
+      "id": "mdiff-r-kruemmung-quartisch",
+      "titel": "Krümmungsintervall",
+      "schwierigkeit": 2,
+      "quelle": "eigene Aufgabe",
+      "werte": {
+        "w1": {
+          "von": -3,
+          "bis": 2,
+          "ohne": [
+            0
+          ]
+        },
+        "d": [
+          1,
+          4
+        ]
+      },
+      "berechnet": {
+        "w2": "w1 + d",
+        "p": "-2*(w1 + w2)",
+        "q": "6*w1*w2"
+      },
+      "bedingung": "w2 != 0 && p != 0",
+      "kontext": "Gegeben ist $f(x) = x^4 {+p}x^3 {+q}x^2$.",
+      "teile": [
+        {
+          "frage": "Der Graph ist auf einem Intervall $[a; b]$ rechtsgekrümmt. Bestimme $a$.",
+          "ergebnis": "w1",
+          "hilfen": [
+            "Rechtskurve: $f''(x) < 0$. Bestimme zuerst die Nullstellen von $f''$.",
+            "$f''(x) = 12x^2 {+6*p}x {+2*q}$",
+            "$f''(x) = 12(x {+-w1})(x {+-w2})$. Wo ist das negativ?"
+          ],
+          "loesung": "$f''(x) = 12(x {+-w1})(x {+-w2}) < 0$ zwischen den Nullstellen, also $a = {w1}$ und $b = {w2}$.",
+          "typischeFehler": [
+            {
+              "ergebnis": "w2",
+              "hinweis": "Das ist der rechte Rand $b$."
+            }
+          ]
+        },
+        {
+          "frage": "Bestimme den rechten Rand $b$.",
+          "ergebnis": "w2",
+          "hilfen": [
+            "Die Ränder sind die Nullstellen von $f''$.",
+            "$f''(x) = 12x^2 {+6*p}x {+2*q} = 0$",
+            "Teile durch 12 und löse die quadratische Gleichung."
+          ],
+          "loesung": "$f''(x) = 12(x {+-w1})(x {+-w2})$, also $b = {w2}$.",
+          "typischeFehler": [
+            {
+              "ergebnis": "w1",
+              "hinweis": "Das ist der linke Rand $a$."
+            }
+          ]
+        }
+      ]
+    }
   ]
 }

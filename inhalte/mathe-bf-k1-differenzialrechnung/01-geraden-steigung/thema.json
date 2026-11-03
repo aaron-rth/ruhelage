@@ -353,5 +353,149 @@
       "name": "Steigungswinkel",
       "tex": "\\tan(\\alpha) = m"
     }
+  ],
+  "rechenaufgaben": [
+    {
+      "id": "mdiff-r-steigung-punkte",
+      "titel": "Gerade durch zwei Punkte",
+      "schwierigkeit": 1,
+      "quelle": "eigene Aufgabe",
+      "werte": {
+        "x1": [
+          -4,
+          3
+        ],
+        "dx": {
+          "aus": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        "m": {
+          "von": -3,
+          "bis": 3,
+          "ohne": [
+            0
+          ]
+        },
+        "y1": [
+          -5,
+          5
+        ]
+      },
+      "berechnet": {
+        "x2": "x1 + dx",
+        "y2": "y1 + m*dx",
+        "c": "y1 - m*x1"
+      },
+      "bedingung": "c != 0",
+      "kontext": "Eine Gerade geht durch die Punkte $P({x1} \\mid {y1})$ und $Q({x2} \\mid {y2})$.",
+      "teile": [
+        {
+          "frage": "Berechne die Steigung $m$ der Geraden.",
+          "ergebnis": "m",
+          "hilfen": [
+            "Steigung = Höhenunterschied durch Breitenunterschied: $m = \\frac{y_2 - y_1}{x_2 - x_1}$.",
+            "$m = \\frac{{y2} - ({y1})}{{x2} - ({x1})}$",
+            "$m = \\frac{{y2-y1}}{{dx}}$"
+          ],
+          "loesung": "$m = \\frac{{y2} - ({y1})}{{x2} - ({x1})} = \\frac{{y2-y1}}{{dx}} = {m}$",
+          "typischeFehler": [
+            {
+              "ergebnis": "1/m",
+              "hinweis": "Das ist der Kehrwert. Oben steht der Unterschied der **y**-Werte, unten der der x-Werte."
+            }
+          ]
+        },
+        {
+          "frage": "Berechne den y-Achsenabschnitt $c$ der Geraden $y = mx + c$.",
+          "ergebnis": "c",
+          "hilfen": [
+            "Setze $m$ und die Koordinaten eines Punktes in $y = mx + c$ ein.",
+            "Mit $P$: ${y1} = {m} \\cdot ({x1}) + c$",
+            "$c = {y1} - ({m*x1})$"
+          ],
+          "loesung": "Aus ${y1} = {m} \\cdot ({x1}) + c$ folgt $c = {c}$.",
+          "typischeFehler": [
+            {
+              "ergebnis": "y1",
+              "hinweis": "$P$ liegt nicht auf der y-Achse. Setze seine Koordinaten in $y = mx + c$ ein und löse nach $c$ auf."
+            },
+            {
+              "ergebnis": "y1 + m*x1",
+              "hinweis": "Vorzeichenfehler beim Auflösen: $c = y_1 - m \\cdot x_1$."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mdiff-r-steigungswinkel-gerade",
+      "titel": "Steigung und Steigungswinkel",
+      "schwierigkeit": 1,
+      "quelle": "eigene Aufgabe",
+      "werte": {
+        "m": {
+          "aus": [
+            0.5,
+            1.5,
+            2,
+            3,
+            4,
+            -0.5,
+            -2,
+            -3
+          ]
+        },
+        "beta": {
+          "aus": [
+            20,
+            30,
+            40,
+            60,
+            70,
+            -25,
+            -50
+          ]
+        }
+      },
+      "kontext": "Für eine Gerade mit Steigung $m$ und Steigungswinkel $\\alpha$ gilt $\\tan(\\alpha) = m$.",
+      "teile": [
+        {
+          "frage": "Eine Gerade hat die Steigung $m = {m}$. Berechne ihren Steigungswinkel $\\alpha$ in Grad.",
+          "ergebnis": "grad(atan(m))",
+          "hilfen": [
+            "Aus $\\tan(\\alpha) = m$ folgt $\\alpha = \\tan^{-1}(m)$.",
+            "$\\alpha = \\tan^{-1}({m})$, Taschenrechner auf Gradmaß (DEG) stellen.",
+            "Bei negativer Steigung ist der Winkel negativ, die Gerade fällt."
+          ],
+          "loesung": "$\\alpha = \\tan^{-1}({m}) \\approx {runde(grad(atan(m)), 1)}°$",
+          "typischeFehler": [
+            {
+              "ergebnis": "atan(m)",
+              "hinweis": "Das ist der Winkel im Bogenmaß (RAD). Stelle den Taschenrechner auf Grad (DEG)."
+            }
+          ]
+        },
+        {
+          "frage": "Eine andere Gerade hat den Steigungswinkel $\\beta = {beta}°$. Berechne ihre Steigung.",
+          "ergebnis": "tan(rad(beta))",
+          "hilfen": [
+            "Umgekehrt gilt $m = \\tan(\\beta)$.",
+            "$m = \\tan({beta}°)$, Taschenrechner auf DEG.",
+            "Bei negativem Winkel fällt die Gerade, die Steigung ist dann negativ."
+          ],
+          "loesung": "$m = \\tan({beta}°) \\approx {runde(tan(rad(beta)), 3)}$",
+          "typischeFehler": [
+            {
+              "ergebnis": "tan(beta)",
+              "hinweis": "Der Taschenrechner steht im Bogenmaß (RAD). Für Winkel in Grad DEG einstellen."
+            }
+          ]
+        }
+      ]
+    }
   ]
 }

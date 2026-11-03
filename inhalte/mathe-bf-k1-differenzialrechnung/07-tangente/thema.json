@@ -401,7 +401,7 @@
       "titel": "Tangentengleichung",
       "schwierigkeit": 2,
       "quelle": "eigene Aufgabe",
-      "bedingung": "2*a*x0 + b != 0 && c - a*x0^2 != 0",
+      "bedingung": "2*a*x0 + b != 0 && c - a*x0^2 != 0 && abs(2*a*x0 + b) != 1",
       "werte": {
         "a": {
           "aus": [
@@ -415,7 +415,9 @@
           "von": -4,
           "bis": 4,
           "ohne": [
-            0
+            0,
+            1,
+            -1
           ]
         },
         "c": {
@@ -460,6 +462,155 @@
             {
               "ergebnis": "c",
               "hinweis": "Der y-Achsenabschnitt der Tangente ist nicht der von $f$ – setze den Punkt $P$ in $t(x) = mx + n$ ein."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mdiff-r-punkt-steigung",
+      "titel": "Punkt mit vorgegebener Steigung",
+      "schwierigkeit": 2,
+      "quelle": "eigene Aufgabe",
+      "werte": {
+        "a": {
+          "aus": [
+            -3,
+            -2,
+            2,
+            3
+          ]
+        },
+        "b": {
+          "von": -5,
+          "bis": 5,
+          "ohne": [
+            0,
+            1,
+            -1
+          ]
+        },
+        "c": {
+          "von": -5,
+          "bis": 5,
+          "ohne": [
+            0
+          ]
+        },
+        "x1": {
+          "von": -3,
+          "bis": 3,
+          "ohne": [
+            0
+          ]
+        }
+      },
+      "berechnet": {
+        "m": "2*a*x1 + b",
+        "y1": "a*x1^2 + b*x1 + c"
+      },
+      "bedingung": "m != 0 && y1 != 0",
+      "kontext": "Gegeben ist $f(x) = {a}x^2 {+b}x {+c}$.",
+      "teile": [
+        {
+          "frage": "An welcher Stelle hat der Graph von $f$ die Steigung ${m}$?",
+          "ergebnis": "x1",
+          "hilfen": [
+            "Ansatz: $f'(x) = {m}$.",
+            "$f'(x) = {2*a}x {+b}$, also ${2*a}x {+b} = {m}$",
+            "${2*a}x = {m-b}$"
+          ],
+          "loesung": "${2*a}x {+b} = {m} \\iff {2*a}x = {m-b} \\iff x = {x1}$",
+          "typischeFehler": [
+            {
+              "ergebnis": "(m + b)/(2*a)",
+              "hinweis": "Vorzeichenfehler beim Umstellen: ${b}$ kommt mit umgekehrtem Vorzeichen auf die andere Seite."
+            },
+            {
+              "ergebnis": "m - b",
+              "hinweis": "Du musst noch durch ${2*a}$ teilen."
+            }
+          ]
+        },
+        {
+          "frage": "Berechne die y-Koordinate dieses Punktes.",
+          "ergebnis": "y1",
+          "hilfen": [
+            "Die y-Koordinate liefert $f$, nicht $f'$.",
+            "$f({x1}) = {a} \\cdot ({x1})^2 {+b} \\cdot ({x1}) {+c}$",
+            "$f({x1}) = {a*x1^2} {+b*x1} {+c}$"
+          ],
+          "loesung": "$f({x1}) = {y1}$, der Punkt ist $({x1} \\mid {y1})$.",
+          "typischeFehler": [
+            {
+              "ergebnis": "m",
+              "hinweis": "Das ist $f'({x1})$, die Steigung. Die y-Koordinate ist $f({x1})$."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mdiff-r-steigungswinkel-graph",
+      "titel": "Steigungswinkel und Tangente",
+      "schwierigkeit": 2,
+      "quelle": "eigene Aufgabe",
+      "werte": {
+        "a": {
+          "aus": [
+            0.25,
+            2,
+            0.2,
+            1.5
+          ]
+        },
+        "x0": {
+          "von": -3,
+          "bis": 3,
+          "ohne": [
+            0
+          ]
+        }
+      },
+      "berechnet": {
+        "m": "2*a*x0"
+      },
+      "bedingung": "abs(m) != 1",
+      "kontext": "Gegeben ist $f(x) = {a}x^2$.",
+      "teile": [
+        {
+          "frage": "Unter welchem Winkel (in Grad) steigt bzw. fällt der Graph an der Stelle $x = {x0}$?",
+          "ergebnis": "grad(atan(m))",
+          "hilfen": [
+            "Es gilt $\\tan(\\alpha) = f'({x0})$.",
+            "$f'(x) = {2*a}x$, also $f'({x0}) = {m}$",
+            "$\\alpha = \\tan^{-1}({m})$, Taschenrechner auf Gradmaß (DEG)."
+          ],
+          "loesung": "$f'({x0}) = {m}$, also $\\alpha = \\tan^{-1}({m}) \\approx {runde(grad(atan(m)), 1)}°$",
+          "typischeFehler": [
+            {
+              "ergebnis": "atan(m)",
+              "hinweis": "Das ist das Bogenmaß. Stelle den Taschenrechner auf Grad (DEG)."
+            },
+            {
+              "ergebnis": "grad(atan(a*x0^2))",
+              "hinweis": "Du hast $f({x0})$ statt $f'({x0})$ verwendet. Der Winkel hängt von der Steigung ab."
+            }
+          ]
+        },
+        {
+          "frage": "An welcher Stelle schneidet die Tangente im Punkt $P({x0} \\mid f({x0}))$ die x-Achse?",
+          "ergebnis": "x0/2",
+          "hilfen": [
+            "Tangente: $y = f'({x0})(x {+-x0}) + f({x0})$.",
+            "$f({x0}) = {a*x0^2}$ und $f'({x0}) = {m}$",
+            "Setze $y = 0$: $0 = {m}(x {+-x0}) {+a*x0^2}$"
+          ],
+          "loesung": "$0 = {m}(x {+-x0}) {+a*x0^2} \\iff x = {x0/2}$",
+          "typischeFehler": [
+            {
+              "ergebnis": "x0",
+              "hinweis": "Das ist die Stelle des Berührpunkts. Gesucht ist die Nullstelle der Tangente."
             }
           ]
         }
