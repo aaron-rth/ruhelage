@@ -87,6 +87,57 @@ export interface Einstellungen {
   haptik: boolean;
 }
 
+// ---------- Eigene Karteikarten (selbst eingetippt, mit dem Konto synchronisiert) ----------
+/** Merkhilfe: Lückensatz (Wort auf der Frageseite ausgeblendet), Tipp auf der Frageseite oder nur bei der Antwort */
+export interface Merkhilfe {
+  text: string;
+  art: 'luecke' | 'frage' | 'antwort';
+}
+
+interface EigenBasis {
+  id: string;
+  /** Zeitpunkt der letzten Änderung (ms) – beim Abgleich gewinnt der neuere Stand */
+  geaendert: number;
+  /** gelöscht (bleibt als Markierung, damit es auf anderen Geräten nicht wiederkommt) */
+  geloescht?: number;
+}
+
+export interface EigenesFach extends EigenBasis {
+  name: string;
+  klasse: string;
+  erstellt: number;
+}
+
+export interface EigenesSet extends EigenBasis {
+  fachId: string;
+  titel: string;
+  /** Namen der beiden Seiten, z. B. ["Englisch", "Deutsch"] */
+  namen: [string, string];
+  /** welche Seite beim Eintippen zuerst kommt */
+  zuerst: 'vorne' | 'hinten';
+  /** Abfragerichtung: vorne → hinten, hinten → vorne oder beides */
+  richtung: 'vor' | 'rueck' | 'gemischt';
+  /** Karte umdrehen oder Antwort eintippen */
+  modus: 'umdrehen' | 'tippen';
+  pos: number;
+}
+
+export interface EigeneKarte extends EigenBasis {
+  setId: string;
+  vorne: string;
+  hinten: string;
+  merk?: Merkhilfe;
+  pos: number;
+}
+
+export interface EigeneDaten {
+  faecher: Record<string, EigenesFach>;
+  sets: Record<string, EigenesSet>;
+  karten: Record<string, EigeneKarte>;
+}
+
+export const leereEigene = (): EigeneDaten => ({ faecher: {}, sets: {}, karten: {} });
+
 export interface Daten {
   themen: Record<string, { status: Status }>;
   karten: Record<string, KartenStand>;
@@ -97,6 +148,8 @@ export interface Daten {
   einstellungen: Einstellungen;
   /** Spielwiese: gelöste Mini-Aufgaben */
   spielwiese: string[];
+  /** selbst eingetippte Fächer, Sets und Karteikarten */
+  eigene: EigeneDaten;
   /** Hinweise, die schon weggeklickt wurden */
   gesehen: string[];
 }
@@ -137,6 +190,7 @@ export function leereDaten(): Daten {
     xp: 0,
     einstellungen: { ...STANDARD_EINSTELLUNGEN },
     spielwiese: [],
+    eigene: leereEigene(),
     gesehen: [],
   };
 }
@@ -177,6 +231,7 @@ export function migriere(alt: unknown, version: number): Daten {
     ...d,
     einstellungen: { ...basis.einstellungen, ...(d.einstellungen ?? {}) },
     spielwiese: d.spielwiese ?? [],
+    eigene: { ...leereEigene(), ...(d.eigene ?? {}) },
     gesehen: d.gesehen ?? [],
   };
 }
@@ -305,6 +360,7 @@ export function datenAus(s: Daten): Daten {
     xp: s.xp,
     einstellungen: s.einstellungen,
     spielwiese: s.spielwiese,
+    eigene: s.eigene,
     gesehen: s.gesehen,
   };
 }

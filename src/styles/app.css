@@ -4518,3 +4518,231 @@ a.fach-zeile.bald:hover {
   max-width: 100%;
   height: auto;
 }
+
+/* ---------- Eigene Karteikarten ---------- */
+.titel-feld {
+  display: block;
+  width: 100%;
+  margin: 2px 0 4px;
+  padding: 2px 0;
+  border: 0;
+  border-bottom: 1px dashed transparent;
+  background: none;
+  color: var(--text);
+  font: inherit;
+  font-size: 1.7rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+.titel-feld:hover,
+.titel-feld:focus {
+  outline: none;
+  border-bottom-color: var(--linie-stark);
+}
+.set-aktionen {
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: var(--s3);
+}
+.btn.deaktiviert {
+  opacity: 0.5;
+  pointer-events: none;
+}
+.set-einstellungen {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s3);
+  margin-bottom: var(--s4);
+}
+.set-einst-zeile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s2) var(--s3);
+  flex-wrap: wrap;
+}
+.set-einst-zeile .segment {
+  flex-wrap: wrap;
+}
+.set-einst-zeile .eingabe {
+  min-width: 0;
+  width: 150px;
+}
+.karten-spalten,
+.karten-zeile {
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: start;
+}
+.karten-spalten {
+  grid-template-columns: 26px minmax(0, 1fr) minmax(0, 1fr) 76px;
+  padding: 0 0 4px;
+}
+.eigene-kartenliste {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.karten-zeile {
+  padding: 6px 0;
+  border-bottom: 1px solid var(--linie);
+}
+.karten-zeile.neu {
+  border-bottom: 0;
+}
+.karten-zeile.neu .karten-feld {
+  border-style: dashed;
+}
+.karten-nr {
+  padding-top: 10px;
+  text-align: right;
+  font-size: 0.8rem;
+}
+.karten-felder {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 6px;
+}
+.karten-feld {
+  width: 100%;
+  height: auto;
+  min-height: 40px;
+  resize: none;
+  overflow: hidden;
+  font: inherit;
+  line-height: 1.4;
+}
+.karten-zeile-knoepfe {
+  display: flex;
+  gap: 2px;
+  padding-top: 3px;
+}
+.karten-zeile-knoepfe .symbol-knopf.an {
+  color: var(--akzent);
+}
+.merk-feld {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: var(--s2) var(--s3);
+  border-radius: var(--r);
+  background: var(--flaeche-2);
+}
+.merk-feld .segment {
+  align-self: flex-start;
+  flex-wrap: wrap;
+}
+@media (max-width: 600px) {
+  .karten-spalten {
+    display: none;
+  }
+  .karten-felder {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .karten-zeile {
+    grid-template-columns: 20px minmax(0, 1fr) auto;
+  }
+}
+.liste-feld {
+  width: 100%;
+  height: auto;
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  resize: vertical;
+}
+.eigene-sets {
+  list-style: none;
+  margin: 0 0 var(--s3);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.eigene-sets li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.eigenes-set {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  min-width: 0;
+  padding: var(--s3);
+  border: 1px solid var(--linie);
+  border-radius: var(--r-l);
+  background: var(--flaeche);
+  color: var(--text);
+}
+.eigenes-set:hover {
+  border-color: var(--akzent-linie);
+  text-decoration: none;
+}
+.eigenes-anlegen .fach-reihe {
+  width: 100%;
+}
+.eigenes-form {
+  padding: var(--s3);
+  border: 1px solid var(--akzent-linie);
+  border-radius: var(--r-l);
+  background: var(--akzent-weich);
+}
+/* Lernen: Merkhilfe, Eintippen */
+.karten-merk {
+  margin-top: var(--s3);
+  padding: 8px 12px;
+  border-left: 3px solid var(--akzent-linie);
+  border-radius: 0 var(--r) var(--r) 0;
+  background: var(--flaeche-2);
+  font-size: 0.92rem;
+  font-style: italic;
+  color: var(--text-2);
+  text-align: left;
+}
+.karten-tippen {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+  margin-top: var(--s3);
+}
+.karten-tipp-zeile {
+  display: flex;
+  gap: 8px;
+}
+.karten-tipp-zeile .eingabe {
+  flex: 1;
+  min-width: 0;
+  font-size: 1.05rem;
+}
+.karten-tippen > .btn {
+  align-self: center;
+}
+.karten-pruefung {
+  margin-top: var(--s3);
+  padding: 10px 14px;
+  border-radius: var(--r);
+  border: 1px solid var(--linie);
+  font-size: 0.95rem;
+}
+.karten-pruefung.richtig {
+  border-color: var(--akzent-linie);
+  background: var(--akzent-weich);
+}
+.karten-pruefung.fast {
+  border-color: color-mix(in srgb, var(--sand) 50%, transparent);
+  background: color-mix(in srgb, var(--sand) 12%, transparent);
+}
+.karten-pruefung.falsch {
+  border-color: var(--koralle-linie);
+  background: var(--koralle-weich);
+}
+.btn.bew.vorschlag {
+  box-shadow: 0 0 0 2px var(--akzent) inset;
+}

@@ -26,8 +26,11 @@ const TABS = [
 ];
 
 export function ThemaSeite() {
-  const { id = '', tab = 'erklaert' } = useParams();
+  const { id = '', tab: tabParam } = useParams();
+  useStore((s) => s.eigene); // eigene Sets: nach dem Bearbeiten neu zeichnen
   const t = findeThema(id);
+  // eigene Sets haben nur Karteikarten
+  const tab = t?.eigen ? 'karten' : (tabParam ?? 'erklaert');
   const daten = useStore();
   if (!t) return <Leer titel="Thema nicht gefunden" />;
   const status = statusVon(t, daten);
@@ -62,8 +65,13 @@ export function ThemaSeite() {
         </div>
       </div>
 
+      {t.eigen && (
+        <Link to={`/eigen/${t.eigen.fachId}/${t.id}`} className="btn klein" style={{ marginBottom: 12 }}>
+          <Icon name="stift" size={16} /> Karten bearbeiten
+        </Link>
+      )}
       <nav className="tabs" aria-label="Bereiche">
-        {TABS.filter((tb) => tb.id !== 'rechnen' || tab === 'rechnen' || t.generatoren.some((g) => g.art === 'rechnen')).map((tb) => (
+        {TABS.filter((tb) => (t.eigen ? tb.id === 'karten' : tb.id !== 'rechnen' || tab === 'rechnen' || t.generatoren.some((g) => g.art === 'rechnen'))).map((tb) => (
           <NavLink key={tb.id} to={`/thema/${t.id}/${tb.id}`} className={() => (tab === tb.id ? 'aktiv' : '')}>
             <Icon name={tb.icon} size={16} />
             {tb.label}

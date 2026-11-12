@@ -18,6 +18,12 @@ export interface Karte {
   quelle: string;
   /** „Genauer erklärt“ – ausführlichere Erklärung (Markdown) */
   mehr?: string;
+  /** eigene Karten: Namen der Seiten (z. B. „Englisch“, „Deutsch“) statt Kartentyp/„Antwort“ */
+  seiten?: [string, string];
+  /** eigene Karten: Merkhilfe */
+  merk?: { text: string; art: 'luecke' | 'frage' | 'antwort' };
+  /** Antwort eintippen statt nur umdrehen */
+  tippen?: boolean;
 }
 
 // ---------- Übungen (statisch) ----------
@@ -205,6 +211,8 @@ export interface Thema {
   startStatus?: Status;
   /** Markiert Themen, die im Unterricht noch neu sind */
   neu?: boolean;
+  /** selbst angelegtes Karteikarten-Set */
+  eigen?: { fachId: string };
   /** kleiner = wichtiger für „Heute“ (Schwachstellen zuerst) */
   prioritaet: number;
   erklaerung: string;
@@ -230,4 +238,6 @@ export interface Kurs {
   entwurf?: boolean;
   /** Beispiel-Fach für die Einführung – nicht in „Fach hinzufügen“, verschwindet beim ersten echten Fach */
   beispiel?: boolean;
+  /** selbst angelegtes Karteikarten-Fach */
+  eigen?: boolean;
 }

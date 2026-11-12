@@ -7,6 +7,8 @@ import { Fehlergrenze } from './components/Fehlergrenze';
 import { HilfeDialog, oeffneHilfe } from './components/Hilfe';
 import { Willkommen } from './components/Willkommen';
 import { Ueben } from './pages/Ueben';
+import { EigenesFach, SetBearbeiten } from './pages/EigeneKarten';
+import './lib/eigene';
 import { Icon } from './components/Icon';
 import { Statistik } from './components/Statistik';
 import { beiOnline, kontoStarten, syncPlanen, syncSofort } from './lib/cloud';
@@ -63,7 +65,7 @@ const BEREICHE: { id: Bereich; to: string; label: string; icon: string; unter: U
     label: 'Fächer',
     icon: 'buch',
     unter: [
-      { to: '/faecher', label: 'Übersicht', icon: 'buch', passt: (p) => p === '/faecher' },
+      { to: '/faecher', label: 'Übersicht', icon: 'buch', passt: (p) => p === '/faecher' || p.startsWith('/eigen') },
       { to: '/pfad', label: 'Lernpfad', icon: 'pfad', passt: (p, q) => (p === '/pfad' && !q.includes('plan')) || p.startsWith('/thema') },
       { to: '/pfad?ansicht=plan', label: 'Lernplan', icon: 'kalender', passt: (p, q) => p === '/pfad' && q.includes('plan') },
       { to: '/formeln', label: 'Formelsammlung', icon: 'formel', passt: (p) => p === '/formeln', nurWenn: hatFormeln },
@@ -358,6 +360,8 @@ function Rahmen() {
               <Route path="/spielwiese" element={<Spielwiese />} />
               <Route path="/nochmal" element={<Nochmal />} />
               <Route path="/ueben" element={<Ueben />} />
+              <Route path="/eigen/:fachId" element={<EigenesFach />} />
+              <Route path="/eigen/:fachId/:setId" element={<SetBearbeiten />} />
               <Route path="/klausur" element={<Klausur />} />
               <Route path="/formeln" element={<Formeln />} />
               <Route path="/profil" element={<Profil />} />
