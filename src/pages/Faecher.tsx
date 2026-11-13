@@ -5,6 +5,7 @@ import { Ring, StatusChip } from '../components/Basis';
 import { FachAnfrage } from '../components/FachAnfrage';
 import { FachHinzu } from '../components/FachHinzu';
 import { Icon } from '../components/Icon';
+import { fachIcon } from '../components/FachUmschalter';
 import { datumLang, heute, tageZwischen } from '../lib/datum';
 import { statusVon, themaFortschritt } from '../lib/fortschritt';
 import { schwacheThemen } from '../lib/heute';
@@ -49,13 +50,14 @@ export function Faecher() {
             <div key={k.id} className={`fach-reihe-wrap${an ? ' an' : ''}`} role="listitem">
               <button type="button" className="fach-reihe" aria-current={an ? 'true' : undefined} onClick={() => wechsleKurs(k.id)}>
                 <span className="modus-icon">
-                  <Icon name={k.fach === 'Physik' ? 'welle' : 'buch'} size={20} />
+                  <Icon name={fachIcon(k)} size={20} />
                 </span>
                 <span className="fach-reihe-text">
                   <span className="fach-name">
                     <strong>{k.fach}</strong>
                     <span className="chip klein-chip">{k.klasse}</span>
                     {k.entwurf && <span className="chip klein-chip">Entwurf</span>}
+                    {k.eigen && <span className="chip klein-chip akzent">Karteikarten</span>}
                   </span>
                   <span className="sehr-leise klein">{k.titel}</span>
                 </span>
@@ -132,6 +134,13 @@ export function Faecher() {
           </div>
         </div>
         <div className="kurs-wege">
+          {kurs.eigen && (
+            <Link to={`/eigen/${kurs.id}`} className="kurs-weg">
+              <Icon name="stift" size={22} />
+              <strong>Sets & Karten bearbeiten</strong>
+              <span className="sehr-leise klein">eintippen, Liste einfügen, Merkhilfen</span>
+            </Link>
+          )}
           <Link to="/pfad" className="kurs-weg">
             <Icon name="pfad" size={22} />
             <strong>Lernpfad</strong>

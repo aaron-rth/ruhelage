@@ -57,6 +57,7 @@ export function statusVon(t: Thema, d: Daten): Status {
 export function istGestartet(t: Thema, d: Daten): boolean {
   const manuell = d.einstellungen.tagesrunde?.[t.id];
   if (manuell !== undefined) return manuell;
+  if (t.eigen) return true; // selbst angelegt = man lernt es gerade
   if (statusVon(t, d) !== 'offen') return true;
   if (d.einstellungen.gelesen?.includes(t.id)) return true;
   if (t.karten.some((k) => d.karten[k.id])) return true;

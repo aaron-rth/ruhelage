@@ -37,8 +37,30 @@ function ladePakete(): Kurs[] {
 
 export const KURSE: Kurs[] = [...EINGEBAUT, ...ladePakete()];
 
+// Eigene Karteikarten-Fächer kommen zur Laufzeit dazu (aus dem Speicher, siehe lib/eigene.ts)
+let EIGENE: Kurs[] = [];
+const eigeneThemen = new Map<string, Thema>();
+const eigeneKursVonThema = new Map<string, Kurs>();
+const eigeneKarten = new Map<string, { karte: Karte; thema: Thema }>();
+
+export function setzeEigeneKurse(kurse: Kurs[]) {
+  EIGENE = kurse;
+  eigeneThemen.clear();
+  eigeneKursVonThema.clear();
+  eigeneKarten.clear();
+  for (const k of kurse)
+    for (const t of k.themen) {
+      eigeneThemen.set(t.id, t);
+      eigeneKursVonThema.set(t.id, k);
+      for (const x of t.karten) eigeneKarten.set(x.id, { karte: x, thema: t });
+    }
+}
+
+/** Alle Kurse: eingebaute, Inhaltspakete und eigene */
+export const alleKurse = (): Kurs[] => [...KURSE, ...EIGENE];
+
 /** Kurs zur Id – unbekannte Ids fallen auf den ersten Kurs zurück. */
-export const kursMitId = (id: string | undefined): Kurs => KURSE.find((k) => k.id === id) ?? KURSE[0];
+export const kursMitId = (id: string | undefined): Kurs => KURSE.find((k) => k.id === id) ?? EIGENE.find((k) => k.id === id) ?? KURSE[0];
 
 export const alleThemen = (): Thema[] => KURSE.flatMap((k) => k.themen);
 
@@ -58,8 +80,8 @@ for (const k of KURSE)
     for (const g of t.generatoren) generatorIndex.set(g.id, { generator: g, thema: t });
   }
 
-export const findeThema = (id: string) => themenIndex.get(id);
-export const kursVonThema = (themaId: string) => kursVonThemaIndex.get(themaId);
-export const findeKarte = (id: string) => kartenIndex.get(id);
+export const findeThema = (id: string) => themenIndex.get(id) ?? eigeneThemen.get(id);
+export const kursVonThema = (themaId: string) => kursVonThemaIndex.get(themaId) ?? eigeneKursVonThema.get(themaId);
+export const findeKarte = (id: string) => kartenIndex.get(id) ?? eigeneKarten.get(id);
 export const findeUebung = (id: string) => uebungsIndex.get(id);
 export const findeGenerator = (id: string) => generatorIndex.get(id);

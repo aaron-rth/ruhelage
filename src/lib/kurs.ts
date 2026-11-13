@@ -1,6 +1,6 @@
 // Aktiver Kurs und „Meine Fächer“: steht in den Einstellungen, damit es mit dem Konto synchronisiert wird.
 import { useMemo } from 'react';
-import { KURSE, kursMitId } from '../content/kurse';
+import { alleKurse, KURSE, kursMitId } from '../content/kurse';
 import type { Kurs } from '../content/types';
 import { useStore, type Einstellungen } from '../store/store';
 import { genKey, uebKey } from './fortschritt';
@@ -16,11 +16,14 @@ function ohneAusgeblendete(k: Kurs, aus: string[]): Kurs {
 export function useAktiverKurs(): Kurs {
   const id = useStore((s) => s.einstellungen.kurs);
   const aus = useStore((s) => s.einstellungen.ausgeblendeteThemen);
-  return useMemo(() => ohneAusgeblendete(kursMitId(id), aus ?? []), [id, aus]);
+  // eigene Karteikarten: bei jeder Änderung neu (die Registry ist dann schon aktualisiert)
+  const eigene = useStore((s) => s.eigene);
+  return useMemo(() => ohneAusgeblendete(kursMitId(id), aus ?? []), [id, aus, eigene]);
 }
 
 /** Aktiver Kurs mit allen Themen (Lernpfad zeigt auch die ausgeblendeten) */
 export function useAktiverKursKomplett(): Kurs {
+  useStore((s) => s.eigene);
   return kursMitId(useStore((s) => s.einstellungen.kurs));
 }
 
@@ -31,7 +34,7 @@ export function aktiverKurs(): Kurs {
 
 /** Kurs wechseln. Das Klausurdatum gehört zum Kurs und wird mitgetauscht. */
 export function wechsleKurs(id: string) {
-  const ziel = KURSE.find((k) => k.id === id);
+  const ziel = alleKurse().find((k) => k.id === id);
   if (!ziel) return;
   useStore.setState((s) => {
     const e = s.einstellungen;
@@ -59,13 +62,14 @@ export function meineKurse(e: Einstellungen): { laufend: Kurs[]; fertig: Kurs[] 
   const beispiel = KURSE.find((k) => k.beispiel && k.id === e.kurs);
   if (beispiel && (e.meineKurse ?? []).length <= 1) return { laufend: [beispiel], fertig: [] };
   const fertig = new Set(e.fertigeKurse ?? []);
-  const alle = KURSE.filter((k) => ids.has(k.id));
+  const alle = alleKurse().filter((k) => ids.has(k.id));
   return { laufend: alle.filter((k) => !fertig.has(k.id)), fertig: alle.filter((k) => fertig.has(k.id)) };
 }
 
 export function useMeineKurse() {
   const e = useStore((s) => s.einstellungen);
-  return useMemo(() => meineKurse(e), [e]);
+  const eigene = useStore((s) => s.eigene);
+  return useMemo(() => meineKurse(e), [e, eigene]);
 }
 
 export const BEISPIEL_KURS = () => KURSE.find((k) => k.beispiel);

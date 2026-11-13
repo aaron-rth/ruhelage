@@ -1,5 +1,5 @@
 // Zwei Speicherstände (z. B. Handy und Laptop) zusammenführen, ohne Fortschritt zu verlieren.
-import type { Daten, Einstellungen, Ergebnis, NochmalEintrag, TagesStand } from '../store/store';
+import { leereEigene, type Daten, type EigeneDaten, type Einstellungen, type Ergebnis, type NochmalEintrag, type TagesStand } from '../store/store';
 import type { KartenStand } from './leitner';
 import { aufraeumen, type LaufendDaten } from '../store/laufend';
 
@@ -83,6 +83,16 @@ export function fuehreEinstellungenZusammen(l: Einstellungen, c: Einstellungen):
   };
 }
 
+/** Eigene Fächer, Sets und Karten: je Eintrag der zuletzt geänderte (Gelöschtes bleibt markiert). */
+export function fuehreEigeneZusammen(l: EigeneDaten = leereEigene(), c: EigeneDaten = leereEigene()): EigeneDaten {
+  const neuer = <T extends { geaendert: number }>(a: T, b: T) => (b.geaendert > a.geaendert ? b : a);
+  return {
+    faecher: vereine(l.faecher ?? {}, c.faecher ?? {}, neuer),
+    sets: vereine(l.sets ?? {}, c.sets ?? {}, neuer),
+    karten: vereine(l.karten ?? {}, c.karten ?? {}, neuer),
+  };
+}
+
 /**
  * Führt `lokal` und `cloud` zusammen. Lernstände: jeweils der neuere bzw. weiter fortgeschrittene;
  * Tageswerte: Maximum; Listen: vereinigt; Einstellungen siehe oben.
@@ -109,6 +119,7 @@ export function fuehreZusammen(lokal: Daten, cloud: Daten): Daten {
     xp: Math.max(lokal.xp, cloud.xp),
     einstellungen: fuehreEinstellungenZusammen(lokal.einstellungen, cloud.einstellungen),
     spielwiese: [...new Set([...lokal.spielwiese, ...cloud.spielwiese])],
+    eigene: fuehreEigeneZusammen(lokal.eigene, cloud.eigene),
     gesehen: [...new Set([...lokal.gesehen, ...cloud.gesehen])],
   };
 }

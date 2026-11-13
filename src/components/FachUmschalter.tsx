@@ -5,7 +5,7 @@ import type { Kurs } from '../content/types';
 import { useAktiverKurs, useMeineKurse, wechsleKurs } from '../lib/kurs';
 import { Icon } from './Icon';
 
-export const fachIcon = (k: Kurs) => (k.beispiel ? 'funke' : k.fach === 'Physik' ? 'welle' : 'buch');
+export const fachIcon = (k: Kurs) => (k.beispiel ? 'funke' : k.eigen ? 'karten' : k.fach === 'Physik' ? 'welle' : 'buch');
 
 export function FachUmschalter({ tabIndex }: { tabIndex?: number }) {
   const kurs = useAktiverKurs();

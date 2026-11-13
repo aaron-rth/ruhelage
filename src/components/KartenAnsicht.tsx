@@ -2,7 +2,9 @@
 // Im Handy-Vollbild: Tippen dreht um, danach wischen (rechts = gewusst, oben = halb, links = nicht).
 import { useEffect, useRef, useState, type PointerEvent as RPointerEvent } from 'react';
 import type { Karte, KartenTyp } from '../content/types';
+import { lueckensatz } from '../lib/eigene';
 import { wischRichtung } from '../lib/geraet';
+import { pruefeTippen, type TippErgebnis } from '../lib/tippen';
 import type { Bewertung } from '../lib/leitner';
 import { useStore } from '../store/store';
 import { Md, Taste } from './Basis';
@@ -53,11 +55,18 @@ export function KartenAnsicht({
 }) {
   const [umgedreht, setUmgedreht] = useState(false);
   const [erklaer, setErklaer] = useState(false);
+  // eigene Karten: Antwort eintippen, Merkhilfe als Tipp
+  const [eingabe, setEingabe] = useState('');
+  const [geprueft, setGeprueft] = useState<TippErgebnis | null>(null);
+  const [tipp, setTipp] = useState(false);
+  const tippFeld = useRef<HTMLInputElement>(null);
   const [zug, setZug] = useState({ dx: 0, dy: 0 });
   const [raus, setRaus] = useState<Raus>(null);
   const start = useRef<{ x: number; y: number } | null>(null);
   const bewegt = useRef(false);
   const stand = useStore((s) => s.karten[karte.id]);
+  const eigen = !!karte.seiten;
+  const merk = karte.merk?.text.trim() ? karte.merk : undefined;
   const gesten = !!vollbild && !!wischen;
   // Seite, zu der „wusste ich“ bzw. „nicht“ geworfen wird
   const seiteGewusst: 'rechts' | 'links' = umgekehrt ? 'links' : 'rechts';
@@ -66,6 +75,9 @@ export function KartenAnsicht({
   useEffect(() => {
     setUmgedreht(false);
     setErklaer(false);
+    setEingabe('');
+    setGeprueft(null);
+    setTipp(false);
     setZug({ dx: 0, dy: 0 });
     setRaus(null);
   }, [karte.id]);
@@ -79,10 +91,31 @@ export function KartenAnsicht({
     window.setTimeout(() => onBewertet(b), 220);
   }
 
+  const vorschlag: Bewertung | null = geprueft === 'richtig' ? 'gewusst' : geprueft === 'fast' ? 'halb' : geprueft === 'falsch' ? 'nicht' : null;
+
+  function pruefen() {
+    if (!eingabe.trim()) return;
+    const r = pruefeTippen(eingabe, karte.hinten);
+    setGeprueft(r);
+    rueckmeldung(r === 'richtig' ? 'gewusst' : r === 'fast' ? 'halb' : 'nicht');
+    setUmgedreht(true);
+  }
+
+  // Eintippen: Feld gleich bereit
+  useEffect(() => {
+    if (karte.tippen && !umgedreht && !vollbild) tippFeld.current?.focus({ preventScroll: true });
+  }, [karte.id, karte.tippen, umgedreht, vollbild]);
+
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       const tag = (e.target as HTMLElement)?.tagName;
       if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || e.repeat) return;
+      // nach dem Eintippen: Enter übernimmt die vorgeschlagene Bewertung
+      if (e.key === 'Enter' && vorschlag && umgedreht && tag !== 'BUTTON') {
+        e.preventDefault();
+        bewerten(vorschlag);
+        return;
+      }
       if (e.key === ' ' || e.key === 'Enter') {
         if (tag === 'BUTTON' && e.key === 'Enter') return;
         e.preventDefault();
@@ -90,7 +123,7 @@ export function KartenAnsicht({
         setUmgedreht((u) => !u);
       }
       if (!umgedreht) return;
-      if (e.key === 'e' || e.key === 'E') setErklaer(true);
+      if ((e.key === 'e' || e.key === 'E') && !eigen) setErklaer(true);
       if (e.key === '1') bewerten('gewusst');
       if (e.key === '2') bewerten('halb');
       if (e.key === '3') bewerten('nicht');
@@ -151,7 +184,7 @@ export function KartenAnsicht({
     >
       <div className="karten-seite vorne" aria-hidden={umgedreht}>
         <div className="karten-kopf">
-          <span className="chip">{TYP_TEXT[karte.typ]}</span>
+          <span className="chip">{karte.seiten ? karte.seiten[0] : TYP_TEXT[karte.typ]}</span>
           <span className="fach-anzeige" title="Leitner-Fach">
             {[1, 2, 3, 4, 5].map((f) => (
               <span key={f} className={stand && stand.fach >= f ? 'an' : ''} />
@@ -159,6 +192,8 @@ export function KartenAnsicht({
           </span>
         </div>
         <Md text={karte.vorne} className="prosa karten-text" />
+        {merk?.art === 'luecke' && <Md text={lueckensatz(merk.text, karte.hinten)} className="prosa karten-merk" />}
+        {merk?.art === 'frage' && tipp && <Md text={merk.text} className="prosa karten-merk" />}
         <span className="karten-tipp sehr-leise klein">
           {gesten ? (
             'Tippen zum Umdrehen · zur Seite wischen zum Blättern'
@@ -173,10 +208,11 @@ export function KartenAnsicht({
       </div>
       <div className="karten-seite hinten" aria-hidden={!umgedreht}>
         <div className="karten-kopf">
-          <span className="chip akzent">Antwort</span>
+          <span className="chip akzent">{karte.seiten ? karte.seiten[1] : 'Antwort'}</span>
           <span className="sehr-leise klein">{karte.quelle}</span>
         </div>
         <Md text={karte.hinten} className="prosa karten-text" />
+        {merk && <Md text={merk.text} className="prosa karten-merk" />}
       </div>
     </button>
   );
@@ -230,9 +266,55 @@ export function KartenAnsicht({
         </div>
       </div>
 
+      {(karte.tippen || merk?.art === 'frage') && !umgedreht && (
+        <div className="karten-tippen">
+          {karte.tippen && (
+            <form
+              className="karten-tipp-zeile"
+              onSubmit={(e) => {
+                e.preventDefault();
+                pruefen();
+              }}
+            >
+              <input
+                ref={tippFeld}
+                className="eingabe"
+                value={eingabe}
+                onChange={(e) => setEingabe(e.target.value)}
+                placeholder={karte.seiten ? `${karte.seiten[1]} eintippen …` : 'Antwort eintippen …'}
+                autoComplete="off"
+                autoCorrect="off"
+                autoCapitalize="off"
+                spellCheck={false}
+                enterKeyHint="done"
+                aria-label="Antwort eintippen"
+              />
+              <button type="submit" className="btn primaer" disabled={!eingabe.trim()}>
+                Prüfen
+              </button>
+            </form>
+          )}
+          {merk?.art === 'frage' && !tipp && (
+            <button type="button" className="btn geist klein" onClick={() => setTipp(true)}>
+              <Icon name="licht" size={15} /> Merkhilfe zeigen
+            </button>
+          )}
+        </div>
+      )}
+      {geprueft && umgedreht && (
+        <div className={`karten-pruefung ${geprueft}`} role="status">
+          <strong>{geprueft === 'richtig' ? 'Richtig!' : geprueft === 'fast' ? 'Fast – kleiner Tippfehler.' : 'Nicht ganz.'}</strong>{' '}
+          {geprueft !== 'richtig' && (
+            <span>
+              Du: „{eingabe}“ · richtig: „{karte.hinten}“
+            </span>
+          )}
+          <span className="sehr-leise klein"> Enter übernimmt „{BEWERTUNG_TEXT[vorschlag!]}“ – oder wähle selbst.</span>
+        </div>
+      )}
       <div className={`bewertung${umgedreht ? ' sichtbar' : ''}${gesten ? ' kompakt' : ''}`} aria-hidden={!umgedreht}>
         {reihe.map((k) => (
-          <button key={k.b} type="button" className={`btn bew ${k.b}`} onClick={() => bewerten(k.b)} disabled={!umgedreht}>
+          <button key={k.b} type="button" className={`btn bew ${k.b}${vorschlag === k.b ? ' vorschlag' : ''}`} onClick={() => bewerten(k.b)} disabled={!umgedreht}>
             {gesten && linksPfeil(k.b) && <span className="pfeil">{pfeil[k.b]}</span>}
             {!gesten && <Icon name={k.icon} size={16} />} {k.text} <Taste>{k.taste}</Taste>
             {gesten && !linksPfeil(k.b) && <span className="pfeil">{pfeil[k.b]}</span>}
@@ -240,9 +322,11 @@ export function KartenAnsicht({
         ))}
       </div>
       <div className={`karten-extra${umgedreht ? ' sichtbar' : ''}`} aria-hidden={!umgedreht}>
-        <button type="button" className="btn geist klein" onClick={() => setErklaer(true)} disabled={!umgedreht}>
-          <Icon name="buch" size={15} /> Genauer erklärt <Taste>E</Taste>
-        </button>
+        {!eigen && (
+          <button type="button" className="btn geist klein" onClick={() => setErklaer(true)} disabled={!umgedreht}>
+            <Icon name="buch" size={15} /> Genauer erklärt <Taste>E</Taste>
+          </button>
+        )}
         {frueher && <span className="sehr-leise klein">Vorhin: {BEWERTUNG_TEXT[frueher]} – du kannst neu bewerten.</span>}
       </div>
       {erklaer && <ErklaerPanel themaId={themaId} suchtext={`${karte.vorne} ${karte.hinten}`} mehr={karte.mehr} onSchliessen={() => setErklaer(false)} />}
